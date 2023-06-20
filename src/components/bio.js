@@ -16,6 +16,7 @@ const Bio = () => {
         siteMetadata {
           author {
             name
+            nickname
             summary
           }
           social {
@@ -35,21 +36,20 @@ const Bio = () => {
         className="bio-avatar"
         layout="fixed"
         formats={["auto", "webp", "avif"]}
-        src="../images/profile-pic.JPG"
-        width={50}
-        height={50}
-        quality={100}
+        src="../images/profile-pic.jpg"
+        width={100}
+        height={100}
+        quality={90}
         alt="Profile picture"
+        style={{ minWidth: "100px" }}
       />
-      {author?.name && (
-        <p>
-          Written by <strong>{author.name}</strong> {author?.summary || null}
-          {` `}
-          <a href={`https://github.com/${social?.github}`} target="_blank">
-            Git
-          </a>
-        </p>
-      )}
+      <div>
+        <h3 style={{ marginTop: 0 }}>{`${author.name} ${author.nickname}`}</h3>
+        <p>{author?.summary || null}</p>
+        <div>
+          <a href={`https://github.com/${social.github}`}>Github</a>
+        </div>
+      </div>
     </div>
   )
 }

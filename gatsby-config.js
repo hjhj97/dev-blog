@@ -11,10 +11,12 @@ module.exports = {
   siteMetadata: {
     title: `JuHeon's Dev Blog`,
     author: {
-      name: `JuHeon Ha`,
-      summary: `who lives and works in San Francisco building useful things.`,
+      name: `하주헌`,
+      nickname: "Neon",
+      summary: `프론트엔드 개발자입니다. 제가 작성한 코드가 화면에 나타나는 모습을 좋아합니다.
+       백엔드에도 관심이 많아서 이것저것 만듭니다.`,
     },
-    description: `A starter blog demonstrating what Gatsby can do.`,
+    //description: `A starter blog demonstrating what Gatsby can do.`,
     //siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
     social: {
       github: "hjhj97",
