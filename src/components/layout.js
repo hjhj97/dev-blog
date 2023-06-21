@@ -24,12 +24,12 @@ const Layout = ({ location, title, children }) => {
     <div className="global-wrapper">
       <header className="global-header">
         <h1 className="main-heading">
-          <Link to="/" class="header-text">
+          <Link to="/" className="header-text">
             {title}
           </Link>
         </h1>
       </header>
-      <main style={{ marginTop: "8rem" }}>{children}</main>
+      <main>{children}</main>
       <footer>
         © {new Date().getFullYear()}, Built with
         {` `}

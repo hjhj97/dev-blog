@@ -58,6 +58,9 @@
   --color-heading: #1a202c;
   --color-heading-black: black;
   --color-accent: #d1dce5;
+
+  /* custom */
+  --header-height: 60px;
 }
 
 /* HTML elements */
@@ -250,6 +253,7 @@ a:focus {
 }
 
 .global-header {
+  height: var(--header-height);
   margin-bottom: var(--spacing-12);
   position: fixed;
   top: 0;
@@ -260,8 +264,15 @@ a:focus {
   z-index: 9999;
 }
 
+main {
+  margin-top: calc(var(--header-height) + 5rem);
+}
+
 .main-heading {
+  display: flex;
+  align-items: center;
   font-size: var(--fontSize-7);
+  height: 100%;
   margin: 0;
 }
 
