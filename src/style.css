@@ -60,7 +60,7 @@
   --color-accent: #d1dce5;
 
   /* custom */
-  --header-height: 60px;
+  --header-height: 80px;
 }
 
 /* HTML elements */
@@ -260,7 +260,8 @@ a:focus {
   top: 0;
   left: 0;
   right: 0;
-  background-color: var(--color-primary);
+  /*background-color: var(--color-primary);*/
+  background-color: #222;
   padding: 0.4rem 0;
   z-index: 9999;
 }
