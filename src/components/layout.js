@@ -32,7 +32,7 @@ const Layout = ({ location, title, children }) => {
         </h1>
       </header>
       <main>{children}</main>
-      <footer>
+      <footer className="global-footer">
         © <a href="https://github.com/hjhj97">Neon</a>, Built with
         {` `}
         <a href="https://www.gatsbyjs.com">Gatsby</a>

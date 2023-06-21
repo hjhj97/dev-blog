@@ -85,15 +85,10 @@ body {
   color: var(--color-text);
 }
 
-footer {
+footer.global-footer {
   text-align: center;
   padding: var(--spacing-6) var(--spacing-0);
 }
-
-/*footer .my-profile {
-  color: black;
-  font-weight: bold;
-}*/
 
 hr {
   background: var(--color-accent);
