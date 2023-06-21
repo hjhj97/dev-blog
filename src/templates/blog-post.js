@@ -29,7 +29,7 @@ const BlogPostTemplate = ({
           itemProp="articleBody"
         />
         <hr />
-        <footer>
+        <footer className="post-footer">
           <Bio />
         </footer>
       </article>

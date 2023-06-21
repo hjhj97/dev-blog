@@ -346,6 +346,9 @@ main {
 .blog-post section {
   margin-bottom: 4rem;
 }
+.blog-post footer.post-footer {
+  margin-top: 3rem;
+}
 
 .gatsby-highlight {
   margin-bottom: var(--spacing-8);
