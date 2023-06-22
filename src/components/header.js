@@ -24,12 +24,13 @@ function Header() {
         </b>
       </Link>
 
-      <div style={{ position: "absolute", top: "25%", right: "2%" }}>
+      <div className="header-switch">
         <Switch
           onChange={handleChange}
           checked={isFlickering}
-          checkedIcon={<div>off</div>}
-          uncheckedIcon={<div>on</div>}
+          checkedIcon={<span className="header-switch__text left">off</span>}
+          uncheckedIcon={<span className="header-switch__text right">on</span>}
+          onColor="#6282e3"
         />
       </div>
     </header>
