@@ -17,12 +17,14 @@ function Header() {
 
   return (
     <header className="global-header">
-      <Link to="/" className="header-neon">
-        <b>
-          Ju<span className={!isFlickering && "off"}>Heon</span>'s&nbsp;
-          <span className={!isFlickering && "off"}>Dev</span>
-        </b>
-      </Link>
+      <div className="header-neon">
+        <Link to="/">
+          <b>
+            Ju<span className={!isFlickering && "off"}>Heon</span>'s&nbsp;
+            <span className={!isFlickering && "off"}>Dev</span>
+          </b>
+        </Link>
+      </div>
 
       <div className="header-switch">
         <Switch
