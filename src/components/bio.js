@@ -44,9 +44,9 @@ const Bio = () => {
         style={{ minWidth: "100px" }}
       />
       <div>
-        <h3 style={{ marginTop: 0 }}>{`${author.name} ${author.nickname}`}</h3>
+        <h3 className="bio-name">{`${author.name} ${author.nickname}`}</h3>
         <p>{author?.summary || null}</p>
-        <div>
+        <div className="bio-social">
           <a href={`https://github.com/${social.github}`}>Github</a>
         </div>
       </div>

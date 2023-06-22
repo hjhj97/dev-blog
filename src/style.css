@@ -322,8 +322,19 @@ main {
   margin-bottom: var(--spacing-16);
 }
 
+.bio .bio-name {
+  margin-top: 0;
+  margin-bottom: var(--spacing-2);
+  font-size: var(--fontSize-3);
+}
+
 .bio p {
+  font-size: var(--fontSize-0);
   margin-bottom: var(--spacing-0);
+}
+
+.bio .bio-social > * {
+  font-size: var(--fontSize-0);
 }
 
 .bio-avatar {
