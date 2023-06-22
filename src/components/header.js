@@ -1,6 +1,7 @@
 import { Link } from "gatsby"
 import React, { useState } from "react"
 import { useStorage } from "../hooks/useStorage"
+import Switch from "react-switch"
 
 function Header() {
   const IS_FLICKERING = "isFlickering"
@@ -22,9 +23,15 @@ function Header() {
           <span className={!isFlickering && "off"}>Dev</span>
         </b>
       </Link>
-      <button onClick={handleChange} style={{ float: "right" }}>
-        {isFlickering ? "off" : "on"}
-      </button>
+
+      <div style={{ position: "absolute", top: "25%", right: "2%" }}>
+        <Switch
+          onChange={handleChange}
+          checked={isFlickering}
+          checkedIcon={<div>off</div>}
+          uncheckedIcon={<div>on</div>}
+        />
+      </div>
     </header>
   )
 }
