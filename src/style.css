@@ -61,6 +61,7 @@
 
   /* custom */
   --header-height: 65px;
+  --color-bg: #;
 }
 
 /* HTML elements */
@@ -304,6 +305,11 @@ main {
   height: 120px;
   margin-bottom: var(--spacing-8);
   margin-top: var(--spacing-8);
+  padding: var(--spacing-2);
+}
+.post-list-item:hover {
+  background-color: #d3d9f5;
+  cursor: pointer;
 }
 
 .post-list-item p {
