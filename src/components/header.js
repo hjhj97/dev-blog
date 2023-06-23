@@ -1,19 +1,20 @@
 import { Link } from "gatsby"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useStorage } from "../hooks/useStorage"
 import Switch from "react-switch"
 
 function Header() {
   const IS_FLICKERING = "isFlickering"
   const { getItem, setItem } = useStorage()
-  const [isFlickering, setIsFlickering] = useState(
-    getItem(IS_FLICKERING) !== "false"
-  )
+  const [isFlickering, setIsFlickering] = useState(true)
 
   const handleChange = () => {
     setIsFlickering(!isFlickering)
     setItem(IS_FLICKERING, !isFlickering)
   }
+  useEffect(() => {
+    setIsFlickering(getItem(IS_FLICKERING))
+  }, [])
 
   return (
     <header className="global-header">
@@ -39,4 +40,4 @@ function Header() {
   )
 }
 
-export default React.memo(Header)
+export default Header
