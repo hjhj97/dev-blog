@@ -389,7 +389,7 @@ main {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
 .category-wrapper .category-item.selected {
-  outline: 2px solid rgba(0, 0, 0, 0.7);
+  border: 2px solid rgba(0, 0, 0, 0.7);
 }
 .blog-post header h1 {
   margin: var(--spacing-0) var(--spacing-0) var(--spacing-4) var(--spacing-0);
