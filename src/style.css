@@ -300,16 +300,24 @@ main {
   font-size: var(--fontSize-4);
 }
 
+.post-list {
+  list-style: none;
+  min-height: 30rem;
+}
+
 .post-list-item {
   /*border: 1px solid black;*/
   height: 120px;
   margin-bottom: var(--spacing-8);
   margin-top: var(--spacing-8);
   padding: var(--spacing-2);
+  border-radius: var(--spacing-2);
+  transition: background-color 0.3s ease-in-out;
 }
 .post-list-item:hover {
   background-color: #d3d9f5;
   cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
 }
 
 .post-list-item p {
@@ -386,7 +394,7 @@ main {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
 .category-wrapper .category-item.selected {
-  outline: 2px solid rgba(0, 0, 0, 0.7);
+  border: 2px solid rgba(0, 0, 0, 0.7);
 }
 .blog-post header h1 {
   margin: var(--spacing-0) var(--spacing-0) var(--spacing-4) var(--spacing-0);
