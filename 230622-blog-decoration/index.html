@@ -105,6 +105,9 @@
 <h2>앞으로 적용해 볼 기능들</h2>
 <h4>카테고리</h4>
 <p><code class="language-text">gatsby-starter-bee</code>에서는 기본으로 제공해주는 기능인데, 나는 직접 구현해야한다. 구현 원리는 슥 봤는데 어느정도는 이해하긴 했다. 카테고리 목록을 <code class="language-text">string[]</code>형태의 constant로 미리 선언해놓고, <code class="language-text">content/blog/</code>밑의 경로에 선언해둔 카테고리를 디렉토리로 만들어서 포스팅을 집어 넣는다. 그리고 <code class="language-text">useCategory</code> hook을 호출해서 특정 카테고리 밑에 있는 포스팅들을 다 묶어주는 방식인 것 같다. 머리로는 이해했는데 구현은 한번 해봐야 할 것 같다.</p>
+<p><strong>2023.06.23 적용</strong><br>
+오늘 하루를 꼬박 투자해서 카테고리 기능을 구현해냈다. 위에 적은 예상 구현 방법은 반은 맞고 반은 틀렸다. 카테고리 리스트는 constant로 미리 선언해둘 필요 없이, 글의 <code class="language-text">frontmatter</code>에 <code class="language-text">category</code>라는 속성을 적어주기만 하면 된다. 그러면 <code class="language-text">index.js</code>에서 모든 글의 <code class="language-text">frontmatter</code>정보를 긁어와서 map형태로 만들고 <code class="language-text">unique</code>함수를 거쳐서 유일하게 만들어주면 된다.<br>
+여기까지는 <em>Jbee</em> 님이 구현한 방식을 참고했는데, 나는 여기서 더 나아가 카테고리별 글의 '개수'까지 보여주고 싶었다. 기존 방식은 post의 카테고리를 <code class="language-text">map()</code>함수로 뽑아낸 다음, <code class="language-text">lodash</code>의 <code class="language-text">uniq</code>함수를 실행하기 때문에 글의 개수와 관련된 정보는 날라가버린다. 그래서 나는 글의 개수를 보존하기 위해 자료구조 <code class="language-text">Map</code>을 활용하여 key값은 카테고리 이름, value값은 해당 카테고리 글의 개수를 저장했다.</p>
 <h4>다크모드</h4>
 <p>카테고리 기능만큼 우선순위가 높은 기능은 아니라고 생각한다. 이 역시도 gatsby-theme과 관련된 플러그인이 있는 것 같던데, 나중에 적용할 마음이 생기면 찾아보려고 한다.</p>
 <h4>오픈그래프(검색최적화)</h4>
@@ -114,4 +117,4 @@
           >
             window.___chunkMapping="{\"app\":[\"/app-c32539ea781de4a559cb.js\"],\"component---src-pages-404-js\":[\"/component---src-pages-404-js-dbc9ae67824a30acae91.js\"],\"component---src-pages-index-js\":[\"/component---src-pages-index-js-71130a12384a4caffcc9.js\"],\"component---src-pages-using-typescript-tsx\":[\"/component---src-pages-using-typescript-tsx-6e7cbbd1fc0f4e5d1744.js\"],\"component---src-templates-blog-post-js\":[\"/component---src-templates-blog-post-js-359c271d87327b60c38c.js\"]}";
           </script>
-        <script>window.___webpackCompilationHash="3c9e498967d557e4af96";</script><script src="/webpack-runtime-d1775895f63b1880bf8d.js" async></script><script src="/framework-195f9a31e5a4e6cebf51.js" async></script><script src="/app-c32539ea781de4a559cb.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>
+        <script>window.___webpackCompilationHash="60c6c1e3763af1cf1a0d";</script><script src="/webpack-runtime-d1775895f63b1880bf8d.js" async></script><script src="/framework-195f9a31e5a4e6cebf51.js" async></script><script src="/app-c32539ea781de4a559cb.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>
