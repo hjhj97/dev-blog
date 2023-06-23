@@ -2,6 +2,7 @@
 title: 테스트 글
 description: 테스트를 위한 포스트입니다
 date: "2023-06-20T22:12:03.284Z"
+category: etc
 ---
 
 이건 테스트 글입니다.

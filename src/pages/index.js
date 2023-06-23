@@ -5,16 +5,15 @@ import { Link, graphql } from "gatsby"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import Category from "../components/category"
 import { useCategory } from "../hooks/useCategory"
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const posts = data.allMarkdownRemark.nodes
   const categories = _.uniq(posts.map(post => post.frontmatter?.category))
-  console.log(categories)
 
   const [currentCategory, selectCategory] = useCategory()
-  console.log(currentCategory)
 
   if (posts.length === 0) {
     return (
@@ -32,14 +31,12 @@ const BlogIndex = ({ data, location }) => {
   return (
     <Layout location={location} title={siteTitle}>
       <Bio />
-      <ul>
-        {categories.map(
-          category =>
-            category && (
-              <li onClick={() => selectCategory(category)}>{category}</li>
-            )
-        )}
-      </ul>
+      <Category
+        categories={categories}
+        currentCategory={currentCategory}
+        selectCategory={selectCategory}
+      />
+
       <ol style={{ listStyle: `none` }}>
         {posts
           .filter(
