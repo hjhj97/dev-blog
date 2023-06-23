@@ -7,7 +7,7 @@ function Header() {
   const IS_FLICKERING = "isFlickering"
   const { getItem, setItem } = useStorage()
   const [isFlickering, setIsFlickering] = useState(
-    getItem(IS_FLICKERING) || true
+    getItem(IS_FLICKERING) === "true"
   )
 
   const handleChange = () => {
