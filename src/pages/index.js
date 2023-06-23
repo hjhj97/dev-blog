@@ -37,7 +37,7 @@ const BlogIndex = ({ data, location }) => {
         selectCategory={selectCategory}
       />
 
-      <ol style={{ listStyle: `none` }}>
+      <ol className="post-list">
         {posts
           .filter(
             post =>

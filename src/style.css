@@ -300,6 +300,11 @@ main {
   font-size: var(--fontSize-4);
 }
 
+.post-list {
+  list-style: none;
+  min-height: 30rem;
+}
+
 .post-list-item {
   /*border: 1px solid black;*/
   height: 120px;
