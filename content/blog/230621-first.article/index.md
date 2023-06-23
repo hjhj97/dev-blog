@@ -2,6 +2,7 @@
 title: 첫 번째 글
 description: Gatsby로 블로그를 이사하고 올리는 첫 글
 date: "2023-06-21T22:12:00.000Z"
+category: "log"
 ---
 
 ## 블로그 이사
