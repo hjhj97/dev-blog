@@ -1,5 +1,5 @@
-import * as React from "react"
-import * as _ from "lodash"
+import React, { useMemo } from "react"
+//import * as _ from "lodash"
 import { Link, graphql } from "gatsby"
 
 import Bio from "../components/bio"
@@ -11,9 +11,20 @@ import { useCategory } from "../hooks/useCategory"
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const posts = data.allMarkdownRemark.nodes
-  const categories = _.uniq(posts.map(post => post.frontmatter?.category))
-
   const [currentCategory, selectCategory] = useCategory()
+  //const categories = _.uniq(posts.map(post => post.frontmatter?.category))
+
+  const makeCategoryMap = () => {
+    const map = new Map()
+    posts.forEach(post => {
+      const postCategory = post.frontmatter?.category
+      const postCnt = map.get(postCategory) || 0
+      map.set(postCategory, postCnt + 1)
+    })
+    return map
+  }
+  const categoryByMap = useMemo(makeCategoryMap, [])
+  const categories = Array.from(categoryByMap, ([name, cnt]) => ({ name, cnt }))
 
   if (posts.length === 0) {
     return (

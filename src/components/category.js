@@ -1,6 +1,11 @@
-import React from "react"
+import React, { useMemo } from "react"
 
-function category({ categories, currentCategory, selectCategory }) {
+function Category({ categories, currentCategory, selectCategory }) {
+  const getToalPostCnt = () => {
+    return categories.reduce((acc, cur) => acc + cur.cnt, 0)
+  }
+  const totalPost = useMemo(getToalPostCnt, [])
+
   return (
     <ul className="category-wrapper">
       <li
@@ -9,23 +14,21 @@ function category({ categories, currentCategory, selectCategory }) {
         }`}
         onClick={() => selectCategory("All")}
       >
-        All
+        All ({totalPost})
       </li>
-      {categories.map(
-        category =>
-          category && (
-            <li
-              className={`category-item ${
-                currentCategory === category ? "selected" : ""
-              }`}
-              onClick={() => selectCategory(category)}
-            >
-              {category}
-            </li>
-          )
-      )}
+
+      {categories.map(({ name, cnt }) => (
+        <li
+          className={`category-item ${
+            currentCategory === name ? "selected" : ""
+          }`}
+          onClick={() => selectCategory(name)}
+        >
+          {`${name}(${cnt})`}
+        </li>
+      ))}
     </ul>
   )
 }
 
-export default category
+export default Category
