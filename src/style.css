@@ -306,10 +306,13 @@ main {
   margin-bottom: var(--spacing-8);
   margin-top: var(--spacing-8);
   padding: var(--spacing-2);
+  border-radius: var(--spacing-2);
+  transition: background-color 0.3s ease-in-out;
 }
 .post-list-item:hover {
   background-color: #d3d9f5;
   cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
 }
 
 .post-list-item p {
