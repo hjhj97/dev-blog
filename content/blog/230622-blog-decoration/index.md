@@ -2,6 +2,7 @@
 title: 블로그 꾸미기 일지
 date: "2023-06-22T22:12:03.284Z"
 description: 블로그를 예쁘게 꾸며보자
+category: etc
 ---
 
 ## 블로그 템플릿
