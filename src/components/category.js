@@ -24,7 +24,7 @@ function Category({ categories, currentCategory, selectCategory }) {
           }`}
           onClick={() => selectCategory(name)}
         >
-          {`${name}(${cnt})`}
+          {`${name} (${cnt})`}
         </li>
       ))}
     </ul>
