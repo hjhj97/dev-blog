@@ -1,8 +1,8 @@
 ---
-title: Vue에서 CSS,JS를 이용한 룰렛 구현
+title: CSS,JS를 이용한 룰렛 구현
 description:
 date: "2023-06-24T22:12:00.000Z"
-category: "vue"
+category: "JS"
 ---
 
 _2022-11-12 에 작성된 [원문](https://ps-hjhj97.tistory.com/214)을 수정한 버전입니다_
@@ -13,82 +13,93 @@ _2022-11-12 에 작성된 [원문](https://ps-hjhj97.tistory.com/214)을 수정�
 
 #### 요구조건
 
-css의 animation에서 rotate를 활용하면 되는데 구현해야 할 요구조건은 아래와 같다.
-
 1. 사용자가 버튼을 누르면 백엔드 API가 호출되고 리턴값으로 당첨영역을 받는다. 이 영역의 위치에 따라 회전 각도를 조절해야한다.
+
 2. 현실에서 룰렛이 회전하는 것처럼, 처음에는 천천히 돌다가 점점 가속도가 붙어서 빨라지고 마지막에는 느려지다 멈춘다.
 
-```jsx
-// Roulette.vue
-<template>
-  <div class="container">
-    <!-- 룰렛 화살표 -->
-    <div class="arrow">▼</div>
+#### 구현 방식
 
-    <!-- 회전하는 룰렛 이미지 -->
-    <img src="@/assets/roulette.png" class="roulette_content" />
+가장 쉽게 생각해볼 수 있는 방법은 css animation을 활용하여 rotate시키는 방법이다.
+아래와 같이 `spin`이라는 keyframs를 정의하고 `rotate(360deg)`를 부여하면 한 element를 한바퀴 돌릴 수 있다.
 
-    <!-- 룰렛을 돌리기 시작하는 버튼 -->
-    <button @click="onClickStart">Start</button>
-  </div>
-</template>
-```
-
-템플릿은 간단하게 3개밖에 없다. 룰렛 화살표는 필수는 아니고 당첨된 영역을 확인하기 용이하도록 만들었다.
-
-다음은 스크립트(Vue3 Composition api)이다.
-
-```jsx
-// Roulette.vue
-<script>
-export default {
-  setup(){
-    const onClickStart = () => {
-      const {startRoulette} = useRoulette();
-      startRoulette();
+```css
+/* roulette.css */
+.roulette_content {
+  animation-name: spin;
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
     }
-    return{
-      onClickStart,
+    to {
+      transform: rotate(360deg);
     }
   }
 }
-</script>
 ```
 
-`setup()`함수에서는 버튼을 눌렀을 때 동작하는 함수만 정의하고, `useRoulette()` hook을 실행하면 된다.
+하지만 **요구조건 1**에서 언급했다시피 당첨영역, 즉 회전 각도는 고정된 값이 아니라 서버에서 리턴받는 값에 따라서 동적으로 변해야 한다. 그래서 나는 `js`단에서 css keyframes에 접근하여 rotate각도를 직접 수정할 수 있는지를 찾아보았다. 예를 들어 DOM element의 `backgroundColor`나 `fontSize`는 `querySelector()`함수를 이용해 접근할 수 있는 것처럼 animation도 그런 작업이 가능한 지 궁금했다.
 
-다음은 가장 핵심인 `useRoulette()` hook이다. 코드는 굉장히 복잡해보이는데 사실 대부분 사용자가 입맛에 따라 정의하는 하이퍼파라미터이다. 하이퍼파라미터는 변수명을 대문자로 표기하였다.
-원리는 간단하다. 룰렛은 원형이니 중심각이 360도이다. 따라서 360/(영역의 개수) 를 계산하여 각 영역당 중심각의 크기를 구할 수 있다. 그리고 해당 영역이 몇 번째인지 알고 있으면 그만큼 룰렛을 rotate시키면 되는 것이다. 그래서 회전시켜야 하는 각도 값을 `rouletteAngle`변수에 저장하여 style property에 `--roulette-angle`로 저장시키면 css에서도 이 값을 가져다 쓸 수 있는 방식이다.
-다만 요구조건 2에서 룰렛이 돌아가는 속도를 시간에 따라 결정해야하므로 cubic-bezier 커브를 정의하였고 `MIN_ROTATION, ROTATION_SECOND` 변수를 정의하여 돌아가다가 서서히 멈추는 애니메이션처럼 보이도록 하였다.
+결론부터 얘기하자면, 가능은 하지만 방법이 너무 복잡했다.[(링크)](https://stackoverflow.com/questions/59573722/how-can-i-set-a-css-keyframes-in-javascript)  
+`insertRule()`함수를 이용해서 넣는 방식이었는데 keyframe부분을 직접 문자열로 하드코딩해야하기 때문에 너무 억지인 것 같아서 다른 방법을 찾아보기로 하였다.
 
-```js
-// useRoulette.js
+#### css var()를 활용한 방식
+
+다른 방법으로 생각해낸 건 아래와 같이 css의 var()를 활용해서 :root에서 선언해놓은 변수 값을 keyframes에서 갖다 쓰는 방식이다. root 영역의 값은 `js`단에서 `setProperty()`함수를 활용해서 조작할 수 있기 때문에 이 방식이 더 낫다고 판단하였다.
+
+```css
+/*roulette.css*/
+.roulette_content {
+  animation-name: spin;
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(var(--roulette-angle));
+    }
+  }
+}
+```
+
+#### 룰렛의 파라미터
+
+룰렛을 돌리기 전에 결정되어야 할 파라미터가 몇 가지가 있다.
+
+1. 룰렛을 최소 몇 바퀴 돌릴 것인지
+2. 룰렛을 몇 초 동안 돌릴 것인지
+3. 룰렛 안에 채워져 있는 컨텐츠
+
+이 3가지가 채워지고나면 룰렛을 돌릴 수 있게 된다.
+
+원리는 간단하다. 룰렛의 중심각이 360도이다. 따라서 `360/(영역의 개수)` 를 계산하면 룰렛의 각 영역당 중심각의 크기`(=degPerSection)`를 구할 수 있다.  
+그리고 당첨된 영역`(=pick)`이 (반시계방향 기준)몇 번째인지 구하여 `degPerSection * pick` 값이 룰렛을 회전시켜야하는 각도 값`(=rouletteAngle)`이 된다.
+이 값을 root에 `--roulette-angle`로 저장시키면 `var()`함수를 이용하여 keyframes에서도 이 값을 가져다 쓸 수 있는 방식이다.
+
+그래서 `startRoulette()`함수를 실행시키면 `rouletteAngle`값이 정해지고 이 값은 다시 :root의 `roulette-angle`으로 채워져서 spin animation이 작동하게 된다.
+
+```jsx
 const useRoulette = () => {
   const POINT_ARRAY = ["red", "blue", "green", "yellow"]
   // 룰렛의 내용, 12시 방향부터 반시계방향
   const MIN_ROTATION = 3
-  // 룰렛을 최소 몇 바퀴 돌릴 것인지 결정
+  // 룰렛을 최소 몇 바퀴 돌릴 것인지
   const ROTATION_SECOND = 2
   // 몇 초동안 돌릴 것인지
 
   const numberOfSection = POINT_ARRAY.length
   // 룰렛에 적힌 영역의 개수
-  const pick = Math.floor(Math.random() * numberOfSection)
-  // [0, section - 1]범위에 랜덤한 인덱스를 뽑음, 서버에서 영역을 정해준다면 필요없음
   const degPerSection = 360 / numberOfSection
   // 하나의 섹션당 각도가 몇 도인지 계산함.
-  const rouletteAngle = 360 * MIN_ROTATION + degPerSection * pick
-  // 최소 MIN_ROTATION만큼은 돌고난 후에, pick 영역을 가르키도록 함
+  let pickedSection
+  // 당첨된 영역
 
-  const startRoulette = () => {
-    const rouletteEl = document.querySelector(".roulette_content")
-    rouletteEl.style.animationName = "spin"
-    rouletteEl.style.animationDuration = `${ROTATION_SECOND * 1000}ms`
-    rouletteEl.style.animationTimingFunction =
-      "cubic-bezier(0.37, 0.06, 0.63, 0.98)"
-    //처음에는 빠르게 돌다가 끝에 가면 천천히 돌아가도록 함
-    rouletteEl.style.animationFillMode = "forwards"
-    // 룰렛이 멈춘 후에 상태 유지
+  const setRouletteProperty = () => {
+    const pick = Math.floor(Math.random() * numberOfSection)
+    // [0, section - 1]범위에 랜덤한 인덱스를 뽑음, 서버에서 영역을 정해준다면 필요없음
+    pickedSection = POINT_ARRAY[pick]
+    // 당첨된 영역 값 대입
+    const rouletteAngle = 360 * MIN_ROTATION + degPerSection * pick
+    // 최소 MIN_ROTATION만큼은 돌고난 후에, pick 영역을 가르키도록 함
 
     document.documentElement.style.setProperty(
       "--roulette-angle",
@@ -96,11 +107,18 @@ const useRoulette = () => {
     )
     //css의 root에 선언해놓은 변수에 값 할당함.
 
+    const rouletteEl = document.querySelector(".roulette_content")
+    rouletteEl.style.animationDuration = `${ROTATION_SECOND * 1000}ms`
+    // 애니메이션(룰렛회전) 지속시간 적용
+  }
+
+  const startRoulette = () => {
+    setRouletteProperty()
+
     const toId = setTimeout(() => {
-      alert(POINT_ARRAY[pick])
+      alert(pickedSection)
       clearTimeout(toId)
-    }, (ROTATION_SECOND + 0.3) * 1000)
-    // 룰렛 멈추고나서 alert창 표시
+    }, ROTATION_SECOND * 1000)
   }
   return {
     startRoulette,
@@ -110,17 +128,27 @@ const useRoulette = () => {
 
 ```css
 /* roulette.css */
-<style>
-	@keyframes spin {
-		from {
-			transform: rotate(0deg);
-		}
-		to {
-			transform: rotate(var(--roulette-angle));
-		}
-	}
-</style>
+.roulette_content {
+  animation-name: spin;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
 
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(var(--roulette-angle));
+  }
+}
 ```
 
-이 코드는 룰렛의 한 영역당 중심각이 모두 동일하다는 전제에서만 정상 작동한다. 만약 특정 영역의 확률은 낮추고, 다른 영역을 높이려면 랜덤값을 뽑는 `pick` 변수 부분을 조정해야 할 것 같다.
+## 구현
+
+<iframe src="https://codesandbox.io/embed/vue3-roulette-cu4617?fontsize=14&hidenavigation=1&theme=dark"
+     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+     title="Vue3-roulette"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
