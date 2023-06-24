@@ -1,4 +1,135 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[Gatsby Starter Blog RSS Feed]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 23 Jun 2023 19:09:47 GMT</lastBuildDate><item><title><![CDATA[블로그 꾸미기 일지]]></title><description><![CDATA[블로그 템플릿 블로그를 이제 막 개설해서인지 아직은  프레임워크가 어떻게 동작하는지 파악하고 있는 단계다. 그러면서도 블로그 꾸미기는 빼먹을 수 없는데, 이는 역시 내가 프론트엔드 개발자이기도 하고 velog나 medium…]]></description><link>null/230622-blog-decoration/</link><guid isPermaLink="false">null/230622-blog-decoration/</guid><pubDate>Thu, 22 Jun 2023 22:12:03 GMT</pubDate><content:encoded>&lt;h2&gt;블로그 템플릿&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[Gatsby Starter Blog RSS Feed]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 24 Jun 2023 08:58:53 GMT</lastBuildDate><item><title><![CDATA[pinia 도입계기]]></title><link>null/vue/230624-start-pinia/</link><guid isPermaLink="false">null/vue/230624-start-pinia/</guid><pubDate>Sat, 24 Jun 2023 22:12:03 GMT</pubDate><content:encoded></content:encoded></item><item><title><![CDATA[CSS,JS를 이용한 룰렛 구현]]></title><description><![CDATA[2022-11-1…]]></description><link>null/vue/230624-vue-roulette/</link><guid isPermaLink="false">null/vue/230624-vue-roulette/</guid><pubDate>Sat, 24 Jun 2023 22:12:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;2022-11-12 에 작성된 &lt;a href=&quot;https://ps-hjhj97.tistory.com/214&quot;&gt;원문&lt;/a&gt;을 수정한 버전입니다&lt;/em&gt;&lt;/p&gt;
+&lt;h2&gt;룰렛 이벤트&lt;/h2&gt;
+&lt;p&gt;다들 온라인이나 오프라인에서 룰렛(회전판)을 돌려서 나온 상품을 추첨받는 경험 한 번씩 있을 것이다. 현실에서의 룰렛은 공평한 물리법칙에 내 운명을 맡기면 되지만, 웹페이지(프론트엔드)상에서 구현할 때는 룰렛을 어떻게 돌아가게 만들고 어떤 영역을 가리키도록 해야할까? 마침 진행 중인 프로젝트에서 룰렛을 구현해야 했는데 구글링이나 오픈소스에는 내가 원하는 기능이 없어서 직접 구현하게 되었다.&lt;/p&gt;
+&lt;h4&gt;요구조건&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;사용자가 버튼을 누르면 백엔드 API가 호출되고 리턴값으로 당첨영역을 받는다. 이 영역의 위치에 따라 회전 각도를 조절해야한다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;현실에서 룰렛이 회전하는 것처럼, 처음에는 천천히 돌다가 점점 가속도가 붙어서 빨라지고 마지막에는 느려지다 멈춘다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4&gt;구현 방식&lt;/h4&gt;
+&lt;p&gt;가장 쉽게 생각해볼 수 있는 방법은 css animation을 활용하여 rotate시키는 방법이다.
+아래와 같이 &lt;code class=&quot;language-text&quot;&gt;spin&lt;/code&gt;이라는 keyframs를 정의하고 &lt;code class=&quot;language-text&quot;&gt;rotate(360deg)&lt;/code&gt;를 부여하면 한 element를 한바퀴 돌릴 수 있다.&lt;/p&gt;
+&lt;deckgo-highlight-code language=&quot;css&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;/* roulette.css */
+.roulette_content {
+  animation-name: spin;
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;p&gt;하지만 &lt;strong&gt;요구조건 1&lt;/strong&gt;에서 언급했다시피 당첨영역, 즉 회전 각도는 고정된 값이 아니라 서버에서 리턴받는 값에 따라서 동적으로 변해야 한다. 그래서 나는 &lt;code class=&quot;language-text&quot;&gt;js&lt;/code&gt;단에서 css keyframes에 접근하여 rotate각도를 직접 수정할 수 있는지를 찾아보았다. 예를 들어 DOM element의 &lt;code class=&quot;language-text&quot;&gt;backgroundColor&lt;/code&gt;나 &lt;code class=&quot;language-text&quot;&gt;fontSize&lt;/code&gt;는 &lt;code class=&quot;language-text&quot;&gt;querySelector()&lt;/code&gt;함수를 이용해 접근할 수 있는 것처럼 animation도 그런 작업이 가능한 지 궁금했다.&lt;/p&gt;
+&lt;p&gt;결론부터 얘기하자면, 가능은 하지만 방법이 너무 복잡했다.&lt;a href=&quot;https://stackoverflow.com/questions/59573722/how-can-i-set-a-css-keyframes-in-javascript&quot;&gt;(링크)&lt;/a&gt;&lt;br&gt;
+&lt;code class=&quot;language-text&quot;&gt;insertRule()&lt;/code&gt;함수를 이용해서 넣는 방식이었는데 keyframe부분을 직접 문자열로 하드코딩해야하기 때문에 너무 억지인 것 같아서 다른 방법을 찾아보기로 하였다.&lt;/p&gt;
+&lt;h4&gt;css var()를 활용한 방식&lt;/h4&gt;
+&lt;p&gt;다른 방법으로 생각해낸 건 아래와 같이 css의 var()를 활용해서 :root에서 선언해놓은 변수 값을 keyframes에서 갖다 쓰는 방식이다. root 영역의 값은 &lt;code class=&quot;language-text&quot;&gt;js&lt;/code&gt;단에서 &lt;code class=&quot;language-text&quot;&gt;setProperty()&lt;/code&gt;함수를 활용해서 조작할 수 있기 때문에 이 방식이 더 낫다고 판단하였다.&lt;/p&gt;
+&lt;deckgo-highlight-code language=&quot;css&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;/*roulette.css*/
+.roulette_content {
+  animation-name: spin;
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(var(--roulette-angle));
+    }
+  }
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;h4&gt;룰렛의 파라미터&lt;/h4&gt;
+&lt;p&gt;룰렛을 돌리기 전에 결정되어야 할 파라미터가 몇 가지가 있다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;룰렛을 최소 몇 바퀴 돌릴 것인지&lt;/li&gt;
+&lt;li&gt;룰렛을 몇 초 동안 돌릴 것인지&lt;/li&gt;
+&lt;li&gt;룰렛 안에 채워져 있는 컨텐츠&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;이 3가지가 채워지고나면 룰렛을 돌릴 수 있게 된다.&lt;/p&gt;
+&lt;p&gt;원리는 간단하다. 룰렛의 중심각이 360도이다. 따라서 &lt;code class=&quot;language-text&quot;&gt;360/(영역의 개수)&lt;/code&gt; 를 계산하면 룰렛의 각 영역당 중심각의 크기&lt;code class=&quot;language-text&quot;&gt;(=degPerSection)&lt;/code&gt;를 구할 수 있다.&lt;br&gt;
+그리고 당첨된 영역&lt;code class=&quot;language-text&quot;&gt;(=pick)&lt;/code&gt;이 (반시계방향 기준)몇 번째인지 구하여 &lt;code class=&quot;language-text&quot;&gt;degPerSection * pick&lt;/code&gt; 값이 룰렛을 회전시켜야하는 각도 값&lt;code class=&quot;language-text&quot;&gt;(=rouletteAngle)&lt;/code&gt;이 된다.
+이 값을 root에 &lt;code class=&quot;language-text&quot;&gt;--roulette-angle&lt;/code&gt;로 저장시키면 &lt;code class=&quot;language-text&quot;&gt;var()&lt;/code&gt;함수를 이용하여 keyframes에서도 이 값을 가져다 쓸 수 있는 방식이다.&lt;/p&gt;
+&lt;p&gt;그래서 &lt;code class=&quot;language-text&quot;&gt;startRoulette()&lt;/code&gt;함수를 실행시키면 &lt;code class=&quot;language-text&quot;&gt;rouletteAngle&lt;/code&gt;값이 정해지고 이 값은 다시 :root의 &lt;code class=&quot;language-text&quot;&gt;roulette-angle&lt;/code&gt;으로 채워져서 spin animation이 작동하게 된다.&lt;/p&gt;
+&lt;deckgo-highlight-code language=&quot;jsx&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;const useRoulette = () =&amp;gt; {
+  const POINT_ARRAY = [&amp;quot;red&amp;quot;, &amp;quot;blue&amp;quot;, &amp;quot;green&amp;quot;, &amp;quot;yellow&amp;quot;]
+  // 룰렛의 내용, 12시 방향부터 반시계방향
+  const MIN_ROTATION = 3
+  // 룰렛을 최소 몇 바퀴 돌릴 것인지
+  const ROTATION_SECOND = 2
+  // 몇 초동안 돌릴 것인지
+
+  const numberOfSection = POINT_ARRAY.length
+  // 룰렛에 적힌 영역의 개수
+  const degPerSection = 360 / numberOfSection
+  // 하나의 섹션당 각도가 몇 도인지 계산함.
+  let pickedSection
+  // 당첨된 영역
+
+  const setRouletteProperty = () =&amp;gt; {
+    const pick = Math.floor(Math.random() * numberOfSection)
+    // [0, section - 1]범위에 랜덤한 인덱스를 뽑음, 서버에서 영역을 정해준다면 필요없음
+    pickedSection = POINT_ARRAY[pick]
+    // 당첨된 영역 값 대입
+    const rouletteAngle = 360 * MIN_ROTATION + degPerSection * pick
+    // 최소 MIN_ROTATION만큼은 돌고난 후에, pick 영역을 가르키도록 함
+
+    document.documentElement.style.setProperty(
+      &amp;quot;--roulette-angle&amp;quot;,
+      rouletteAngle + &amp;quot;deg&amp;quot;
+    )
+    //css의 root에 선언해놓은 변수에 값 할당함.
+
+    const rouletteEl = document.querySelector(&amp;quot;.roulette_content&amp;quot;)
+    rouletteEl.style.animationDuration = `${ROTATION_SECOND * 1000}ms`
+    // 애니메이션(룰렛회전) 지속시간 적용
+  }
+
+  const startRoulette = () =&amp;gt; {
+    setRouletteProperty()
+
+    const toId = setTimeout(() =&amp;gt; {
+      alert(pickedSection)
+      clearTimeout(toId)
+    }, ROTATION_SECOND * 1000)
+  }
+  return {
+    startRoulette,
+  }
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;deckgo-highlight-code language=&quot;css&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;/* roulette.css */
+.roulette_content {
+  animation-name: spin;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(var(--roulette-angle));
+  }
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;h2&gt;구현&lt;/h2&gt;
+&lt;iframe src=&quot;https://codesandbox.io/embed/vue3-roulette-cu4617?fontsize=14&amp;hidenavigation=1&amp;theme=dark&quot;
+     style=&quot;width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;&quot;
+     title=&quot;Vue3-roulette&quot;
+     allow=&quot;accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking&quot;
+     sandbox=&quot;allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts&quot;
+   &gt;&lt;/iframe&gt;</content:encoded></item><item><title><![CDATA[블로그 꾸미기 일지]]></title><description><![CDATA[블로그 템플릿 블로그를 이제 막 개설해서인지 아직은  프레임워크가 어떻게 동작하는지 파악하고 있는 단계다. 그러면서도 블로그 꾸미기는 빼먹을 수 없는데, 이는 역시 내가 프론트엔드 개발자이기도 하고 velog나 medium…]]></description><link>null/230622-blog-decoration/</link><guid isPermaLink="false">null/230622-blog-decoration/</guid><pubDate>Thu, 22 Jun 2023 22:12:03 GMT</pubDate><content:encoded>&lt;h2&gt;블로그 템플릿&lt;/h2&gt;
 &lt;p&gt;블로그를 이제 막 개설해서인지 아직은 &lt;code class=&quot;language-text&quot;&gt;gatsby&lt;/code&gt; 프레임워크가 어떻게 동작하는지 파악하고 있는 단계다. 그러면서도 블로그 꾸미기는 빼먹을 수 없는데, 이는 역시 내가 프론트엔드 개발자이기도 하고 velog나 medium 같은 플랫폼보다 커스텀할 수 있는 폭이 넓은 gatsby를 기술 블로그로 선택한 이상 꾸미기는 선택이 아닌 거의 필수라고 생각한다.&lt;/p&gt;
 &lt;p&gt;첫 글에서도 언급했다시피 다른 개발자분들의 gatsby 블로그를 구경다니면서도 한 가지 의아했던 점 중 하나는, UI가 하나같이 매우 흡사하다는 점이었다. 상단에는 full-width의 top-fixed-header가 존재하고 바로 밑에는 자신의 프로필과 간단한 소개글, 그 밑에 포스팅이 나열되는 방식이었다. 이게 무슨 정해진 규칙같은 게 있는 건 지, 아니면 이런 형식으로 제공되는 템플릿이 있는 지는 모르겠는데 일단 나는 나만의 방식으로 꾸미기로 했다.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;(나중에 알게된 사실인데, &lt;a href=&quot;https://jbee.io&quot;&gt;Jbee&lt;/a&gt;님이 배포하시는 &lt;a href=&quot;https://github.com/JaeYeopHan/gatsby-starter-bee&quot;&gt;gatsby-starter-bee&lt;/a&gt;가 있었다. 아마 내가 구경한 블로그의 상당수는 이를 fork한 것으로 보인다. 이 블로그도 fork해서 만드는 걸 고려해보긴 했지만, 일단은 제로베이스부터 만들고 싶었다. 대신에 각종 기능을 어떻게 구현했는지에 대한 코드는 많이 참고하고 있다. Jbee님 감사합니다.)&lt;/em&gt;&lt;/p&gt;
