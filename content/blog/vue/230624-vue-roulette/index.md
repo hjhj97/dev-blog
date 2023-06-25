@@ -2,7 +2,7 @@
 title: CSS,JS를 이용한 룰렛 구현
 description:
 date: "2023-06-24T22:12:00.000Z"
-category: "JS"
+category: JS
 ---
 
 _2022-11-12 에 작성된 [원문](https://ps-hjhj97.tistory.com/214)을 수정한 버전입니다_
