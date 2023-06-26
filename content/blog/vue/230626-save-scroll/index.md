@@ -51,7 +51,7 @@ const router = createRouter({
 
 영상으로 직접 확인해보자.
 
-![scrollBehavior](https://github.com/hjhj97/blog.gatsby/tree/main/content/blog/vue/images/save-scroll/save-scroll-1.gif)
+![scrollBehavior](https://raw.githubusercontent.com/hjhj97/blog.gatsby/main/content/blog/vue/images/save-scroll/save-scroll-1.gif)
 
 콘솔로 `savedPosition`을 찍어보면 그 정체는 `{top: number,left : number}`형태라는 걸 알 수 있다.
 
@@ -99,7 +99,7 @@ const router = createRouter({
 
 콘솔로 `prevInfo`를 찍어보면 다음과 아래와 같이 나온다.
 
-![sessionStorage](https://github.com/hjhj97/blog.gatsby/tree/main/content/blog/vue/images/save-scroll/save-scroll-2.gif)
+![sessionStorage](https://raw.githubusercontent.com/hjhj97/blog.gatsby/main/content/blog/vue/images/save-scroll/save-scroll-2.gif)
 
 ## Reference
 
