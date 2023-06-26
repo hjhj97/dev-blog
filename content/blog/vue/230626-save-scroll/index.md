@@ -110,6 +110,8 @@ const router = createRouter({
 <img src="https://raw.githubusercontent.com/hjhj97/blog.gatsby/main/content/blog/vue/images/save-scroll/save-scroll-2.gif" height="600" />
 </div>
 
+즉 `prevInfo`에 저장된 value값을 받아서 `scrollBehavior`함수의 top값으로 리턴해주게 되면 이전에 저장되었던 스크롤 위치로 복귀할 수 있게 되는 원리이다.
+
 ## Reference
 
 (https://in0407.tistory.com/11)
