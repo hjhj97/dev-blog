@@ -1,7 +1,7 @@
 ---
 title: vue-chart에서 비동기 통신 후 화면에 반영하기
 date: "2023-06-27T22:12:03.284Z"
-description:
+description: 서버 통신 후에 화면을 리렌더링 하는 방법
 category: Vue
 ---
 
