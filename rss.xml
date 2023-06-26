@@ -1,4 +1,93 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[Gatsby Starter Blog RSS Feed]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 26 Jun 2023 08:04:13 GMT</lastBuildDate><item><title><![CDATA[Vue 에서 스크롤 위치 저장]]></title><description><![CDATA[2023-03-09 에 작성된 원문을 수정한 버전입니다 SPA(Single Page Application)에서 이전 페이지의 스크롤 위치를 기억해두었다가 재방문 했을 때 그 자리에 위치해야 하는 경우가 있다. 이를 구현하기 위한 방법을 알아보자.…]]></description><link>null/vue/230626-save-scroll/</link><guid isPermaLink="false">null/vue/230626-save-scroll/</guid><pubDate>Mon, 26 Jun 2023 22:12:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;2023-03-09 에 작성된 &lt;a href=&quot;https://ps-hjhj97.tistory.com/220&quot;&gt;원문&lt;/a&gt;을 수정한 버전입니다&lt;/em&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[Gatsby Starter Blog RSS Feed]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 26 Jun 2023 17:37:20 GMT</lastBuildDate><item><title><![CDATA[vue-chart에서 비동기 통신 후 화면에 반영하기]]></title><description><![CDATA[2023-03-09에 작성된 원문을 수정한 버전입니다 문제상황 vue3 환경에서 chart.js 라이브러리를 사용하여 차트 데이터를 화면에 그리려고 한다. 그냥 바닐라 JS를 활용할 수도 있겠지만, 더 편리한 방법으로는 vue…]]></description><link>null/vue/230627-vue-async-data/</link><guid isPermaLink="false">null/vue/230627-vue-async-data/</guid><pubDate>Tue, 27 Jun 2023 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;2023-03-09에 작성된 &lt;a href=&quot;https://ps-hjhj97.tistory.com/221&quot;&gt;원문&lt;/a&gt;을 수정한 버전입니다&lt;/em&gt;&lt;/p&gt;
+&lt;h2&gt;문제상황&lt;/h2&gt;
+&lt;p&gt;vue3 환경에서 chart.js 라이브러리를 사용하여 차트 데이터를 화면에 그리려고 한다. 그냥 바닐라 JS를 활용할 수도 있겠지만, 더 편리한 방법으로는 vue 기반으로 래핑해놓은 &lt;a href=&quot;https://vue-chart-3.netlify.app/&quot;&gt;vue-chart-3&lt;/a&gt;를 활용하려고 한다. 그래서 공식문서 &lt;a href=&quot;https://codesandbox.io/s/demo-vue-chart-3-ugynm?from-embed=&amp;#x26;file=/src/App.vue&quot;&gt;데모 페이지&lt;/a&gt;에 나와있는 대로 따라하려고 하니 문제가 하나 생겼다.&lt;/p&gt;
+&lt;p&gt;내가 화면에 보여줄 데이터는 서버와 비동기 통신을 통해서 받아온 다음에 그려야 한다. 그런데 데모 소스코드 상에서는 데이터가 아래와 같이 그냥 하드코딩 되어 있었다.&lt;/p&gt;
+&lt;deckgo-highlight-code language=&quot;jsx&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;    // &amp;lt;template&amp;gt;
+    &amp;lt;DoughnutChart :chartData=&amp;quot;testData&amp;quot; /&amp;gt;
+    ...
+
+    // &amp;lt;script&amp;gt;
+    const dataValues = ref([30, 40, 60, 70, 5]);
+    const dataLabels = ref([&amp;quot;Paris&amp;quot;, &amp;quot;Nîmes&amp;quot;, &amp;quot;Toulon&amp;quot;, &amp;quot;Perpignan&amp;quot;, &amp;quot;Autre&amp;quot;]);
+    const testData =  {
+      labels: dataLabels.value,
+      datasets: [
+        {
+          data: dataValues.value,
+        },
+      ],
+    };&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;p&gt;실제 chart.js를 활용하는 사례에서는 데이터를 하드코딩해서 넣는 경우보단, 비동기로 넣는 경우가 더 일반적이다. 하지만 chart.js는 차트를 그리는 데 필요한 데이터를 받으면 곧바로 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;canvas&gt;&lt;/code&gt;로 그려버리기 때문에, 그 이후에는 비동기로 데이터가 도착한다고 한들 차트가 변하지 않는다는 문제가 있다.&lt;/p&gt;
+&lt;p&gt;예를 들어 아래 코드와 같이 비동기 통신을 가장한 &lt;code class=&quot;language-text&quot;&gt;fetchData&lt;/code&gt;함수가 &lt;code class=&quot;language-text&quot;&gt;onMounted&lt;/code&gt;에서 실행된다 하더라도 차트는 그려지지 않는다.&lt;/p&gt;
+&lt;deckgo-highlight-code language=&quot;javascript&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;const dataValues = ref([])
+const dataLabels = ref([])
+
+onMounted(() =&amp;gt; {
+  fetchData().then(res =&amp;gt; {
+    dataValues.value = res.map(item =&amp;gt; item.data)
+    dataLabels.value = res.map(item =&amp;gt; item.label)
+  })
+})
+
+const testData = {
+  labels: dataLabels.value,
+  datasets: [
+    {
+      data: dataValues.value,
+    },
+  ],
+}
+
+const fetchData = () =&amp;gt; {
+  return new Promise((resolve, reject) =&amp;gt; {
+    setTimeout(() =&amp;gt; {
+      resolve([
+        { data: 10, label: &amp;quot;a&amp;quot; },
+        { data: 30, label: &amp;quot;b&amp;quot; },
+        { data: 15, label: &amp;quot;c&amp;quot; },
+        { data: 5, label: &amp;quot;d&amp;quot; },
+        { data: 20, label: &amp;quot;e&amp;quot; },
+      ])
+    }, 1000)
+  })
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;h2&gt;해결방법&lt;/h2&gt;
+&lt;p&gt;이를 해결하기 위해서는 차트의 props에 해당하는 &lt;code class=&quot;language-text&quot;&gt;testData&lt;/code&gt;에 반응성을 주입시켜야 한다. 그러면 &lt;code class=&quot;language-text&quot;&gt;fetchData&lt;/code&gt;에서 1초 뒤에 값을 받아오고 나서 &lt;code class=&quot;language-text&quot;&gt;testData&lt;/code&gt;도 받아온 값으로 업데이트된다.&lt;br&gt;
+&lt;code class=&quot;language-text&quot;&gt;testData&lt;/code&gt;에 반응성을 부여하려면 &lt;code class=&quot;language-text&quot;&gt;computed&lt;/code&gt; 를 사용하여 감싸주면 된다.&lt;/p&gt;
+&lt;deckgo-highlight-code language=&quot;javascript&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;// Before
+const testData = {
+  labels: dataLabels.value,
+  datasets: [
+    {
+      data: dataValues.value,
+    },
+  ],
+}
+
+// After
+const testData = computed(() =&amp;gt; {
+  return {
+    labels: dataLabels.value,
+    datasets: [
+      {
+        data: dataValues.value,
+      },
+    ],
+  }
+})&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;h2&gt;구현&lt;/h2&gt;
+&lt;iframe src=&quot;https://codesandbox.io/embed/vue-chart-3nbvlh?fontsize=14&amp;hidenavigation=1&amp;theme=dark&quot;
+     style=&quot;width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;&quot;
+     title=&quot;vue-chart&quot;
+     allow=&quot;accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking&quot;
+     sandbox=&quot;allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts&quot;
+   &gt;&lt;/iframe&gt;</content:encoded></item><item><title><![CDATA[Vue 에서 스크롤 위치 저장]]></title><description><![CDATA[2023-03-09 에 작성된 원문을 수정한 버전입니다 SPA(Single Page Application)에서 이전 페이지의 스크롤 위치를 기억해두었다가 재방문 했을 때 그 자리에 위치해야 하는 경우가 있다. 이를 구현하기 위한 방법을 알아보자.…]]></description><link>null/vue/230626-save-scroll/</link><guid isPermaLink="false">null/vue/230626-save-scroll/</guid><pubDate>Mon, 26 Jun 2023 22:12:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;2023-03-09 에 작성된 &lt;a href=&quot;https://ps-hjhj97.tistory.com/220&quot;&gt;원문&lt;/a&gt;을 수정한 버전입니다&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;SPA(Single Page Application)에서 이전 페이지의 스크롤 위치를 기억해두었다가 재방문 했을 때 그 자리에 위치해야 하는 경우가 있다. 이를 구현하기 위한 방법을 알아보자.&lt;/p&gt;
 &lt;h2&gt;1. vue-router의 savedPosition 활용&lt;/h2&gt;
 &lt;p&gt;vue-router의 &lt;code class=&quot;language-text&quot;&gt;createRouter()&lt;/code&gt;함수의 인자로 &lt;code class=&quot;language-text&quot;&gt;scrollBehavior&lt;/code&gt;함수를 넣을 수 있다.&lt;/p&gt;
