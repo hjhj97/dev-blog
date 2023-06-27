@@ -48,6 +48,7 @@ const Bio = () => {
         <p>{author?.summary || null}</p>
         <div className="bio-social">
           <a href={`https://github.com/${social.github}`}>Github</a>
+          <a href={`https://ps-hjhj97.tistory.com/`}>Tistory</a>
         </div>
       </div>
     </div>

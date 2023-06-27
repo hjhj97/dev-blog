@@ -361,6 +361,10 @@ main {
   font-size: var(--fontSize-0);
   margin-bottom: var(--spacing-0);
 }
+.bio .bio-social {
+  display: flex;
+  gap: var(--spacing-2);
+}
 
 .bio .bio-social > * {
   font-size: var(--fontSize-0);
