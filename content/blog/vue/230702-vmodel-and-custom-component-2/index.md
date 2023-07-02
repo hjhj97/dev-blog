@@ -134,6 +134,8 @@ const checkEmailValid = (email) => {
 
 그러면 `MainPage.vue`에서는 `emit`으로 보낸 값을 `@is-valid`로 받고 콜백함수에서 유효성 여부를 인자로 받을 수 있다. 콜백함수를 위한 별도의 함수를 하나 만들어도 되긴 하는데, 예제 상에서는 만들지 않고 `isEmailValid`라는 변수에 직접 넣어주는 방식을 선택하였다.
 
+#### MainPage.vue
+
 ```jsx
 <template>
   <div>
