@@ -107,6 +107,7 @@ const checkEmailValid = (email) =&gt; {
 </code>
         </deckgo-highlight-code>
 <p>그러면 <code class="language-text">MainPage.vue</code>에서는 <code class="language-text">emit</code>으로 보낸 값을 <code class="language-text">@is-valid</code>로 받고 콜백함수에서 유효성 여부를 인자로 받을 수 있다. 콜백함수를 위한 별도의 함수를 하나 만들어도 되긴 하는데, 예제 상에서는 만들지 않고 <code class="language-text">isEmailValid</code>라는 변수에 직접 넣어주는 방식을 선택하였다.</p>
+<h4>MainPage.vue</h4>
 <deckgo-highlight-code language="jsx"  >
           <code slot="code">&lt;template&gt;
   &lt;div&gt;
