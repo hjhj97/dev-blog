@@ -43,23 +43,14 @@ const formatContact = rawString => {
 #### InputContact.vue
 
 ```jsx
-<template>
-  <input type="tel" :value="modelValue" @input="onInput" maxlength="13" />
-</template>
-
-<script setup>
-import { ref } from "vue";
-
-const props = defineProps({
-  modelValue: String,
-});
+...
 
 const emit = defineEmits(["update:modelValue"]);
 
 const onInput = (e) => {
   const newValue = e.target.value;
-  const formatted = formatContact(newValue);
-  emit("update:modelValue", formatted);
+    const formatted = formatContact(newValue);
+    emit("update:modelValue", newValue);
 };
 
 const formatContact = (rawString) => {
@@ -69,11 +60,10 @@ const formatContact = (rawString) => {
     .replace(/(\-{1,2})$/g, ""); //아직 숫자 입력되기 전의 -는 가려주기
   return formatted;
 };
-</script>
 
 ```
 
-`MainPage.vue`는 그냥 일반적인 `<input />` 태그를 다룰 때처럼만 작성하면 된다. 커스텀 컴포넌트로 변경했다고 한들, 부모 컴포넌트가 데이터 처리 로직에 관여해서 안되고 `Input*.vue`에서 `emit`되는 이벤트에만 의존하고 있어야 한다.
+`MainPage.vue`는 그냥 일반적인 `<input>` 태그를 다룰 때처럼만 작성하면 된다. 커스텀 컴포넌트로 변경했다고 한들, 부모 컴포넌트가 데이터 처리 로직에 관여해서 안되고 `Input*.vue`에서 `emit`되는 이벤트에만 의존하고 있어야 한다.
 
 #### MainPage.vue
 
@@ -83,8 +73,6 @@ const formatContact = (rawString) => {
     <InputContact v-model="contact" />
     <p>contact : {{ contact }}</p>
   </div>
-
-  <hr />
 </template>
 
 <script setup>
@@ -93,8 +81,48 @@ import InputContact from "@/components/InputContact.vue";
 
 const contact = ref("");
 </script>
+```
 
+#### 선택적으로 포맷팅하고 싶다면?
 
+위 코드에서는 전화번호가 항상 포맷팅되지만, 상황에 따라서는 포맷팅되지 않는 걸 원할 수도 있다. `props`로 `useFormat` 을 받아서 이 값이 `true`일 때만 포맷팅되도록 할 수도 있다.
+
+#### InputContact.vue
+
+```jsx
+const props = defineProps({
+  modelValue: String,
+  useFormat: {
+    type: Boolean,
+    default: true,
+  },
+})
+
+const emit = defineEmits(["update:modelValue"])
+
+const onInput = e => {
+  const newValue = e.target.value
+  if (props.useFormat) {
+    const formatted = formatContact(newValue)
+    emit("update:modelValue", formatted)
+  } else {
+    emit("update:modelValue", newValue)
+  }
+}
+
+const formatContact = rawString => {
+  const formatted = rawString
+    .replace(/[^0-9]/g, "") // 숫자만 필터링하기
+    .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3") // 3자리,4자리,4자리로 끊고 -로 구분하기
+    .replace(/(\-{1,2})$/g, "") //아직 숫자 입력되기 전의 -는 가려주기
+  return formatted
+}
+```
+
+#### MainPage.vue
+
+```jsx
+  <InputContact :useFormat="true" v-model="contact" />
 ```
 
 ## 이메일을 위한 input
@@ -143,7 +171,6 @@ const checkEmailValid = (email) => {
     <p>email : {{ email }}</p>
     <p>valid : {{ isEmailValid }}</p>
   </div>
-  <hr />
 </template>
 
 <script setup>
