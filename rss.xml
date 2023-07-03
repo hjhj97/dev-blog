@@ -1,4 +1,188 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[Gatsby Starter Blog RSS Feed]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 03 Jul 2023 03:52:20 GMT</lastBuildDate><item><title><![CDATA[v-model 원리와 커스텀 컴포넌트 만들기 (2 of 2)]]></title><description><![CDATA[2023-04-0…]]></description><link>null/vue/230702-vmodel-and-custom-component-2/</link><guid isPermaLink="false">null/vue/230702-vmodel-and-custom-component-2/</guid><pubDate>Sun, 02 Jul 2023 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;2023-04-04에 작성된 &lt;a href=&quot;https://ps-hjhj97.tistory.com/226&quot;&gt;원문&lt;/a&gt;을 수정한 버전입니다&lt;/em&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[Gatsby Starter Blog RSS Feed]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 03 Jul 2023 18:21:48 GMT</lastBuildDate><item><title><![CDATA[pinia 소개 및 도입 후기]]></title><description><![CDATA[pinia란? 기존 vue의 전역 상태관리 라이브러리는 거의 가 독점하다시피 한 시장이었다. 옆 동네 react만 하더라도 ,,,와 같이 여러 라이브러리 중에서 선택할 수 있었지만, vue에서는 선택권 없이 사실상 9…]]></description><link>null/vue/230703-start-pinia/</link><guid isPermaLink="false">null/vue/230703-start-pinia/</guid><pubDate>Tue, 04 Jul 2023 22:12:03 GMT</pubDate><content:encoded>&lt;h2&gt;pinia란?&lt;/h2&gt;
+&lt;p&gt;기존 vue의 전역 상태관리 라이브러리는 거의 &lt;code class=&quot;language-text&quot;&gt;vuex&lt;/code&gt;가 독점하다시피 한 시장이었다. 옆 동네 react만 하더라도 &lt;code class=&quot;language-text&quot;&gt;redux&lt;/code&gt;,&lt;code class=&quot;language-text&quot;&gt;recoil&lt;/code&gt;,&lt;code class=&quot;language-text&quot;&gt;MobX&lt;/code&gt;,&lt;code class=&quot;language-text&quot;&gt;zustand&lt;/code&gt;와 같이 여러 라이브러리 중에서 선택할 수 있었지만, vue에서는 선택권 없이 사실상 99% &lt;code class=&quot;language-text&quot;&gt;vuex&lt;/code&gt;를 써야했다. 오히려 이 점이 학습에 대한 부담(여러 라이브러리 두루 알고 있어야 함)을 줄여주기도 했지만, vuex의 아쉬운 점을 대체할 수단이 없다는 단점을 껴안고 있었다.&lt;/p&gt;
+&lt;p&gt;그러다가 2019년 11월에 &lt;code class=&quot;language-text&quot;&gt;vuex&lt;/code&gt;의 experiment to redesign(리디자인 실험)으로서 &lt;code class=&quot;language-text&quot;&gt;pinia&lt;/code&gt;가 처음 출시되었고, 현재는 &lt;code class=&quot;language-text&quot;&gt;vuex&lt;/code&gt;를 대신하여 vue의 공식 상태관리 라이브러리로 자리잡았다. 이름은 달라졌다고는 해도 &lt;code class=&quot;language-text&quot;&gt;vuex&lt;/code&gt; 개발팀이 &lt;code class=&quot;language-text&quot;&gt;pinia&lt;/code&gt;를 개발했기 때문에 기존 &lt;code class=&quot;language-text&quot;&gt;vuex&lt;/code&gt;의 기능과 문법은 거의 바뀌지 않았고 새로 학습해야할 내용도 부담 없는 수준이다.(공식문서에서는 &lt;code class=&quot;language-text&quot;&gt;pinia&lt;/code&gt;를 &lt;code class=&quot;language-text&quot;&gt;vuex 5&lt;/code&gt;의 다른 이름이라고 소개한다)&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://npmtrends.com/pinia-vs-vuex&quot;&gt;npmtrends&lt;/a&gt;를 보더라도 &lt;code class=&quot;language-text&quot;&gt;vuex&lt;/code&gt;와의 격차가 점점 줄어들고 있음을 확인할 수 있다.
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 34.177215189873415%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAABYlAAAWJQFJUiTwAAAA5UlEQVR42lVRC67EIAj0/jfdZPO2La2KAvMC9LNrMgEHcEAK9w4zgwFpVaCqYaEDlSfenwV6/EE8SSfsgud/15qirOsKa44N1ncY79DwKTkmgAk2GqwtyfMevDWC1eWp7YTSvMPZYTJCwZVU5VF2eIxe2RW+eJ/EY17vvndYaz3bxT1CjJxEQmZMEefi7mef4zWFiFzqJynU1DBFwaJhXWRI4mDB1gVbEyxVsLYZPnVBOWrF3v2iNzKY/s5pP1VAp9+nQkLwF84VEYkOLjhZW8cY8x7bbeucmz+3aSZgZqjavWH/w3+SAyeNoekG7wAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;npm trends pinia&quot;
+        title=&quot;&quot;
+        src=&quot;/static/c5bf99a91716a6dc0ec17d96e55aae29/f058b/npm-trends-pinia.png&quot;
+        srcset=&quot;/static/c5bf99a91716a6dc0ec17d96e55aae29/c26ae/npm-trends-pinia.png 158w,
+/static/c5bf99a91716a6dc0ec17d96e55aae29/6bdcf/npm-trends-pinia.png 315w,
+/static/c5bf99a91716a6dc0ec17d96e55aae29/f058b/npm-trends-pinia.png 630w,
+/static/c5bf99a91716a6dc0ec17d96e55aae29/40601/npm-trends-pinia.png 945w,
+/static/c5bf99a91716a6dc0ec17d96e55aae29/78612/npm-trends-pinia.png 1260w,
+/static/c5bf99a91716a6dc0ec17d96e55aae29/1cb21/npm-trends-pinia.png 2586w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;vuex와 비교해 달라진 점&lt;/h2&gt;
+&lt;h4&gt;1. 다중 store&lt;/h4&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;vuex&lt;/code&gt;에서 여러 종류의 store를 사용할 경우 일반적으로 modules 디렉토리 밑에 몰아넣고 &lt;code class=&quot;language-text&quot;&gt;index.js&lt;/code&gt;에서 하나로 합쳐주는 방식을 사용하였다.&lt;/p&gt;
+&lt;deckgo-highlight-code   &gt;
+          &lt;code slot=&quot;code&quot;&gt;// vuex
+src
+└── store
+    ├── index.js
+    └── modules
+        ├── counter.js
+        ├── user.js
+        ├── order.js
+        └── ...&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;p&gt;하지만 &lt;code class=&quot;language-text&quot;&gt;pinia&lt;/code&gt;에서는 다중store를 지원하기 때문에 modules를 사용할 필요가 없어졌다. 따라서 stores 디렉토리 밑에 모든 store를 둘 수 있게 되었다. (개인 선호에 따라 &lt;code class=&quot;language-text&quot;&gt;stores/index.js&lt;/code&gt;를 두어서 기본 설정을 초기화하는 코드를 작성하기도 한다.)&lt;/p&gt;
+&lt;deckgo-highlight-code   &gt;
+          &lt;code slot=&quot;code&quot;&gt;// pinia
+src
+└── stores
+    ├── counter.js
+    ├── user.js
+    ├── order.js
+    └── ...&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;h4&gt;2. mutation 없이 state의 직접 변경 가능&lt;/h4&gt;
+&lt;p&gt;기존 &lt;code class=&quot;language-text&quot;&gt;vuex&lt;/code&gt;에서는 state의 값을 변경하려면 반드시 &lt;code class=&quot;language-text&quot;&gt;mutation&lt;/code&gt;을 통해야 했다.&lt;br&gt;
+가령 &lt;code class=&quot;language-text&quot;&gt;count&lt;/code&gt;라는 state와 이 값을 증가시키는 &lt;code class=&quot;language-text&quot;&gt;increment&lt;/code&gt;라는 함수가 있다고 하자.&lt;/p&gt;
+&lt;deckgo-highlight-code language=&quot;javascript&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;// vuex
+const store = createStore({
+  state: {
+    count: 1,
+  },
+  mutations: {
+    increment(state) {
+      state.count++
+    },
+  },
+})&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;count&lt;/code&gt;값을 증가시키기 위해서는 반드시 &lt;code class=&quot;language-text&quot;&gt;mutation&lt;/code&gt;에 등록된 함수를 통해서만 접근해야 한다.
+&lt;code class=&quot;language-text&quot;&gt;store.state.count++&lt;/code&gt;처럼 직접적으로 state를 변경시키는 건 허용되지 않았다.&lt;/p&gt;
+&lt;deckgo-highlight-code language=&quot;jsx&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;// vuex
+&amp;lt;template&amp;gt;
+  &amp;lt;p&amp;gt;{{ $store.state.count }}&amp;lt;/p&amp;gt;
+&amp;lt;/template&amp;gt;
+&amp;lt;script&amp;gt;
+  ...
+  setup(){
+    // store.state.count++; // 직접 변형 불가
+    store.commit(&amp;#39;increment&amp;#39;); // 반드시 mutation을 통해서만 변형
+  }
+&amp;lt;/script&amp;gt;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;p&gt;하지만 &lt;code class=&quot;language-text&quot;&gt;pinia&lt;/code&gt;에서는 &lt;code class=&quot;language-text&quot;&gt;mutation&lt;/code&gt;이 사라지고 값의 직접 변형이 가능해졌다. 따라서 매번 state값을 변경하기 위한 &lt;code class=&quot;language-text&quot;&gt;mutation&lt;/code&gt;함수를 만들 필요가 없어졌기 때문에 상당히 편리해졌다.&lt;/p&gt;
+&lt;deckgo-highlight-code language=&quot;javascript&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;// pinia
+export const useCounterStore = defineStore(&amp;quot;counter&amp;quot;, {
+  state: () =&amp;gt; {
+    return {
+      count: 1,
+    }
+  },
+})&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;p&gt;그러면 &lt;code class=&quot;language-text&quot;&gt;counterStore&lt;/code&gt;로 받아오기만 하면 된다.&lt;/p&gt;
+&lt;deckgo-highlight-code language=&quot;jsx&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;// pinia
+&amp;lt;template&amp;gt;
+  &amp;lt;p&amp;gt;{{ counterStore.count }}&amp;lt;/p&amp;gt;
+&amp;lt;/template&amp;gt;
+&amp;lt;script&amp;gt;
+  ...
+  setup(){
+    const counterStore = useCounterStore();
+    counterStore.count++; // 직접 변경 가능
+    return{
+      counterStore,
+    }
+  }
+&amp;lt;/script&amp;gt;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;p&gt;변경해야 하는 값이 복잡하거나, 따로 함수로 분리하고 싶다면 &lt;code class=&quot;language-text&quot;&gt;actions&lt;/code&gt;에서 선언하거나 혹은 아래에서 설명할 &lt;code class=&quot;language-text&quot;&gt;$patch&lt;/code&gt; 라는 내장 메소드를 사용하면 된다.&lt;/p&gt;
+&lt;h4&gt;3. Typescript 호환성 증가&lt;/h4&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;vuex&lt;/code&gt;에서는 도입하기 까다로웠던 &lt;code class=&quot;language-text&quot;&gt;typescript&lt;/code&gt;가 &lt;code class=&quot;language-text&quot;&gt;pinia&lt;/code&gt;에서는 쉽게 사용할 수 있게 되었다.&lt;/p&gt;
+&lt;deckgo-highlight-code language=&quot;typescript&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;// pinia
+interface VueLib {
+  state: &amp;quot;vuex&amp;quot; | &amp;quot;pinia&amp;quot;
+}
+
+export const useCounterStore = defineStore(&amp;quot;counter&amp;quot;, {
+  state: () =&amp;gt; {
+    return {
+      count: 0 as number,
+      library: {
+        state: &amp;quot;pinia&amp;quot;,
+      } as VueLib,
+    }
+  },
+})&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;h2&gt;프로젝트 도입 후기&lt;/h2&gt;
+&lt;h4&gt;1. mutation 이 없어서 정말 편리하다&lt;/h4&gt;
+&lt;p&gt;위에서 언급했다시피 state값의 직접 변형이 가능하기 때문에 별도의 &lt;code class=&quot;language-text&quot;&gt;mutation&lt;/code&gt;을 선언할 필요가 없다는 점이 &lt;code class=&quot;language-text&quot;&gt;vuex&lt;/code&gt;로 개발하면서 느꼈던 답답함을 한방에 뚫어주는듯한 기분이다. 덕분에 &lt;code class=&quot;language-text&quot;&gt;store&lt;/code&gt; 코드의 절반 가량을 차지하던 부분이 사라졌으니 코드가 상당히 가벼워지고 가독성도 나아졌다.&lt;/p&gt;
+&lt;h4&gt;2. 생각보다 유용한 내장 메소드&lt;/h4&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;pinia&lt;/code&gt;에서는 Option API 기준으로 3개의 내장 메소드를 갖고 있다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;$reset()&lt;/code&gt; : 현재 store의 &lt;code class=&quot;language-text&quot;&gt;state&lt;/code&gt; 값들을 모두 초기화시킨다. 예를 들어 회원 로그인시 회원 데이터를 store에 갖고 있다가 로그아웃을 하면 값을 초기화해주어야 할 때 사용한다. 기존 &lt;code class=&quot;language-text&quot;&gt;vuex&lt;/code&gt;에서는 개발자가 직접 reset함수를 만들어야 했는데 &lt;code class=&quot;language-text&quot;&gt;pinia&lt;/code&gt; 에서는 그럴 필요가 없어졌다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;$patch(state)&lt;/code&gt; : state값을 변경시켜주는 함수이다. &lt;code class=&quot;language-text&quot;&gt;pinia&lt;/code&gt;는 값의 직접 변경이 가능한데 왜 굳이 필요한가 싶을 수 있는데, 여러 변수들의 값을 한번(함수 하나)에 변경하려고 할 때나 값의 변경 로직이 복잡해지면 오히려 &lt;code class=&quot;language-text&quot;&gt;mutation&lt;/code&gt;이 그리워 질 수도 있다. &lt;code class=&quot;language-text&quot;&gt;$patch()&lt;/code&gt;함수가 그 역할을 대신한다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;deckgo-highlight-code language=&quot;javascript&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;counterStore.$patch({ count: 1 })
+OR
+counterStore.$patch(state =&amp;gt; {
+  state.count = state.count + 1
+})&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;$subscribe(mutation,state)&lt;/code&gt; : 현재 store의 &lt;code class=&quot;language-text&quot;&gt;state&lt;/code&gt;값을 &lt;code class=&quot;language-text&quot;&gt;watch&lt;/code&gt;하는 기능이라고 생각하면 된다. 프로젝트에서는 이 기능을 써보지 않아서 정확히 어떤 상황에 필요할 지는 잘 모르겠다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;3. modules가 없어져서 코드 양은 쪼금 늘어날 수 있다&lt;/h4&gt;
+&lt;p&gt;개인적으로 한가지 아쉬운 점은 모든 store를 하나로 묶어주는 modules 기능의 부재로 인하여 &lt;code class=&quot;language-text&quot;&gt;vuex&lt;/code&gt;의 &lt;code class=&quot;language-text&quot;&gt;template&lt;/code&gt;레벨에서 &lt;code class=&quot;language-text&quot;&gt;state&lt;/code&gt;값을 가져올 때처럼 &lt;code class=&quot;language-text&quot;&gt;$store.state.[store이름]&lt;/code&gt; 식으로 접근할 수 없다는 점이다.&lt;/p&gt;
+&lt;deckgo-highlight-code language=&quot;jsx&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;// vuex
+&amp;lt;tempalate&amp;gt;
+  &amp;lt;div&amp;gt;{{$store.state.counter.count}}&amp;lt;/div&amp;gt;
+&amp;lt;/template&amp;gt;
+&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;p&gt;하지만 &lt;code class=&quot;language-text&quot;&gt;pinia&lt;/code&gt;에서는 반드시 &lt;code class=&quot;language-text&quot;&gt;script&lt;/code&gt;레벨에서 &lt;code class=&quot;language-text&quot;&gt;use*Store()&lt;/code&gt; 훅을 이용하여 &lt;code class=&quot;language-text&quot;&gt;*store&lt;/code&gt;를 한번 빼와야만 &lt;code class=&quot;language-text&quot;&gt;template&lt;/code&gt;레벨에서도 값을 전달할 수 있다. 그래서 코드의 양이 &lt;code class=&quot;language-text&quot;&gt;vuex&lt;/code&gt;대비 늘어날 수도 있다. 그렇다고 이거 하나가 단점이라 지적하기엔 사소한 문제이고 1,2번에서 얻을 수 있는 이점이 훨씬 더 크다고 생각한다.&lt;/p&gt;
+&lt;deckgo-highlight-code language=&quot;jsx&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;// pinia
+&amp;lt;tempalate&amp;gt;
+  &amp;lt;div&amp;gt;{{counterStore.count}}&amp;lt;/div&amp;gt;
+&amp;lt;/template&amp;gt;
+&amp;lt;script&amp;gt;
+  ...
+  setup(){
+    const counterStore = useCounterStore();
+    return{
+      counterStore,
+    }
+  }
+  &amp;lt;/script&amp;gt;
+&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;h2&gt;총평&lt;/h2&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;pinia&lt;/code&gt;는 &lt;code class=&quot;language-text&quot;&gt;vuex&lt;/code&gt;와 비교하여 typescript 지원, mutation 삭제, 다중 store지원 같은 기능으로 인하여 DX(개발 경험)을 상당히 개선시켜 주었다. 커뮤니티와 자료의 양이 아직 &lt;code class=&quot;language-text&quot;&gt;vuex&lt;/code&gt;만큼은 아니지만 조금씩 쌓여나가고 있다는 점에서 &lt;code class=&quot;language-text&quot;&gt;pinia&lt;/code&gt; 도입을 주저하는 개발자가 있다면 주저하지 말고 한번 써보라고 추천하고 싶다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[v-model 원리와 커스텀 컴포넌트 만들기 (2 of 2)]]></title><description><![CDATA[2023-04-0…]]></description><link>null/vue/230702-vmodel-and-custom-component-2/</link><guid isPermaLink="false">null/vue/230702-vmodel-and-custom-component-2/</guid><pubDate>Sun, 02 Jul 2023 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;2023-04-04에 작성된 &lt;a href=&quot;https://ps-hjhj97.tistory.com/226&quot;&gt;원문&lt;/a&gt;을 수정한 버전입니다&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://juheon.dev/vue/230701-vmodel-and-custom-component-1/&quot;&gt;지난 포스팅&lt;/a&gt;에서 &lt;code class=&quot;language-text&quot;&gt;v-model&lt;/code&gt;의 작동원리와 커스텀 컴포넌트를 만드는 방법에 대해서 살펴보았다. 이번 포스팅에서는 만들어진 컴포넌트에다 각각의 &lt;code class=&quot;language-text&quot;&gt;input&lt;/code&gt; 특성에 맞는 로직을 구현해보도록 하겠다.&lt;/p&gt;
 &lt;h2&gt;기본 구조&lt;/h2&gt;
 &lt;p&gt;부모 컴포넌트인 &lt;code class=&quot;language-text&quot;&gt;MainPage.vue&lt;/code&gt;와 전화번호를 위한 &lt;code class=&quot;language-text&quot;&gt;InputContact.vue&lt;/code&gt;, 이메일을 위한 &lt;code class=&quot;language-text&quot;&gt;InputEmail.vue&lt;/code&gt;를 자식 컴포넌트로 구성한다. 자식 컴포넌트는 지난 포스팅에서 다루었던 &lt;code class=&quot;language-text&quot;&gt;MyInput.vue&lt;/code&gt;를 베이스로 작성했다.&lt;/p&gt;
@@ -753,7 +937,7 @@ if (res) {
 &lt;p&gt;하지만 사람과의 소통은 그렇지 않다. 검색을 해도 나오지도 않고 계속 부딪힐 수도 없는 문제이다. 똑같은 의도를 전달하더라도, 내가 사용하는 단어에 따라서 상대방의 대답이 달라지기도 한다.&lt;/p&gt;
 &lt;p&gt;나는 코드만 잘 짜기만 하면 사람들간의 트러블은 전혀 없을 줄 알았다. 하지만 이번 프로젝트를 통해서 깨닫게 된 점은 결국 프로그램을 만드는 것도 사람, 이용하는 것도 사람이다. 내가 아무리 환상적이게 작동하는 코드를 잘 짜놓았다고 한들 상대방이 납득하지 못한다면 아무 소용없는 일이다.&lt;/p&gt;
 &lt;p&gt;내가 중점적으로 신경쓴 점은 &apos;나는 어떤 문제상황을 이렇게 받아 들였고, 이런 방식으로 해결하려고 했다.&apos;를 주장하고,&lt;br&gt;
-상대방에게 업무를 요청할 때는 &apos;현재 프론트에 이러이러한 문제가 있는데, 이 부분이 원인인 것 같다. 백엔드에서 다른 방식으로 개선해달라&apos; 방식의 의사소통으로 다듬어가고 있다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[pinia 도입계기]]></title><link>null/vue/230624-start-pinia/</link><guid isPermaLink="false">null/vue/230624-start-pinia/</guid><pubDate>Sat, 24 Jun 2023 22:12:03 GMT</pubDate><content:encoded></content:encoded></item><item><title><![CDATA[CSS,JS를 이용한 룰렛 구현]]></title><description><![CDATA[2022-11-1…]]></description><link>null/vue/230624-vue-roulette/</link><guid isPermaLink="false">null/vue/230624-vue-roulette/</guid><pubDate>Sat, 24 Jun 2023 22:12:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;2022-11-12 에 작성된 &lt;a href=&quot;https://ps-hjhj97.tistory.com/214&quot;&gt;원문&lt;/a&gt;을 수정한 버전입니다&lt;/em&gt;&lt;/p&gt;
+상대방에게 업무를 요청할 때는 &apos;현재 프론트에 이러이러한 문제가 있는데, 이 부분이 원인인 것 같다. 백엔드에서 다른 방식으로 개선해달라&apos; 방식의 의사소통으로 다듬어가고 있다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[CSS,JS를 이용한 룰렛 구현]]></title><description><![CDATA[2022-11-1…]]></description><link>null/vue/230624-vue-roulette/</link><guid isPermaLink="false">null/vue/230624-vue-roulette/</guid><pubDate>Sat, 24 Jun 2023 22:12:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;2022-11-12 에 작성된 &lt;a href=&quot;https://ps-hjhj97.tistory.com/214&quot;&gt;원문&lt;/a&gt;을 수정한 버전입니다&lt;/em&gt;&lt;/p&gt;
 &lt;h2&gt;룰렛 이벤트&lt;/h2&gt;
 &lt;p&gt;다들 온라인이나 오프라인에서 룰렛(회전판)을 돌려서 나온 상품을 추첨받는 경험 한 번씩 있을 것이다. 현실에서의 룰렛은 공평한 물리법칙에 내 운명을 맡기면 되지만, 웹페이지(프론트엔드)상에서 구현할 때는 룰렛을 어떻게 돌아가게 만들고 어떤 영역을 가리키도록 해야할까? 마침 진행 중인 프로젝트에서 룰렛을 구현해야 했는데 구글링이나 오픈소스에는 내가 원하는 기능이 없어서 직접 구현하게 되었다.&lt;/p&gt;
 &lt;h4&gt;요구조건&lt;/h4&gt;
