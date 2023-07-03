@@ -25,23 +25,14 @@
 <p>이 <code class="language-text">formatContact</code>함수를 <code class="language-text">@input</code>의 콜백함수에 넣어주고, <code class="language-text">emit</code>함수를 호출할 때도 <code class="language-text">formatted</code>된 값을 부모 컴포넌트(<code class="language-text">MainPage.vue</code>)에 넘겨야한다.</p>
 <h4>InputContact.vue</h4>
 <deckgo-highlight-code language="jsx"  >
-          <code slot="code">&lt;template&gt;
-  &lt;input type=&quot;tel&quot; :value=&quot;modelValue&quot; @input=&quot;onInput&quot; maxlength=&quot;13&quot; /&gt;
-&lt;/template&gt;
-
-&lt;script setup&gt;
-import { ref } from &quot;vue&quot;;
-
-const props = defineProps({
-  modelValue: String,
-});
+          <code slot="code">...
 
 const emit = defineEmits([&quot;update:modelValue&quot;]);
 
 const onInput = (e) =&gt; {
   const newValue = e.target.value;
-  const formatted = formatContact(newValue);
-  emit(&quot;update:modelValue&quot;, formatted);
+    const formatted = formatContact(newValue);
+    emit(&quot;update:modelValue&quot;, newValue);
 };
 
 const formatContact = (rawString) =&gt; {
@@ -51,10 +42,9 @@ const formatContact = (rawString) =&gt; {
     .replace(/(\-{1,2})$/g, &quot;&quot;); //아직 숫자 입력되기 전의 -는 가려주기
   return formatted;
 };
-&lt;/script&gt;
 </code>
         </deckgo-highlight-code>
-<p><code class="language-text">MainPage.vue</code>는 그냥 일반적인 <code class="language-text">&lt;input /></code> 태그를 다룰 때처럼만 작성하면 된다. 커스텀 컴포넌트로 변경했다고 한들, 부모 컴포넌트가 데이터 처리 로직에 관여해서 안되고 <code class="language-text">Input*.vue</code>에서 <code class="language-text">emit</code>되는 이벤트에만 의존하고 있어야 한다.</p>
+<p><code class="language-text">MainPage.vue</code>는 그냥 일반적인 <code class="language-text">&lt;input></code> 태그를 다룰 때처럼만 작성하면 된다. 커스텀 컴포넌트로 변경했다고 한들, 부모 컴포넌트가 데이터 처리 로직에 관여해서 안되고 <code class="language-text">Input*.vue</code>에서 <code class="language-text">emit</code>되는 이벤트에만 의존하고 있어야 한다.</p>
 <h4>MainPage.vue</h4>
 <deckgo-highlight-code language="jsx"  >
           <code slot="code">&lt;template&gt;
@@ -62,8 +52,6 @@ const formatContact = (rawString) =&gt; {
     &lt;InputContact v-model=&quot;contact&quot; /&gt;
     &lt;p&gt;contact : {{ contact }}&lt;/p&gt;
   &lt;/div&gt;
-
-  &lt;hr /&gt;
 &lt;/template&gt;
 
 &lt;script setup&gt;
@@ -71,9 +59,43 @@ import { ref } from &quot;vue&quot;;
 import InputContact from &quot;@/components/InputContact.vue&quot;;
 
 const contact = ref(&quot;&quot;);
-&lt;/script&gt;
+&lt;/script&gt;</code>
+        </deckgo-highlight-code>
+<h4>선택적으로 포맷팅하고 싶다면?</h4>
+<p>위 코드에서는 전화번호가 항상 포맷팅되지만, 상황에 따라서는 포맷팅되지 않는 걸 원할 수도 있다. <code class="language-text">props</code>로 <code class="language-text">useFormat</code> 을 받아서 이 값이 <code class="language-text">true</code>일 때만 포맷팅되도록 할 수도 있다.</p>
+<h4>InputContact.vue</h4>
+<deckgo-highlight-code language="jsx"  >
+          <code slot="code">const props = defineProps({
+  modelValue: String,
+  useFormat: {
+    type: Boolean,
+    default: true,
+  },
+})
 
-</code>
+const emit = defineEmits([&quot;update:modelValue&quot;])
+
+const onInput = e =&gt; {
+  const newValue = e.target.value
+  if (props.useFormat) {
+    const formatted = formatContact(newValue)
+    emit(&quot;update:modelValue&quot;, formatted)
+  } else {
+    emit(&quot;update:modelValue&quot;, newValue)
+  }
+}
+
+const formatContact = rawString =&gt; {
+  const formatted = rawString
+    .replace(/[^0-9]/g, &quot;&quot;) // 숫자만 필터링하기
+    .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, &quot;$1-$2-$3&quot;) // 3자리,4자리,4자리로 끊고 -로 구분하기
+    .replace(/(\-{1,2})$/g, &quot;&quot;) //아직 숫자 입력되기 전의 -는 가려주기
+  return formatted
+}</code>
+        </deckgo-highlight-code>
+<h4>MainPage.vue</h4>
+<deckgo-highlight-code language="jsx"  >
+          <code slot="code">  &lt;InputContact :useFormat=&quot;true&quot; v-model=&quot;contact&quot; /&gt;</code>
         </deckgo-highlight-code>
 <h2>이메일을 위한 input</h2>
 <p>이번에는 이메일을 입력받는 <code class="language-text">InputEmail.vue</code>를 살펴볼텐데, 전화번호와는 다르게 유효성을 검증하는 기능을 하나 추가하려고 한다. 이메일 유효성을 검증하는데에도 역시 구글링해보면 정규표현식이 많이 나오긴 하지만 여기서는 편하게 <code class="language-text">email-validator</code>라는 npm 패키지를 사용했다.</p>
@@ -115,7 +137,6 @@ const checkEmailValid = (email) =&gt; {
     &lt;p&gt;email : {{ email }}&lt;/p&gt;
     &lt;p&gt;valid : {{ isEmailValid }}&lt;/p&gt;
   &lt;/div&gt;
-  &lt;hr /&gt;
 &lt;/template&gt;
 
 &lt;script setup&gt;
@@ -139,4 +160,4 @@ const isEmailValid = ref(null);
           >
             window.___chunkMapping="{\"app\":[\"/app-c32539ea781de4a559cb.js\"],\"component---src-pages-404-js\":[\"/component---src-pages-404-js-dbc9ae67824a30acae91.js\"],\"component---src-pages-index-js\":[\"/component---src-pages-index-js-4d79036846f78bcdfcc7.js\"],\"component---src-pages-using-typescript-tsx\":[\"/component---src-pages-using-typescript-tsx-6e7cbbd1fc0f4e5d1744.js\"],\"component---src-templates-blog-post-js\":[\"/component---src-templates-blog-post-js-1ac5196be0da391368f3.js\"]}";
           </script>
-        <script>window.___webpackCompilationHash="bc5972d40bc841df2e6c";</script><script src="/webpack-runtime-9fe5b49b9562dfa81398.js" async></script><script src="/framework-195f9a31e5a4e6cebf51.js" async></script><script src="/app-c32539ea781de4a559cb.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>
+        <script>window.___webpackCompilationHash="b083d72b6a89842608ca";</script><script src="/webpack-runtime-9fe5b49b9562dfa81398.js" async></script><script src="/framework-195f9a31e5a4e6cebf51.js" async></script><script src="/app-c32539ea781de4a559cb.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>

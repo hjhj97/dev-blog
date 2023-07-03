@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[Gatsby Starter Blog RSS Feed]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 02 Jul 2023 13:32:55 GMT</lastBuildDate><item><title><![CDATA[v-model 원리와 커스텀 컴포넌트 만들기 (2 of 2)]]></title><description><![CDATA[2023-04-0…]]></description><link>null/vue/230702-vmodel-and-custom-component-2/</link><guid isPermaLink="false">null/vue/230702-vmodel-and-custom-component-2/</guid><pubDate>Sun, 02 Jul 2023 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;2023-04-04에 작성된 &lt;a href=&quot;https://ps-hjhj97.tistory.com/226&quot;&gt;원문&lt;/a&gt;을 수정한 버전입니다&lt;/em&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[Gatsby Starter Blog RSS Feed]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 03 Jul 2023 03:52:20 GMT</lastBuildDate><item><title><![CDATA[v-model 원리와 커스텀 컴포넌트 만들기 (2 of 2)]]></title><description><![CDATA[2023-04-0…]]></description><link>null/vue/230702-vmodel-and-custom-component-2/</link><guid isPermaLink="false">null/vue/230702-vmodel-and-custom-component-2/</guid><pubDate>Sun, 02 Jul 2023 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;2023-04-04에 작성된 &lt;a href=&quot;https://ps-hjhj97.tistory.com/226&quot;&gt;원문&lt;/a&gt;을 수정한 버전입니다&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://juheon.dev/vue/230701-vmodel-and-custom-component-1/&quot;&gt;지난 포스팅&lt;/a&gt;에서 &lt;code class=&quot;language-text&quot;&gt;v-model&lt;/code&gt;의 작동원리와 커스텀 컴포넌트를 만드는 방법에 대해서 살펴보았다. 이번 포스팅에서는 만들어진 컴포넌트에다 각각의 &lt;code class=&quot;language-text&quot;&gt;input&lt;/code&gt; 특성에 맞는 로직을 구현해보도록 하겠다.&lt;/p&gt;
 &lt;h2&gt;기본 구조&lt;/h2&gt;
 &lt;p&gt;부모 컴포넌트인 &lt;code class=&quot;language-text&quot;&gt;MainPage.vue&lt;/code&gt;와 전화번호를 위한 &lt;code class=&quot;language-text&quot;&gt;InputContact.vue&lt;/code&gt;, 이메일을 위한 &lt;code class=&quot;language-text&quot;&gt;InputEmail.vue&lt;/code&gt;를 자식 컴포넌트로 구성한다. 자식 컴포넌트는 지난 포스팅에서 다루었던 &lt;code class=&quot;language-text&quot;&gt;MyInput.vue&lt;/code&gt;를 베이스로 작성했다.&lt;/p&gt;
@@ -24,23 +24,14 @@
 &lt;p&gt;이 &lt;code class=&quot;language-text&quot;&gt;formatContact&lt;/code&gt;함수를 &lt;code class=&quot;language-text&quot;&gt;@input&lt;/code&gt;의 콜백함수에 넣어주고, &lt;code class=&quot;language-text&quot;&gt;emit&lt;/code&gt;함수를 호출할 때도 &lt;code class=&quot;language-text&quot;&gt;formatted&lt;/code&gt;된 값을 부모 컴포넌트(&lt;code class=&quot;language-text&quot;&gt;MainPage.vue&lt;/code&gt;)에 넘겨야한다.&lt;/p&gt;
 &lt;h4&gt;InputContact.vue&lt;/h4&gt;
 &lt;deckgo-highlight-code language=&quot;jsx&quot;  &gt;
-          &lt;code slot=&quot;code&quot;&gt;&amp;lt;template&amp;gt;
-  &amp;lt;input type=&amp;quot;tel&amp;quot; :value=&amp;quot;modelValue&amp;quot; @input=&amp;quot;onInput&amp;quot; maxlength=&amp;quot;13&amp;quot; /&amp;gt;
-&amp;lt;/template&amp;gt;
-
-&amp;lt;script setup&amp;gt;
-import { ref } from &amp;quot;vue&amp;quot;;
-
-const props = defineProps({
-  modelValue: String,
-});
+          &lt;code slot=&quot;code&quot;&gt;...
 
 const emit = defineEmits([&amp;quot;update:modelValue&amp;quot;]);
 
 const onInput = (e) =&amp;gt; {
   const newValue = e.target.value;
-  const formatted = formatContact(newValue);
-  emit(&amp;quot;update:modelValue&amp;quot;, formatted);
+    const formatted = formatContact(newValue);
+    emit(&amp;quot;update:modelValue&amp;quot;, newValue);
 };
 
 const formatContact = (rawString) =&amp;gt; {
@@ -50,10 +41,9 @@ const formatContact = (rawString) =&amp;gt; {
     .replace(/(\-{1,2})$/g, &amp;quot;&amp;quot;); //아직 숫자 입력되기 전의 -는 가려주기
   return formatted;
 };
-&amp;lt;/script&amp;gt;
 &lt;/code&gt;
         &lt;/deckgo-highlight-code&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;MainPage.vue&lt;/code&gt;는 그냥 일반적인 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;input /&gt;&lt;/code&gt; 태그를 다룰 때처럼만 작성하면 된다. 커스텀 컴포넌트로 변경했다고 한들, 부모 컴포넌트가 데이터 처리 로직에 관여해서 안되고 &lt;code class=&quot;language-text&quot;&gt;Input*.vue&lt;/code&gt;에서 &lt;code class=&quot;language-text&quot;&gt;emit&lt;/code&gt;되는 이벤트에만 의존하고 있어야 한다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;MainPage.vue&lt;/code&gt;는 그냥 일반적인 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;input&gt;&lt;/code&gt; 태그를 다룰 때처럼만 작성하면 된다. 커스텀 컴포넌트로 변경했다고 한들, 부모 컴포넌트가 데이터 처리 로직에 관여해서 안되고 &lt;code class=&quot;language-text&quot;&gt;Input*.vue&lt;/code&gt;에서 &lt;code class=&quot;language-text&quot;&gt;emit&lt;/code&gt;되는 이벤트에만 의존하고 있어야 한다.&lt;/p&gt;
 &lt;h4&gt;MainPage.vue&lt;/h4&gt;
 &lt;deckgo-highlight-code language=&quot;jsx&quot;  &gt;
           &lt;code slot=&quot;code&quot;&gt;&amp;lt;template&amp;gt;
@@ -61,8 +51,6 @@ const formatContact = (rawString) =&amp;gt; {
     &amp;lt;InputContact v-model=&amp;quot;contact&amp;quot; /&amp;gt;
     &amp;lt;p&amp;gt;contact : {{ contact }}&amp;lt;/p&amp;gt;
   &amp;lt;/div&amp;gt;
-
-  &amp;lt;hr /&amp;gt;
 &amp;lt;/template&amp;gt;
 
 &amp;lt;script setup&amp;gt;
@@ -70,9 +58,43 @@ import { ref } from &amp;quot;vue&amp;quot;;
 import InputContact from &amp;quot;@/components/InputContact.vue&amp;quot;;
 
 const contact = ref(&amp;quot;&amp;quot;);
-&amp;lt;/script&amp;gt;
+&amp;lt;/script&amp;gt;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;h4&gt;선택적으로 포맷팅하고 싶다면?&lt;/h4&gt;
+&lt;p&gt;위 코드에서는 전화번호가 항상 포맷팅되지만, 상황에 따라서는 포맷팅되지 않는 걸 원할 수도 있다. &lt;code class=&quot;language-text&quot;&gt;props&lt;/code&gt;로 &lt;code class=&quot;language-text&quot;&gt;useFormat&lt;/code&gt; 을 받아서 이 값이 &lt;code class=&quot;language-text&quot;&gt;true&lt;/code&gt;일 때만 포맷팅되도록 할 수도 있다.&lt;/p&gt;
+&lt;h4&gt;InputContact.vue&lt;/h4&gt;
+&lt;deckgo-highlight-code language=&quot;jsx&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;const props = defineProps({
+  modelValue: String,
+  useFormat: {
+    type: Boolean,
+    default: true,
+  },
+})
 
-&lt;/code&gt;
+const emit = defineEmits([&amp;quot;update:modelValue&amp;quot;])
+
+const onInput = e =&amp;gt; {
+  const newValue = e.target.value
+  if (props.useFormat) {
+    const formatted = formatContact(newValue)
+    emit(&amp;quot;update:modelValue&amp;quot;, formatted)
+  } else {
+    emit(&amp;quot;update:modelValue&amp;quot;, newValue)
+  }
+}
+
+const formatContact = rawString =&amp;gt; {
+  const formatted = rawString
+    .replace(/[^0-9]/g, &amp;quot;&amp;quot;) // 숫자만 필터링하기
+    .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, &amp;quot;$1-$2-$3&amp;quot;) // 3자리,4자리,4자리로 끊고 -로 구분하기
+    .replace(/(\-{1,2})$/g, &amp;quot;&amp;quot;) //아직 숫자 입력되기 전의 -는 가려주기
+  return formatted
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;h4&gt;MainPage.vue&lt;/h4&gt;
+&lt;deckgo-highlight-code language=&quot;jsx&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;  &amp;lt;InputContact :useFormat=&amp;quot;true&amp;quot; v-model=&amp;quot;contact&amp;quot; /&amp;gt;&lt;/code&gt;
         &lt;/deckgo-highlight-code&gt;
 &lt;h2&gt;이메일을 위한 input&lt;/h2&gt;
 &lt;p&gt;이번에는 이메일을 입력받는 &lt;code class=&quot;language-text&quot;&gt;InputEmail.vue&lt;/code&gt;를 살펴볼텐데, 전화번호와는 다르게 유효성을 검증하는 기능을 하나 추가하려고 한다. 이메일 유효성을 검증하는데에도 역시 구글링해보면 정규표현식이 많이 나오긴 하지만 여기서는 편하게 &lt;code class=&quot;language-text&quot;&gt;email-validator&lt;/code&gt;라는 npm 패키지를 사용했다.&lt;/p&gt;
@@ -114,7 +136,6 @@ const checkEmailValid = (email) =&amp;gt; {
     &amp;lt;p&amp;gt;email : {{ email }}&amp;lt;/p&amp;gt;
     &amp;lt;p&amp;gt;valid : {{ isEmailValid }}&amp;lt;/p&amp;gt;
   &amp;lt;/div&amp;gt;
-  &amp;lt;hr /&amp;gt;
 &amp;lt;/template&amp;gt;
 
 &amp;lt;script setup&amp;gt;
