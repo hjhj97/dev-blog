@@ -310,9 +310,10 @@ main {
   flex-direction: column;
   justify-content: space-around;
   height: 100%;
-  border: 1.2px solid #ddd;
-  height: 130px;
-  padding: var(--spacing-4);
+  /*border: 1.2px solid #ddd;*/
+  /*border-bottom: 1.5px solid #ddd;*/
+  height: 160px;
+  padding: var(--spacing-6) var(--spacing-2);
   border-radius: var(--spacing-2);
   transition: background-color 0.3s ease-in-out;
 }
@@ -320,14 +321,15 @@ main {
 .post-list-item .post-list-item__bottom {
   display: flex;
   width: 100%;
+  margin-top: var(--spacing-1);
   justify-content: space-between;
 }
 
-@media (max-width: 800px) {
+/*@media (max-width: 800px) {
   .post-list-item {
-    height: 180px;
+    height: 160px;
   }
-}
+}*/
 .post-list-item:hover {
   background-color: #d3d9f5;
   cursor: pointer;
