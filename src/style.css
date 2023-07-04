@@ -325,13 +325,20 @@ main {
   justify-content: space-between;
 }
 
+.post-list-item .post-list-item__bottom .post-category {
+  background-color: var(--color-primary);
+  color: #fff;
+  padding: var(--spacing-1) var(--spacing-3);
+  border-radius: var(--spacing-4);
+}
+
 /*@media (max-width: 800px) {
   .post-list-item {
     height: 160px;
   }
 }*/
 .post-list-item:hover {
-  background-color: #d3d9f5;
+  background-color: rgba(0, 0, 0, 0.05);
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
 }
