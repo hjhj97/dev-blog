@@ -21,7 +21,12 @@ const BlogPostTemplate = ({
       >
         <header>
           <h1 itemProp="headline">{post.frontmatter.title}</h1>
-          <p>{post.frontmatter.date}</p>
+          <div className="blog-post-bottom">
+            <p>{post.frontmatter.date}</p>
+            <Link to={`/?category=${post.frontmatter.category}`}>
+              <p className="post-category">{post.frontmatter.category}</p>
+            </Link>
+          </div>
         </header>
         <hr />
         <section
@@ -34,29 +39,21 @@ const BlogPostTemplate = ({
         </footer>
       </article>
       <nav className="blog-post-nav">
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
-        >
-          <li>
-            {previous && (
+        <ul>
+          {previous && (
+            <li>
               <Link to={previous.fields.slug} rel="prev">
                 ← {previous.frontmatter.title}
               </Link>
-            )}
-          </li>
-          <li>
-            {next && (
+            </li>
+          )}
+          {next && (
+            <li>
               <Link to={next.fields.slug} rel="next">
                 {next.frontmatter.title} →
               </Link>
-            )}
-          </li>
+            </li>
+          )}
         </ul>
       </nav>
       <Comment />
@@ -94,6 +91,7 @@ export const pageQuery = graphql`
         title
         date(formatString: "YYYY-MM-DD")
         description
+        category
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {

@@ -70,7 +70,6 @@ const BlogIndex = ({ data, location }) => {
                       <h2>
                         <span itemProp="headline">{title}</span>
                       </h2>
-                      <small>{post.frontmatter.date}</small>
                     </header>
                     <section>
                       <p
@@ -80,6 +79,12 @@ const BlogIndex = ({ data, location }) => {
                         itemProp="description"
                       />
                     </section>
+                    <div className="post-list-item__bottom">
+                      <small>{post.frontmatter.date}</small>
+                      <small className="post-category">
+                        {post.frontmatter.category}
+                      </small>
+                    </div>
                   </Link>
                 </article>
               </li>
