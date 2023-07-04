@@ -427,6 +427,18 @@ main {
   margin: var(--spacing-0) var(--spacing-0) var(--spacing-4) var(--spacing-0);
 }
 
+.blog-post .blog-post-bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.blog-post .blog-post-bottom .post-category {
+  background-color: var(--color-primary);
+  color: #fff;
+  padding: var(--spacing-1) var(--spacing-3);
+  border-radius: var(--spacing-6);
+}
+
 .blog-post header p {
   font-size: var(--fontSize-2);
   font-family: var(--font-heading);
