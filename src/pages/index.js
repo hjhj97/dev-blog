@@ -81,7 +81,9 @@ const BlogIndex = ({ data, location }) => {
                     </section>
                     <div className="post-list-item__bottom">
                       <small>{post.frontmatter.date}</small>
-                      <small>{post.frontmatter.category}</small>
+                      <small className="post-category">
+                        {post.frontmatter.category}
+                      </small>
                     </div>
                   </Link>
                 </article>
