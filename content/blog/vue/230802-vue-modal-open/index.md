@@ -1,6 +1,6 @@
 ---
 title: vue로 모달 구현하기
-date: "2023-07-14T22:12:00.000Z"
+date: "2023-08-02T22:12:00.000Z"
 description: teleport를 이용한 모달 구현
 category: Vue
 ---
