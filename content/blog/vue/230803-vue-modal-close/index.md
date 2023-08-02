@@ -75,6 +75,8 @@ _2023-03-09에 작성된 [원문](https://ps-hjhj97.tistory.com/222)을 수정�
 
 이제 버튼을 누르면 모달이 열리면서 `history`에 `{state:'modal'}`이 추가됨을 확인할 수 있다. 하지만 여기서 뒤로가기를 누르더라도 모달이 닫히지는 않는다. 왜냐하면 `isModalOpen`값은 여전히 `true`이기 때문이다. 따라서 '뒤로가기'가 실행되면 `closeModal`함수가 실행되게끔 만들어야 한다.
 
+## popstate
+
 자바스크립트에서 뒤로가기 이벤트를 감지하려면 `popstate`라는 함수를 이벤트리스너에 등록해야 한다. 따라서 `onMounted`함수에 아래와 같이 추가한다.
 
 ```jsx
@@ -99,11 +101,11 @@ const closeModal = (isBackward = false) => {
 }
 ```
 
-버튼을 눌러서 닫았다면 `isBackward`값이 `false`로 들어와 `history.back()`를 호출하여 상태를 한단계 `pop`해주면 된다.
+버튼을 눌러서 닫았다면 `isBackward`값이 `false`로 들어오고 `history.back()`를 호출하여 상태를 한단계 `pop`해주면 된다. 작동하는 모습은 아래와 같다.
 
 <img src="https://raw.githubusercontent.com/hjhj97/blog.gatsby/main/content/blog/vue/images/vue-modal-backward.gif"  />
 
-전체코드는 아래와 같다.
+완성된 `Modal.vue`코드는 아래와 같다.
 
 ```jsx
 // Modal.vue
