@@ -5,7 +5,7 @@ description: teleport를 이용한 모달 구현
 category: Vue
 ---
 
-_2023-03-09에 작성된 [원문](https://ps-hjhj97.tistory.com/222)을 수정한 버전입니다_
+_2023-03-09에 작성된 [원문](https://ps-hjhj97.tistory.com/224)을 수정한 버전입니다_
 
 웹사이트를 이용하다 보면 모달창을 마주하게 된다. 일반적인 모달은 화면이 어두워지면서 기존의 화면은 fade out되면서, 화면 한가운데에서 focus되는 alert창과 같은 형태이다. 이를 `vue`로 어떻게 구현하는지 살펴보자.
 
