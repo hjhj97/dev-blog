@@ -1,4 +1,182 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[Gatsby Starter Blog RSS Feed]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 12 Jul 2023 19:10:18 GMT</lastBuildDate><item><title><![CDATA[두 번째 프로젝트 회고]]></title><description><![CDATA[1. pinia와 typescript…]]></description><link>null/230712-second-project-review/</link><guid isPermaLink="false">null/230712-second-project-review/</guid><pubDate>Wed, 12 Jul 2023 22:12:00 GMT</pubDate><content:encoded>&lt;h2&gt;1. pinia와 typescript의 도입&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[Gatsby Starter Blog RSS Feed]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 02 Aug 2023 05:45:46 GMT</lastBuildDate><item><title><![CDATA[vue로 모달 구현하기]]></title><description><![CDATA[2023-03-09에 작성된 원문을 수정한 버전입니다 웹사이트를 이용하다 보면 모달창을 마주하게 된다. 일반적인 모달은 화면이 어두워지면서 기존의 화면은 fade out되면서, 화면 한가운데에서 focus되는 alert…]]></description><link>null/vue/230714-vue-modal-open/</link><guid isPermaLink="false">null/vue/230714-vue-modal-open/</guid><pubDate>Fri, 14 Jul 2023 22:12:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;2023-03-09에 작성된 &lt;a href=&quot;https://ps-hjhj97.tistory.com/222&quot;&gt;원문&lt;/a&gt;을 수정한 버전입니다&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;웹사이트를 이용하다 보면 모달창을 마주하게 된다. 일반적인 모달은 화면이 어두워지면서 기존의 화면은 fade out되면서, 화면 한가운데에서 focus되는 alert창과 같은 형태이다. 이를 &lt;code class=&quot;language-text&quot;&gt;vue&lt;/code&gt;로 어떻게 구현하는지 살펴보자.&lt;/p&gt;
+&lt;h2&gt;모달 구현&lt;/h2&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;vue&lt;/code&gt;로 모달을 구현하는 방법에는 여러가지가 있을 수 있다. 가장 간단한 형태는 하나의 파일 안에 모달을 다 집어넣는 방식일 것이다.&lt;/p&gt;
+&lt;deckgo-highlight-code language=&quot;jsx&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;// MyModal.vue
+&amp;lt;template&amp;gt;
+  &amp;lt;div&amp;gt;
+    &amp;lt;p&amp;gt;Hello World&amp;lt;/p&amp;gt;
+
+    &amp;lt;!-- Modal --&amp;gt;
+    &amp;lt;div id=&amp;quot;modal&amp;quot;&amp;gt;
+      &amp;lt;div class=&amp;quot;modal&amp;quot;&amp;gt;
+        &amp;lt;div class=&amp;quot;modal-content&amp;quot;&amp;gt;
+          &amp;lt;p&amp;gt;This is Modal&amp;lt;/p&amp;gt;
+        &amp;lt;/div&amp;gt;
+      &amp;lt;/div&amp;gt;
+    &amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+&amp;lt;/template&amp;gt;
+
+&amp;lt;style&amp;gt;
+  @import url(&amp;#39;.../modal.css&amp;#39;)
+&amp;lt;/style&amp;gt;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;deckgo-highlight-code language=&quot;css&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;/* modal.css */
+.modal {
+  position: fixed;
+  z-index: 10;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.modal .modal-content {
+  position: absolute;
+  width: 600px;
+  height: 400px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;br /&gt;
+&lt;p&gt;이 방식의 경우 아래 사진과 같이 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;div id=&quot;modal&quot;&gt;&lt;/code&gt;태그는 기존 화면이 위치하고 있는 DOM노드 하위에 종속될 수 밖에 없다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/0c5a515adca3dad3771e9cb5257a6a8d/09262/vue-modal-1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 72.15189873417721%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAABYlAAAWJQFJUiTwAAABKklEQVR42u2QOW+DQBBG+dm+D7kx6SzZLty4sP2DUkUpcsiQQATsggPmCPCihRSOIkPKFBnpSSvtN29mV+t2u3Q6HcbjcSOTyYThcMh8Psd8MghlwDmKieKEWJEkJHGK1ia6FA4GA/QbHfvZ4mQHhH5IHqdclqaCv2E6nTIajdB1HSkkgXBxrEfO0iHPc8qirIX9fp9er9eKyqmvmc1mWJaFY1gY97fYT3ccH45YLwIpArTFYsFyuWS1WrFerxtRmc1mUwnFq4eUktN78MWJKIrQTNMkDEOyLKOpyrJ+kuu6vBk26TkhKzOyPCPNUz6Kul/zPK86FEVRNV1D3atyHAfXceshlD8Ga0KIbxu0baiETT3/wr8o3G63HA4H9vt9K7vdrsr6vn9V+AkSCeMgVSbvcAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;vue modal 1&quot;
+        title=&quot;&quot;
+        src=&quot;/static/0c5a515adca3dad3771e9cb5257a6a8d/f058b/vue-modal-1.png&quot;
+        srcset=&quot;/static/0c5a515adca3dad3771e9cb5257a6a8d/c26ae/vue-modal-1.png 158w,
+/static/0c5a515adca3dad3771e9cb5257a6a8d/6bdcf/vue-modal-1.png 315w,
+/static/0c5a515adca3dad3771e9cb5257a6a8d/f058b/vue-modal-1.png 630w,
+/static/0c5a515adca3dad3771e9cb5257a6a8d/40601/vue-modal-1.png 945w,
+/static/0c5a515adca3dad3771e9cb5257a6a8d/78612/vue-modal-1.png 1260w,
+/static/0c5a515adca3dad3771e9cb5257a6a8d/09262/vue-modal-1.png 1896w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;여기서 한 가지 아쉬운 점이 생긴다. modal 창은 기존의 화면과 구분되는 속성인데 DOM 노드상에서도 이를 구분할 수 없을까? 즉 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;div id=&quot;modal&quot;&gt;&lt;/code&gt;이 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;div id=&quot;app&quot;&gt;&lt;/code&gt;과 같은 레벨로 끌어올릴 수 없을까? 하는 생각을 품게된다.&lt;/p&gt;
+&lt;h4&gt;&lt;code class=&quot;language-text&quot;&gt;teleport&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;이를 해결하기 위해 &lt;code class=&quot;language-text&quot;&gt;vue&lt;/code&gt;에서 제공하는 &lt;code class=&quot;language-text&quot;&gt;teleport&lt;/code&gt; 기능을 적용해보자. &lt;code class=&quot;language-text&quot;&gt;teleport&lt;/code&gt;란 &lt;a href=&quot;https://ko.vuejs.org/guide/built-ins/teleport.html#basic-usage&quot;&gt;공식문서&lt;/a&gt;상에서는&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;컴포넌트 템플릿의 일부를 해당 컴포넌트의 DOM 계층 외부의 DOM 노드로 &quot;이동&quot;할 수 있게 해주는 빌트인 컴포넌트입니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;라고 설명하고 있다. 간단하게 요약하자면 기존에 보여지고 있던 화면과 논리적/기능적으로 구분된 또다른 화면을 표시해야할 때, 기존의 DOM 노드가 아닌 별도의 DOM노드로 마치 teleport(순간이동)할 수 있는 기능이다.&lt;/p&gt;
+&lt;p&gt;이를 사용하기 위해서는 일단 DOM이 그려지는 &lt;code class=&quot;language-text&quot;&gt;index.html&lt;/code&gt;안에 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;div id=&quot;modal&quot;&gt;&lt;/code&gt;이라는 새로운 태그를 추가한다. (id 대신에 class를 사용하더라도 작동은 정상적으로 하지만, 중복 문제를 피하기 위해 관습적으로 id를 사용하는 듯 하다.)&lt;/p&gt;
+&lt;deckgo-highlight-code language=&quot;html&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;&amp;lt;!-- index.html --&amp;gt;
+&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    ...
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    &amp;lt;noscript&amp;gt; ... &amp;lt;/noscript&amp;gt;
+    &amp;lt;div id=&amp;quot;app&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+    &amp;lt;div id=&amp;quot;modal&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;p&gt;그리고 기존에 있던 &lt;code class=&quot;language-text&quot;&gt;MyModal.vue&lt;/code&gt;에서는 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;div id=&quot;modal&quot;&gt;&lt;/code&gt;한 겹을 벗겨내고 대신에 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;teleport to=&quot;#modal&quot;&gt;&lt;/code&gt;을 넣어주면 된다.&lt;/p&gt;
+&lt;deckgo-highlight-code language=&quot;jsx&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;&amp;lt;template&amp;gt;
+  &amp;lt;div&amp;gt;
+    &amp;lt;p&amp;gt;Hello World&amp;lt;/p&amp;gt;
+
+    &amp;lt;!-- Modal --&amp;gt;
+    &amp;lt;teleport to=&amp;quot;#modal&amp;quot;&amp;gt;
+      &amp;lt;div class=&amp;quot;modal&amp;quot;&amp;gt;
+        &amp;lt;div class=&amp;quot;modal-content&amp;quot;&amp;gt;
+          &amp;lt;p&amp;gt;This is Modal&amp;lt;/p&amp;gt;
+        &amp;lt;/div&amp;gt;
+      &amp;lt;/div&amp;gt;
+    &amp;lt;/teleport&amp;gt;
+  &amp;lt;/div&amp;gt;
+&amp;lt;/template&amp;gt;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;br /&gt;
+&lt;p&gt;그러면 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;div id=&quot;modal&quot;&gt;&lt;/code&gt;이 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;div id=&quot;id&quot;&gt;&lt;/code&gt;와 DOM상에서 같은 레벨에 생성된 것을 확인할 수 있다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/361a6186f39d39e599866d8b3fe8a390/60c1e/vue-modal-2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 70.25316455696203%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAABYlAAAWJQFJUiTwAAABIUlEQVR42s2RQWvCQBCF869FSEg8eFD/kp4NXkqtlhQFaQPRkBijZndrTPKVDRU8GLRQSh98MPCGtzM7RqvVQmPb9l0cx8E0TaZPU7J0z35/YHcUHDJBJgSHY4ahmzQPBdoOpmXy+jxHhRnHOKOQiqosqaoKLePy8iN0Op06cPYyYxdErBbvfKx8wiAkiROEFBh6hUexLIt2u403fyMXJ9RZ8Xk+IXOFOknKqsTo9XoMBgP6/f5ddF+322W5WNbrXda8luF5Huv1mjRNUUohpbyJEII8zwmCgM1m0xwYx3Gjea2LnyQJYRg2B26327oovy/VhPZ/FPjrE/7fwCiK6qIoivqfmtC+lj7i3044Go1wXZfxeHyXyWTCcDjE9/3GwC/7wOThxMZt/AAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;vue modal 2&quot;
+        title=&quot;&quot;
+        src=&quot;/static/361a6186f39d39e599866d8b3fe8a390/f058b/vue-modal-2.png&quot;
+        srcset=&quot;/static/361a6186f39d39e599866d8b3fe8a390/c26ae/vue-modal-2.png 158w,
+/static/361a6186f39d39e599866d8b3fe8a390/6bdcf/vue-modal-2.png 315w,
+/static/361a6186f39d39e599866d8b3fe8a390/f058b/vue-modal-2.png 630w,
+/static/361a6186f39d39e599866d8b3fe8a390/40601/vue-modal-2.png 945w,
+/static/361a6186f39d39e599866d8b3fe8a390/78612/vue-modal-2.png 1260w,
+/static/361a6186f39d39e599866d8b3fe8a390/60c1e/vue-modal-2.png 1866w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;모달 열고 닫기&lt;/h2&gt;
+&lt;p&gt;그렇다면 이제 이 모달을 동적으로 열고 닫을 수 있어야 한다. 방법은 예상하다시피 &lt;code class=&quot;language-text&quot;&gt;v-if&lt;/code&gt;
+나 &lt;code class=&quot;language-text&quot;&gt;v-show&lt;/code&gt;를 사용하면 된다. 하지만 사용 방식에는 조금 차이가 있다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;&amp;lt;teleport&gt;&lt;/code&gt;에는 오직 &lt;code class=&quot;language-text&quot;&gt;v-if&lt;/code&gt;만 사용할 수 있고, &lt;code class=&quot;language-text&quot;&gt;v-show&lt;/code&gt;는 작동하지 않는다. &lt;code class=&quot;language-text&quot;&gt;v-show&lt;/code&gt;를 사용하기 위해서는 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;teleport&gt;&lt;/code&gt;하위의 최상단 root노드에 걸어야만 작동한다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;v-if&lt;/code&gt;는 값이 &lt;code class=&quot;language-text&quot;&gt;false&lt;/code&gt;일 경우 렌더링 시점에서 아예 제외되므로 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;teleport&gt;&lt;/code&gt;에 걸면 하위의 모든 노드들이 렌더링되지 않지만, &lt;code class=&quot;language-text&quot;&gt;v-show&lt;/code&gt;의 경우에는 일단 렌더링하고나서 값에 따라 &lt;code class=&quot;language-text&quot;&gt;display:none&lt;/code&gt;으로 처리하는데 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;teleport&gt;&lt;/code&gt;는 &lt;code class=&quot;language-text&quot;&gt;html&lt;/code&gt; 태그가 아닌 &lt;code class=&quot;language-text&quot;&gt;vue&lt;/code&gt;에서 제공하는 기능에 불과하므로 &lt;code class=&quot;language-text&quot;&gt;display:none&lt;/code&gt;이 걸리지 않는다.&lt;/p&gt;
+&lt;deckgo-highlight-code language=&quot;jsx&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;&amp;lt;template&amp;gt;
+  &amp;lt;div&amp;gt;
+    &amp;lt;p&amp;gt;Hello World&amp;lt;/p&amp;gt;
+    &amp;lt;button @click=&amp;quot;isModalOpen = true&amp;quot;&amp;gt;open&amp;lt;/button&amp;gt;
+
+    &amp;lt;!-- Modal --&amp;gt;
+    &amp;lt;teleport to=&amp;quot;#modal&amp;quot; v-if=&amp;quot;isModalOpen&amp;quot;&amp;gt;
+      &amp;lt;div class=&amp;quot;modal&amp;quot;&amp;gt;
+        &amp;lt;div class=&amp;quot;modal-content&amp;quot;&amp;gt;
+          &amp;lt;p&amp;gt;This is Modal&amp;lt;/p&amp;gt;
+          &amp;lt;button @click=&amp;quot;isModalOpen = false&amp;quot;&amp;gt;close&amp;lt;/button&amp;gt;
+        &amp;lt;/div&amp;gt;
+      &amp;lt;/div&amp;gt;
+    &amp;lt;/teleport&amp;gt;
+  &amp;lt;/div&amp;gt;
+&amp;lt;/template&amp;gt;
+
+&amp;lt;script setup&amp;gt;
+  import { ref } from &amp;#39;vue&amp;#39;;
+  const isModalOpen = ref(false);
+&amp;lt;/script&amp;gt;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;</content:encoded></item><item><title><![CDATA[두 번째 프로젝트 회고]]></title><description><![CDATA[1. pinia와 typescript…]]></description><link>null/230712-second-project-review/</link><guid isPermaLink="false">null/230712-second-project-review/</guid><pubDate>Wed, 12 Jul 2023 22:12:00 GMT</pubDate><content:encoded>&lt;h2&gt;1. pinia와 typescript의 도입&lt;/h2&gt;
 &lt;p&gt;이번 프로젝트(커머스)에서 드디어 벼르고 벼르어왔던 기술을 도입하게 되었다. 바로 &lt;code class=&quot;language-text&quot;&gt;typescript&lt;/code&gt;와 &lt;code class=&quot;language-text&quot;&gt;pinia&lt;/code&gt;이다.&lt;/p&gt;
 &lt;p&gt;원래는 더 빨리 도입하고 싶었으나, 이전 프로젝트가 생각보다 늘어짐 + 숙련도 이슈로 인하여 늦어진 감이 있다. 하지만 그만큼 더 철저하게 준비해서 도입 안하느니만 못한 상황이 벌어지지 않게끔 신경썼다. 여기서 &apos;도입 안하느니만 못한 상황&apos;이란 기껏 타입스크립트 도입해놓고 모든 타입을 &lt;code class=&quot;language-text&quot;&gt;any&lt;/code&gt;로 정의한다든가, 에러 해결을 못해서 &lt;code class=&quot;language-text&quot;&gt;js&lt;/code&gt;로 회귀한다든가 하는 상황이다. 도입 초반부에는 이런 일이 실제로 벌어질 위기가 몇 번 있었으나, 그때마다 구글링하고 공식문서 열심히 읽다보니 어찌어찌 해결은 할 수 있었다.&lt;/p&gt;
 &lt;p&gt;도입해놓고 나서 느낀 점은 확실히 타입스크립트가 개발경험을 엄청나게 개선시켜준다. VScode에서 제공해주는 자동완성 기능을 맛보면 헤어나올 수가 없다. 특히나 내가 진행한 커머스는 그 특성상 프론트에서 다뤄야할 데이터가 많다. 하나의 상품 데이터 하나에도 그 속성이 20개가 넘고, 이 상품을 주문 로직을 태우려면 또 다시 주문을 위한 데이터 20여개가 추가된다.&lt;/p&gt;
