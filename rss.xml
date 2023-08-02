@@ -1,4 +1,114 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[Gatsby Starter Blog RSS Feed]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 02 Aug 2023 05:51:57 GMT</lastBuildDate><item><title><![CDATA[vue로 모달 구현하기]]></title><description><![CDATA[2023-03-09에 작성된 원문을 수정한 버전입니다 웹사이트를 이용하다 보면 모달창을 마주하게 된다. 일반적인 모달은 화면이 어두워지면서 기존의 화면은 fade out되면서, 화면 한가운데에서 focus되는 alert…]]></description><link>null/vue/230802-vue-modal-open/</link><guid isPermaLink="false">null/vue/230802-vue-modal-open/</guid><pubDate>Wed, 02 Aug 2023 22:12:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;2023-03-09에 작성된 &lt;a href=&quot;https://ps-hjhj97.tistory.com/222&quot;&gt;원문&lt;/a&gt;을 수정한 버전입니다&lt;/em&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[Gatsby Starter Blog RSS Feed]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 02 Aug 2023 08:04:59 GMT</lastBuildDate><item><title><![CDATA[모바일 환경에서 모달 닫기]]></title><description><![CDATA[2023-03-0…]]></description><link>null/vue/230803-vue-modal-close/</link><guid isPermaLink="false">null/vue/230803-vue-modal-close/</guid><pubDate>Thu, 03 Aug 2023 22:12:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;2023-03-09에 작성된 &lt;a href=&quot;https://ps-hjhj97.tistory.com/222&quot;&gt;원문&lt;/a&gt;을 수정한 버전입니다&lt;/em&gt;&lt;/p&gt;
+&lt;h2&gt;모달 닫기&lt;/h2&gt;
+&lt;p&gt;모바일 환경에서 모달창이 떠 있는 상태에서 모달을 닫는 방법은 여러가지가 있을 수 있다.&lt;/p&gt;
+&lt;p&gt;첫 번째 방법은 모달 창 내부에 별도의 &lt;code class=&quot;language-text&quot;&gt;X&lt;/code&gt;버튼을 표시해서 이 영역을 터치하면 닫히게 하는 방법이 있다. 가장 직관적인 방법이지만 버튼을 위한 별도의 공간을 확보해야 하기 때문에 디자인상 의도치 않은 공간을 차지한다는 단점이 있다.&lt;/p&gt;
+&lt;p&gt;이런 단점을 해결하기 위한 두 번째 방법은 모달 바깥의 영역을 터치를 감지했을 때 모달을 닫는 방법이 있다. 다만 이 방법 역시 명시적인 &apos;닫기&apos;버튼이 보이지 않기 때문에 이러한 UI/UX가 낯선 사용자에게는 모달을 어떻게 닫아야 하는지 헤맬 수도 있다는 단점이 있다.&lt;/p&gt;
+&lt;p&gt;세 번째 방법은 (안드로이드 환경에서) 뒤로가기 버튼을 눌렀을 때 모달이 닫히게 하는 방법이다. 이 방법의 경우, 모달창과 직접적인 상호작용이 일어나지 않으므로 개발자 입장에서는 뒤로가기 이벤트를 감지해야 하는 등 꽤나 까다로운 작업이다. 이번 글에서는 그 방법에 대해서 설명하겠다.&lt;/p&gt;
+&lt;h2&gt;뒤로가기&lt;/h2&gt;
+&lt;p&gt;&apos;뒤로가기&apos;를 눌렀을 때 모달창이 닫히게 만들기 위해서는, 모달창이 열려있는 상태를 &lt;code class=&quot;language-text&quot;&gt;window&lt;/code&gt;객체의 &lt;code class=&quot;language-text&quot;&gt;history&lt;/code&gt;에 저장(push)해야 한다. 이때 사용하는 함수가 &lt;code class=&quot;language-text&quot;&gt;window.history.pushState()&lt;/code&gt;함수이다. 이 함수에 대한 &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/History/pushState&quot;&gt;자세한 설명&lt;/a&gt;은 MDN을 참고하기 바란다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;pushState()&lt;/code&gt;함수의 첫 번째 인자로는 &lt;code class=&quot;language-text&quot;&gt;state&lt;/code&gt;를 전달해야 하는데, 정해진 양식이 있는 것이 아니라 개발자가 식별할 수 있는 정보를 담아서 객체 형태로 넘기기만 하면 된다. 나는 &lt;code class=&quot;language-text&quot;&gt;{state : &apos;modal&apos;}&lt;/code&gt; 객체를 넣었다. 두 번째 인자는 아무 의미는 없지만 생략할 수는 없으므로 빈 문자열이나 &lt;code class=&quot;language-text&quot;&gt;undefined&lt;/code&gt;를 넣으면 된다.&lt;/p&gt;
+&lt;deckgo-highlight-code language=&quot;jsx&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;&amp;lt;template&amp;gt;
+  &amp;lt;div&amp;gt;
+    &amp;lt;p&amp;gt;Hello World&amp;lt;/p&amp;gt;
+    &amp;lt;button @click=&amp;quot;openModal&amp;quot;&amp;gt;open&amp;lt;/button&amp;gt;
+
+    &amp;lt;!-- Modal --&amp;gt;
+    &amp;lt;teleport to=&amp;quot;#modal&amp;quot; v-if=&amp;quot;isModalOpen&amp;quot;&amp;gt;
+      &amp;lt;Modal @close-modal=&amp;quot;closeModal&amp;quot; /&amp;gt;
+    &amp;lt;/teleport&amp;gt;
+  &amp;lt;/div&amp;gt;
+&amp;lt;/template&amp;gt;
+
+&amp;lt;script setup&amp;gt;
+  const isModalOpen = ref(false);
+
+  const openModal = () =&amp;gt; {
+    isModalOpen.value = true;
+  };
+  const closeModal = () =&amp;gt; {
+    isModalOpen.value = false;
+  };
+&amp;lt;/script&amp;gt;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;p&gt;이전 포스팅에서 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;teleport&gt;&lt;/code&gt;안의 코드는 &lt;code class=&quot;language-text&quot;&gt;Modal.vue&lt;/code&gt;라는 별도의 컴포넌트로 분리해두었다.&lt;/p&gt;
+&lt;deckgo-highlight-code language=&quot;jsx&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;// Modal.vue
+&amp;lt;template&amp;gt;
+  &amp;lt;div class=&amp;quot;modal&amp;quot;&amp;gt;
+    &amp;lt;div class=&amp;quot;modal-content&amp;quot;&amp;gt;
+      &amp;lt;p&amp;gt;This is Modal&amp;lt;/p&amp;gt;
+      &amp;lt;button @click=&amp;quot;closeModal&amp;quot;&amp;gt;X&amp;lt;/button&amp;gt;
+    &amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+&amp;lt;/template&amp;gt;
+&amp;lt;script setup&amp;gt;
+  const emit = defineEmits([&amp;#39;close-modal&amp;#39;]);
+  onMounted(() =&amp;gt; {
+    window.history.pushState({ state: &amp;#39;modal&amp;#39; }, undefined);
+  });
+  const closeModal = () =&amp;gt; {
+    emit(&amp;#39;close-modal&amp;#39;);
+  };
+&amp;lt;/script&amp;gt;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;br /&gt;
+&lt;p&gt;이제 버튼을 누르면 모달이 열리면서 &lt;code class=&quot;language-text&quot;&gt;history&lt;/code&gt;에 &lt;code class=&quot;language-text&quot;&gt;{state:&apos;modal&apos;}&lt;/code&gt;이 추가됨을 확인할 수 있다. 하지만 여기서 뒤로가기를 누르더라도 모달이 닫히지는 않는다. 왜냐하면 &lt;code class=&quot;language-text&quot;&gt;isModalOpen&lt;/code&gt;값은 여전히 &lt;code class=&quot;language-text&quot;&gt;true&lt;/code&gt;이기 때문이다. 따라서 &apos;뒤로가기&apos;가 실행되면 &lt;code class=&quot;language-text&quot;&gt;closeModal&lt;/code&gt;함수가 실행되게끔 만들어야 한다.&lt;/p&gt;
+&lt;h2&gt;popstate&lt;/h2&gt;
+&lt;p&gt;자바스크립트에서 뒤로가기 이벤트를 감지하려면 &lt;code class=&quot;language-text&quot;&gt;popstate&lt;/code&gt;라는 함수를 이벤트리스너에 등록해야 한다. 따라서 &lt;code class=&quot;language-text&quot;&gt;onMounted&lt;/code&gt;함수에 아래와 같이 추가한다.&lt;/p&gt;
+&lt;deckgo-highlight-code language=&quot;jsx&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;onMounted(() =&amp;gt; {
+  window.history.pushState({ state: &amp;quot;modal&amp;quot; }, undefined)
+  window.addEventListener(&amp;quot;popstate&amp;quot;, closeModal)
+})&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;p&gt;이제 &apos;뒤로가기&apos;를 누르면 모달창도 닫힌고, &lt;code class=&quot;language-text&quot;&gt;history&lt;/code&gt;도 다시 &lt;code class=&quot;language-text&quot;&gt;pop&lt;/code&gt;된다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;하지만 아직 한 가지 문제점이 남아있다.&lt;/strong&gt; &apos;뒤로가기&apos;를 누르지 않고 그냥 &lt;code class=&quot;language-text&quot;&gt;X&lt;/code&gt;버튼을 눌러서 닫게 되면 모달을 닫히지만, &lt;code class=&quot;language-text&quot;&gt;history&lt;/code&gt;가 &lt;code class=&quot;language-text&quot;&gt;pop&lt;/code&gt;되지 못하고 쌓여있게 된다. 즉 모달은 닫혀 있지만 &lt;code class=&quot;language-text&quot;&gt;window.history&lt;/code&gt;를 찍어보면 &lt;code class=&quot;language-text&quot;&gt;{state:&apos;modal&apos;}&lt;/code&gt;인 상태로 남아있다는 것이다.&lt;/p&gt;
+&lt;p&gt;즉 모달이 닫힐 때 &apos;뒤로가기&apos;를 눌러서 닫힌 건지,&lt;code class=&quot;language-text&quot;&gt;X&lt;/code&gt;버튼을 눌러서 닫힌 건지 구분해주어야 한다. 따라서 &lt;code class=&quot;language-text&quot;&gt;closeModal&lt;/code&gt;함수의 인자로 뒤로가기가 눌렸는지를 확인하는 인자를 받도록 수정한다.&lt;/p&gt;
+&lt;deckgo-highlight-code language=&quot;jsx&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;const closeModal = (isBackward = false) =&amp;gt; {
+  if (!isBackward) {
+    history.back()
+  }
+  emit(&amp;quot;close-modal&amp;quot;)
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;p&gt;버튼을 눌러서 닫았다면 &lt;code class=&quot;language-text&quot;&gt;isBackward&lt;/code&gt;값이 &lt;code class=&quot;language-text&quot;&gt;false&lt;/code&gt;로 들어오고 &lt;code class=&quot;language-text&quot;&gt;history.back()&lt;/code&gt;를 호출하여 상태를 한단계 &lt;code class=&quot;language-text&quot;&gt;pop&lt;/code&gt;해주면 된다. 작동하는 모습은 아래와 같다.&lt;/p&gt;
+&lt;img src=&quot;https://raw.githubusercontent.com/hjhj97/blog.gatsby/main/content/blog/vue/images/vue-modal-backward.gif&quot;&gt;
+&lt;p&gt;완성된 &lt;code class=&quot;language-text&quot;&gt;Modal.vue&lt;/code&gt;코드는 아래와 같다.&lt;/p&gt;
+&lt;deckgo-highlight-code language=&quot;jsx&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;// Modal.vue
+&amp;lt;template&amp;gt;
+  &amp;lt;div class=&amp;quot;modal&amp;quot;&amp;gt;
+    &amp;lt;div class=&amp;quot;modal-content&amp;quot;&amp;gt;
+      &amp;lt;p&amp;gt;This is Modal&amp;lt;/p&amp;gt;
+      &amp;lt;button @click=&amp;quot;closeModal(false)&amp;quot;&amp;gt;X&amp;lt;/button&amp;gt;
+    &amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+&amp;lt;/template&amp;gt;
+
+&amp;lt;script setup&amp;gt;
+  const emit = defineEmits([&amp;#39;close-modal&amp;#39;]);
+
+  onMounted(() =&amp;gt; {
+    window.history.pushState({ state: &amp;#39;modal&amp;#39; }, undefined);
+    window.addEventListener(&amp;#39;popstate&amp;#39;, () =&amp;gt; closeModal(true));
+  });
+  onUnmounted(() =&amp;gt; {
+    window.removeEventListener(&amp;#39;popstate&amp;#39;, () =&amp;gt; closeModal(true));
+  });
+  const closeModal = (isBackward = false) =&amp;gt; {
+    if (!isBackward) {
+      history.back();
+    }
+    emit(&amp;#39;close-modal&amp;#39;);
+  };
+&amp;lt;/script&amp;gt;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;h2&gt;생각&lt;/h2&gt;
+&lt;p&gt;사실 웹뷰 환경에서 모달창이 열려있는 상태를 굳이 &apos;뒤로가기&apos;를 통해서 닫히게 동작해야 할까에 대해 고민이 많았다. 웹뷰는 웹만의 고유한 동작 방식이 있기 때문에 네이티브 앱을 흉내내는 일에 대해서는 회의적이었다. 하지만 개발자가 아닌 일반 사용자 입장에서는 자신이 사용하는 앱이 웹 기반인지 네이티브 기반인지는 별 관심은 없을 것이고, 개인마다 여러 앱을 사용해오면서 축적되어온 경험(&apos;뒤로가기&apos;하면 모달이 닫힘)이 그대로 적용되리라는 기대를 할 것이다.&lt;/p&gt;
+&lt;p&gt;그래서 이번 개발을 계기로 유명하다싶은 앱은 모두 다운받아서 과연 &apos;모달창이 뒤로가기로 닫히는가&apos;를 시험해보았다(족히 30개의 앱으로 확인해보았다). 대략 90%의 앱이 네이티브 기반이었고, 이 앱들은 전부 다 뒤로가기를 통해 모달이 닫힘을 확인하였다. 나머지 10%의 웹뷰 기반 앱은 반반이었다. 어떤 앱은 뒤로가기를 누르면 모달이 닫힘과 함께 아예 이전 페이지로 이동해버리는 문제가 있었고, 이 경우의 사용자 예상과 다른 결과로 인하여 사용성이 떨어진다는 인상을 받았다.&lt;/p&gt;
+&lt;p&gt;그래서 내가 내린 결론은 웹뷰는 사용자의 경험을 해치지 않는 선에서는 네이티브처럼 동작하게끔 최소한의 기대되는 동작은 구현해줘야 한다는 것이다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[vue로 모달 구현하기]]></title><description><![CDATA[2023-03-09에 작성된 원문을 수정한 버전입니다 웹사이트를 이용하다 보면 모달창을 마주하게 된다. 일반적인 모달은 화면이 어두워지면서 기존의 화면은 fade out되면서, 화면 한가운데에서 focus되는 alert…]]></description><link>null/vue/230802-vue-modal-open/</link><guid isPermaLink="false">null/vue/230802-vue-modal-open/</guid><pubDate>Wed, 02 Aug 2023 22:12:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;2023-03-09에 작성된 &lt;a href=&quot;https://ps-hjhj97.tistory.com/224&quot;&gt;원문&lt;/a&gt;을 수정한 버전입니다&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;웹사이트를 이용하다 보면 모달창을 마주하게 된다. 일반적인 모달은 화면이 어두워지면서 기존의 화면은 fade out되면서, 화면 한가운데에서 focus되는 alert창과 같은 형태이다. 이를 &lt;code class=&quot;language-text&quot;&gt;vue&lt;/code&gt;로 어떻게 구현하는지 살펴보자.&lt;/p&gt;
 &lt;h2&gt;모달 구현&lt;/h2&gt;
 &lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;vue&lt;/code&gt;로 모달을 구현하는 방법에는 여러가지가 있을 수 있다. 가장 간단한 형태는 하나의 파일 안에 모달을 다 집어넣는 방식일 것이다.&lt;/p&gt;
