@@ -96,10 +96,10 @@ _2023-03-09에 작성된 [원문](https://ps-hjhj97.tistory.com/222)을 수정�
     <!-- Modal -->
     <teleport to="#modal">
       <div class="modal">
-				<div class="modal-content">
-					<p>This is Modal</p>
-				</div>
-			</div>
+        <div class="modal-content">
+          <p>This is Modal</p>
+        </div>
+      </div>
     </teleport>
   </div>
 </template>
