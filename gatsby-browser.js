@@ -5,6 +5,7 @@
 import "@fontsource/noto-sans-kr/500.css"
 // normalize CSS across browsers
 import "./src/normalize.css"
+import "./src/code.css"
 // custom CSS styles
 import "./src/style.css"
 import "./src/header-effect.css"
