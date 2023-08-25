@@ -36,12 +36,12 @@ const Bio = () => {
         className="bio-avatar"
         layout="fixed"
         formats={["auto", "webp", "avif"]}
-        src="../images/profile-pic.jpg"
-        width={100}
-        height={100}
-        quality={90}
+        src="../images/profile-graduate.jpg"
+        width={120}
+        height={120}
+        quality={100}
         alt="Profile picture"
-        style={{ minWidth: "100px" }}
+        style={{ minWidth: "120px" }}
       />
       <div>
         <h3 className="bio-name">{`${author.name} ${author.nickname}`}</h3>
