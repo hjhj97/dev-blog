@@ -1,4 +1,143 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[Gatsby Starter Blog RSS Feed]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 03 Sep 2023 13:30:07 GMT</lastBuildDate><item><title><![CDATA[내가 대학교에서 배운 것]]></title><description><![CDATA[대학생활 회고(라 쓰고 '추억팔이'로 읽는다) 지난 주에 드디어 대학교를 졸업했다. 2017년 2월에 입학한 나의 대학생활은 장장 6년…]]></description><link>null/essay/230901-what-i-learn-in-college/</link><guid isPermaLink="false">null/essay/230901-what-i-learn-in-college/</guid><pubDate>Fri, 01 Sep 2023 22:12:00 GMT</pubDate><content:encoded>&lt;h2&gt;대학생활 회고(라 쓰고 &apos;추억팔이&apos;로 읽는다)&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[Gatsby Starter Blog RSS Feed]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 06 Sep 2023 06:49:16 GMT</lastBuildDate><item><title><![CDATA[nextTick()은 언제쓸까?]]></title><description><![CDATA[nextTick()이란? Vue를 공부하다보면 Global API의 한 종류로서 이라는 함수를 접하게 된다.
+Vue 공식문서에서는 이렇게 설명하고 있다. When you mutate reactive state in Vue, the resulting…]]></description><link>null/vue/230906-nexttick/</link><guid isPermaLink="false">null/vue/230906-nexttick/</guid><pubDate>Wed, 06 Sep 2023 22:12:03 GMT</pubDate><content:encoded>&lt;h2&gt;nextTick()이란?&lt;/h2&gt;
+&lt;p&gt;Vue를 공부하다보면 Global API의 한 종류로서 &lt;code class=&quot;language-text&quot;&gt;nextTick()&lt;/code&gt;이라는 함수를 접하게 된다.
+&lt;a href=&quot;https://vuejs.org/api/general.html#nexttick&quot;&gt;Vue 공식문서&lt;/a&gt;에서는 이렇게 설명하고 있다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;When you mutate reactive state in Vue, the resulting DOM updates are not applied synchronously. Instead, Vue buffers them until the &quot;next tick&quot; to ensure that each component updates only once no matter how many state changes you have made.&lt;br&gt;
+&lt;code class=&quot;language-text&quot;&gt;nextTick()&lt;/code&gt; can be used immediately after a state change to wait for the DOM updates to complete. You can either pass a callback as an argument, or await the returned Promise.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Vue에서 반응형 변수의 값을 변경할 때, 그 결과는 DOM에 동기적으로 반영되지 않는다. 대신 Vue는 각 컴포넌트가 몇번이나 변경되었느냐와 상관없이, &quot;next Tick&quot;까지 버퍼에 담아놓아서 반드시 한번만 업데이트 됨을 보장한다.&lt;br&gt;
+&lt;code class=&quot;language-text&quot;&gt;nextTick()&lt;/code&gt;은 DOM의 업데이트가 완료될 때까지 기다리는 데 사용할 수 있다. 콜백함수나 &lt;code class=&quot;language-text&quot;&gt;Promise&lt;/code&gt;를 await할 수도 있다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;쉽게 얘기해서, &apos;코드 상에서 데이터가 바뀌더라도 DOM에는 즉각적으로 반영되지 않으니 강제로 반영하고 싶다면 이 함수를 호출해라&apos; 라는 의미다.&lt;/p&gt;
+&lt;p&gt;스크립트단에서 적용된 코드가 곧바로 DOM에 반영되지 않는다는 사실은 vue뿐만 아니라 react를 접해본 사람이라면 생소한 얘기는 아닐 것이다. 최적화를 위하여 화면을 그리는 렌더링 과정은 batch로 처리되기 때문이다. 그래서 react, vue 라이브러리를 처음 공부하는 시기에는 내가 생각했던 렌더링 결과와 다르게 나와서 당황했던 경험이 다들 한번씩은 있을 것이다. 그래서 이런 불편한 상황을 해결하기 위하여 &lt;code class=&quot;language-text&quot;&gt;nextTick()&lt;/code&gt;함수가 존재하는 것이다.&lt;/p&gt;
+&lt;h2&gt;언제 사용할까?&lt;/h2&gt;
+&lt;p&gt;사실 &lt;code class=&quot;language-text&quot;&gt;nextTick()&lt;/code&gt;함수의 사용빈도가 많지는 않지만, 가끔씩 필요한 상황은 있기 때문에 이런 함수의 존재여부를 알고있다는 자체만으로도 도움이 된다. 지금까지의 경험상 &lt;code class=&quot;language-text&quot;&gt;nextTick()&lt;/code&gt;이 필요한 상황은 다음과 같았다.&lt;/p&gt;
+&lt;h4&gt;비동기로 데이터를 받아온 후에 container의 size를 조정해야할 때&lt;/h4&gt;
+&lt;p&gt;아래와 같이 &lt;code class=&quot;language-text&quot;&gt;fetchData&lt;/code&gt; 라는 비동기 함수를 통해 데이터를 받아와서 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;textarea /&gt;&lt;/code&gt;에 보여주는 상황을 생각해보자.&lt;/p&gt;
+&lt;deckgo-highlight-code language=&quot;tsx&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;&amp;lt;template&amp;gt;
+  &amp;lt;textarea class=&amp;quot;container&amp;quot; v-model=&amp;quot;data&amp;quot; /&amp;gt;
+&amp;lt;/template&amp;gt;
+&amp;lt;script setup&amp;gt;
+  const data = ref(&amp;quot;&amp;quot;)
+  const fetchData = () =&amp;gt; {...}
+
+  onMounted(async () =&amp;gt; {
+    data.value = await fetchData()
+  })
+&amp;lt;/script&amp;gt;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;p&gt;그리고 data가 담기는 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;textarea /&gt;&lt;/code&gt; 에는 다음과 같이 &lt;code class=&quot;language-text&quot;&gt;width, height, overflow-y:scroll&lt;/code&gt;가 있어 정해진 사이즈로만 렌더링되어야 하는 제약이 있다.&lt;/p&gt;
+&lt;deckgo-highlight-code language=&quot;css&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;.container {
+  width: 200px;
+  height: 100px;
+  overflow-y: scroll;
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;p&gt;그러면 아래와 같이 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;textarea /&gt;&lt;/code&gt;에 스크롤이 생긴 채로 보이게 된다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/ce8cdb47ae2eb1144b9e8d5e2647600f/05fb0/before.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 67.72151898734178%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAvElEQVR42u2PywqDMBBF8///5gNNsWnSoNCqpIILH9X6uGUCQil0Eemiiw5cZhKYwxk2TRPG8YGu73G55kiOAkkiIE4S6qxhbjensK7r0LYtmqZBXdeoqgp5UdhO//dhcArzfR8Uz/MQBAEOnCNNU5RliWVZ4FosiiKEYQghBDjnds6yDMYYzPPsDiQ7KaUFxnEMpZQNnbvLUGttjQhKp252BFzX1R1IS2SyLb93Z+DrYy/kI/Ab9Qf+IPAJHwtIUyVwItwAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;before&quot;
+        title=&quot;&quot;
+        src=&quot;/static/ce8cdb47ae2eb1144b9e8d5e2647600f/f058b/before.png&quot;
+        srcset=&quot;/static/ce8cdb47ae2eb1144b9e8d5e2647600f/c26ae/before.png 158w,
+/static/ce8cdb47ae2eb1144b9e8d5e2647600f/6bdcf/before.png 315w,
+/static/ce8cdb47ae2eb1144b9e8d5e2647600f/f058b/before.png 630w,
+/static/ce8cdb47ae2eb1144b9e8d5e2647600f/40601/before.png 945w,
+/static/ce8cdb47ae2eb1144b9e8d5e2647600f/05fb0/before.png 1138w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;여기서 한가지 요구사항을 추가해보자.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;data&lt;/code&gt;의 길이에 따라서 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;textarea /&gt;&lt;/code&gt;의 높이가 자동적으로 조정되어야 한다. 즉 스크롤이 생기지 않고 한 화면에 모든 텍스트가 다 들어와야 한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;단순하게 생각해보면 css에 &lt;code class=&quot;language-text&quot;&gt;{height : fit-content}&lt;/code&gt;속성을 추가해주면 될 것 같지만 실제로는 작동하지 않는다. 왜냐하면 &lt;code class=&quot;language-text&quot;&gt;data&lt;/code&gt;를 비동기로 받아오기 때문에 &lt;strong&gt;화면을 렌더링하는 시점에는 아직 &lt;code class=&quot;language-text&quot;&gt;data&lt;/code&gt;의 길이를 알 수 없기 때문&lt;/strong&gt;이다.&lt;br&gt;
+따라서 우리는 &lt;code class=&quot;language-text&quot;&gt;data&lt;/code&gt;를 받아오고 난 후(=길이가 얼마인지 알 수 있는 시점)에 DOM에 다시 접근하여, 그 길이에 맞춰서 다시 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;textarea /&gt;&lt;/code&gt;의 높이를 &lt;code class=&quot;language-text&quot;&gt;JS&lt;/code&gt;를 통해 조절해야 한다.&lt;/p&gt;
+&lt;p&gt;그래서 아래와 같이 &lt;code class=&quot;language-text&quot;&gt;scrollHeight&lt;/code&gt;값을 받아와서 직접 높이값을 설정해보자.&lt;/p&gt;
+&lt;deckgo-highlight-code language=&quot;tsx&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;&amp;lt;template&amp;gt;...&amp;lt;/template&amp;gt;
+&amp;lt;script setup&amp;gt;
+  ...
+  onMounted(async () =&amp;gt; {
+    data.value = await fetchData()
+    const scrollHeight = textRef.value?.scrollHeight; // scrollHeight 설정!
+    textRef.value.style.height = scrollHeight + &amp;#39;px&amp;#39;;
+  })
+&amp;lt;/script&amp;gt;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;p&gt;이렇게 &lt;code class=&quot;language-text&quot;&gt;data&lt;/code&gt;를 받아올 때 까지 &lt;code class=&quot;language-text&quot;&gt;await&lt;/code&gt;를 걸어주었으니 높이가 딱 맞게 조정될 것 같다. 하지만 실제로 실행해보면 결과는 여전히 위와 동일하다. 왜 반영되지 않은 것일까?&lt;/p&gt;
+&lt;p&gt;그 이유는 글 초반부에 설명했다시피, &lt;strong&gt;스크립트단에서 적용된 코드가 곧바로 DOM에 반영되지 않기 때문&lt;/strong&gt;이다.&lt;br&gt;
+즉 &lt;code class=&quot;language-text&quot;&gt;data.value = await fetchData()&lt;/code&gt;라는 코드가 실행된 직후라도, 실제로는 &lt;code class=&quot;language-text&quot;&gt;data&lt;/code&gt;가 DOM에는 반영되지 않은 것이다!&lt;/p&gt;
+&lt;p&gt;그렇다면 우리에게 필요한 것은? 드디어 &lt;code class=&quot;language-text&quot;&gt;nextTick()&lt;/code&gt;함수가 등장할 차례이다. 해당 코드 다음 줄에 &lt;code class=&quot;language-text&quot;&gt;nextTick()&lt;/code&gt;함수를 호출하면 &lt;em&gt;&apos;지금까지의 변경사항을 DOM에 적용해줘!&apos;&lt;/em&gt; 라고 요청하는 것과 같은 의미이다.&lt;/p&gt;
+&lt;deckgo-highlight-code language=&quot;tsx&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;&amp;lt;template&amp;gt;...&amp;lt;/template&amp;gt;
+&amp;lt;script setup&amp;gt;
+  ...
+  onMounted(async () =&amp;gt; {
+    data.value = await fetchData()
+    await nextTick(); // DOM에 곧바로 반영!
+    const scrollHeight = textRef.value?.scrollHeight; // scrollHeight 설정!
+    textRef.value.style.height = scrollHeight + &amp;#39;px&amp;#39;;
+  })
+&amp;lt;/script&amp;gt;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;br /&gt;
+&lt;p&gt;그러면 이제 요구사항처럼 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;textarea /&gt;&lt;/code&gt;가 스크롤 없이 텍스트 길이에 맞춰서 높이가 조정된다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/1d8ff32cbbdea79a415644ce34f2f29c/f43e4/after.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 74.68354430379746%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAABYlAAAWJQFJUiTwAAAA0ElEQVR42u2STQuCQBRF/f9/zIWKn6iomSFEo4maOTg6cuMNtGnVRLt6cLirOdzHG0MIASklFiEwzxznC8OhPCqO1QmsaTHdZ9ym+1sYfd9jGAZQdl2nuF47NE2DmXNsUmphpGmKMAwRBIHKOI6RZRnatsWyLNAdI4oimKYJ27bh+z4cx4FlWajrGuu66gtJ4rou8jyH53mqIVGW5WdCWi9JElBTyqIowBgDHeujlanNU1RVFcZxxL7vSsg51xfS41foG23bplJbiC/PX/gLwgf5FZZu4quhjwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;after&quot;
+        title=&quot;&quot;
+        src=&quot;/static/1d8ff32cbbdea79a415644ce34f2f29c/f058b/after.png&quot;
+        srcset=&quot;/static/1d8ff32cbbdea79a415644ce34f2f29c/c26ae/after.png 158w,
+/static/1d8ff32cbbdea79a415644ce34f2f29c/6bdcf/after.png 315w,
+/static/1d8ff32cbbdea79a415644ce34f2f29c/f058b/after.png 630w,
+/static/1d8ff32cbbdea79a415644ce34f2f29c/40601/after.png 945w,
+/static/1d8ff32cbbdea79a415644ce34f2f29c/f43e4/after.png 1120w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[내가 대학교에서 배운 것]]></title><description><![CDATA[대학생활 회고(라 쓰고 '추억팔이'로 읽는다) 지난 주에 드디어 대학교를 졸업했다. 2017년 2월에 입학한 나의 대학생활은 장장 6년…]]></description><link>null/essay/230901-what-i-learn-in-college/</link><guid isPermaLink="false">null/essay/230901-what-i-learn-in-college/</guid><pubDate>Fri, 01 Sep 2023 22:12:00 GMT</pubDate><content:encoded>&lt;h2&gt;대학생활 회고(라 쓰고 &apos;추억팔이&apos;로 읽는다)&lt;/h2&gt;
 &lt;p&gt;지난 주에 드디어 대학교를 졸업했다. 2017년 2월에 입학한 나의 대학생활은 장장 6년 6개월에 걸친 여정 끝에 막을 내리게 되었다. 이대로 나의 대학 생활이 아득한 추억 속에서 휘발되기에는 아쉽다고 생각해서 내가 대학교에 다니면서 들었던 강의들, 그 외에 의미있었던 활동들을 기억 깊숙한 곳에서 끄집어내서 박제하려고 한다. 전공과목 여부와 상관없이 나의 대학 생활에서 의미있는 영향을 끼친 강의들과, 어떤 방식으로 영향을 끼쳤는지를 중점적으로 소개하려고 한다.&lt;/p&gt;
 &lt;h2&gt;유난히 독특했던 한 컴공생...&lt;/h2&gt;
 &lt;p&gt;내가 들었던 강의들이 다른 컴공과 학생보다 유별난 구석이 있다. 특히나 교양과목에서 두드러지는데, 나는 교양과목을 선택할 때 나름의 철칙이 있었다. 바로 전공과 관련없는 분야의 학문의 강의를 많이 들으려고 했다는 점이다.&lt;/p&gt;
