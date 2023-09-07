@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[Gatsby Starter Blog RSS Feed]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 06 Sep 2023 06:49:16 GMT</lastBuildDate><item><title><![CDATA[nextTick()은 언제쓸까?]]></title><description><![CDATA[nextTick()이란? Vue를 공부하다보면 Global API의 한 종류로서 이라는 함수를 접하게 된다.
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[Gatsby Starter Blog RSS Feed]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 07 Sep 2023 13:03:49 GMT</lastBuildDate><item><title><![CDATA[nextTick()은 언제쓸까?]]></title><description><![CDATA[nextTick()이란? Vue를 공부하다보면 Global API의 한 종류로서 이라는 함수를 접하게 된다.
 Vue 공식문서에서는 이렇게 설명하고 있다. When you mutate reactive state in Vue, the resulting…]]></description><link>null/vue/230906-nexttick/</link><guid isPermaLink="false">null/vue/230906-nexttick/</guid><pubDate>Wed, 06 Sep 2023 22:12:03 GMT</pubDate><content:encoded>&lt;h2&gt;nextTick()이란?&lt;/h2&gt;
 &lt;p&gt;Vue를 공부하다보면 Global API의 한 종류로서 &lt;code class=&quot;language-text&quot;&gt;nextTick()&lt;/code&gt;이라는 함수를 접하게 된다.
 &lt;a href=&quot;https://vuejs.org/api/general.html#nexttick&quot;&gt;Vue 공식문서&lt;/a&gt;에서는 이렇게 설명하고 있다.&lt;/p&gt;
@@ -78,9 +78,12 @@ Vue 공식문서에서는 이렇게 설명하고 있다. When you mutate reactiv
 따라서 우리는 &lt;code class=&quot;language-text&quot;&gt;data&lt;/code&gt;를 받아오고 난 후(=길이가 얼마인지 알 수 있는 시점)에 DOM에 다시 접근하여, 그 길이에 맞춰서 다시 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;textarea /&gt;&lt;/code&gt;의 높이를 &lt;code class=&quot;language-text&quot;&gt;JS&lt;/code&gt;를 통해 조절해야 한다.&lt;/p&gt;
 &lt;p&gt;그래서 아래와 같이 &lt;code class=&quot;language-text&quot;&gt;scrollHeight&lt;/code&gt;값을 받아와서 직접 높이값을 설정해보자.&lt;/p&gt;
 &lt;deckgo-highlight-code language=&quot;tsx&quot;  &gt;
-          &lt;code slot=&quot;code&quot;&gt;&amp;lt;template&amp;gt;...&amp;lt;/template&amp;gt;
+          &lt;code slot=&quot;code&quot;&gt;&amp;lt;template&amp;gt;
+  &amp;lt;textarea class=&amp;quot;container&amp;quot; v-model=&amp;quot;data&amp;quot; ref=&amp;quot;textRef&amp;quot; /&amp;gt;
+&amp;lt;/template&amp;gt;
 &amp;lt;script setup&amp;gt;
   ...
+  const textRef = ref(null);
   onMounted(async () =&amp;gt; {
     data.value = await fetchData()
     const scrollHeight = textRef.value?.scrollHeight; // scrollHeight 설정!
