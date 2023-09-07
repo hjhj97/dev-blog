@@ -66,9 +66,12 @@ Vue를 공부하다보면 Global API의 한 종류로서 `nextTick()`이라는 �
 그래서 아래와 같이 `scrollHeight`값을 받아와서 직접 높이값을 설정해보자.
 
 ```tsx
-<template>...</template>
+<template>
+  <textarea class="container" v-model="data" ref="textRef" />
+</template>
 <script setup>
   ...
+  const textRef = ref(null);
   onMounted(async () => {
     data.value = await fetchData()
     const scrollHeight = textRef.value?.scrollHeight; // scrollHeight 설정!
