@@ -47,8 +47,18 @@ const Bio = () => {
         <h3 className="bio-name">{`${author.name} ${author.nickname}`}</h3>
         <p>{author?.summary || null}</p>
         <div className="bio-social">
-          <a href={`https://github.com/${social.github}`}>Github</a>
-          <a href={`https://ps-hjhj97.tistory.com/`}>Tistory</a>
+          <a href={`https://github.com/${social.github}`} target="_blank">
+            Github
+          </a>
+          <a
+            href={`https://www.linkedin.com/in/%EC%A3%BC%ED%97%8C-%ED%95%98-38805a218/`}
+            target="_blank"
+          >
+            LinkedIn
+          </a>
+          <a href={`https://ps-hjhj97.tistory.com/`} target="_blank">
+            Tistory
+          </a>
         </div>
       </div>
     </div>
