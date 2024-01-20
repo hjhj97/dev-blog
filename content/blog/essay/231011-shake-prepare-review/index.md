@@ -1,6 +1,6 @@
 ---
-title: 2021 shake! 출제 및 운영 후기
-description:
+title: shake! 출제 및 운영 후기
+description: 경인지역 6개대학 프로그래밍 경시대회 - shake! 출제 및 운영
 date: "2023-10-11T22:12:00.000Z"
 category: essay
 ---
