@@ -15,14 +15,24 @@ module.exports = {
       nickname: "Neon",
       summary: `프론트엔드 개발자입니다. 제가 작성한 코드가 화면에 나타나는 모습을 좋아합니다. 백엔드에도 관심이 많습니다.`,
     },
-    //description: `A starter blog demonstrating what Gatsby can do.`,
-    //siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
+    description: `하주헌 개발 블로그`,
+    siteUrl: `https://juheon.dev`,
     social: {
       github: "hjhj97",
     },
   },
   plugins: [
-    `gatsby-plugin-image`,
+    'gatsby-plugin-image',
+    'gatsby-plugin-advanced-sitemap',
+    'gatsby-plugin-react-helmet',
+    {
+      resolve : 'gatsby-plugin-robots-txt',
+      options : {
+        host : 'https://juheon.dev',
+        sitemap : 'https://juheon.dev/sitemap.xml',
+        policy : [{userAgent : '*',allow : "/"}]
+      }
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
