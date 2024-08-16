@@ -23,12 +23,11 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-image',
-    'gatsby-plugin-advanced-sitemap',
+    'gatsby-plugin-sitemap',
     'gatsby-plugin-react-helmet',
     {
       resolve : 'gatsby-plugin-robots-txt',
       options : {
-        host : 'https://juheon.dev',
         sitemap : 'https://juheon.dev/sitemap.xml',
         policy : [{userAgent : '*',allow : "/"}]
       }
