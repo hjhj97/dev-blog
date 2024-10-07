@@ -2,7 +2,7 @@
 title: 프로젝트 회고
 date: "2023-06-25T22:12:03.284Z"
 description: 프로젝트를 진행하면서 느낀 점들
-category: essay
+category: Essay
 ---
 
 _2023-02-18에 작성된 [원문](https://ps-hjhj97.tistory.com/219)을 수정한 버전입니다_

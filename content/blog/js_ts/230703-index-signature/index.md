@@ -2,7 +2,7 @@
 title: TS 개념 정리
 date: "2023-07-05T22:12:03.284Z"
 description:
-category: TS
+category: JS/TS
 ---
 
 ## 인덱스 시그니쳐

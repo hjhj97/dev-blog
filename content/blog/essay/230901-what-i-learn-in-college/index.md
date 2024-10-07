@@ -2,7 +2,7 @@
 title: 내가 대학교에서 배운 것
 date: "2023-09-01T22:12:00.000Z"
 description: 대학교를 졸업하며 되돌아보는 나의 대학생활
-category: essay
+category: Essay
 ---
 
 ## 대학생활 회고(라 쓰고 '추억팔이'로 읽는다)

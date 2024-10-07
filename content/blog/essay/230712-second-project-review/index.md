@@ -2,7 +2,7 @@
 title: 두 번째 프로젝트 회고
 date: "2023-07-12T22:12:00.000Z"
 description: 두 번째 프로젝트를 마치며 느낀 4가지
-category: essay
+category: Essay
 ---
 
 ## 1. pinia와 typescript의 도입
