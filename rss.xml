@@ -1,4 +1,47 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[하주헌 개발 블로그]]></description><link>https://juheon.dev</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 15 Aug 2024 16:18:33 GMT</lastBuildDate><item><title><![CDATA[2024년 반기 회고]]></title><description><![CDATA[부끄럽지만 이전 글이었던 '2023년 회고' 다음으로 쓰는 글이 올해 반기 회고 글이다. 일에 치이다보니 개발 블로그에 글 쓰는 일에 소홀했다. 회사 업무 작년 1…]]></description><link>https://juheon.dev/essay/240805-2024-first-review/</link><guid isPermaLink="false">https://juheon.dev/essay/240805-2024-first-review/</guid><pubDate>Mon, 05 Aug 2024 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;부끄럽지만 이전 글이었던 &apos;2023년 회고&apos; 다음으로 쓰는 글이 올해 반기 회고 글이다. 일에 치이다보니 개발 블로그에 글 쓰는 일에 소홀했다.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[하주헌 개발 블로그]]></description><link>https://juheon.dev</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 07 Oct 2024 08:26:08 GMT</lastBuildDate><item><title><![CDATA[왜 fetch 함수는 await를 2번 해야 하는걸까?]]></title><description><![CDATA[…]]></description><link>https://juheon.dev/js_ts/241008-why-fetch-await-twice/</link><guid isPermaLink="false">https://juheon.dev/js_ts/241008-why-fetch-await-twice/</guid><pubDate>Mon, 07 Oct 2024 22:12:03 GMT</pubDate><content:encoded>&lt;h2&gt;&lt;code class=&quot;language-text&quot;&gt;fetch&lt;/code&gt; 함수&lt;/h2&gt;
+&lt;p&gt;자바스크립트의 내장함수인 &lt;code class=&quot;language-text&quot;&gt;fetch&lt;/code&gt;를 사용하여 데이터를 갖고 오기 위해서는 아래 코드와 같이 &lt;code class=&quot;language-text&quot;&gt;await&lt;/code&gt;를 두번 사용해야 한다는 번거로움이 있다.&lt;/p&gt;
+&lt;deckgo-highlight-code language=&quot;javascript&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;const response = await fetch(&amp;quot;/api&amp;quot;)
+const data = await response.json()&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;p&gt;왜 굳이 이렇게 만들었을까 하는 의문이 생긴다. 처음부터 한 번의 &lt;code class=&quot;language-text&quot;&gt;await&lt;/code&gt;로 데이터를 갖고오게끔 만들면 더 편리했을텐데 말이다.&lt;/p&gt;
+&lt;p&gt;그 이유는 HTTP 요청의 특성을 생각해보면 짐작할 수 있다. HTTP 요청은 header와 body 로 구성되어 있다. header 상에는 요청 메소드의 종류와 응답결과, 상태코드 등이 담겨 있다. 보통 header의 용량이 body의 용량보다 작을 것이므로 더 먼저 응답결과를 받아볼 수 있다는 점을 염두에 두고 아래 공식 문서를 살펴보자.&lt;/p&gt;
+&lt;p&gt;mdn의 fetch &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API#concepts_and_usage&quot;&gt;공식문서&lt;/a&gt;에서는 아래와 같이 설명하고 있다.&lt;br&gt;
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 17.088607594936708%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAAAsTAAALEwEAmpwYAAAApklEQVR42j2OQY6DMBRDOUkj2MGCgfyEJB0aCAksuu39z/JGROosLEt+luxmHEecc9glsCwB7z3WWrTW+BCw7onzARFde3demfeISJUxhhACbdvS3CClxDMWXluhlEwpJ8eROPLJ9f6wpZOUds6S2bbIvu+s61o9xkjOmeu6GIaBpu97tAh6npimn/9332VnDUaEaZ7R5pdZPF3X8VCqPvrqzpRS/AG7yWFcqexqqQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;fetch-mdn&quot;
+        title=&quot;&quot;
+        src=&quot;/static/ee6613d688565dbef2bb20dd711adf2c/f058b/fetch-mdn.png&quot;
+        srcset=&quot;/static/ee6613d688565dbef2bb20dd711adf2c/c26ae/fetch-mdn.png 158w,
+/static/ee6613d688565dbef2bb20dd711adf2c/6bdcf/fetch-mdn.png 315w,
+/static/ee6613d688565dbef2bb20dd711adf2c/f058b/fetch-mdn.png 630w,
+/static/ee6613d688565dbef2bb20dd711adf2c/40601/fetch-mdn.png 945w,
+/static/ee6613d688565dbef2bb20dd711adf2c/78612/fetch-mdn.png 1260w,
+/static/ee6613d688565dbef2bb20dd711adf2c/64639/fetch-mdn.png 1568w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;fetch()&lt;/code&gt; 메소드는 당신이 fetch 하려는 리소스가 있는 경로라는 한 개의 필수적인 인자만 받는다. 그것은 해당 요청을 resolve 할 수 있는 &lt;code class=&quot;language-text&quot;&gt;Response&lt;/code&gt;객체를 내놓는 &lt;code class=&quot;language-text&quot;&gt;Promise&lt;/code&gt;를 반환한다 - &lt;strong&gt;서버가 header로 응답을 받자마자&lt;/strong&gt; - 설령 서버의 응답이 error 상태라 하더라도.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;즉 &lt;code class=&quot;language-text&quot;&gt;fetch()&lt;/code&gt; 는 body는 신경쓰지 않고 일단 header만 도착하게 되면 응답할 수 있는 상태를 준비해준다는 것이다. 그리고 body안에 들어있는 데이터를 받기 위해서는 그때 비로소 &lt;code class=&quot;language-text&quot;&gt;Response.json()&lt;/code&gt;함수를 호출하면 된다는 뜻이다. 또한 만약에 header의 응답결과가 error 로 받았다면 우리는 body 를 아예 받지 않아도 되므로 네트워크 리소스를 절약할 수도 있다.&lt;/p&gt;
+&lt;p&gt;이처럼 fetch 메소드는 데이터를 받는 단계를 두 단계로 나눠놓는 이유는 HTTP 요청의 특성을 생각해보면 납득할 수 있다.&lt;/p&gt;
+&lt;h2&gt;Reference&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://tomontheinternet.com/why-two-awaits/&quot;&gt;https://tomontheinternet.com/why-two-awaits/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API#concepts_and_usage&quot;&gt;https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API#concepts_and_usage&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[2024년 반기 회고]]></title><description><![CDATA[부끄럽지만 이전 글이었던 '2023년 회고' 다음으로 쓰는 글이 올해 반기 회고 글이다. 일에 치이다보니 개발 블로그에 글 쓰는 일에 소홀했다. 회사 업무 작년 1…]]></description><link>https://juheon.dev/essay/240805-2024-first-review/</link><guid isPermaLink="false">https://juheon.dev/essay/240805-2024-first-review/</guid><pubDate>Mon, 05 Aug 2024 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;부끄럽지만 이전 글이었던 &apos;2023년 회고&apos; 다음으로 쓰는 글이 올해 반기 회고 글이다. 일에 치이다보니 개발 블로그에 글 쓰는 일에 소홀했다.&lt;/p&gt;
 &lt;h2&gt;회사 업무&lt;/h2&gt;
 &lt;p&gt;작년 10월에 입사하여 온보딩 기간을 거친 후, 올해 초부터 본격적으로 실제 개발 업무에 투입이 되었다. 처음 맡은 일은 SEO 개선 작업이었다. 개발자도구 Lighthouse 검사를 수백번씩 돌려가면서 점수를 조금씩 올려 나갔다. 마지막으로 SEO 100점을 찍었을 때는 마치 게임에서 최종보스를 잡고 클리어하는 듯한 쾌감을 느꼈다.&lt;/p&gt;
 &lt;p&gt;그 다음 태스크는 랜딩페이지 로딩속도 개선이었다. 기존 랜딩페이지는 레거시가 쌓여있어 개발자도구 Network 기준 약 2초 중반대의 로딩속도를 보여주고 있었다. CSR의 특성상 한번에 많은 chunk 데이터를 받아와야 하고, 용량이 큰 이미지들도 받아와야 헸기 때문에 오래 걸릴 수밖에 없었다. 나는 부분적으로 작업하면서 1차적으로는 폰트 리소스의 용량을 줄여 1.2초대까지 줄였고, 2차로 CSR -&gt; SSR(Nuxt) 기반으로 옮기면서 훨씬 더 시간을 줄일 수 있게 되었다.&lt;/p&gt;
@@ -514,7 +557,7 @@ Vue 공식문서에서는 이렇게 설명하고 있다. When you mutate reactiv
 &lt;/blockquote&gt;
 &lt;p&gt;나의 간절함이 통했는지 부모님은 일단 잠정적으로는 허락해주셨다. 그리고 내가 부모님에게 요구한 조건 한 가지, 바로 &lt;strong&gt;&apos;앞으로 컴퓨터 사용시간에 간섭하지 않기&apos;&lt;/strong&gt; 이다. 부모님께는 프로그래밍을 공부해야한다는 핑계로 대충 얼버무리면서 말했는데 이 요구를 수용해주셨다. &lt;em&gt;(솔직히 그 시간동안 공부만 하지는 않았다. 부모님께는 공부한다 말하고 실제로는 몰래몰래 게임을 했다....)&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;이로써 나는 개발자가 되기 위한 모든 만반의 준비를 갖추게 되었다.&lt;/p&gt;
-&lt;img height=&quot;500&quot; src=&quot;https://raw.githubusercontent.com/hjhj97/blog.gatsby/main/content/blog/essay/230812-why-i-become-developer/high-school.png&quot;&gt;
+&lt;img height=&quot;500&quot; src=&quot;https://raw.githubusercontent.com/hjhj97/blog.gatsby/main/content/blog/Essay/230812-why-i-become-developer/high-school.png&quot;&gt;
 &lt;p&gt;&lt;em&gt;당시 고등학교 생활기록부. 고1까지는 아직 부모님을 100% 설득시키지는 못하였다...&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;고등학교에 와서는 정말 입시공부로 인해 프로그래밍 공부를 할 여유가 없어졌다. 다행히 교내 방과후 프로그램의 일종으로 프로그래밍 교실이 있어 신청해서 들을 수 있었다. 이미 내가 공부했던 C언어 기초 내용을 복습하는 수준이었지만 갈증을 해결해 줄 수는 있었다. 이 시절에는 하루빨리 입시공부 때려치우고 대학교에 가서 컴퓨터 공부나 하고 싶다는 생각밖에 없었다.&lt;/p&gt;
 &lt;p&gt;하지만 고3 현역 때 수능을 망치는 바람에 모의고사보다 훨씬 못한 성적표를 받아야했다. 여기서도 갈등이었다. 나는 가고자하는 전공이 확고하다보니 대학교의 네임밸류를 포기하더라도, 학과 공부와 개발 공부 열심히 하면 충분히 개발자로서 경쟁력이 있을 수 있다 생각했다.&lt;br&gt;
@@ -937,7 +980,7 @@ Vue 공식문서에서는 이렇게 설명하고 있다. When you mutate reactiv
 &lt;h2&gt;총평&lt;/h2&gt;
 &lt;p&gt;나느 매 프로젝트를 진행하면서 스스로에게 미션을 부여한다. 처음 프로젝트를 맡았을 때는 &lt;code class=&quot;language-text&quot;&gt;vue2&lt;/code&gt;에서 &lt;code class=&quot;language-text&quot;&gt;vue3&lt;/code&gt;로 마이그레이션 하는 미션을, 이번 프로젝트에서는 &lt;code class=&quot;language-text&quot;&gt;pinia&lt;/code&gt;와 &lt;code class=&quot;language-text&quot;&gt;typescript&lt;/code&gt;를 도입하는 미션이었다.&lt;/p&gt;
 &lt;p&gt;이런 식으로 조금씩 내가 도전해볼만한, 개척의 여지를 찾아나감으로써 스스로 레벨업하고 있다는 느낌을 찾고 싶어서다. 누가 시켜서 하는 게 아니다. 그냥 기존에 쓰던 기술스택 그대로 써도 아무 문제 없다. 오히려 당장 개발할 때는 익숙할테니 버그도 덜 발생하고, 개발 기간도 더 짧을 수도 있다. 하지만 장기적인 관점에서, 그리고 유지보수의 관점에서는 기술을 도입함으로써 얻을 수 있는 이점이 훨씬 더 크다고 믿고 있다.&lt;/p&gt;
-&lt;p&gt;다음 프로젝트에는 꼭 &lt;code class=&quot;language-text&quot;&gt;Next.js&lt;/code&gt;나 &lt;code class=&quot;language-text&quot;&gt;Nuxt.js&lt;/code&gt;를 이용해서 SSR을 도입하고 싶다. 얼마 전에 살짝 찍먹해봤는데 쉽지 않을 것 같다.서버에 대한 이해도가 어느정도 갖춰져 있어야 할 것으로 보인다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[TS 개념 정리]]></title><description><![CDATA[인덱스 시그니쳐 객체의 속성의 개수가 정해져 있지 않다면 인덱스 시그니쳐를 사용하는 게 좋다. 유니온타입 인터섹션 타입 타입 alias enum 숫자형 enum 문자형 enum const enum 기본적인 enum…]]></description><link>https://juheon.dev/ts/230703-index-signature/</link><guid isPermaLink="false">https://juheon.dev/ts/230703-index-signature/</guid><pubDate>Wed, 05 Jul 2023 22:12:03 GMT</pubDate><content:encoded>&lt;h2&gt;인덱스 시그니쳐&lt;/h2&gt;
+&lt;p&gt;다음 프로젝트에는 꼭 &lt;code class=&quot;language-text&quot;&gt;Next.js&lt;/code&gt;나 &lt;code class=&quot;language-text&quot;&gt;Nuxt.js&lt;/code&gt;를 이용해서 SSR을 도입하고 싶다. 얼마 전에 살짝 찍먹해봤는데 쉽지 않을 것 같다.서버에 대한 이해도가 어느정도 갖춰져 있어야 할 것으로 보인다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[TS 개념 정리]]></title><description><![CDATA[인덱스 시그니쳐 객체의 속성의 개수가 정해져 있지 않다면 인덱스 시그니쳐를 사용하는 게 좋다. 유니온타입 인터섹션 타입 타입 alias enum 숫자형 enum 문자형 enum const enum 기본적인 enum…]]></description><link>https://juheon.dev/js_ts/230703-index-signature/</link><guid isPermaLink="false">https://juheon.dev/js_ts/230703-index-signature/</guid><pubDate>Wed, 05 Jul 2023 22:12:03 GMT</pubDate><content:encoded>&lt;h2&gt;인덱스 시그니쳐&lt;/h2&gt;
 &lt;deckgo-highlight-code language=&quot;typescript&quot;  &gt;
           &lt;code slot=&quot;code&quot;&gt;interface Phone {
   [name: string]: string
