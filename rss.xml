@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[하주헌 개발 블로그]]></description><link>https://juheon.dev</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 09 Oct 2024 14:30:41 GMT</lastBuildDate><item><title><![CDATA[<img>와 background-image 의 차이점]]></title><description><![CDATA[vs background-image HTML상에 이미지를 첨부하는 방법에는 크기  태그와 CSS의  속성을 부여하는 2가지 방법이 있다. 이 둘의 차이점에 대해서 찾아보았다. stackoverflow…]]></description><link>https://juheon.dev/html_css/241009-img-vs-background-image/</link><guid isPermaLink="false">https://juheon.dev/html_css/241009-img-vs-background-image/</guid><pubDate>Wed, 09 Oct 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;&lt;code class=&quot;language-text&quot;&gt;&amp;lt;img&gt;&lt;/code&gt; vs background-image&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[하주헌 개발 블로그]]></description><link>https://juheon.dev</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 11 Oct 2024 02:59:08 GMT</lastBuildDate><item><title><![CDATA[<img>와 background-image 의 차이점]]></title><description><![CDATA[vs background-image HTML상에 이미지를 첨부하는 방법에는 크기  태그와 CSS의  속성을 부여하는 2가지 방법이 있다. 이 둘의 차이점에 대해서 찾아보았다. stackoverflow…]]></description><link>https://juheon.dev/html_css/241009-img-vs-background-image/</link><guid isPermaLink="false">https://juheon.dev/html_css/241009-img-vs-background-image/</guid><pubDate>Wed, 09 Oct 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;&lt;code class=&quot;language-text&quot;&gt;&amp;lt;img&gt;&lt;/code&gt; vs background-image&lt;/h2&gt;
 &lt;p&gt;HTML상에 이미지를 첨부하는 방법에는 크기 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;img&gt;&lt;/code&gt; 태그와 CSS의 &lt;code class=&quot;language-text&quot;&gt;background-image&lt;/code&gt; 속성을 부여하는 2가지 방법이 있다. 이 둘의 차이점에 대해서 찾아보았다. stackoverflow 에 검색을 해보면 예전에도 비슷한 주제로 여러 사람들이 질문을 올린 글들을 찾아볼 수 있다. 그 중에서 가장 간단명료하게 정리해놓은 답변은 아래와 같다.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;ul&gt;
@@ -2466,75 +2466,4 @@ if (res) {
 그래서 이틀 전에 구글링으로 &apos;gatsby 블로그 만드는 방법&apos; 찾아보면서 후다닥 만들고 git에 배포까지 완료했다. 게다가 야심차게 가비아에서 &lt;code class=&quot;language-text&quot;&gt;juheon.dev&lt;/code&gt; 도메인까지 구입해서 연결했다. 1년에 3만원 남짓한 금액이지만 아무튼 내 돈주고 운영하는 블로그인만큼 조금의 강제성은 부여되지 않을까 기대해본다.&lt;/p&gt;
 &lt;h2&gt;앞으로 어떻게 운영해야할까&lt;/h2&gt;
 &lt;p&gt;우선 나 스스로 블로그에 글을 쓴다는 심리적인 허들을 낮출 필요가 있다. 현재 나는 은근히 글을 쓰는 데에 부담감을 짋어지고 있는 듯 하다. 좋은 글을 써야 한다는 압박 때문인지 주제는 정해놓고서도 쉽사리 글을 적지는 못하고 있다.&lt;br&gt;
-사실 다른 개발자분들의 기술블로그를 구경하면서 다들 글을 너무 잘 쓰길래 스스로 기가 죽은 것 같은 기분을 느낀다. 그렇지만 처음부터 잘 쓰는 사람이 어디 있을까, 짧고 간결한 글이라도 좋으니깐 일단 글을 쓰는 일을 &apos;습관화&apos;하는 일이 1순위이다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[테스트 글]]></title><description><![CDATA[이건 테스트 글입니다. Codeblock javascript typescript html c jsx vue JSON]]></description><link>https://juheon.dev/essay/230620-test-article/</link><guid isPermaLink="false">https://juheon.dev/essay/230620-test-article/</guid><pubDate>Tue, 20 Jun 2023 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;이건 테스트 글입니다.&lt;/p&gt;
-&lt;h2&gt;Codeblock&lt;/h2&gt;
-&lt;h4&gt;javascript&lt;/h4&gt;
-&lt;deckgo-highlight-code language=&quot;javascript&quot;  &gt;
-          &lt;code slot=&quot;code&quot;&gt;// this is javascript
-const a = 1
-const b = 2
-const sum = () =&amp;gt; {
-  return a + b
-}
-sum()&lt;/code&gt;
-        &lt;/deckgo-highlight-code&gt;
-&lt;h4&gt;typescript&lt;/h4&gt;
-&lt;deckgo-highlight-code language=&quot;typescript&quot;  &gt;
-          &lt;code slot=&quot;code&quot;&gt;// this is typecript
-const a: number = 1
-const b: number = 2
-const sum: number = () =&amp;gt; {
-  return a + b
-}
-sum()&lt;/code&gt;
-        &lt;/deckgo-highlight-code&gt;
-&lt;h4&gt;html&lt;/h4&gt;
-&lt;deckgo-highlight-code language=&quot;html&quot;  &gt;
-          &lt;code slot=&quot;code&quot;&gt;&amp;lt;!-- this is html --&amp;gt;
-&amp;lt;div&amp;gt;Hello&amp;lt;/div&amp;gt;&lt;/code&gt;
-        &lt;/deckgo-highlight-code&gt;
-&lt;h4&gt;c&lt;/h4&gt;
-&lt;deckgo-highlight-code language=&quot;c&quot;  &gt;
-          &lt;code slot=&quot;code&quot;&gt;// this is c
-int a=1;
-int b=2;
-function sum(){
-  return a + b;
-}
-sum();&lt;/code&gt;
-        &lt;/deckgo-highlight-code&gt;
-&lt;h4&gt;jsx&lt;/h4&gt;
-&lt;deckgo-highlight-code language=&quot;jsx&quot;  &gt;
-          &lt;code slot=&quot;code&quot;&gt;const App = () =&amp;gt; {
-  const [value, setValue] = useState(0)
-  return &amp;lt;div&amp;gt;Hello {value}&amp;lt;/div&amp;gt;
-}&lt;/code&gt;
-        &lt;/deckgo-highlight-code&gt;
-&lt;h4&gt;vue&lt;/h4&gt;
-&lt;deckgo-highlight-code language=&quot;jsx&quot;  &gt;
-          &lt;code slot=&quot;code&quot;&gt;// this is vue
-&amp;lt;template&amp;gt;
-  &amp;lt;div&amp;gt;Hello {{a}}&amp;lt;/div&amp;gt;
-&amp;lt;/template&amp;gt;
-
-
-&amp;lt;script&amp;gt;
-  export default{
-    setup(){
-      const a = ref(1);
-      return{
-        a
-      }
-    }
-  }
-  &amp;lt;/script&amp;gt;&lt;/code&gt;
-        &lt;/deckgo-highlight-code&gt;
-&lt;h4&gt;JSON&lt;/h4&gt;
-&lt;deckgo-highlight-code language=&quot;json&quot;  &gt;
-          &lt;code slot=&quot;code&quot;&gt;{
-  &amp;quot;string&amp;quot;: &amp;quot;hello&amp;quot;,
-  &amp;quot;number&amp;quot;: 1,
-  &amp;quot;isValid&amp;quot;: true,
-  &amp;quot;array&amp;quot;: [1, 2, 3]
-}&lt;/code&gt;
-        &lt;/deckgo-highlight-code&gt;</content:encoded></item></channel></rss>
+사실 다른 개발자분들의 기술블로그를 구경하면서 다들 글을 너무 잘 쓰길래 스스로 기가 죽은 것 같은 기분을 느낀다. 그렇지만 처음부터 잘 쓰는 사람이 어디 있을까, 짧고 간결한 글이라도 좋으니깐 일단 글을 쓰는 일을 &apos;습관화&apos;하는 일이 1순위이다.&lt;/p&gt;</content:encoded></item></channel></rss>
