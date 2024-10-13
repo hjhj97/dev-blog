@@ -13,7 +13,7 @@ module.exports = {
     author: {
       name: `하주헌`,
       nickname: "Neon",
-      summary: `프론트엔드 개발자입니다. 제가 작성한 코드가 화면에 나타나는 모습을 좋아합니다. 백엔드에도 관심이 많습니다.`,
+      summary: `다른 사람들이 생각해보지 못한 글을 써보려고 합니다.`,
     },
     description: `하주헌 개발 블로그`,
     siteUrl: `https://juheon.dev`,
@@ -22,15 +22,15 @@ module.exports = {
     },
   },
   plugins: [
-    'gatsby-plugin-image',
-    'gatsby-plugin-sitemap',
-    'gatsby-plugin-react-helmet',
+    "gatsby-plugin-image",
+    "gatsby-plugin-sitemap",
+    "gatsby-plugin-react-helmet",
     {
-      resolve : 'gatsby-plugin-robots-txt',
-      options : {
-        sitemap : 'https://juheon.dev/sitemap.xml',
-        policy : [{userAgent : '*',allow : "/"}]
-      }
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        sitemap: "https://juheon.dev/sitemap.xml",
+        policy: [{ userAgent: "*", allow: "/" }],
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
