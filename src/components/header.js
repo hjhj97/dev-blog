@@ -6,7 +6,8 @@ import Switch from "react-switch"
 function Header() {
   const IS_FLICKERING = "isFlickering"
   const { getItem, setItem } = useStorage()
-  const [isFlickering, setIsFlickering] = useState(true)
+  const [mounted, setMounted] = useState(false)
+  const [isFlickering, setIsFlickering] = useState(false)
 
   const handleChange = () => {
     setIsFlickering(!isFlickering)
@@ -14,6 +15,7 @@ function Header() {
   }
   useEffect(() => {
     setIsFlickering(getItem(IS_FLICKERING))
+    setMounted(true)
   }, [])
 
   return (
@@ -28,13 +30,17 @@ function Header() {
       </div>
 
       <div className="header-switch">
-        <Switch
-          onChange={handleChange}
-          checked={isFlickering}
-          checkedIcon={<span className="header-switch__text left">off</span>}
-          uncheckedIcon={<span className="header-switch__text right">on</span>}
-          onColor="#6282e3"
-        />
+        {mounted && (
+          <Switch
+            onChange={handleChange}
+            checked={isFlickering}
+            checkedIcon={<span className="header-switch__text left">off</span>}
+            uncheckedIcon={
+              <span className="header-switch__text right">on</span>
+            }
+            onColor="#6282e3"
+          />
+        )}
       </div>
     </header>
   )
