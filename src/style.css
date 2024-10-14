@@ -382,7 +382,8 @@ main {
 
 .bio p {
   font-size: var(--fontSize-0);
-  margin-bottom: var(--spacing-0);
+  margin-bottom: var(--spacing-2);
+  min-height: 54px;
 }
 .bio .bio-social {
   display: flex;

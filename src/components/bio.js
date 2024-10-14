@@ -8,6 +8,9 @@
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
+import GithubLogo from "../images/logo/GithubLogo"
+import LinkedinLogo from "../images/logo/LinkedinLogo"
+import TistoryLogo from "../images/logo/TistoryLogo"
 
 const Bio = () => {
   const data = useStaticQuery(graphql`
@@ -48,16 +51,16 @@ const Bio = () => {
         <p>{author?.summary || null}</p>
         <div className="bio-social">
           <a href={`https://github.com/${social.github}`} target="_blank">
-            Github
+            <GithubLogo />
           </a>
           <a
             href={`https://www.linkedin.com/in/%EC%A3%BC%ED%97%8C-%ED%95%98-38805a218/`}
             target="_blank"
           >
-            LinkedIn
+            <LinkedinLogo />
           </a>
           <a href={`https://ps-hjhj97.tistory.com/`} target="_blank">
-            Tistory
+            <TistoryLogo />
           </a>
         </div>
       </div>

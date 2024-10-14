@@ -13,9 +13,9 @@ module.exports = {
     author: {
       name: `하주헌`,
       nickname: "Neon",
-      summary: `다른 사람들이 생각해보지 못한 글을 써보려고 합니다.`,
+      summary: `개발 관련 내용들과 일상에서 느끼는 점들을 남기고 있어요. 흔하게 널린 글보다는 나만 쓸 수 있는 글을 남기려 하고있어요.`,
     },
-    description: `하주헌 개발 블로그`,
+    description: `하주헌의 개발 블로그`,
     siteUrl: `https://juheon.dev`,
     social: {
       github: "hjhj97",
