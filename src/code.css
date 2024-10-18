@@ -1,5 +1,6 @@
 body :not(pre) > code[class*="language-"] {
   font-family: "JetBrains Mono", monospace;
-  background: rgba(175, 184, 193, 0.2);
-  color: #212429;
+  padding: 0 0.3rem;
+  background: rgba(175, 184, 193, 0.3);
+  color: #6282e3;
 }
