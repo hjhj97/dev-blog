@@ -60,7 +60,7 @@ export default defineNuxtConfig({
 ## CSR(SPA)
 
 첫 번재로 Clinet Side Rendering(Single Page Application)을 살펴보자.  
-CSR은 클라이언트(브라우저)가 렌더링을 담당하기 때문에 서버는 번들파일만 전달할 뿐, HTML파일을 렌더링하는 데에는 관여하지 않는다. 개발자도구의 Network 탭에서 보내준 doc파일을 확인하더라도 텅 비어있는 HTML 파일만 전달받았는 사실을 알 수 있다. 따라서 Server Rendered Time은 존재하지 않는다(첨부한 이미지상의 Server Render Time은 클라이언트에서 호출된 것이다)
+CSR은 클라이언트(브라우저)가 렌더링을 담당하기 때문에 서버는 번들파일만 전달할 뿐, HTML파일을 렌더링하는 데에는 관여하지 않는다. 개발자도구의 Network 탭에서 보내준 doc파일을 확인하더라도 텅 비어있는 HTML 파일만 전달받았는 사실을 알 수 있다. 따라서 Server Rendered Time은 존재하지 않는다(첨부한 이미지에서 Server Render Time은 클라이언트에서 호출된 것이다)
 
 ![nuxt-csr](https://github.com/user-attachments/assets/10cafdef-206e-4309-81fd-6bc9a069c32c)
 한편 Hydration Time은 클라이언트 사이드에서 API를 직접 호출하여 DOM을 그렸으므로 API 응답시간과 일치한다고 볼 수 있다.
@@ -108,7 +108,7 @@ Static Site Generation 은 빌드 당시에만 HTML이 렌더링되며 그 이�
 
 ## SWR
 
-Stale While Reavalidate은 SSG와 ISR의 특성을 섞어놓은 방식이다. 기본적으로는 SSG처럼 정적 페이지를 제공하지만, 개발자가 지정해놓은(혹은 미지정) 주기마다 다시 페이지를 빌드하여 최신 버전의 정적 페이지로 업데이트 해놓는다. 만약 주기를 지정해놓지 않으면(No TTL) 컨텐츠의 내용이 바뀌기 전까지는 캐싱한다.
+Stale While Reavalidate은 SSG와 SSR의 특성을 섞어놓은 방식이다. 기본적으로는 SSG처럼 정적 페이지를 제공하지만, 개발자가 지정해놓은(혹은 미지정) 주기마다 다시 페이지를 빌드하여 최신 버전의 정적 페이지로 업데이트 해놓는다. 만약 주기를 지정해놓지 않으면(No TTL) 컨텐츠의 내용이 바뀌기 전까지는 캐싱한다.
 
 `Nuxt.js`의 SWR은 `Next.js`의 ISR 개념과 유사하다.(`Nuxt.js`의 ISR과는 조금 차이가 있는데 밑에서 설명하겠다).
 
@@ -122,7 +122,7 @@ TTL을 설정해놓지 않으면 컨텐츠가 바뀔 때마다 페이지가 새�
 
 ![swr-ttl](https://github.com/user-attachments/assets/d66e54b6-97c9-4c80-be79-324600ea5a80)
 
-5초 주기로 설정해놓게 되면 5초동안 접속하는 요청에 대해서는 동일한 정적 페이지를 서빙하게 된다. 실질적으로 변경되는 부분은 HTTP의 `Cache-Control`에서 `max-age=5`로 설정된다는 점이다. 5초가 지난 이후의 요청에 대해서는 우선 캐싱되어있는 stale 상태의 페이지를 서빙하고, 백그라운드에서는 새로운 버전의 페이지를 빌드한다. 빌드가 완료되고 난 이후에는 새로운 버전의 페이지를 받을 수 있게 된다.
+5초 주기로 설정해놓게 되면 5초동안 접속하는 요청에 대해서는 동일한 정적 페이지를 서빙하게 된다. 실질적으로 변경되는 부분은 HTTP의 `Cache-Control`에서 `max-age=5`에 해당한다. 5초가 지난 이후의 요청에 대해서는 우선 캐싱되어있는 stale 상태의 페이지를 서빙하고, 백그라운드에서는 새로운 버전의 페이지를 준비한다. 빌드가 완료되고 난 이후에는 새로운 버전의 페이지를 받을 수 있게 된다.
 
 업데이트 여부를 판단하는 원리를 간단하게 설명하자면 다음과 같다.  
 각 페이지는 버전별로 고유한 값을 가지는 `Etag` 를 HTTP의 헤더로 전달받게 된다. 이후에 재요청을 보내게 되면 요청헤더에 `If-None-Match` 속성에 현재 페이지 버전의 `Etag` 값을 담아서 서버로 보낸다.  
