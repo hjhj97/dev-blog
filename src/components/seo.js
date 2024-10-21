@@ -35,6 +35,7 @@ const Seo = ({ description, title, children }) => {
       <meta property="og:title" content={title} />
       <meta property="og:description" content={metaDescription} />
       <meta property="og:type" content="website" />
+      <meta property="og:site_name" content="하주헌 개발 블로그" />
       <meta name="twitter:card" content="summary" />
       <meta
         name="twitter:creator"
