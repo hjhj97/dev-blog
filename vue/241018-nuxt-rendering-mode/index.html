@@ -37,7 +37,7 @@ export default defineEventHandler(event =&gt; {
           <code slot="code">export default defineNuxtConfig({
   ssr: true,
   routeRules: {
-    &quot;/isr-5&quot;: { isr: 3 },
+    &quot;/isr-5&quot;: { isr: 5 },
     &quot;/isr-no-ttl&quot;: { isr: true },
     &quot;/swr-5&quot;: { swr: 5 },
     &quot;/swr-no-ttl&quot;: { swr: true },
@@ -89,8 +89,9 @@ CSR은 클라이언트(브라우저)가 렌더링을 담당하기 때문에 서�
 <h3>5 seconds TTL</h3>
 <p><img src="https://github.com/user-attachments/assets/d66e54b6-97c9-4c80-be79-324600ea5a80" alt="swr-ttl"></p>
 <p>5초 주기로 설정해놓게 되면 5초동안 접속하는 요청에 대해서는 동일한 정적 페이지를 서빙하게 된다. 실질적으로 변경되는 부분은 HTTP의 <code class="language-text">Cache-Control</code>에서 <code class="language-text">max-age=5</code>에 해당한다. 5초가 지난 이후의 요청에 대해서는 우선 캐싱되어있는 stale 상태의 페이지를 서빙하고, 백그라운드에서는 새로운 버전의 페이지를 준비한다. 빌드가 완료되고 난 이후에는 새로운 버전의 페이지를 받을 수 있게 된다.</p>
+<h4>업데이트 판단</h4>
 <p>업데이트 여부를 판단하는 원리를 간단하게 설명하자면 다음과 같다.<br>
-각 페이지는 버전별로 고유한 값을 가지는 <code class="language-text">Etag</code> 를 HTTP의 헤더로 전달받게 된다. 이후에 재요청을 보내게 되면 요청헤더에 <code class="language-text">If-None-Match</code> 속성에 현재 페이지 버전의 <code class="language-text">Etag</code> 값을 담아서 서버로 보낸다.<br>
+특정 페이지에 최초로 접속해서 HTTP 요청을 보내면 페이지의 버전별로 가지고 있는 고유한 <code class="language-text">Etag</code> 값이 HTTP Response Header에 담겨서 전달받게 된다. 이후에 재요청을 보내게 되면 Request Header 의 <code class="language-text">If-None-Match</code> 속성에 현재 페이지 버전의 <code class="language-text">Etag</code> 값을 담아서 서버로 보낸다.<br>
 서버에서는 이 <code class="language-text">Etag</code> 값과 최신 페이지 버전의 <code class="language-text">Etag</code> 값을 비교하여 동일한 버전이라면 '현재 페이지를 그대로(캐싱된 값) 사용해도 좋다'라는 의미로 <code class="language-text">304 Not Modified</code> 를 응답으로 보낸다.<br>
 단, 여기서 5초가 지난 상태라면 백그라운드에서는 새로운 데이터(페이지)를 재생성하도록 요청을 보낸다. 재생성이 완료되면 새로운 <code class="language-text">Etag</code>가 생성될 것이므로 이후 요청에서는 새로운 페이지로 교체된다.</p>
 <p><code class="language-text">nuxt.config.ts</code> 에서는 설정하고자 하는 경로상에 <code class="language-text">{ swr : number | boolean }</code> 로 설정하면 된다.</p>
