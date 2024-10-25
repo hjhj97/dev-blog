@@ -4,7 +4,6 @@ import Header from "./header"
 
 import { Helmet } from "react-helmet"
 
-
 const Layout = ({ location, title, children }) => {
   deckDeckGoHighlightElement()
 
@@ -14,7 +13,10 @@ const Layout = ({ location, title, children }) => {
   return (
     <div className="global-wrapper">
       <Helmet>
-        <meta name="google-site-verification" content="ipkpV-iikKXN2GXEGSSXzjz8hakoFDcOsS6QCUUvS18" />
+        <meta
+          name="google-site-verification"
+          content="ipkpV-iikKXN2GXEGSSXzjz8hakoFDcOsS6QCUUvS18"
+        />
       </Helmet>
       <Header />
       <main>{children}</main>

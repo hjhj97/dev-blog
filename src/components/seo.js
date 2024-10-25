@@ -25,6 +25,13 @@ const Seo = ({ description, title, children }) => {
     `
   )
 
+  const articleStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Website",
+    name: "하주헌 개발 블로그",
+    url: "https://juheon.dev",
+  }
+
   const metaDescription = description || site.siteMetadata.description
   const defaultTitle = site.siteMetadata?.title
 
@@ -43,6 +50,12 @@ const Seo = ({ description, title, children }) => {
       />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={metaDescription} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(articleStructuredData),
+        }}
+      />
       {children}
     </>
   )
