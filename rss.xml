@@ -1,4 +1,770 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[하주헌 개발 블로그]]></description><link>https://juheon.dev</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 25 Oct 2024 06:07:18 GMT</lastBuildDate><item><title><![CDATA[Nuxt3의 렌더링 모드]]></title><description><![CDATA[이 포스팅은 Comparing Nuxt 3 Rendering Modes: SWR, ISR, SSR, SSG, SPA…]]></description><link>https://juheon.dev/vue/241018-nuxt-rendering-mode/</link><guid isPermaLink="false">https://juheon.dev/vue/241018-nuxt-rendering-mode/</guid><pubDate>Fri, 18 Oct 2024 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[하주헌 개발 블로그]]></description><link>https://juheon.dev</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 02 Nov 2024 09:52:15 GMT</lastBuildDate><item><title><![CDATA[Web Canvas API 활용하여 GPT와 캐치마인드 하기 (1 of 3)]]></title><description><![CDATA[…]]></description><link>https://juheon.dev/react/241102-canvas-gpt-quiz-1-of-3/</link><guid isPermaLink="false">https://juheon.dev/react/241102-canvas-gpt-quiz-1-of-3/</guid><pubDate>Sat, 02 Nov 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;배경&lt;/h2&gt;
+&lt;p&gt;고전 게임 중에서 캐치마인드 라는 그림을 그리는 게임이 있다. 매턴마다 돌아가면서 그림을 그리는 사람이 정해진다. 자기 차례가 돌아오면 특정 키워드가 랜덤으로 주어지며, 그 그림에 맞게 그림을 그리는 것이다. 나머지 사람들은 그 그림을 보고 키워드를 맞추면 점수를 얻는 방식이다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://github.com/user-attachments/assets/94b015c3-a47d-4f93-92f1-eb702f15e5c1&quot; alt=&quot;catch-mind&quot;&gt;
+&lt;em&gt;출처 : 캐치마인드 개드립 걸작선 게시판&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;이 게임 방식에서 착안하여 웹 페이지에서 그림 퀴즈를 내는 것이 가능할까 생각하게 되었다. 그래서 이번 사이드 프로젝트에서는 캐치마인드 게임을 웹 페이지에서 구현해보려고 한다. 그런데 나는 한가지 변주를 주려고 한다. 실제 캐치마인드 게임에서는 게임이 진행되기 위해서는 최소 3명이 있어야 한다. 하지만 바쁜 현대사회에서 사는 우리들은 3명을 기다릴 여유가 없다. 싱글플레이가 가능한 캐치마인드를 만들어 보려고 한다. 그럼 누가 문제를 맞추냐고? 그래서 그림을 맞추는 주체를 &apos;사람&apos; 이 아니라 GPT 로 바꿔보려고 한다.&lt;/p&gt;
+&lt;p&gt;좀 더 기술적으로 풀어서 설명하자면, Web Canvas API(+React.js)를 활용하여 웹페이지에서 그림을 그린 다음, JPG나 PNG 파일로 저장하고 이를 OpenAI API에 전달하여 키워드를 추론하게 하는 방법이다.&lt;/p&gt;
+&lt;h2&gt;프로젝트 준비&lt;/h2&gt;
+&lt;p&gt;프론트엔드에서는 Vanilla JS 만으로도 Canvas API를 활용하여 그림을 그릴 수도 있지만, React.js를 활용하면 좀 더 편하게 그림을 그릴 수 있다. 또한, React.js를 활용하면 컴포넌트 단위로 관리할 수 있어서 코드의 가독성도 좋아진다. 따라서 이번 프로젝트에서는 React.js를 활용하여 그림을 그리는 방법을 사용하였다.&lt;/p&gt;
+&lt;p&gt;백엔드에서는 Node.js(+Express)를 활용하였다. 사실 프론트엔드 -&gt; OpenAI API를 직접 호출해서 결과를 받아오는 것도 가능하지만 이를 위해선 호출 할 때 API_KEY를 넣어줘야 한다. 다음 포스팅에서도 언급하겠지만,현재 OpenAI에서 무료 크레딧을 제공하는 정책이 막힌 것으로 보여, API를 호출하기 위해서는 현재로선 과금을 할 수 밖에 없는 상태이다(나는 이번 프로젝트를 위해 실제로 과금을 진행했다).&lt;/p&gt;
+&lt;p&gt;브라우저에서 API_KEY를 넣게 되면 사용자에게 노출될 수 밖에 없기 때문에, 별도의 백엔드 서버를 두어서 호출하기로 했다. 따라서 이번 프로젝트에서는 백엔드에서 Node.js(+Express)를 활용하여 호출하는 방법을 사용하였다.&lt;/p&gt;
+&lt;h2&gt;React로 프론트엔드 페이지 구성&lt;/h2&gt;
+&lt;p&gt;내가 프로젝트를 끌고나가는 방식 중에 선호하는 방식은, 처음에는 가장 쉽고 간단한 기능만 구현해본다. 이후에 조금 더 복잡한 기능을 덧붙여 나가는 방식이다. 따라서 이번 프로젝트에서는 가장 먼저 캔버스를 구성하는 방법을 설명하고, 이후에 조금 더 다양한 기능(색상 선택, 지우개, 이미지 저장, GPT 연동)을 덧붙여 나가는 방법을 설명하려고 한다.&lt;/p&gt;
+&lt;h3&gt;Step 1. 기본 캔버스 구성&lt;/h3&gt;
+&lt;p&gt;가장 먼저 캔버스, 즉 그림을 그릴 수 있는 영역을 구성해야 한다. 이를 위해서는 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;canvas&gt;&lt;/code&gt; 태그를 사용하면 된다. 캔버스 태그는 그림을 그리는 영역을 정의하는 태그로, 웹 페이지에서 그림을 그리는 데 사용된다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://github.com/user-attachments/assets/0178547a-c7a1-41cb-a795-3982d913a9e9&quot; alt=&quot;step-1&quot;&gt;&lt;/p&gt;
+&lt;details&gt;
+&lt;summary&gt;
+&lt;code&gt;Canvas.tsx&lt;/code&gt;
+&lt;/summary&gt;
+&lt;deckgo-highlight-code language=&quot;tsx&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;// Canvas.tsx
+import React, { useRef, useEffect, useState } from &amp;quot;react&amp;quot;
+
+interface CanvasProps {
+  width?: number
+  height?: number
+}
+
+const Canvas: React.FC&amp;lt;CanvasProps&amp;gt; = ({ width = 800, height = 600 }) =&amp;gt; {
+  const canvasRef = useRef&amp;lt;HTMLCanvasElement | null&amp;gt;(null)
+  const [isDrawing, setIsDrawing] = useState&amp;lt;boolean&amp;gt;(false)
+  const [context, setContext] = useState&amp;lt;CanvasRenderingContext2D | null&amp;gt;(null)
+
+  useEffect(() =&amp;gt; {
+    const canvas = canvasRef.current
+    if (!canvas) return
+
+    const ctx = canvas.getContext(&amp;quot;2d&amp;quot;)
+    if (!ctx) return
+
+    ctx.strokeStyle = &amp;quot;black&amp;quot;
+    ctx.lineWidth = 2
+    ctx.lineCap = &amp;quot;round&amp;quot;
+    setContext(ctx)
+  }, [])
+
+  const startDrawing = (e: React.MouseEvent&amp;lt;HTMLCanvasElement&amp;gt;): void =&amp;gt; {
+    if (!context) return
+
+    const { offsetX, offsetY } = e.nativeEvent
+    context.beginPath()
+    context.moveTo(offsetX, offsetY)
+    setIsDrawing(true)
+  }
+
+  const draw = (e: React.MouseEvent&amp;lt;HTMLCanvasElement&amp;gt;): void =&amp;gt; {
+    if (!isDrawing || !context) return
+
+    const { offsetX, offsetY } = e.nativeEvent
+    context.lineTo(offsetX, offsetY)
+    context.stroke()
+  }
+
+  const stopDrawing = (): void =&amp;gt; {
+    if (!context) return
+
+    context.closePath()
+    setIsDrawing(false)
+  }
+
+  return (
+    &amp;lt;canvas
+      ref={canvasRef}
+      width={width}
+      height={height}
+      onMouseDown={startDrawing}
+      onMouseMove={draw}
+      onMouseUp={stopDrawing}
+      onMouseOut={stopDrawing}
+    /&amp;gt;
+  )
+}
+
+export default Canvas&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;/details&gt;
+&lt;h3&gt;Step 2. 색상 선택 기능&lt;/h3&gt;
+&lt;p&gt;아직까지는 검정색으로만 그림을 그릴 수 있다. 하지마 이는 너무 단조로우므로 색상을 선택할 수 있는 기능을 추가해보자. 이를 위해서는 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;input type=&quot;color&quot;&gt;&lt;/code&gt; 태그를 사용하여 색상을 선택할 수 있는 영역을 만들고, 이를 통해 선택한 색상을 캔버스에 적용하면 된다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://github.com/user-attachments/assets/fe033773-a234-457b-84e0-4d0e6414af08&quot; alt=&quot;step-2&quot;&gt;&lt;/p&gt;
+&lt;details&gt;
+&lt;summary&gt;
+&lt;code&gt;Canvas.tsx&lt;/code&gt;
+&lt;/summary&gt;
+&lt;deckgo-highlight-code language=&quot;tsx&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;import React, { useRef, useEffect, useState } from &amp;quot;react&amp;quot;
+
+interface CanvasProps {
+  width?: number
+  height?: number
+}
+
+const Canvas: React.FC&amp;lt;CanvasProps&amp;gt; = ({ width = 800, height = 600 }) =&amp;gt; {
+  const canvasRef = useRef&amp;lt;HTMLCanvasElement | null&amp;gt;(null)
+  const [isDrawing, setIsDrawing] = useState&amp;lt;boolean&amp;gt;(false)
+  const [context, setContext] = useState&amp;lt;CanvasRenderingContext2D | null&amp;gt;(null)
+  const [currentColor, setCurrentColor] = useState&amp;lt;string&amp;gt;(&amp;quot;#000000&amp;quot;)
+
+  useEffect(() =&amp;gt; {
+    const canvas = canvasRef.current
+    if (!canvas) return
+
+    const ctx = canvas.getContext(&amp;quot;2d&amp;quot;)
+    if (!ctx) return
+
+    ctx.strokeStyle = currentColor
+    ctx.lineWidth = 2
+    ctx.lineCap = &amp;quot;round&amp;quot;
+    setContext(ctx)
+  }, [])
+
+  useEffect(() =&amp;gt; {
+    if (!context) return
+    context.strokeStyle = currentColor
+  }, [currentColor, context])
+
+  const startDrawing = (e: React.MouseEvent&amp;lt;HTMLCanvasElement&amp;gt;): void =&amp;gt; {
+    if (!context) return
+
+    const { offsetX, offsetY } = e.nativeEvent
+    context.beginPath()
+    context.moveTo(offsetX, offsetY)
+    setIsDrawing(true)
+  }
+
+  const draw = (e: React.MouseEvent&amp;lt;HTMLCanvasElement&amp;gt;): void =&amp;gt; {
+    if (!isDrawing || !context) return
+
+    const { offsetX, offsetY } = e.nativeEvent
+    context.lineTo(offsetX, offsetY)
+    context.stroke()
+  }
+
+  const stopDrawing = (): void =&amp;gt; {
+    if (!context) return
+
+    context.closePath()
+    setIsDrawing(false)
+  }
+
+  return (
+    &amp;lt;div&amp;gt;
+      &amp;lt;div style={{ marginBottom: &amp;quot;1rem&amp;quot; }}&amp;gt;
+        &amp;lt;label htmlFor=&amp;quot;colorPicker&amp;quot; style={{ marginRight: &amp;quot;0.5rem&amp;quot; }}&amp;gt;
+          색상 선택:
+        &amp;lt;/label&amp;gt;
+        &amp;lt;input
+          id=&amp;quot;colorPicker&amp;quot;
+          type=&amp;quot;color&amp;quot;
+          value={currentColor}
+          onChange={e =&amp;gt; setCurrentColor(e.target.value)}
+        /&amp;gt;
+      &amp;lt;/div&amp;gt;
+      &amp;lt;canvas
+        ref={canvasRef}
+        width={width}
+        height={height}
+        onMouseDown={startDrawing}
+        onMouseMove={draw}
+        onMouseUp={stopDrawing}
+        onMouseOut={stopDrawing}
+      /&amp;gt;
+    &amp;lt;/div&amp;gt;
+  )
+}
+
+export default Canvas&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;/details&gt;
+&lt;h3&gt;Step 3. 지우개 기능&lt;/h3&gt;
+&lt;p&gt;현재까지는 그림을 그리는 기능만 있기 때문에 잘못 그리게 되면 페이지를 새로고침 해야하는 번거로움이 있다. 그래서 지울 수 있는 기능을 제공해보자. 지우개 기능이 활성화 되면 &lt;code class=&quot;language-text&quot;&gt;context.globalCompositeOperation&lt;/code&gt; 을 &lt;code class=&quot;language-text&quot;&gt;destination-out&lt;/code&gt; 으로 설정하여 지우개 모드를 활성화 한다.
+&lt;img src=&quot;https://github.com/user-attachments/assets/592135d9-00f4-4ca8-a338-cfcd6a4a5eb3&quot; alt=&quot;step-3&quot;&gt;&lt;/p&gt;
+&lt;details&gt;
+&lt;summary&gt;
+&lt;code&gt;Canvas.tsx&lt;/code&gt;
+&lt;/summary&gt;
+&lt;deckgo-highlight-code language=&quot;tsx&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;import React, { useRef, useEffect, useState } from &amp;quot;react&amp;quot;
+
+interface CanvasProps {
+  width?: number
+  height?: number
+}
+
+type DrawingMode = &amp;quot;draw&amp;quot; | &amp;quot;erase&amp;quot;
+
+const Canvas: React.FC&amp;lt;CanvasProps&amp;gt; = ({ width = 800, height = 600 }) =&amp;gt; {
+  const canvasRef = useRef&amp;lt;HTMLCanvasElement | null&amp;gt;(null)
+  const [isDrawing, setIsDrawing] = useState&amp;lt;boolean&amp;gt;(false)
+  const [context, setContext] = useState&amp;lt;CanvasRenderingContext2D | null&amp;gt;(null)
+  const [currentColor, setCurrentColor] = useState&amp;lt;string&amp;gt;(&amp;quot;#000000&amp;quot;)
+  const [drawingMode, setDrawingMode] = useState&amp;lt;DrawingMode&amp;gt;(&amp;quot;draw&amp;quot;)
+
+  useEffect(() =&amp;gt; {
+    const canvas = canvasRef.current
+    if (!canvas) return
+
+    const ctx = canvas.getContext(&amp;quot;2d&amp;quot;)
+    if (!ctx) return
+
+    ctx.strokeStyle = currentColor
+    ctx.lineWidth = 2
+    ctx.lineCap = &amp;quot;round&amp;quot;
+    setContext(ctx)
+  }, [])
+
+  useEffect(() =&amp;gt; {
+    if (!context) return
+
+    if (drawingMode === &amp;quot;erase&amp;quot;) {
+      context.globalCompositeOperation = &amp;quot;destination-out&amp;quot;
+      context.strokeStyle = &amp;quot;rgba(0,0,0,1)&amp;quot;
+    } else {
+      context.globalCompositeOperation = &amp;quot;source-over&amp;quot;
+      context.strokeStyle = currentColor
+    }
+  }, [drawingMode, currentColor, context])
+
+  const startDrawing = (e: React.MouseEvent&amp;lt;HTMLCanvasElement&amp;gt;): void =&amp;gt; {
+    if (!context) return
+
+    const { offsetX, offsetY } = e.nativeEvent
+    context.beginPath()
+    context.moveTo(offsetX, offsetY)
+    setIsDrawing(true)
+  }
+
+  const draw = (e: React.MouseEvent&amp;lt;HTMLCanvasElement&amp;gt;): void =&amp;gt; {
+    if (!isDrawing || !context) return
+
+    const { offsetX, offsetY } = e.nativeEvent
+    context.lineTo(offsetX, offsetY)
+    context.stroke()
+  }
+
+  const stopDrawing = (): void =&amp;gt; {
+    if (!context) return
+
+    context.closePath()
+    setIsDrawing(false)
+  }
+
+  const toggleMode = () =&amp;gt; {
+    setDrawingMode(prev =&amp;gt; (prev === &amp;quot;draw&amp;quot; ? &amp;quot;erase&amp;quot; : &amp;quot;draw&amp;quot;))
+  }
+
+  return (
+    &amp;lt;div&amp;gt;
+      &amp;lt;div&amp;gt;
+        &amp;lt;div&amp;gt;
+          &amp;lt;label htmlFor=&amp;quot;colorPicker&amp;quot; style={{ marginRight: &amp;quot;0.5rem&amp;quot; }}&amp;gt;
+            색상 선택:
+          &amp;lt;/label&amp;gt;
+          &amp;lt;input
+            id=&amp;quot;colorPicker&amp;quot;
+            type=&amp;quot;color&amp;quot;
+            value={currentColor}
+            onChange={e =&amp;gt; setCurrentColor(e.target.value)}
+            disabled={drawingMode === &amp;quot;erase&amp;quot;}
+          /&amp;gt;
+        &amp;lt;/div&amp;gt;
+
+        &amp;lt;button onClick={toggleMode}&amp;gt;
+          {drawingMode === &amp;quot;draw&amp;quot; ? &amp;quot;지우개 모드&amp;quot; : &amp;quot;그리기 모드&amp;quot;}
+        &amp;lt;/button&amp;gt;
+      &amp;lt;/div&amp;gt;
+
+      &amp;lt;canvas
+        ref={canvasRef}
+        width={width}
+        height={height}
+        style={{
+          border: &amp;quot;1px solid black&amp;quot;,
+          cursor: drawingMode === &amp;quot;erase&amp;quot; ? &amp;quot;crosshair&amp;quot; : &amp;quot;default&amp;quot;,
+        }}
+        onMouseDown={startDrawing}
+        onMouseMove={draw}
+        onMouseUp={stopDrawing}
+        onMouseOut={stopDrawing}
+      /&amp;gt;
+    &amp;lt;/div&amp;gt;
+  )
+}
+
+export default Canvas&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;/details&gt;
+&lt;h3&gt;Step 4. 이미지 저장 기능, hook으로 분리&lt;/h3&gt;
+&lt;p&gt;캔버스에 그린 그림의 이미지를 저장하는 기능을 추가해보자. 이를 위해서는 &lt;code class=&quot;language-text&quot;&gt;canvas.toDataURL()&lt;/code&gt; 메서드를 사용하면 된다. 이 메서드는 캔버스에 그려진 이미지를 PNG 형식의 데이터로 변환된다. 그래서 &apos;이미지 저장&apos; 버튼을 누르면 로컬 저장소에 이미지가 저장된다.&lt;/p&gt;
+&lt;p&gt;그리고 점점 캔버스에서 처리해야하는 비즈니스 로직이 늘어남에 따라 &lt;code class=&quot;language-text&quot;&gt;Canvas.tsx&lt;/code&gt; 파일이 복잡해지는 것을 방지하기 위해 &lt;code class=&quot;language-text&quot;&gt;useCanvas&lt;/code&gt; 이라는 훅으로 만들어서 분리하기로 했다.&lt;/p&gt;
+&lt;deckgo-highlight-code language=&quot;tsx&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;// Canvas.tsx
+import React from &amp;quot;react&amp;quot;
+import { useCanvas } from &amp;quot;../hooks/useCanvas&amp;quot;
+
+interface CanvasProps {
+  width?: number
+  height?: number
+}
+
+const Canvas: React.FC&amp;lt;CanvasProps&amp;gt; = ({ width = 800, height = 600 }) =&amp;gt; {
+  const {
+    canvasRef,
+    currentColor,
+    drawingMode,
+    startDrawing,
+    draw,
+    stopDrawing,
+    setCurrentColor,
+    toggleMode,
+    saveImage,
+  } = useCanvas({ width, height })
+
+  return (
+    &amp;lt;div&amp;gt;
+      &amp;lt;div&amp;gt;
+        &amp;lt;div&amp;gt;
+          &amp;lt;label htmlFor=&amp;quot;colorPicker&amp;quot; style={{ marginRight: &amp;quot;0.5rem&amp;quot; }}&amp;gt;
+            색상 선택:
+          &amp;lt;/label&amp;gt;
+          &amp;lt;input
+            id=&amp;quot;colorPicker&amp;quot;
+            type=&amp;quot;color&amp;quot;
+            value={currentColor}
+            onChange={e =&amp;gt; setCurrentColor(e.target.value)}
+            disabled={drawingMode === &amp;quot;erase&amp;quot;}
+          /&amp;gt;
+        &amp;lt;/div&amp;gt;
+
+        &amp;lt;button onClick={toggleMode}&amp;gt;
+          {drawingMode === &amp;quot;draw&amp;quot; ? &amp;quot;지우개 모드&amp;quot; : &amp;quot;그리기 모드&amp;quot;}
+        &amp;lt;/button&amp;gt;
+
+        &amp;lt;button onClick={saveImage}&amp;gt;이미지 저장&amp;lt;/button&amp;gt;
+      &amp;lt;/div&amp;gt;
+
+      &amp;lt;canvas
+        ref={canvasRef}
+        width={width}
+        height={height}
+        style={{
+          border: &amp;quot;1px solid black&amp;quot;,
+        }}
+        onMouseDown={startDrawing}
+        onMouseMove={draw}
+        onMouseUp={stopDrawing}
+        onMouseOut={stopDrawing}
+      /&amp;gt;
+    &amp;lt;/div&amp;gt;
+  )
+}
+
+export default Canvas&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;/details&gt;
+&lt;details&gt;
+&lt;summary&gt;
+&lt;code&gt;useCanvas.ts&lt;/code&gt;
+&lt;/summary&gt;
+&lt;deckgo-highlight-code language=&quot;ts&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;// useCanvas.ts
+import { useRef, useState, useEffect } from &amp;quot;react&amp;quot;
+
+type DrawingMode = &amp;quot;draw&amp;quot; | &amp;quot;erase&amp;quot;
+
+interface UseCanvasProps {
+  width: number
+  height: number
+}
+
+export const useCanvas = ({ width, height }: UseCanvasProps) =&amp;gt; {
+  const canvasRef = useRef&amp;lt;HTMLCanvasElement | null&amp;gt;(null)
+  const [isDrawing, setIsDrawing] = useState&amp;lt;boolean&amp;gt;(false)
+  const [context, setContext] = useState&amp;lt;CanvasRenderingContext2D | null&amp;gt;(null)
+  const [currentColor, setCurrentColor] = useState&amp;lt;string&amp;gt;(&amp;quot;#000000&amp;quot;)
+  const [drawingMode, setDrawingMode] = useState&amp;lt;DrawingMode&amp;gt;(&amp;quot;draw&amp;quot;)
+
+  useEffect(() =&amp;gt; {
+    const canvas = canvasRef.current
+    if (!canvas) return
+
+    const ctx = canvas.getContext(&amp;quot;2d&amp;quot;)
+    if (!ctx) return
+
+    ctx.strokeStyle = currentColor
+    ctx.lineWidth = 2
+    ctx.lineCap = &amp;quot;round&amp;quot;
+    setContext(ctx)
+  }, [])
+
+  useEffect(() =&amp;gt; {
+    if (!context) return
+
+    if (drawingMode === &amp;quot;erase&amp;quot;) {
+      context.globalCompositeOperation = &amp;quot;destination-out&amp;quot;
+      context.strokeStyle = &amp;quot;rgba(0,0,0,1)&amp;quot;
+    } else {
+      context.globalCompositeOperation = &amp;quot;source-over&amp;quot;
+      context.strokeStyle = currentColor
+    }
+  }, [drawingMode, currentColor, context])
+
+  const startDrawing = (e: React.MouseEvent&amp;lt;HTMLCanvasElement&amp;gt;): void =&amp;gt; {
+    if (!context) return
+
+    const { offsetX, offsetY } = e.nativeEvent
+    context.beginPath()
+    context.moveTo(offsetX, offsetY)
+    setIsDrawing(true)
+  }
+
+  const draw = (e: React.MouseEvent&amp;lt;HTMLCanvasElement&amp;gt;): void =&amp;gt; {
+    if (!isDrawing || !context) return
+
+    const { offsetX, offsetY } = e.nativeEvent
+    context.lineTo(offsetX, offsetY)
+    context.stroke()
+  }
+
+  const stopDrawing = (): void =&amp;gt; {
+    if (!context) return
+
+    context.closePath()
+    setIsDrawing(false)
+  }
+
+  const toggleMode = () =&amp;gt; {
+    setDrawingMode(prev =&amp;gt; (prev === &amp;quot;draw&amp;quot; ? &amp;quot;erase&amp;quot; : &amp;quot;draw&amp;quot;))
+  }
+
+  const saveImage = () =&amp;gt; {
+    if (!canvasRef.current) return
+
+    const date = new Date()
+    const fileName = `drawing-${date.getFullYear()}${(date.getMonth() + 1)
+      .toString()
+      .padStart(2, &amp;quot;0&amp;quot;)}${date.getDate().toString().padStart(2, &amp;quot;0&amp;quot;)}-${date
+      .getHours()
+      .toString()
+      .padStart(2, &amp;quot;0&amp;quot;)}${date.getMinutes().toString().padStart(2, &amp;quot;0&amp;quot;)}${date
+      .getSeconds()
+      .toString()
+      .padStart(2, &amp;quot;0&amp;quot;)}`
+
+    const image = canvasRef.current.toDataURL(&amp;quot;image/png&amp;quot;)
+    const link = document.createElement(&amp;quot;a&amp;quot;)
+    link.download = `${fileName}.png`
+    link.href = image
+    link.click()
+  }
+
+  return {
+    canvasRef,
+    currentColor,
+    drawingMode,
+    startDrawing,
+    draw,
+    stopDrawing,
+    setCurrentColor,
+    toggleMode,
+    saveImage,
+  }
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;/details&gt;
+&lt;h2&gt;그 이후 구현&lt;/h2&gt;
+&lt;p&gt;이 이후에는 본인의 입맛에 맞춘 스타일링과 기능등을 추가하면 될 것이다. 나는 우선 &lt;code class=&quot;language-text&quot;&gt;tailwindcss&lt;/code&gt;를 활용하여 최소한의 스타일링을 하고, 그 외에 &apos;색상 팔레트&apos;와 &apos;전체 지우기&apos; 기능을 추가하였다. 각종 버튼을 담당하는 UI는 별도 컴포넌트인 &lt;code class=&quot;language-text&quot;&gt;CanvasController.tsx&lt;/code&gt; 파일로 분리했다.&lt;/p&gt;
+&lt;details&gt;
+&lt;summary&gt;
+&lt;code&gt;Canvas.tsx&lt;/code&gt;
+&lt;/summary&gt;
+&lt;deckgo-highlight-code language=&quot;tsx&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;// Canvas.tsx
+import { useCanvas } from &amp;quot;../hooks/useCanvas&amp;quot;
+import { CanvasController } from &amp;quot;./CanvasController&amp;quot;
+
+interface CanvasProps {
+  width?: number
+  height?: number
+}
+
+const Canvas: React.FC&amp;lt;CanvasProps&amp;gt; = ({ width = 800, height = 600 }) =&amp;gt; {
+  const {
+    canvasRef,
+    currentColor,
+    drawingMode,
+    startDrawing,
+    draw,
+    stopDrawing,
+    setCurrentColor,
+    toggleMode,
+    saveImage,
+    clearCanvas,
+  } = useCanvas({ width, height })
+
+  return (
+    &amp;lt;div className=&amp;quot;flex flex-col gap-4&amp;quot;&amp;gt;
+      &amp;lt;canvas
+        ref={canvasRef}
+        width={width}
+        height={height}
+        className={`
+          border border-gray-300 rounded-lg
+          ${drawingMode === &amp;quot;erase&amp;quot; ? &amp;quot;cursor-cell&amp;quot; : &amp;quot;cursor-crosshair&amp;quot;}
+        `}
+        onMouseDown={startDrawing}
+        onMouseMove={draw}
+        onMouseUp={stopDrawing}
+        onMouseOut={stopDrawing}
+      /&amp;gt;
+      &amp;lt;CanvasController
+        currentColor={currentColor}
+        drawingMode={drawingMode}
+        setCurrentColor={setCurrentColor}
+        toggleMode={toggleMode}
+        saveImage={saveImage}
+        clearCanvas={clearCanvas}
+      /&amp;gt;
+    &amp;lt;/div&amp;gt;
+  )
+}
+
+export default Canvas&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;/details&gt;
+&lt;details&gt;
+&lt;summary&gt;
+&lt;code&gt;useCanvas.ts&lt;/code&gt;
+&lt;/summary&gt;
+&lt;deckgo-highlight-code language=&quot;ts&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;// useCanvas.ts
+import { useRef, useState, useEffect } from &amp;quot;react&amp;quot;
+
+type DrawingMode = &amp;quot;draw&amp;quot; | &amp;quot;erase&amp;quot;
+
+interface UseCanvasProps {
+  width: number
+  height: number
+}
+
+// 색상 상수 추가
+export const COLORS = {
+  BLACK: &amp;quot;#000000&amp;quot;,
+  RED: &amp;quot;#FF0000&amp;quot;,
+  BLUE: &amp;quot;#0000FF&amp;quot;,
+  GREEN: &amp;quot;#008000&amp;quot;,
+  YELLOW: &amp;quot;#FFD700&amp;quot;,
+} as const
+
+export const useCanvas = ({ width, height }: UseCanvasProps) =&amp;gt; {
+  const canvasRef = useRef&amp;lt;HTMLCanvasElement | null&amp;gt;(null)
+  const [isDrawing, setIsDrawing] = useState&amp;lt;boolean&amp;gt;(false)
+  const [context, setContext] = useState&amp;lt;CanvasRenderingContext2D | null&amp;gt;(null)
+  const [currentColor, setCurrentColor] = useState&amp;lt;string&amp;gt;(COLORS.BLACK)
+  const [drawingMode, setDrawingMode] = useState&amp;lt;DrawingMode&amp;gt;(&amp;quot;draw&amp;quot;)
+
+  useEffect(() =&amp;gt; {
+    const canvas = canvasRef.current
+    if (!canvas) return
+
+    const ctx = canvas.getContext(&amp;quot;2d&amp;quot;)
+    if (!ctx) return
+
+    ctx.strokeStyle = currentColor
+    ctx.lineWidth = 2
+    ctx.lineCap = &amp;quot;round&amp;quot;
+    setContext(ctx)
+  }, [])
+
+  useEffect(() =&amp;gt; {
+    if (!context) return
+
+    if (drawingMode === &amp;quot;erase&amp;quot;) {
+      context.globalCompositeOperation = &amp;quot;destination-out&amp;quot;
+      context.strokeStyle = &amp;quot;rgba(0,0,0,1)&amp;quot;
+    } else {
+      context.globalCompositeOperation = &amp;quot;source-over&amp;quot;
+      context.strokeStyle = currentColor
+    }
+  }, [drawingMode, currentColor, context])
+
+  const startDrawing = (e: React.MouseEvent&amp;lt;HTMLCanvasElement&amp;gt;): void =&amp;gt; {
+    if (!context) return
+
+    const { offsetX, offsetY } = e.nativeEvent
+    context.beginPath()
+    context.moveTo(offsetX, offsetY)
+    setIsDrawing(true)
+  }
+
+  const draw = (e: React.MouseEvent&amp;lt;HTMLCanvasElement&amp;gt;): void =&amp;gt; {
+    if (!isDrawing || !context) return
+
+    const { offsetX, offsetY } = e.nativeEvent
+    context.lineTo(offsetX, offsetY)
+    context.stroke()
+  }
+
+  const stopDrawing = (): void =&amp;gt; {
+    if (!context) return
+
+    context.closePath()
+    setIsDrawing(false)
+  }
+
+  const toggleMode = () =&amp;gt; {
+    setDrawingMode(prev =&amp;gt; (prev === &amp;quot;draw&amp;quot; ? &amp;quot;erase&amp;quot; : &amp;quot;draw&amp;quot;))
+  }
+
+  const saveImage = () =&amp;gt; {
+    if (!canvasRef.current) return
+
+    const date = new Date()
+    const fileName = `drawing-${date.getFullYear()}${(date.getMonth() + 1)
+      .toString()
+      .padStart(2, &amp;quot;0&amp;quot;)}${date.getDate().toString().padStart(2, &amp;quot;0&amp;quot;)}-${date
+      .getHours()
+      .toString()
+      .padStart(2, &amp;quot;0&amp;quot;)}${date.getMinutes().toString().padStart(2, &amp;quot;0&amp;quot;)}${date
+      .getSeconds()
+      .toString()
+      .padStart(2, &amp;quot;0&amp;quot;)}`
+
+    const image = canvasRef.current.toDataURL(&amp;quot;image/png&amp;quot;)
+    const link = document.createElement(&amp;quot;a&amp;quot;)
+    link.download = `${fileName}.png`
+    link.href = image
+    link.click()
+  }
+
+  const clearCanvas = () =&amp;gt; {
+    if (!context || !canvasRef.current) return
+
+    // 캔버스 전체 지우기
+    context.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height)
+  }
+
+  return {
+    canvasRef,
+    currentColor,
+    drawingMode,
+    startDrawing,
+    draw,
+    stopDrawing,
+    setCurrentColor,
+    toggleMode,
+    saveImage,
+    clearCanvas,
+  }
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;/details&gt;
+&lt;details&gt;
+&lt;summary&gt;
+&lt;code&gt;CanvasController.tsx&lt;/code&gt;
+&lt;/summary&gt;
+&lt;deckgo-highlight-code language=&quot;tsx&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;// CanvasController.tsx
+import React from &amp;quot;react&amp;quot;
+import { COLORS } from &amp;quot;../hooks/useCanvas&amp;quot;
+import { useCanvasController } from &amp;quot;../hooks/useCanvasController&amp;quot;
+
+interface ColorButtonProps {
+  color: string
+  isSelected: boolean
+  onClick: () =&amp;gt; void
+  disabled?: boolean
+}
+
+const ColorButton: React.FC&amp;lt;ColorButtonProps&amp;gt; = ({
+  color,
+  isSelected,
+  onClick,
+  disabled,
+}) =&amp;gt; (
+  &amp;lt;button
+    onClick={onClick}
+    disabled={disabled}
+    className={`
+      w-8 h-8 rounded-full transition-all
+      ${isSelected ? &amp;quot;ring-2 ring-offset-2 ring-gray-400&amp;quot; : &amp;quot;&amp;quot;}
+      ${disabled ? &amp;quot;opacity-50 cursor-not-allowed&amp;quot; : &amp;quot;hover:scale-110&amp;quot;}
+    `}
+    style={{ backgroundColor: color }}
+    aria-label={`Select ${color} color`}
+  /&amp;gt;
+)
+
+interface CanvasControllerProps {
+  currentColor: string
+  drawingMode: &amp;quot;draw&amp;quot; | &amp;quot;erase&amp;quot;
+  setCurrentColor: (color: string) =&amp;gt; void
+  toggleMode: () =&amp;gt; void
+  saveImage: () =&amp;gt; void
+  clearCanvas: () =&amp;gt; void
+}
+
+export const CanvasController: React.FC&amp;lt;CanvasControllerProps&amp;gt; = props =&amp;gt; {
+  const {
+    currentColor,
+    drawingMode,
+    setCurrentColor,
+    toggleMode,
+    saveImage,
+    clearCanvas,
+  } = useCanvasController(props)
+
+  return (
+    &amp;lt;div className=&amp;quot;flex items-center gap-4&amp;quot;&amp;gt;
+      &amp;lt;div className=&amp;quot;flex items-center gap-2&amp;quot;&amp;gt;
+        &amp;lt;span className=&amp;quot;mr-2&amp;quot;&amp;gt;색상:&amp;lt;/span&amp;gt;
+        &amp;lt;div className=&amp;quot;flex gap-2&amp;quot;&amp;gt;
+          {Object.entries(COLORS).map(([name, color]) =&amp;gt; (
+            &amp;lt;ColorButton
+              key={color}
+              color={color}
+              isSelected={currentColor === color}
+              onClick={() =&amp;gt; setCurrentColor(color)}
+              disabled={drawingMode === &amp;quot;erase&amp;quot;}
+            /&amp;gt;
+          ))}
+        &amp;lt;/div&amp;gt;
+      &amp;lt;/div&amp;gt;
+
+      &amp;lt;button
+        onClick={toggleMode}
+        className={`
+          px-4 py-2 rounded-md text-white transition-colors
+          ${
+            drawingMode === &amp;quot;erase&amp;quot;
+              ? &amp;quot;bg-red-500 hover:bg-red-600&amp;quot;
+              : &amp;quot;bg-blue-500 hover:bg-blue-600&amp;quot;
+          }
+        `}
+      &amp;gt;
+        {drawingMode === &amp;quot;draw&amp;quot; ? &amp;quot;지우개 모드&amp;quot; : &amp;quot;그리기 모드&amp;quot;}
+      &amp;lt;/button&amp;gt;
+
+      &amp;lt;button
+        onClick={saveImage}
+        className=&amp;quot;px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-md transition-colors&amp;quot;
+      &amp;gt;
+        이미지 저장
+      &amp;lt;/button&amp;gt;
+
+      &amp;lt;button
+        onClick={clearCanvas}
+        className=&amp;quot;px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white rounded-md transition-colors&amp;quot;
+      &amp;gt;
+        전체 지우기
+      &amp;lt;/button&amp;gt;
+    &amp;lt;/div&amp;gt;
+  )
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;/details&gt;
+&lt;p&gt;프론트엔드 페이지의 Github은 &lt;a href=&quot;https://github.com/hjhj97/gpt-drawing-quiz.frontend&quot;&gt;이곳&lt;/a&gt;에서 확인해 볼 수 있다.&lt;/p&gt;
+&lt;p&gt;다음 포스팅에서부터는 OpenAI API를 사이트에서 API_KEY를 발급받고 express를 기반으로 간단한 API 서버를 구성할 것이다. 이를 통해 캔버스에 그린 그림을 저장하고, 이를 OpenAI API에 전달하여 키워드를 추론하는 방법을 설명하려고 한다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Nuxt3의 렌더링 모드]]></title><description><![CDATA[이 포스팅은 Comparing Nuxt 3 Rendering Modes: SWR, ISR, SSR, SSG, SPA…]]></description><link>https://juheon.dev/vue/241018-nuxt-rendering-mode/</link><guid isPermaLink="false">https://juheon.dev/vue/241018-nuxt-rendering-mode/</guid><pubDate>Fri, 18 Oct 2024 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
 &lt;p&gt;이 포스팅은 &lt;a href=&quot;https://blog.risingstack.com/nuxt-3-rendering-modes/&quot;&gt;Comparing Nuxt 3 Rendering Modes: SWR, ISR, SSR, SSG, SPA&lt;/a&gt;를 기반으로 재구성했습니다.&lt;/p&gt;
 &lt;p&gt;이 프로젝트의 데모 페이지는 &lt;a href=&quot;https://nuxt-rendering-test-clhqu1bfq-hjhj97s-projects.vercel.app/&quot;&gt;이곳&lt;/a&gt; 에서 확인할 수 있습니다.&lt;/p&gt;
 &lt;/blockquote&gt;
