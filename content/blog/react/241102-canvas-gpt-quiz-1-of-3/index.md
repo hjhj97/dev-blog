@@ -335,6 +335,11 @@ export default Canvas
 
 그리고 점점 캔버스에서 처리해야하는 비즈니스 로직이 늘어남에 따라 `Canvas.tsx` 파일이 복잡해지는 것을 방지하기 위해 `useCanvas` 이라는 훅으로 만들어서 분리하기로 했다.
 
+<details>
+<summary>
+<code>Canvas.tsx</code>
+</summary>
+
 ```tsx
 // Canvas.tsx
 import React from "react"
