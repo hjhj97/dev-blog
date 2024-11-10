@@ -56,7 +56,7 @@ _내가 처음으로 구입한 열혈 C프로그래밍. 아직도 고이 보관 
 
 이로써 나는 개발자가 되기 위한 모든 만반의 준비를 갖추게 되었다.
 
-<img height="500" src="https://raw.githubusercontent.com/hjhj97/blog.gatsby/main/content/blog/Essay/230812-why-i-become-developer/high-school.png"  />
+<img height="500" src="./high-school.png"  />
 
 _당시 고등학교 생활기록부. 고1까지는 아직 부모님을 100% 설득시키지는 못하였다..._
 
