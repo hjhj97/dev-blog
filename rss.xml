@@ -1,4 +1,106 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[하주헌 개발 블로그]]></description><link>https://juheon.dev</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 09 Dec 2024 10:27:07 GMT</lastBuildDate><item><title><![CDATA[개발과 개발자 사이]]></title><description><![CDATA[…]]></description><link>https://juheon.dev/essay/241110-develop-and-developer/</link><guid isPermaLink="false">https://juheon.dev/essay/241110-develop-and-developer/</guid><pubDate>Sun, 10 Nov 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;개발자라는 직업은 무엇일까. 단순하게 생각해보면 개발을 직업으로 삼은 사람을 일컫는다.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[하주헌 개발 블로그]]></description><link>https://juheon.dev</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 12 Dec 2024 09:52:39 GMT</lastBuildDate><item><title><![CDATA[v-memo 개념과 활용법]]></title><description><![CDATA[Vue의 3.…]]></description><link>https://juheon.dev/vue/241212-v-memo/</link><guid isPermaLink="false">https://juheon.dev/vue/241212-v-memo/</guid><pubDate>Thu, 12 Dec 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Vue의 3.2 버전부터 추가된 신규 디렉티브인 &lt;code class=&quot;language-text&quot;&gt;v-memo&lt;/code&gt; 에 대해서 살펴보도록 하자.&lt;/p&gt;
+&lt;h2&gt;&lt;code class=&quot;language-text&quot;&gt;v-memo&lt;/code&gt; 란?&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://ko.vuejs.org/api/built-in-directives#v-memo&quot;&gt;공식문서&lt;/a&gt; 상의 설명은 아래와 같다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;템플릿의 하위 트리를 메모합니다. 엘리먼트와 컴포넌트 모두에 사용할 수 있습니다. 디렉티브는 메모이제이션을 위해 비교할 의존성 값의 고정된 길이의 배열을 요구합니다. 배열의 모든 값이 마지막 렌더링과 같으면 전체 하위 트리에 대한 업데이트를 생략합니다&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;‘의존성 배열’ 이라는 용어는 리액트를 접해보았다면 익숙하게 받아들일 수 있을 것이다. &lt;code class=&quot;language-text&quot;&gt;useEffect&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;useMemo&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;useCallback&lt;/code&gt; 와 같은 훅에서 사용되는 그 ‘의존성 배열’과 일맥상통하다. &lt;strong&gt;의존성 배열 안에 들어있는 값이 변하지 않는 한, 해당 디렉티브가 선언된 DOM노드를 메모이제이션함으로써 리렌더링 비용을 아낀다&lt;/strong&gt;는 것이 핵심이다.&lt;/p&gt;
+&lt;h2&gt;언제 사용할까?&lt;/h2&gt;
+&lt;p&gt;그렇다면 어떤 경우에 사용하면 좋을까? 공식문서 상에서는 &lt;code class=&quot;language-text&quot;&gt;v-for&lt;/code&gt; 를 사용하여 리스트 렌더링을 해야하는 경우, &lt;code class=&quot;language-text&quot;&gt;props&lt;/code&gt; 일부가 변경되어 리스트 전체가 리렌더링 되는 상황을 &lt;code class=&quot;language-text&quot;&gt;v-memo&lt;/code&gt; 를 사용함으로써 방지할 수 있다고 한다.&lt;/p&gt;
+&lt;p&gt;내가 작성한 예시코드에서는 이러한 상황을 모킹하기 위해 리스트의 각 원소 안에 현재 시각을 표시하는 &lt;code class=&quot;language-text&quot;&gt;new Date().getTime()&lt;/code&gt; 함수를 호출하였다. 그리고 &lt;code class=&quot;language-text&quot;&gt;activeId&lt;/code&gt; 값을 변화시켜가면서 각 원소별로 이 값이 어떻게 변하는지 살펴보려고 한다.&lt;/p&gt;
+&lt;details&gt;
+&lt;summary&gt;예시코드&lt;/summary&gt;
+&lt;deckgo-highlight-code language=&quot;html&quot;  &gt;
+          &lt;code slot=&quot;code&quot;&gt;&amp;lt;script setup&amp;gt;
+  import { ref } from &amp;quot;vue&amp;quot;
+
+  const activeId = ref(0)
+  const list = ref([
+    { id: 0, title: &amp;quot;first&amp;quot; },
+    { id: 1, title: &amp;quot;second&amp;quot; },
+    { id: 2, title: &amp;quot;third&amp;quot; },
+    { id: 3, title: &amp;quot;fourth&amp;quot; },
+    { id: 4, title: &amp;quot;fifth&amp;quot; },
+  ])
+&amp;lt;/script&amp;gt;
+
+&amp;lt;template&amp;gt;
+  &amp;lt;div&amp;gt;
+    &amp;lt;button @click=&amp;quot;activeId--&amp;quot;&amp;gt;-&amp;lt;/button&amp;gt;
+    &amp;lt;span&amp;gt;activeId : {{activeId}}&amp;lt;/span&amp;gt;
+    &amp;lt;button @click=&amp;quot;activeId++&amp;quot;&amp;gt;+&amp;lt;/button&amp;gt;
+  &amp;lt;/div&amp;gt;
+
+  &amp;lt;div&amp;gt;
+    &amp;lt;h2&amp;gt;without v-memo&amp;lt;/h2&amp;gt;
+    &amp;lt;ul&amp;gt;
+      &amp;lt;li
+        v-for=&amp;quot;item in list&amp;quot;
+        :key=&amp;quot;item.id&amp;quot;
+        :class=&amp;quot;{highlighted : item.id === activeId}&amp;quot;
+      &amp;gt;
+        {{item.title}}
+        &amp;lt;span&amp;gt;: {{new Date().getTime()}}&amp;lt;/span&amp;gt;
+      &amp;lt;/li&amp;gt;
+    &amp;lt;/ul&amp;gt;
+  &amp;lt;/div&amp;gt;
+
+  &amp;lt;div&amp;gt;
+    &amp;lt;h2&amp;gt;v-once (v-memo=&amp;quot;[ ]&amp;quot;)&amp;lt;/h2&amp;gt;
+    &amp;lt;ul&amp;gt;
+      &amp;lt;li
+        v-for=&amp;quot;item in list&amp;quot;
+        :key=&amp;quot;item.id&amp;quot;
+        v-memo=&amp;quot;[]&amp;quot;
+        :class=&amp;quot;{highlighted : item.id === activeId}&amp;quot;
+      &amp;gt;
+        {{item.title}}
+        &amp;lt;span&amp;gt;: {{new Date().getTime()}}&amp;lt;/span&amp;gt;
+      &amp;lt;/li&amp;gt;
+    &amp;lt;/ul&amp;gt;
+  &amp;lt;/div&amp;gt;
+
+  &amp;lt;div&amp;gt;
+    &amp;lt;h2&amp;gt;v-memo&amp;lt;/h2&amp;gt;
+    &amp;lt;ul&amp;gt;
+      &amp;lt;li
+        v-for=&amp;quot;item in list&amp;quot;
+        :key=&amp;quot;item.id&amp;quot;
+        v-memo=&amp;quot;[item.id === activeId]&amp;quot;
+        :class=&amp;quot;{highlighted : item.id === activeId}&amp;quot;
+      &amp;gt;
+        {{item.title}}
+        &amp;lt;span&amp;gt;: {{new Date().getTime()}}&amp;lt;/span&amp;gt;
+      &amp;lt;/li&amp;gt;
+    &amp;lt;/ul&amp;gt;
+  &amp;lt;/div&amp;gt;
+&amp;lt;/template&amp;gt;
+
+&amp;lt;style&amp;gt;
+  .highlighted {
+    background-color: #ccc;
+  }
+&amp;lt;/style&amp;gt;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+&lt;/details&gt;
+&lt;h3&gt;작동영상&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://github.com/user-attachments/assets/e3e56afd-4fdb-4da7-b449-3e7994a7fb3b&quot; alt=&quot;v-memo&quot;&gt;&lt;/p&gt;
+&lt;h4&gt;Vue Playground&lt;/h4&gt;
+&lt;iframe src=&quot;https://play.vuejs.org/#eNrNVbty2zAQ/JUbpLA0ejm2K4bS5OXCKZJM4s5wIYOgCAsEOABIycPhv+fAp6R47MaFC2kOt4fD7pI4luRLls2LnJOAhJYZkTmw3OXZiiqRZto4KMHwGCqIjU7hDEvPqKKKaWUdrJkTBb+JYOmLRufjTx0iBf412TuqAEoRQQDnUyec5AElsTDWUVJNB/BjD1qOTaJj9KJHXSLMCXg59NW5cckxenVwajyA92MvhKpw0QhHybhwPM3k2nFcAYSRKOoAw4fcOa3gM5OCbZeUdNpnM0pWs3DR4F21zdZq1dsTQFl2i6rCAz36St/JBPtOjvqGi47PKbnkYrUTLtG5g2KW8lSHC0y1YC7bCGMpsCDWBg8SKBWEqh8VJRBs+VObnQv0FyBgcm0t5spEbBKJP8e9lrYElstl/wZUSLY7BH0v65ra9qoa8o0t3g3Fd/AdbR6N5xvubkWK0YkzXq8UnYhFq6LzoE0fe1DMtGIcRo0HyPzunpLxG3hx1PD9G/OfLW/0Sgw2PCf13Vvj7024OLjhuLTuSfpwfsi39LUPa7bdGJ2raMa01CaAD4wxnHBIDg9t95EpcRbHVSw280erFQ7SejclTKeZkNz8ypzAmUgJamiI4SWXUu9+1Dlncl7Po3pPwtn2mfyj3fscJb8Nt9wUnJIec2uDdjTw9d+ffI9xD6Y6yiVWvwD+4VbL3HNsyr6iYqR9UFezvak/B0Jtbu313nFlO1GeqK9spiol+In49oL0ge7l/Kreh46S6h/O+RdJ&quot; style=&quot;width:100%; height:800px; border:0; border-radius: 4px; overflow:hidden;&quot; sandbox=&quot;allow-modals allow-forms allow-popups allow-scripts allow-same-origin&quot;&gt;&lt;/iframe&gt;
+&lt;h3&gt;v-memo 미적용&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;v-memo&lt;/code&gt; 를 적용하지 않은 경우엔 &lt;code class=&quot;language-text&quot;&gt;activeId&lt;/code&gt; 값이 변경될 때마다 모든 원소의 (현재 시각)값이 변하고 있음을 확인할 수 있다. 이는 같은 파일안에 있는 &lt;code class=&quot;language-text&quot;&gt;activeId&lt;/code&gt; 값이 반응형 변수인 &lt;code class=&quot;language-text&quot;&gt;ref&lt;/code&gt; 로 선언되어 있기에 이 값이 변할 때마다 리스트가 리렌더링되기 때문이다.&lt;/p&gt;
+&lt;h3&gt;v-once (v-memo=”[ ]”)&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;v-memo&lt;/code&gt; 의 의존성 배열을 비워둘 경우 &lt;code class=&quot;language-text&quot;&gt;v-once&lt;/code&gt; 와 동일한 효과를 발휘한다. 즉 최초 mount 시에만 렌더링 되며 그 이후에는 반응형 변수의 값이 변하여 리렌더링이 일어나더라도 &lt;code class=&quot;language-text&quot;&gt;v-memo&lt;/code&gt; (&lt;code class=&quot;language-text&quot;&gt;v-once&lt;/code&gt;) 로 감싸져있는 부분은 변하지 않는다. 따라서 &lt;code class=&quot;language-text&quot;&gt;activeId&lt;/code&gt; 값을 어떻게 변경한들, 현재 시간은 그대로이다.&lt;/p&gt;
+&lt;h3&gt;v-memo 적용&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;v-memo&lt;/code&gt; 의존성 배열에 &lt;code class=&quot;language-text&quot;&gt;item.id === activeId&lt;/code&gt; 라고 명시했다. 즉 원소의 &lt;code class=&quot;language-text&quot;&gt;id&lt;/code&gt; 값과 &lt;code class=&quot;language-text&quot;&gt;activeId&lt;/code&gt; 값의 일치여부가 변경될 때만 리렌더링이 되도록 지정하고, 그 외에 경우엔 메모이제이션하여 리렌더링을 방지했다.&lt;br&gt;
+예를 들어 &lt;code class=&quot;language-text&quot;&gt;activeId&lt;/code&gt; 값이 1 → 2로 변할 때는 오직 &lt;code class=&quot;language-text&quot;&gt;first&lt;/code&gt; 와 &lt;code class=&quot;language-text&quot;&gt;second&lt;/code&gt; 에 해당하는 아이템에서만 현재 시각이 변하며, 그 외 원소에서는 값을 그대로 유지하게 된다.&lt;/p&gt;
+&lt;h3&gt;React.memo 와의 비교&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;v-memo&lt;/code&gt; 는 &lt;code class=&quot;language-text&quot;&gt;React.memo&lt;/code&gt; 와 비슷하게 사용할 수 있는 디렉티브라고 볼 수 있다. 다만 차이점이라면 &lt;code class=&quot;language-text&quot;&gt;React.memo&lt;/code&gt; 는 컴포넌트에 적용되는 반면, &lt;code class=&quot;language-text&quot;&gt;v-memo&lt;/code&gt; 는 엘리먼트에 적용된다는 점이다. 즉 &lt;code class=&quot;language-text&quot;&gt;v-memo&lt;/code&gt;가 훨씬 더 유연하며 넓은 범위에서 사용할 수 있는 디렉티브라고 볼 수 있다.&lt;/p&gt;
+&lt;h2&gt;Reference&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://ko.vuejs.org/api/built-in-directives#v-memo&quot;&gt;https://ko.vuejs.org/api/built-in-directives#v-memo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://learnvue.co/articles/v-once-v-memo&quot;&gt;https://learnvue.co/articles/v-once-v-memo&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[개발과 개발자 사이]]></title><description><![CDATA[…]]></description><link>https://juheon.dev/essay/241110-develop-and-developer/</link><guid isPermaLink="false">https://juheon.dev/essay/241110-develop-and-developer/</guid><pubDate>Sun, 10 Nov 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;개발자라는 직업은 무엇일까. 단순하게 생각해보면 개발을 직업으로 삼은 사람을 일컫는다.&lt;/p&gt;
 &lt;p&gt;한국에서는 코로나 사태를 겪으면서 개발자란 직업의 사회적인 위상이 최근 몇 년새 급격히 올라갔다. 자연스레 이를 선망하는 사람들이 생기고, 많은 사람들이 개발자 취업 시장에 뛰어들었다. 현재도 개발자는 2,3년 전만큼은 아니지만 여전히 보상과 워라밸을 적절하게 잡을 수 있는 좋은 직업 중 하나라고 생각한다.나 역시도 개발자란 직업에 대해 만족하고 있다. 개발은내가 좋아하는 일이면서 남들보다 조금이라도 더 잘 할 수 있는 일을 직업으로 삼는다는 건 사실 엄청난 행운이라고 생각한다. 내가 개발을 어떻게 시작했고 현재까지의 여정은 &lt;a href=&quot;https://juheon.dev/essay/230812-why-i-become-developer/&quot;&gt;이 글&lt;/a&gt;에서도 자세히 설명하고 있다.&lt;/p&gt;
 &lt;p&gt;그런데 이따금씩 내가 지금 좇고 있는 것이 개발인지 개발자인지 분간이 가지 않을 때가 있다. 어렸을 때와 대학교에 다니던 시절까지만 하더라도 단순히 코드를 짜고 실행해서 결과물을 보는 일 자체가 재밌었다. 내가 의도한대로 동작하는 모습을 보면 뿌듯했고, 버그가 나면 어디서 잘못되었는지 찾아내는 과정도 고통스럽긴 하지만 그 나름의 재미가 있었다. 그 안에서 무엇이 취업 시장에서 좋은 평가를 받는지에 대해서 신경쓰지 않았다.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://github.com/user-attachments/assets/287372ad-f481-41bd-b3cc-b38ffc2a309d&quot; alt=&quot;interview-questions&quot;&gt;&lt;/p&gt;
