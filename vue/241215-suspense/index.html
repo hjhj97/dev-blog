@@ -8,7 +8,7 @@
 <p>Vue3의 Composition API에서는 기본적으로 <code class="language-text">setup(){...}</code> 함수 안에 비즈니스 로직을 작성하게 된다. 만약 함수 내부에서 <code class="language-text">await</code> 문을 사용하여 비동기 함수를 호출하고 싶다면 <code class="language-text">async setup</code> 와 같이 작성하면 된다. <code class="language-text">script setup</code> 을 사용하고 있더라도 동일하게 <code class="language-text">Top-level await</code> 를 하면 된다.</p>
 <details>
 <summary>예시코드</summary>
-<deckgo-highlight-code language="jsx"  >
+<deckgo-highlight-code language="javascript"  >
           <code slot="code">  // AsyncChild.vue
   &lt;script&gt;
   export default {
@@ -18,7 +18,7 @@
   	}
   	...</code>
         </deckgo-highlight-code>
-<deckgo-highlight-code language="jsx"  >
+<deckgo-highlight-code language="javascript"  >
           <code slot="code">  &lt;script setup&gt;
   const fetchData = () =&gt; {...}
   await fetchData();
@@ -29,33 +29,30 @@
 <p><code class="language-text">defineAsyncComponent</code> 함수와 동적 <code class="language-text">import</code> 문을 조합하면 비동기 컴포넌트를 얻을 수 있다. 비동기 컴포넌트를 <code class="language-text">&lt;Suspense></code> 문의 default slot으로 넣게되면 로딩이 완료되기 전까지는 fallback slot 으로 넣은 템플릿을 보여주다가, 완료되면 비동기 컴포넌트를 보여준다.</p>
 <details>
 <summary>예시코드</summary>
-<deckgo-highlight-code language="jsx"  >
+<deckgo-highlight-code language="html"  >
           <code slot="code">// Parent.vue
 &lt;template&gt;
   &lt;div&gt;
     &lt;h2&gt;Hello!&lt;/h2&gt;
     &lt;Suspense&gt;
       &lt;AsyncChild /&gt;
-      &lt;template #fallback&gt;
-        Loading...
-      &lt;/template&gt;
+      &lt;template #fallback&gt; Loading... &lt;/template&gt;
     &lt;/Suspense&gt;
   &lt;/div&gt;
 &lt;/template&gt;
 
 &lt;script setup&gt;
-import { defineAsyncComponent } from &#39;vue&#39;;
+  import { defineAsyncComponent } from &quot;vue&quot;
 
-const AsyncChild = defineAsyncComponent(() =&gt; import(&#39;./AsyncChild.vue&#39;))
-&lt;/script&gt;
-</code>
+  const AsyncChild = defineAsyncComponent(() =&gt; import(&quot;./AsyncChild.vue&quot;))
+&lt;/script&gt;</code>
         </deckgo-highlight-code>
 </details>
 <h2>로딩 UI 만들기</h2>
 <h3>단순 텍스트 UI</h3>
 <p>이를 토대로 서버로부터 API를 요청하고 응답받기까지 걸리는 시간동안 보여줄 로딩 UI를 구성해보자.
 API를 요청하는 <code class="language-text">fetchData</code> 함수에서 로딩시간에 해당하는 3000ms 는 다음과 같이 모킹했다.</p>
-<deckgo-highlight-code language="jsx"  >
+<deckgo-highlight-code   >
           <code slot="code">const fetchData = async () =&gt; {
   await new Promise(resolve =&gt; setTimeout(resolve, 3000))
   list.value = data
@@ -64,7 +61,7 @@ API를 요청하는 <code class="language-text">fetchData</code> 함수에서 �
 <p>그리고 나는 <code class="language-text">async setup</code> 의 <code class="language-text">Top-level await</code> 를 이용하여 부모 컴포넌트에서 <code class="language-text">&lt;Suspense></code> 안에 집어넣었다.</p>
 <details>
 <summary>AsyncList.vue</summary>
-<deckgo-highlight-code language="jsx"  >
+<deckgo-highlight-code language="javascript"  >
           <code slot="code">// AsyncList.vue
 &lt;script setup&gt;
 import {ref} from &#39;vue&#39;
@@ -93,12 +90,12 @@ await fetchData();
 </details>
 <details>
 <summary>Parent.vue</summary>
-<deckgo-highlight-code language="jsx"  >
+<deckgo-highlight-code language="html"  >
           <code slot="code">// Parent.vue
 &lt;script setup&gt;
-import { defineAsyncComponent } from &#39;vue&#39;;
+  import { defineAsyncComponent } from &quot;vue&quot;
 
-const AsyncComponent = defineAsyncComponent(() =&gt; import(&#39;./AsyncList.vue&#39;))
+  const AsyncComponent = defineAsyncComponent(() =&gt; import(&quot;./AsyncList.vue&quot;))
 &lt;/script&gt;
 
 &lt;template&gt;
@@ -106,9 +103,7 @@ const AsyncComponent = defineAsyncComponent(() =&gt; import(&#39;./AsyncList.vue
     &lt;h2&gt;Hello!&lt;/h2&gt;
     &lt;Suspense&gt;
       &lt;AsyncComponent /&gt;
-      &lt;template #fallback&gt;
-        Loading...
-      &lt;/template&gt;
+      &lt;template #fallback&gt; Loading... &lt;/template&gt;
     &lt;/Suspense&gt;
   &lt;/div&gt;
 &lt;/template&gt;</code>
@@ -123,48 +118,48 @@ const AsyncComponent = defineAsyncComponent(() =&gt; import(&#39;./AsyncList.vue
 <p>단순히 Loading 텍스트만 표시되는 건 심심하니 스켈레톤 UI를 적용하여 사용자에게 컨텐츠가 표시될 영역에 대한 힌트를 제공해주는 것 또한 가능하다.</p>
 <details>
 <summary>Skeleton.vue</summary>
-<deckgo-highlight-code language="jsx"  >
-          <code slot="code">    // Skeleton.vue
-    &lt;template&gt;
-      &lt;div class=&quot;container&quot;&gt;
-        &lt;ul&gt;
-          &lt;li v-for=&quot;i in 3&quot; :key=&quot;i&quot; class=&quot;item&quot;&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/div&gt;
-    &lt;/template&gt;
-    &lt;style scoped&gt;
-    .container{
-      padding : 10px;
-      border-radius: 10px;
-      width : 100%;
-      background-color: #eaeaea;
-    }
-    ul{
-      display: flex;
-      flex-direction: column;
-      gap : 16px;
-    }
-    li{
-      width : 400px;
-      height: 30px;
-      background-color: #bcbcbc;
-      border-radius: 8px;
-      list-style-type: none;
-      animation: pulse 2s infinite;
-    }
+<deckgo-highlight-code language="html"  >
+          <code slot="code">// Skeleton.vue
+&lt;template&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;ul&gt;
+      &lt;li v-for=&quot;i in 3&quot; :key=&quot;i&quot; class=&quot;item&quot;&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;style scoped&gt;
+  .container {
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    background-color: #eaeaea;
+  }
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  li {
+    width: 400px;
+    height: 30px;
+    background-color: #bcbcbc;
+    border-radius: 8px;
+    list-style-type: none;
+    animation: pulse 2s infinite;
+  }
 
-    @keyframes pulse{
-      0%{
-        background-color: #ccc;
-      }
-      50%{
-        background-color: #ddd;
-      }
-      100%{
-        background-color: #ccc;
-      }
+  @keyframes pulse {
+    0% {
+      background-color: #ccc;
     }
-    &lt;/style&gt;</code>
+    50% {
+      background-color: #ddd;
+    }
+    100% {
+      background-color: #ccc;
+    }
+  }
+&lt;/style&gt;</code>
         </deckgo-highlight-code>
 </details>
 <h3>작동영상</h3>
