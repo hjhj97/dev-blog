@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[하주헌 개발 블로그]]></description><link>https://juheon.dev</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 03 Jan 2025 05:06:11 GMT</lastBuildDate><item><title><![CDATA[소소하지만 확실한 UX]]></title><description><![CDATA[…]]></description><link>https://juheon.dev/essay/241221-small-ux/</link><guid isPermaLink="false">https://juheon.dev/essay/241221-small-ux/</guid><pubDate>Sat, 21 Dec 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;1. 큼지막한 지하철 출구 번호&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[하주헌 개발 블로그]]></description><link>https://juheon.dev</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 03 Jan 2025 05:21:53 GMT</lastBuildDate><item><title><![CDATA[소소하지만 확실한 UX]]></title><description><![CDATA[…]]></description><link>https://juheon.dev/essay/241221-small-ux/</link><guid isPermaLink="false">https://juheon.dev/essay/241221-small-ux/</guid><pubDate>Sat, 21 Dec 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;1. 큼지막한 지하철 출구 번호&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&quot;https://github.com/user-attachments/assets/60f7b9df-cf71-4a5d-8af4-5ce1372f1615&quot; alt=&quot;수인분당선 출구 번호&quot;&gt;&lt;/p&gt;
 &lt;p&gt;언제부터인지 수인분당선 출구에 대문짝만하게 출구 번호가 써져 있었다. 첨부한 사진은 미금역의 모습인데, 미금역 뿐만 아니라 수인분당선의 모든 역 출구에 큼지막하게 마킹되어 있다.&lt;br&gt;
 원래 지하철 출구 번호는 출구 앞 표지판에 자그마한 글씨로 써져 있기 때문에 반대편에서는 번호를 읽기 어렵다는 불편함이 있었다. 요즘은 대부분 네이버지도든 카카오맵을 통해 어디에 몇번 출구가 있는지 쉽게 알 수 있지만, 이와 친숙하지 않는 사람들 혹은 그냥 휴대폰 꺼내서 확인하기 귀찮은 사람들에게는 직관적인 표시이다.&lt;br&gt;
@@ -16,7 +16,7 @@
 &lt;p&gt;Vue3의 Composition API에서는 기본적으로 &lt;code class=&quot;language-text&quot;&gt;setup(){...}&lt;/code&gt; 함수 안에 비즈니스 로직을 작성하게 된다. 만약 함수 내부에서 &lt;code class=&quot;language-text&quot;&gt;await&lt;/code&gt; 문을 사용하여 비동기 함수를 호출하고 싶다면 &lt;code class=&quot;language-text&quot;&gt;async setup&lt;/code&gt; 와 같이 작성하면 된다. &lt;code class=&quot;language-text&quot;&gt;script setup&lt;/code&gt; 을 사용하고 있더라도 동일하게 &lt;code class=&quot;language-text&quot;&gt;Top-level await&lt;/code&gt; 를 하면 된다.&lt;/p&gt;
 &lt;details&gt;
 &lt;summary&gt;예시코드&lt;/summary&gt;
-&lt;deckgo-highlight-code language=&quot;javascript&quot;  &gt;
+&lt;deckgo-highlight-code language=&quot;tsx&quot;  &gt;
           &lt;code slot=&quot;code&quot;&gt;  // AsyncChild.vue
   &amp;lt;script&amp;gt;
   export default {
@@ -26,7 +26,7 @@
   	}
   	...&lt;/code&gt;
         &lt;/deckgo-highlight-code&gt;
-&lt;deckgo-highlight-code language=&quot;javascript&quot;  &gt;
+&lt;deckgo-highlight-code language=&quot;tsx&quot;  &gt;
           &lt;code slot=&quot;code&quot;&gt;  &amp;lt;script setup&amp;gt;
   const fetchData = () =&amp;gt; {...}
   await fetchData();
@@ -37,7 +37,7 @@
 &lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;defineAsyncComponent&lt;/code&gt; 함수와 동적 &lt;code class=&quot;language-text&quot;&gt;import&lt;/code&gt; 문을 조합하면 비동기 컴포넌트를 얻을 수 있다. 비동기 컴포넌트를 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;Suspense&gt;&lt;/code&gt; 문의 default slot으로 넣게되면 로딩이 완료되기 전까지는 fallback slot 으로 넣은 템플릿을 보여주다가, 완료되면 비동기 컴포넌트를 보여준다.&lt;/p&gt;
 &lt;details&gt;
 &lt;summary&gt;예시코드&lt;/summary&gt;
-&lt;deckgo-highlight-code language=&quot;html&quot;  &gt;
+&lt;deckgo-highlight-code language=&quot;tsx&quot;  &gt;
           &lt;code slot=&quot;code&quot;&gt;// Parent.vue
 &amp;lt;template&amp;gt;
   &amp;lt;div&amp;gt;
@@ -60,7 +60,7 @@
 &lt;h3&gt;단순 텍스트 UI&lt;/h3&gt;
 &lt;p&gt;이를 토대로 서버로부터 API를 요청하고 응답받기까지 걸리는 시간동안 보여줄 로딩 UI를 구성해보자.
 API를 요청하는 &lt;code class=&quot;language-text&quot;&gt;fetchData&lt;/code&gt; 함수에서 로딩시간에 해당하는 3000ms 는 다음과 같이 모킹했다.&lt;/p&gt;
-&lt;deckgo-highlight-code   &gt;
+&lt;deckgo-highlight-code language=&quot;tsx&quot;  &gt;
           &lt;code slot=&quot;code&quot;&gt;const fetchData = async () =&amp;gt; {
   await new Promise(resolve =&amp;gt; setTimeout(resolve, 3000))
   list.value = data
@@ -69,7 +69,7 @@ API를 요청하는 &lt;code class=&quot;language-text&quot;&gt;fetchData&lt;/co
 &lt;p&gt;그리고 나는 &lt;code class=&quot;language-text&quot;&gt;async setup&lt;/code&gt; 의 &lt;code class=&quot;language-text&quot;&gt;Top-level await&lt;/code&gt; 를 이용하여 부모 컴포넌트에서 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;Suspense&gt;&lt;/code&gt; 안에 집어넣었다.&lt;/p&gt;
 &lt;details&gt;
 &lt;summary&gt;AsyncList.vue&lt;/summary&gt;
-&lt;deckgo-highlight-code language=&quot;javascript&quot;  &gt;
+&lt;deckgo-highlight-code language=&quot;tsx&quot;  &gt;
           &lt;code slot=&quot;code&quot;&gt;// AsyncList.vue
 &amp;lt;script setup&amp;gt;
 import {ref} from &amp;#39;vue&amp;#39;
@@ -98,7 +98,7 @@ await fetchData();
 &lt;/details&gt;
 &lt;details&gt;
 &lt;summary&gt;Parent.vue&lt;/summary&gt;
-&lt;deckgo-highlight-code language=&quot;html&quot;  &gt;
+&lt;deckgo-highlight-code language=&quot;tsx&quot;  &gt;
           &lt;code slot=&quot;code&quot;&gt;// Parent.vue
 &amp;lt;script setup&amp;gt;
   import { defineAsyncComponent } from &amp;quot;vue&amp;quot;
@@ -126,7 +126,7 @@ await fetchData();
 &lt;p&gt;단순히 Loading 텍스트만 표시되는 건 심심하니 스켈레톤 UI를 적용하여 사용자에게 컨텐츠가 표시될 영역에 대한 힌트를 제공해주는 것 또한 가능하다.&lt;/p&gt;
 &lt;details&gt;
 &lt;summary&gt;Skeleton.vue&lt;/summary&gt;
-&lt;deckgo-highlight-code language=&quot;html&quot;  &gt;
+&lt;deckgo-highlight-code language=&quot;tsx&quot;  &gt;
           &lt;code slot=&quot;code&quot;&gt;// Skeleton.vue
 &amp;lt;template&amp;gt;
   &amp;lt;div class=&amp;quot;container&amp;quot;&amp;gt;
@@ -241,7 +241,7 @@ interface AsyncComponentOptions {
 &lt;p&gt;내가 작성한 예시코드에서는 이러한 상황을 모킹하기 위해 리스트의 각 원소 안에 현재 시각을 표시하는 &lt;code class=&quot;language-text&quot;&gt;new Date().getTime()&lt;/code&gt; 함수를 호출하였다. 그리고 &lt;code class=&quot;language-text&quot;&gt;activeId&lt;/code&gt; 값을 변화시켜가면서 각 원소별로 이 값이 어떻게 변하는지 살펴보려고 한다.&lt;/p&gt;
 &lt;details&gt;
 &lt;summary&gt;예시코드&lt;/summary&gt;
-&lt;deckgo-highlight-code language=&quot;html&quot;  &gt;
+&lt;deckgo-highlight-code language=&quot;tsx&quot;  &gt;
           &lt;code slot=&quot;code&quot;&gt;&amp;lt;script setup&amp;gt;
   import { ref } from &amp;quot;vue&amp;quot;
 
