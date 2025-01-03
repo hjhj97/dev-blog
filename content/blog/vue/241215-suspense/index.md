@@ -22,7 +22,7 @@ Vue3의 Composition API에서는 기본적으로 `setup(){...}` 함수 안에 �
 <details>
 <summary>예시코드</summary>
 
-```javascript
+```tsx
   // AsyncChild.vue
   <script>
   export default {
@@ -33,7 +33,7 @@ Vue3의 Composition API에서는 기본적으로 `setup(){...}` 함수 안에 �
   	...
 ```
 
-```javascript
+```tsx
   <script setup>
   const fetchData = () => {...}
   await fetchData();
@@ -49,7 +49,7 @@ Vue3의 Composition API에서는 기본적으로 `setup(){...}` 함수 안에 �
 <details>
 <summary>예시코드</summary>
 
-```html
+```tsx
 // Parent.vue
 <template>
   <div>
@@ -77,7 +77,7 @@ Vue3의 Composition API에서는 기본적으로 `setup(){...}` 함수 안에 �
 이를 토대로 서버로부터 API를 요청하고 응답받기까지 걸리는 시간동안 보여줄 로딩 UI를 구성해보자.
 API를 요청하는 `fetchData` 함수에서 로딩시간에 해당하는 3000ms 는 다음과 같이 모킹했다.
 
-```
+```tsx
 const fetchData = async () => {
   await new Promise(resolve => setTimeout(resolve, 3000))
   list.value = data
@@ -89,7 +89,7 @@ const fetchData = async () => {
 <details>
 <summary>AsyncList.vue</summary>
 
-```javascript
+```tsx
 // AsyncList.vue
 <script setup>
 import {ref} from 'vue'
@@ -121,7 +121,7 @@ await fetchData();
 <details>
 <summary>Parent.vue</summary>
 
-```html
+```tsx
 // Parent.vue
 <script setup>
   import { defineAsyncComponent } from "vue"
@@ -158,7 +158,7 @@ await fetchData();
 <details>
 <summary>Skeleton.vue</summary>
 
-```html
+```tsx
 // Skeleton.vue
 <template>
   <div class="container">

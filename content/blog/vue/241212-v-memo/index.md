@@ -24,7 +24,7 @@ Vue의 3.2 버전부터 추가된 신규 디렉티브인 `v-memo` 에 대해서 
 <details>
 <summary>예시코드</summary>
 
-```html
+```tsx
 <script setup>
   import { ref } from "vue"
 

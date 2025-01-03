@@ -8,7 +8,7 @@
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
   "dependencies": {
-    "@deckdeckgo/highlight-code": "^3.6.0",
+    "@deckdeckgo/highlight-code": "^4.4.0",
     "@fontsource-variable/montserrat": "^5.0.4",
     "@fontsource/merriweather": "^5.0.3",
     "@fontsource/nanum-gothic": "^5.0.3",
