@@ -22,7 +22,7 @@ Vue3의 Composition API에서는 기본적으로 `setup(){...}` 함수 안에 �
 <details>
 <summary>예시코드</summary>
 
-```jsx
+```javascript
   // AsyncChild.vue
   <script>
   export default {
@@ -33,7 +33,7 @@ Vue3의 Composition API에서는 기본적으로 `setup(){...}` 함수 안에 �
   	...
 ```
 
-```jsx
+```javascript
   <script setup>
   const fetchData = () => {...}
   await fetchData();
@@ -49,26 +49,23 @@ Vue3의 Composition API에서는 기본적으로 `setup(){...}` 함수 안에 �
 <details>
 <summary>예시코드</summary>
 
-```jsx
+```html
 // Parent.vue
 <template>
   <div>
     <h2>Hello!</h2>
     <Suspense>
       <AsyncChild />
-      <template #fallback>
-        Loading...
-      </template>
+      <template #fallback> Loading... </template>
     </Suspense>
   </div>
 </template>
 
 <script setup>
-import { defineAsyncComponent } from 'vue';
+  import { defineAsyncComponent } from "vue"
 
-const AsyncChild = defineAsyncComponent(() => import('./AsyncChild.vue'))
+  const AsyncChild = defineAsyncComponent(() => import("./AsyncChild.vue"))
 </script>
-
 ```
 
 </details>
@@ -80,7 +77,7 @@ const AsyncChild = defineAsyncComponent(() => import('./AsyncChild.vue'))
 이를 토대로 서버로부터 API를 요청하고 응답받기까지 걸리는 시간동안 보여줄 로딩 UI를 구성해보자.
 API를 요청하는 `fetchData` 함수에서 로딩시간에 해당하는 3000ms 는 다음과 같이 모킹했다.
 
-```jsx
+```
 const fetchData = async () => {
   await new Promise(resolve => setTimeout(resolve, 3000))
   list.value = data
@@ -92,7 +89,7 @@ const fetchData = async () => {
 <details>
 <summary>AsyncList.vue</summary>
 
-```jsx
+```javascript
 // AsyncList.vue
 <script setup>
 import {ref} from 'vue'
@@ -124,12 +121,12 @@ await fetchData();
 <details>
 <summary>Parent.vue</summary>
 
-```jsx
+```html
 // Parent.vue
 <script setup>
-import { defineAsyncComponent } from 'vue';
+  import { defineAsyncComponent } from "vue"
 
-const AsyncComponent = defineAsyncComponent(() => import('./AsyncList.vue'))
+  const AsyncComponent = defineAsyncComponent(() => import("./AsyncList.vue"))
 </script>
 
 <template>
@@ -137,9 +134,7 @@ const AsyncComponent = defineAsyncComponent(() => import('./AsyncList.vue'))
     <h2>Hello!</h2>
     <Suspense>
       <AsyncComponent />
-      <template #fallback>
-        Loading...
-      </template>
+      <template #fallback> Loading... </template>
     </Suspense>
   </div>
 </template>
@@ -163,48 +158,48 @@ const AsyncComponent = defineAsyncComponent(() => import('./AsyncList.vue'))
 <details>
 <summary>Skeleton.vue</summary>
 
-```jsx
-    // Skeleton.vue
-    <template>
-      <div class="container">
-        <ul>
-          <li v-for="i in 3" :key="i" class="item"></li>
-        </ul>
-      </div>
-    </template>
-    <style scoped>
-    .container{
-      padding : 10px;
-      border-radius: 10px;
-      width : 100%;
-      background-color: #eaeaea;
-    }
-    ul{
-      display: flex;
-      flex-direction: column;
-      gap : 16px;
-    }
-    li{
-      width : 400px;
-      height: 30px;
-      background-color: #bcbcbc;
-      border-radius: 8px;
-      list-style-type: none;
-      animation: pulse 2s infinite;
-    }
+```html
+// Skeleton.vue
+<template>
+  <div class="container">
+    <ul>
+      <li v-for="i in 3" :key="i" class="item"></li>
+    </ul>
+  </div>
+</template>
+<style scoped>
+  .container {
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    background-color: #eaeaea;
+  }
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  li {
+    width: 400px;
+    height: 30px;
+    background-color: #bcbcbc;
+    border-radius: 8px;
+    list-style-type: none;
+    animation: pulse 2s infinite;
+  }
 
-    @keyframes pulse{
-      0%{
-        background-color: #ccc;
-      }
-      50%{
-        background-color: #ddd;
-      }
-      100%{
-        background-color: #ccc;
-      }
+  @keyframes pulse {
+    0% {
+      background-color: #ccc;
     }
-    </style>
+    50% {
+      background-color: #ddd;
+    }
+    100% {
+      background-color: #ccc;
+    }
+  }
+</style>
 ```
 
 </details>
