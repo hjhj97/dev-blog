@@ -11,9 +11,8 @@ _2023-04-04에 작성된 [원문](https://ps-hjhj97.tistory.com/226)을 수정�
 
 사용자에게 입력을 받기 위해서는`input`태그가 필요한데, 입력 받는 데이터의 종류와 특성에 따라 제공되는 기능이 달라질 수 있다. 예를 들어 '오늘의 집'의 주문 페이지를 살펴보자.
 
-<div align="center" height="600" >
-<img src="https://raw.githubusercontent.com/hjhj97/blog.gatsby/main/content/blog/vue/230701-vmodel-and-custom-component-1/input-tag-1.png" height="600"  />
-</div>
+<img src="https://raw.githubusercontent.com/hjhj97/blog.gatsby/main/content/blog/vue/230701-vmodel-and-custom-component-1/input-tag-1.png"   />
+
 <!--![](./input-tag-1.png)-->
 
 - 이름이나 주소같은 단순한 텍스트 : `<input type="text">`
@@ -81,11 +80,11 @@ vue에서는 이처럼 tag 레벨에서 자주 쓰이는 기능들은 하나의 
 
 방법은 어렵지 않다. 부모 컴포넌트 입장에서는 컴포넌트화하기 이전 코드와 동일하게 `v-model="data"`를 걸어주기만 하면 된다. 이렇게만 하면 자식 컴포넌트의 `props`에서 자동으로 `modelValue`라는 (미리 정해진)이름으로 받을 수 있게 된다.
 
-다만 자식 컴포넌트에서는 별도로 처리해줘야 한다. `v-model="modelValue"`로 받을 수 있을 것 같지만 아쉽게도 불가능하다. 왜냐하면 `v-model`은 `@input="() => modelValue = e.target.value"`가 생략되어있는데, vue에서 자식 컴포넌트가 받은 `props`값(여기서는 `modelValue`)의 직접 변형이 불가능하기 때문이다.
+다만 자식 컴포넌트에서는 별도로 처리해줘야 한다. `v-model="modelValue"`로 받을 수 있을 것 같지만 아쉽게도 불가능하다. 왜냐하면 `v-model`은 `@input="(e) => modelValue = e.target.value"`가 생략되어있는데, vue에서 자식 컴포넌트가 받은 `props`값(여기서는 `modelValue`)의 직접 변형이 불가능하기 때문이다.
 
 이를 해결하기 위해서는 자식 컴포넌트에서는 input 이벤트가 발생하면 부모 컴포넌트에게 이를 알려야 한다.  
 자식컴포넌트가 부모컴포넌트에게 이벤트를 발생시키고 싶을 때 호출하는`emit`함수를 통해  
-_"`modelValue`의 값이 `e.target.value`로 변했다"_  
+ _"`modelValue`의 값이 `e.target.value`로 변했다"_  
  는 정보만 전달하고, 실질적인 변경된 값을 반영하는 과정은 부모 컴포넌트에서 진행되야 한다. 다행히도 그 과정은 이미 `update:modelValue`라는 이벤트로 미리 등록되어 있기 때문에 우리가 직접 구현할 필요는 없다.
 
 #### MainPage.vue (parent)
