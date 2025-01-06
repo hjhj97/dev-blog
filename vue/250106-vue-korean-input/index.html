@@ -18,6 +18,7 @@
 <h3>2. <code class="language-text">maxlength</code> 속성에서 마지막 글자가 넘침</h3>
 <p>2번째 현상은 현재 입력 중인 글자(=조합이 확정되지 않는 글자)는 <code class="language-text">length</code> 로 카운트하지 않는다는 것이다. 때문에 <code class="language-text">input</code> 태그에서 <code class="language-text">maxlength</code> 값을 설정해놓으면 마지막 한 글자가 넘쳐 보이는 현상이 발생한다. 해당 <code class="language-text">input</code>의 <code class="language-text">focus</code> 가 해제되면 정상적으로 돌아오지만 사용자 입장에서는 버그라고 느낄 여지가 있다.</p>
 <p><img src="https://github.com/user-attachments/assets/d9ad8b41-fb62-4469-a1bd-0f278b6d13f4" alt="vmodel2"></p>
+<p>위 영상에서 <code class="language-text">input</code> 태그에 <code class="language-text">maxlength=2</code> 속성을 설정해놓았다. 따라서 정확히 2글자만 입력되기를 기대하지만 실제로는 3글자가 입력되는 것처럼 보이고 있다.</p>
 <p>이 현상의 원인이 IME 의 영향도 있지만, 구글링을 해보니 유니코드로 인한 문제일 수도 있자는 <a href="https://mygumi.tistory.com/398">블로그 포스팅</a>을 찾을 수 있었다. 알파벳과 같은 영어 문자는 유니코드상에서 1바이트로 처리되지만, 한글과 같은 복합 문자는 2바이트로 처리되기 때문에 이러한 현상이 발생하는 것으로 보인다.</p>
 <h2>해결방법</h2>
 <p>위 2가지 문제를 해결하기 위해서는 <code class="language-text">v-model</code> 디렉티브를 사용하지 않고 직접 이벤트를 받아 처리해야만 한다. 이는 내가 예전에 작성한 <a href="https://juheon.dev/vue/230701-vmodel-and-custom-component-1/">포스팅</a>에서 다룬 적이 있다. 당시에는 <code class="language-text">modelValue</code>를 <code class="language-text">props</code>로 받고, <code class="language-text">update:modelValue</code>를 <code class="language-text">emit</code> 하는 방식으로 처리했었다.<br>
