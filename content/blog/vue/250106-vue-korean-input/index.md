@@ -3,6 +3,7 @@ title: Vue에서 한글을 입력할 때 생기는 2가지 이슈
 date: "2025-01-06"
 description: IME로 인한 이슈와 해결 방안
 category: Vue
+keywords: Vue,한글,IME
 ---
 
 ## 문제의 원인
