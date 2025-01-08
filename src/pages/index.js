@@ -124,6 +124,7 @@ export const pageQuery = graphql`
           date(formatString: "YYYY-MM-DD")
           title
           description
+          keywords
           category
         }
       }
