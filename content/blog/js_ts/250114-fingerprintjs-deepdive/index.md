@@ -11,7 +11,7 @@ fingerprint 기법은 브라우저에서 유저를 식별하는 방법 중 하�
 
 fingerprint 기법을 구현한 대표적인 오픈소스가 바로 [`fingerprint.js`](https://fingerprint.com/)이다. 이 외에도 npmjs에서 찾아보면 여러가지 라이브러리가 존재한다. 이 글에서는 fingerprint.js에 대해 알아보고 어떤 원리로 동작하는지, 어떤 문제가 있는지 알아보고자 한다.
 
-참고로, fingerprint.js와 유료버전인 fingerprint Pro 의 데모 페이지는 [이곳](https://fingerprintjs-vue3-demo.vercel.app/)에서 확인할 수 있다.
+참고로, `fingerprint.js`와 유료버전인 fingerprint Pro 의 데모 페이지는 [이곳](https://fingerprintjs-vue3-demo.vercel.app/)에서 확인할 수 있다.
 (유료 버전은 free-trial 기간이 지나면 비활성화 될 수도 있다).
 
 ## 어떤 원리로 동작하는가?
@@ -308,6 +308,14 @@ export default function getFonts(): Promise<string[]> {
 코드를 살펴보면 가질 수 있는 의문점이 하나 있다. HTML상에서 `testString` 이 렌더링 된다면 실제 사용자 눈에 직접 보일 수도 있지 않느냐 하는 점이다.  
 이를 방지해주는 함수가 `withIframe` 함수이다. 이 함수는 외부 스크립트를 실행하는 것이 아닌 `iframe` 내부에서 실행하여 외부 HTML에는 영향을 받지 않도록 해준다. `getFonts` 함수의 리턴값도 `withIframe` 함수를 통해 실행되므로 실제 사용자 눈에 보이지 않는다.
 
+이 방법의 장점 중 하나는 **브라우저의 종류에 영향을 받지 않는다**는 점이다. 아래 첨부한 이미지는 위에서부터 Chrome, Safari, Firefox 브라우저에서 내가 직접 개발하여 출시한 `font-fingerprint` [패키지](https://github.com/hjhj97/font-fingerprint)를 각각 실행한 결과이다. 보다시피 모든 브라우저에서 동일한 `Visitor ID`와 `font` 값이 나오고 있음을 확인할 수 있다.
+
+![font-fingerprint](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737443898/blog/assets/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-01-21_16.17.30_ypzehs.png)
+
+[데모 페이지](https://hjhj97.github.io/font-fingerprint/)는 이곳에서 확인해볼 수 있다.
+
+두 번째 방법인 Canvas fingerprint 에서도 언급하겠지만, 일부 fingerprint 에서 사용하는 파라미터는 같은 디바이스에서도 브라우저의 종류에 따라 결과값이 달라지기 때문에, 이로 인한 영향을 받지 않기 위해서는 설치된 폰트 리스트로만 판단하는 것이 좋다.
+
 ### Canvas fingerprint
 
 Canvas fingerprint는 브라우저의 Canvas API를 통해 캔버스를 그리는 방식을 판별하는 기법이다. 캔버스에 동일한 geometry를 그리더라도 브라우저의 종류, GPU 등에 따라서 픽셀 단위에서는 다르게 그려질 수 있다.
@@ -496,11 +504,11 @@ canvas를 그리기에 앞서 유저의 환경에서 canvas API를 지원하는�
 
 ## 어떤 문제(한계)가 있는가?
 
-fingerprint.js의 가장 큰 한계(단점)은 바로 신뢰성이다.  
-공식문서나 레퍼런스/커뮤니티에서 말하는 fingerprint의 신뢰도는 40~60% 라고 한다. fingerprint의 가장 이상적인 목표는 컴퓨터(혹은 스마트폰)을 사용하고 있는 유저가 이전에 접속한 사람과 동일인물인지 아닌지를 식별하는 것이다.
+`fingerprint.js`의 가장 큰 한계(단점)은 바로 신뢰성이다.  
+공식문서나 레퍼런스/커뮤니티에서 말하는 fingerprint 기법의 신뢰도는 40~60% 라고 한다. fingerprint의 가장 이상적인 목표는 컴퓨터(혹은 스마트폰)을 사용하고 있는 유저가 이전에 접속한 사람과 동일인물인지 아닌지를 식별하는 것이다.
 
 하지만 위 2가지 판별함수에서 살펴보았다시피, 동일한 디바이스라 할지라도 브라우저의 종류에 따라 결과값이 달라질 수 있다. 즉 사용자가 마음만 먹으면 브라우저의 종류를 바꿈으로써 판별을 우회할 수 있다.  
-실제 npm에는 fingerprint-injector 와 같이 접속한 환경을 의도적으로 조작할 수 있는 패키지도 이미 출시되어있다. 뿐만아니라 브라우저의 종류뿐만 아니라 화면의 해상도에 영향받기도 하며, 폰트를 새로 설치하거나 삭제하더라도 식별값이 달라질 수 있다.
+실제 npm에는 fingerprint-injector 와 같이 접속한 환경을 의도적으로 조작할 수 있는 패키지도 이미 출시되어있다. 뿐만 아니라 브라우저의 종류뿐만 아니라 화면의 해상도에 영향받기도 하며, 폰트를 새로 설치하거나 삭제하더라도 식별값이 달라질 수 있다.
 
 때문에 fingerprint.js의 유료 버전인 fingerprint Pro 에서는 신뢰도를 99%까지 끌어올려서 제공하고 있다. Pro 버전이 신뢰도가 높은 이유는 식별값을 클라이언트(브라우저)가 아닌 서버에서 생성하기 때문이다. 자세한 차이점은 [이곳](https://github.com/fingerprintjs/fingerprintjs/blob/master/docs/comparison.md)에서 확인해볼 수 있다.
 
