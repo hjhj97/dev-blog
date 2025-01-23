@@ -21,10 +21,9 @@
 </blockquote>
 <p>그런데 생각보다 step의 수가 많아져서 깔끔하지 않았다. 클라우드 서비스에서 제공하는 URL은 실제 데이터가 저장된 경로가 아닌, 클라우드에서 제공하는 공유/에디터 기능이 씌워진 형태로 제공해주는 경우가 대부분이었다.<br>
 따라서 개발자도구에서 <code class="language-text">&lt;img></code> 태그를 찾아 이미지 경로를 추출해야 했는데 이는 너무 번거롭다고 판단했다. 또한 2번 방식처럼 이미지 주소를 곧바로 마크다운 문법으로 변환해주지 않아 내가 직접 변환해야 했다.</p>
-<p>좀 더 개발자 친화적으로 내가 원하는 기능만 커스텀할 수 있는 서비스를 찾다보니 Cloudinary가 있었다. Cloudinaryd에서는 업로드를 위한 API를 제공해주며 리턴값으로 이미지 경로를 알려주기 때문에 이를 기반으로 마크다운 문법으로 변환해주는 기능을 구현해보기로 했다.</p>
+<p>좀 더 개발자 친화적으로 내가 원하는 기능만 커스텀할 수 있는 서비스를 찾다보니 <a href="https://cloudinary.com/">Cloudinary</a>가 있었다. Cloudinary에서는 업로드를 위한 API를 제공해주며 리턴값으로 이미지 경로를 알려주기 때문에 이를 기반으로 마크다운 문법으로 변환해주는 기능을 구현해보기로 했다.</p>
 <p>Cloudinary에서 제공하는 프레임워크별로 보일러 플레이트 <a href="https://github.com/cloudinary-community/cloudinary-examples">레포지토리</a>가 있어 나는 이 중에서 하나를 fork해서 사용하기로 했다. 이 중에는 React/Vue 와 같은 CSR과 Next/Nuxt 와 같은 SSR 프레임워크를 제공하고 있었다.</p>
 <p><a href="https://cloudinary.com/documentation/image_upload_api_reference">Cloudinary API 문서</a>를 찾아보면 업로드 API를 호출하기 위해서는 <code class="language-text">POST</code> 메소드의 <code class="language-text">Body</code> 에 들어가는 파라미터로 <code class="language-text">API_KEY</code>와 <code class="language-text">API_SECRET</code>를 기반으로 생성되는 <code class="language-text">SIGNATURE</code> 가 필요하다. CSR 에서는 <code class="language-text">API_SECRET</code>을 환경변수로 넣으면 브라우저에 노출될 수밖에 없다. 이는 보안상 취약점이 될 수 있기 때문에 서버에서 실행하여 숨길 수 있는 SSR 프레임워크를 사용하는 것이 좋다. 나는 <code class="language-text">Next.js</code> 를 사용하기로 했다.</p>
-<h2>프로젝트 개발</h2>
 <p>프로젝트의 보일러 플레이트는 <a href="https://github.com/cloudinary-community/cloudinary-examples/tree/main/examples/nextjs-upload-formdata">이곳</a>에서 fork 해왔다. 서버를 띄우고 본인의 cloudinary 와 연동하기 위해서는 <code class="language-text">env.example</code> 파일에 명시된 환경변수를 설정해주면 된다. 그러면 정말 기본적인 파일 업로드를 할 수 있는 웹페이지가 만들어진다. 이 상태에서는 파일을 하나씩밖에 업로드할 수 없으며, 파일 미리보기도 지원하지 않는다.</p>
 <p>여기서 내가 추가하고 싶은 기능은 다음과 같다.</p>
 <ol>
