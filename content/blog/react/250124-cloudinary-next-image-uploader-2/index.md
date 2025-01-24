@@ -17,7 +17,7 @@ category: React
 
 #### 파일 여러개 업로드 / 미리보기 / 파일명 수정하기
 
-먼저 1,2,3번의 기능을 구현해보자. 3개의 기능이 모두 연관되어 있으므로 한번에 구현할 것이다. 파일을 업로드 하는 로직들은 `useFileUploader.ts` hook으로 분리하여 작성했다.
+먼저 1,2,3번의 기능을 구현해보자. 3개의 기능이 모두 연관되어 있으므로 한번에 구현할 것이다. 파일을 업로드 하는 로직들은 `useFileUploader.ts` hook으로 분리하여 작성했다. 이 안에서 로컬 파일을 브라우저에 업로드하는 역할을 담당하는 `handleFileChange` 함수를 보자.
 
 ```ts
 // useFileUploader.ts
@@ -60,9 +60,9 @@ const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
 일단 `Array.from()` 메서드를 사용하여 배열로 변환하여 `FileList` 타입을 `File[]` 타입으로 변환한다. `File` 타입 자체로는 브라우저에서 이미지 미리보기를 지원하지 않으므로 `FileReader` 객체와 `readAsDataURL()` 메서드를 사용하여 이미지를 Base64 형태의 URL로 뽑아낸다.
 
-`FileReader` 객체는 비동기 방식으로 동작하므로 `onloadend` 이벤트 핸들러를 작성한다. 이 때 이미지 파일의 URL을 뽑아내려면 `FileReader.result` 값을 사용한다. 그리고 파일명이 바뀔 수 있음을 염두에 두려면 원본 파일명인 `originalName`와 바뀐 파일명 `name` 속성을 추가했다. 또한 파일명을 수정할 수 있도록 하기 위해 `isEditing` 속성을 추가했다. 이 값이 `true` 라면 수정이 가능하도록 `<input>` 태그를 활성화시킨다.
+`FileReader` 객체는 비동기 방식으로 동작하므로 `onloadend` 이벤트 핸들러를 작성한다. 이 때 이미지의 URL을 뽑아내려면 `FileReader.result` 값을 사용한다. 그리고 파일명이 바뀔 수 있음을 염두에 두려면 원본 파일명인 `originalName`와 바뀐 파일명 `name` 속성을 추가해야 한다. 또한 파일명을 수정할 수 있도록 하기 위해 `isEditing` 속성을 추가했다. 이 값이 `true` 라면 수정이 가능하도록 `<input>` 태그를 활성화시킨다.
 
-`File[]`배열을 순회하면서 이 속성들을 `previewUrls` 배열에 하나씩 push 한다. 이 때 모든 파일을 다 읽어왔다면 `setPreviewUrls()` 함수를 호출하여 `previewUrls` 배열을 업데이트한다. `previewUrls` 배열은 `PreviewList` 컴포넌트에서 `prop`으로 받아와 미리보기 이미지를 표시하고 파일명을 수정할 수 있도록 한다.
+`File[]` 배열을 순회하면서 이 속성들을 `previewUrls` 배열에 하나씩 push 한다. 이 때 모든 파일을 다 읽어왔다면 `setPreviewUrls()` 함수를 호출하여 `previewUrls` 배열을 업데이트한다. `previewUrls` 배열은 `PreviewList` 컴포넌트에서 `prop`으로 받아와 미리보기 이미지를 표시하고 파일명을 수정할 수 있도록 한다.
 
 <details>
 <summary>
@@ -219,6 +219,12 @@ function UploadResult() {
 #### 데모
 
 ![preview images](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737653198/blog/assets/demo2.gif)
+
+내가 원하던대로 파일을 여러개 업로드하고 미리보기를 볼 수 있으며, 파일명을 수정할 수 있고, 업로드 후 이미지 경로를 받아올 수 있으며, 이를 마크다운 문법으로 변환할 수 있게 되었다.
+
+Cloudinary 콘솔에 들어가면 이처럼 내가 업로드한 이미지들을 한번에 확인해볼 수 있다.
+
+![result](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737696160/blog/assets/result.png)
 
 이 프로젝트의 소스코드는 [Github](https://github.com/jisu-dev/cloudinary-next-image-uploader)에서 확인할 수 있다.
 
