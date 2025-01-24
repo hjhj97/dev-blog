@@ -9,7 +9,7 @@
 <li>이미지 경로를 마크다운 문법으로 변환</li>
 </ol>
 <h4>파일 여러개 업로드 / 미리보기 / 파일명 수정하기</h4>
-<p>먼저 1,2,3번의 기능을 구현해보자. 3개의 기능이 모두 연관되어 있으므로 한번에 구현할 것이다. 파일을 업로드 하는 로직들은 <code class="language-text">useFileUploader.ts</code> hook으로 분리하여 작성했다.</p>
+<p>먼저 1,2,3번의 기능을 구현해보자. 3개의 기능이 모두 연관되어 있으므로 한번에 구현할 것이다. 파일을 업로드 하는 로직들은 <code class="language-text">useFileUploader.ts</code> hook으로 분리하여 작성했다. 이 안에서 로컬 파일을 브라우저에 업로드하는 역할을 담당하는 <code class="language-text">handleFileChange</code> 함수를 보자.</p>
 <deckgo-highlight-code language="ts"  >
           <code slot="code">// useFileUploader.ts
 ...
@@ -46,8 +46,8 @@ const handleFileChange = (e: React.ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {
 <p>파일을 업로드 하기 위해서 <code class="language-text">&lt;input type="file"></code> 태그를 사용하며 <code class="language-text">multiple</code> 속성을 추가하면 여러개의 파일을 동시에 업로드할 수 있다. 그러면 <code class="language-text">onChange</code> 이벤트 핸들러에서 여러개의 파일을 받아올 수 있다. 이 때 받아온 파일은 <code class="language-text">FileList</code> 는 유사배열 형태의 타입이다.</p>
 <p>원래는 <code class="language-text">File</code> 객체를 <code class="language-text">FormData</code> 에 <code class="language-text">append</code>한 뒤 <code class="language-text">POST</code> 요청의 <code class="language-text">body</code>에 담아 보내도 업로드되지만, 이번에는 이미지를 업로드 하기 전에 미리보기를 보여주고 파일명을 수정하는 기능을 제공해야 하므로 이미지 파일의 Base64 URL을 따로 뽑아내야 한다.</p>
 <p>일단 <code class="language-text">Array.from()</code> 메서드를 사용하여 배열로 변환하여 <code class="language-text">FileList</code> 타입을 <code class="language-text">File[]</code> 타입으로 변환한다. <code class="language-text">File</code> 타입 자체로는 브라우저에서 이미지 미리보기를 지원하지 않으므로 <code class="language-text">FileReader</code> 객체와 <code class="language-text">readAsDataURL()</code> 메서드를 사용하여 이미지를 Base64 형태의 URL로 뽑아낸다.</p>
-<p><code class="language-text">FileReader</code> 객체는 비동기 방식으로 동작하므로 <code class="language-text">onloadend</code> 이벤트 핸들러를 작성한다. 이 때 이미지 파일의 URL을 뽑아내려면 <code class="language-text">FileReader.result</code> 값을 사용한다. 그리고 파일명이 바뀔 수 있음을 염두에 두려면 원본 파일명인 <code class="language-text">originalName</code>와 바뀐 파일명 <code class="language-text">name</code> 속성을 추가했다. 또한 파일명을 수정할 수 있도록 하기 위해 <code class="language-text">isEditing</code> 속성을 추가했다. 이 값이 <code class="language-text">true</code> 라면 수정이 가능하도록 <code class="language-text">&lt;input></code> 태그를 활성화시킨다.</p>
-<p><code class="language-text">File[]</code>배열을 순회하면서 이 속성들을 <code class="language-text">previewUrls</code> 배열에 하나씩 push 한다. 이 때 모든 파일을 다 읽어왔다면 <code class="language-text">setPreviewUrls()</code> 함수를 호출하여 <code class="language-text">previewUrls</code> 배열을 업데이트한다. <code class="language-text">previewUrls</code> 배열은 <code class="language-text">PreviewList</code> 컴포넌트에서 <code class="language-text">prop</code>으로 받아와 미리보기 이미지를 표시하고 파일명을 수정할 수 있도록 한다.</p>
+<p><code class="language-text">FileReader</code> 객체는 비동기 방식으로 동작하므로 <code class="language-text">onloadend</code> 이벤트 핸들러를 작성한다. 이 때 이미지의 URL을 뽑아내려면 <code class="language-text">FileReader.result</code> 값을 사용한다. 그리고 파일명이 바뀔 수 있음을 염두에 두려면 원본 파일명인 <code class="language-text">originalName</code>와 바뀐 파일명 <code class="language-text">name</code> 속성을 추가해야 한다. 또한 파일명을 수정할 수 있도록 하기 위해 <code class="language-text">isEditing</code> 속성을 추가했다. 이 값이 <code class="language-text">true</code> 라면 수정이 가능하도록 <code class="language-text">&lt;input></code> 태그를 활성화시킨다.</p>
+<p><code class="language-text">File[]</code> 배열을 순회하면서 이 속성들을 <code class="language-text">previewUrls</code> 배열에 하나씩 push 한다. 이 때 모든 파일을 다 읽어왔다면 <code class="language-text">setPreviewUrls()</code> 함수를 호출하여 <code class="language-text">previewUrls</code> 배열을 업데이트한다. <code class="language-text">previewUrls</code> 배열은 <code class="language-text">PreviewList</code> 컴포넌트에서 <code class="language-text">prop</code>으로 받아와 미리보기 이미지를 표시하고 파일명을 수정할 수 있도록 한다.</p>
 <details>
 <summary>
 <code>PreviewList.tsx</code> 컴포넌트
@@ -191,6 +191,9 @@ function UploadResult() {
         </deckgo-highlight-code>
 <h4>데모</h4>
 <p><img src="https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737653198/blog/assets/demo2.gif" alt="preview images"></p>
+<p>내가 원하던대로 파일을 여러개 업로드하고 미리보기를 볼 수 있으며, 파일명을 수정할 수 있고, 업로드 후 이미지 경로를 받아올 수 있으며, 이를 마크다운 문법으로 변환할 수 있게 되었다.</p>
+<p>Cloudinary 콘솔에 들어가면 이처럼 내가 업로드한 이미지들을 한번에 확인해볼 수 있다.</p>
+<p><img src="https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737696160/blog/assets/result.png" alt="result"></p>
 <p>이 프로젝트의 소스코드는 <a href="https://github.com/jisu-dev/cloudinary-next-image-uploader">Github</a>에서 확인할 수 있다.</p>
 <h2>예외 처리</h2>
 <p>시간이 된다면 다음과 같은 예외 처리도 구현해보고자 한다.</p>
