@@ -9,7 +9,7 @@ category: React
 
 고전 게임 중에서 캐치마인드 라는 그림을 그리는 게임이 있다. 매턴마다 돌아가면서 그림을 그리는 사람이 정해진다. 자기 차례가 돌아오면 특정 키워드가 랜덤으로 주어지며, 그 그림에 맞게 그림을 그리는 것이다. 나머지 사람들은 그 그림을 보고 키워드를 맞추면 점수를 얻는 방식이다.
 
-![catch-mind](https://github.com/user-attachments/assets/94b015c3-a47d-4f93-92f1-eb702f15e5c1)
+![catch-mind](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983311/blog/assets/94b015c3-a47d-4f93-92f1-eb702f15e5c1_h1uxfq.png)
 _출처 : 캐치마인드 개드립 걸작선 게시판_
 
 이 게임 방식에서 착안하여 웹 페이지에서 그림 퀴즈를 내는 것이 가능할까 생각하게 되었다. 그래서 이번 사이드 프로젝트에서는 캐치마인드 게임을 웹 페이지에서 구현해보려고 한다. 그런데 나는 한가지 변주를 주려고 한다. 실제 캐치마인드 게임에서는 게임이 진행되기 위해서는 최소 3명이 있어야 한다. 하지만 바쁜 현대사회에서 사는 우리들은 3명을 기다릴 여유가 없다. 싱글플레이가 가능한 캐치마인드를 만들어 보려고 한다. 그럼 누가 문제를 맞추냐고? 그래서 그림을 맞추는 주체를 '사람' 이 아니라 GPT 로 바꿔보려고 한다.
@@ -32,7 +32,7 @@ _출처 : 캐치마인드 개드립 걸작선 게시판_
 
 가장 먼저 캔버스, 즉 그림을 그릴 수 있는 영역을 구성해야 한다. 이를 위해서는 `<canvas>` 태그를 사용하면 된다. 캔버스 태그는 그림을 그리는 영역을 정의하는 태그로, 웹 페이지에서 그림을 그리는 데 사용된다.
 
-![step-1](https://github.com/user-attachments/assets/0178547a-c7a1-41cb-a795-3982d913a9e9)
+![step-1](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983312/blog/assets/0178547a-c7a1-41cb-a795-3982d913a9e9_fxnsxe.png)
 
 <details>
 <summary>
@@ -112,7 +112,7 @@ export default Canvas
 
 아직까지는 검정색으로만 그림을 그릴 수 있다. 하지마 이는 너무 단조로우므로 색상을 선택할 수 있는 기능을 추가해보자. 이를 위해서는 `<input type="color">` 태그를 사용하여 색상을 선택할 수 있는 영역을 만들고, 이를 통해 선택한 색상을 캔버스에 적용하면 된다.
 
-![step-2](https://github.com/user-attachments/assets/fe033773-a234-457b-84e0-4d0e6414af08)
+![step-2](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983316/blog/assets/fe033773-a234-457b-84e0-4d0e6414af08_cso9jn.png)
 
 <details>
 <summary>
@@ -209,7 +209,7 @@ export default Canvas
 ### Step 3. 지우개 기능
 
 현재까지는 그림을 그리는 기능만 있기 때문에 잘못 그리게 되면 페이지를 새로고침 해야하는 번거로움이 있다. 그래서 지울 수 있는 기능을 제공해보자. 지우개 기능이 활성화 되면 `context.globalCompositeOperation` 을 `destination-out` 으로 설정하여 지우개 모드를 활성화 한다.
-![step-3](https://github.com/user-attachments/assets/592135d9-00f4-4ca8-a338-cfcd6a4a5eb3)
+![step-3](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983313/blog/assets/592135d9-00f4-4ca8-a338-cfcd6a4a5eb3_jdrqtf.png)
 
 <details>
 <summary>

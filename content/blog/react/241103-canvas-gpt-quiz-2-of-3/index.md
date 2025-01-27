@@ -94,7 +94,7 @@ app.post("/api/chat", async (req, res) => {
 
 OpenAI API에서 제공하는 모델이 여러 종류이기 때문에 어떤 모델을 선택하느냐도 중요한 문제이다. 이 프로젝트에서는 이미지파일을 input으로 넣어야 하는데, 모델마다 이미지를 input 으로 받을 수 없는 모델도 존재하기 때문에 이런 모델들은 당연히 제외된다. 이미지를 받을 수 있는 모델들은 [공식 문서](https://platform.openai.com/docs/models)상에서 `multimodal model` 이라는 키워드를 찾아볼 수 있다. 대표적으로 `gpt-4o`과 `gpt-4o-mini`가 있다. 둘의 차이는 모델 사이즈와 가격에 있는데, 나는 모델 사이즈가 작고 가격이 저렴한 `gpt-4o-mini`를 선택하기로 했다.
 
-![gpt-model-pricing](https://github.com/user-attachments/assets/5e5a8cf5-63b5-41d5-96d7-888a07376b64)
+![gpt-model-pricing](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983310/blog/assets/5e5a8cf5-63b5-41d5-96d7-888a07376b64_ajxann.png)
 
 ## 프론트엔드에서 API 요청 보내기
 
@@ -147,7 +147,7 @@ export const sendMessage = async (imageData: string) => {
 
 집을 그려서 GPT한테 무엇인지 물어보도록 하자.
 
-![gpt-answer-1](https://github.com/user-attachments/assets/2028f8ae-4415-4f45-9fbb-9a3db962fcc0)
+![gpt-answer-1](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983312/blog/assets/2028f8ae-4415-4f45-9fbb-9a3db962fcc0_t9jmtz.png)
 
 > GPT Think: Office desk with laptop.
 
@@ -155,7 +155,7 @@ export const sendMessage = async (imageData: string) => {
 
 이건 그림을 대충 그렸으니 못 맞출 수도 있다. 조금 더 신중하게 다시 그려보도록 하자.
 
-![gpt-answer-2](https://github.com/user-attachments/assets/37e9d201-d75e-4b8f-8349-0aabddb76987)
+![gpt-answer-2](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983311/blog/assets/37e9d201-d75e-4b8f-8349-0aabddb76987_zqk5zz.png)
 
 > GPT Think: A minimalist cat drawing.
 

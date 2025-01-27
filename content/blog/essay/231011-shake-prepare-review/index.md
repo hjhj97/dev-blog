@@ -7,7 +7,7 @@ category: Essay
 
 _2022-02-20에 작성된 [원문](https://ps-hjhj97.tistory.com/209)을 수정한 버전입니다_
 
-![poster](./poster.jpeg)
+![poster](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983320/blog/assets/poster_ck6x2y.jpg)
 
 지난 1월 15일, '2021 경인지역 6개대학 연합프로그래밍 경시대회'인 shake! 가 열렸다. 지금 글을 쓰는 시점과는 시간이 꽤 흐르긴 했는데 나름대로 ~~고통스러운~~ 흥미로운 경험을 하기도 했고, 회고할 만한 일도 있었다고 생각하기에 지금이 되어서야 후기를 남기게 되었다.
 
@@ -26,7 +26,7 @@ _2022-02-20에 작성된 [원문](https://ps-hjhj97.tistory.com/209)을 수정�
 
 지금까지는 대부분 대회 운영 담당자(나 같은 포지션)가 이곳저곳에 후원 제안 메일을 뿌리면서 직접 맨땅에 헤딩하는 식으로 업체를 섭외해왔다. 물론 아무 업체에 제안을 한 건 아니고 주로 졸업하신 선배분들의 직장을 위주로 메일을 보냈기 때문에 섭외 성공 확률이 조금은 높았을 수는 있겠으나 거절도 적잖게 당했었다. 아무튼 운영 담당자는 후원 업체를 섭외하는 데도 부담스러울 수 밖에 없는 노릇이었다.
 
-![manage](./manage-structure.png)
+![manage](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983320/blog/assets/manage-structure_rd1bks.png)
 
 <p align="center">내가 해야할 일은 위와 같았다</p>
 
@@ -128,7 +128,7 @@ _2022-02-20에 작성된 [원문](https://ps-hjhj97.tistory.com/209)을 수정�
 
 대회가 끝나고 난 뒤, 참가자들이 실시한 설문조사 결과를 받았다.
 
-![survey](./survey.png)
+![survey](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983321/blog/assets/survey_d00rfk.png)
 
 <p align="center">문제 난이도 '적절함' 72.4%, '어려움' 24.1%</p>
 

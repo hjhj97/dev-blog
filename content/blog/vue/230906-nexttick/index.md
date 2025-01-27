@@ -54,7 +54,7 @@ Vue를 공부하다보면 Global API의 한 종류로서 `nextTick()`이라는 �
 
 그러면 아래와 같이 `<textarea />`에 스크롤이 생긴 채로 보이게 된다.
 
-![](before.png)
+![](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983314/blog/assets/before.png_kznlff.png)
 
 여기서 한가지 요구사항을 추가해보자.
 
@@ -104,4 +104,4 @@ Vue를 공부하다보면 Global API의 한 종류로서 `nextTick()`이라는 �
 
 그러면 이제 요구사항처럼 `<textarea />`가 스크롤 없이 텍스트 길이에 맞춰서 높이가 조정된다.
 
-![after](after.png)
+![after](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983313/blog/assets/after_c2ahs8.png)

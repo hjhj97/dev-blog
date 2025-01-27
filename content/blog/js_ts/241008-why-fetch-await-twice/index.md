@@ -19,7 +19,7 @@ const data = await response.json()
 그 이유는 HTTP 요청의 특성을 생각해보면 짐작할 수 있다. HTTP 요청은 header와 body 로 구성되어 있다. header 상에는 요청 메소드의 종류와 응답결과, 상태코드 등이 담겨 있다. 보통 header의 용량이 body의 용량보다 작을 것이므로 더 먼저 응답결과를 받아볼 수 있다는 점을 염두에 두고 아래 공식 문서를 살펴보자.
 
 mdn의 fetch [공식문서](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API#concepts_and_usage)에서는 아래와 같이 설명하고 있다.  
-![fetch-mdn](./fetch-mdn.png)
+![fetch-mdn](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983316/blog/assets/fetch-mdn_fqb83d.png)
 
 > `fetch()` 메소드는 당신이 fetch 하려는 리소스가 있는 경로라는 한 개의 필수적인 인자만 받는다. 그것은 해당 요청을 resolve 할 수 있는 `Response`객체를 내놓는 `Promise`를 반환한다 - **서버가 header로 응답을 받자마자** - 설령 서버의 응답이 error 상태라 하더라도.
 

@@ -310,7 +310,7 @@ export default function getFonts(): Promise<string[]> {
 
 이 방법의 장점 중 하나는 **브라우저의 종류에 영향을 받지 않는다**는 점이다. 아래 첨부한 이미지는 위에서부터 Chrome, Safari, Firefox 브라우저에서 내가 직접 개발하여 출시한 `font-fingerprint` [패키지](https://github.com/hjhj97/font-fingerprint)를 각각 실행한 결과이다. 보다시피 모든 브라우저에서 동일한 `Visitor ID`와 `font` 값이 나오고 있음을 확인할 수 있다.
 
-![font-fingerprint](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737443898/blog/assets/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-01-21_16.17.30_ypzehs.png)
+![font-fingerprint](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737987532/blog/assets/demo.png)
 
 [데모 페이지](https://hjhj97.github.io/font-fingerprint/)는 이곳에서 확인해볼 수 있다.
 
@@ -483,7 +483,7 @@ canvas를 그리기에 앞서 유저의 환경에서 canvas API를 지원하는�
 - 이후에 비슷한 과정을 한번 더 반복한다.
 
 일련의 과정을 거치고 나면 아래와 같은 이미지가 캔버스에 그려진다.
-![image](https://github.com/user-attachments/assets/4d1c7159-9a23-4473-a039-7bfe3375bf2c)
+![image](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983309/blog/assets/4d1c7159-9a23-4473-a039-7bfe3375bf2c_zjexik.png)
 
 캔버스에 그려진 이미지를 `canvasToString` 함수 안에 `canvas.toDataURL` 함수를 통해 Base64 형태의 문자열로 변환한다. 내가 직접 크롬과 firefox 브라우저에서 각각 테스트해본 결과, 렌더링되는 이미지가 육안상으로는 동일하였으나 실제로 Base64로 인코딩된 데이터는 각기 다르게 나왔다.  
 찾아보니 동일한 canvas 코드라도 실행한 브라우저의 종류에 따라서 폰트 렌더링, 안티앨리어싱 등에 따라서 결과값이 달라질 수 있다고 한다.
@@ -497,7 +497,7 @@ canvas를 그리기에 앞서 유저의 환경에서 canvas API를 지원하는�
 이 과정을 거치면 아래와 같은 이미지가 캔버스에 그려진다.
 
 <div>
-<img src="https://github.com/user-attachments/assets/35fca6b5-e801-4940-b341-cd2277f8bc41" alt="canvas-text-image" style="width: 240px">
+<img src="https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983310/blog/assets/35fca6b5-e801-4940-b341-cd2277f8bc41_glhkux.png" alt="canvas-text-image" style="width: 240px">
 </div>
 
 과정을 통해 '브라우저가 원을 처리하는 방식'과 각기 다른 색상이 겹쳤을 때 '색의 혼합을 어떻게 처리하는지'를 판단하게 된다. 이 또한 브라우저의 종류에 따라 결과값이 달라질 수 있다.

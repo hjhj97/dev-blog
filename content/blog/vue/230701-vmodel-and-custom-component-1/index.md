@@ -11,7 +11,7 @@ _2023-04-04에 작성된 [원문](https://ps-hjhj97.tistory.com/226)을 수정�
 
 사용자에게 입력을 받기 위해서는`input`태그가 필요한데, 입력 받는 데이터의 종류와 특성에 따라 제공되는 기능이 달라질 수 있다. 예를 들어 '오늘의 집'의 주문 페이지를 살펴보자.
 
-<img src="https://raw.githubusercontent.com/hjhj97/blog.gatsby/main/content/blog/vue/230701-vmodel-and-custom-component-1/input-tag-1.png"   />
+<img src="https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737988384/blog/assets/input-tag-1_qewxeo.png"   />
 
 <!--![](./input-tag-1.png)-->
 

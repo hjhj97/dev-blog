@@ -101,7 +101,7 @@ Vue의 3.2 버전부터 추가된 신규 디렉티브인 `v-memo` 에 대해서 
 
 ### 작동영상
 
-![v-memo](https://github.com/user-attachments/assets/e3e56afd-4fdb-4da7-b449-3e7994a7fb3b)
+![v-memo](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983315/blog/assets/e3e56afd-4fdb-4da7-b449-3e7994a7fb3b_hfwl7j.gif)
 
 #### Vue Playground
 

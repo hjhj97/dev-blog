@@ -9,26 +9,27 @@ category: React
 
 지난 포스팅에서 프론트엔드와 백엔드를 연동하고 실제 그림을 그려서 문제를 맞추는 것까지 구현했다. 다만 내가 의도한 그림의 정답을 맞추지 못했는데, 다른 그림을 더 그려보고서 무엇을 잘 맞추고 못 맞추는지 경향성을 파악해보고 개선해보고자 한다.
 
-![gpt-apple](https://github.com/user-attachments/assets/ce60344d-9167-44cd-8a16-4410aead7672)
+![gpt-apple](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983315/blog/assets/ce60344d-9167-44cd-8a16-4410aead7672_fhdb9j.png)
 다행히도 사과는 잘 맞췄다.
 
-![gpt-grape](https://github.com/user-attachments/assets/239257a9-c73e-423d-a829-3d9e67e6e8e8)
+![gpt-grape](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983313/blog/assets/239257a9-c73e-423d-a829-3d9e67e6e8e8_udhqpv.png)
 
 포도도 맞췄다.
-![gpt-melon](https://github.com/user-attachments/assets/1f4a26b2-008a-45c4-a7f2-fae7fafabfaa)
-아쉽게도 수박은 맞추지 못했다.
+![gpt-melon](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983310/blog/assets/1f4a26b2-008a-45c4-a7f2-fae7fafabfaa_o6k8ar.png)
 
-![gpt-car](https://github.com/user-attachments/assets/3f14367f-d163-4aca-9c0a-0a6ea0a59bcd)
+수박은 못 맞춘다.
+
+![gpt-car](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983315/blog/assets/3f14367f-d163-4aca-9c0a-0a6ea0a59bcd_tdmzh7.png)
 
 자동차를 그렸는데 고양이라고 추론한다.
 
-![gpt-cat](https://github.com/user-attachments/assets/2f34f76c-af10-4b8f-9cc7-4c6d5d57b77c)
+![gpt-cat](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983310/blog/assets/2f34f76c-af10-4b8f-9cc7-4c6d5d57b77c_qujflf.png)
 
 그런데 막상 고양이를 그렸는데도 못 맞췄다....
-![gpt-animal](https://github.com/user-attachments/assets/bb6698ab-9cc4-4f9c-af30-be35028c73cf)
+![gpt-animal](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983313/blog/assets/bb6698ab-9cc4-4f9c-af30-be35028c73cf_otmldc.png)
 내가 그리고도 뭘 그렸는지 모르겠다. 곰과 돼지 중에서 그리고 싶었는데 잡종이 되어버렸다. 그런데 아무튼 동물인라는 사실 조차도 맞추지 못한다.
 
-![gpt-human](https://github.com/user-attachments/assets/9e992cad-877f-4dc4-8426-3a6d036489c0)
+![gpt-human](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983311/blog/assets/9e992cad-877f-4dc4-8426-3a6d036489c0_ggqmww.png)
 사람을 그렸음에도 맞추지 못한다.
 
 이 외에도 최소 20개의 각기 다른 키워드로 테스트를 해보면서 느낀 점은 다음과 같다.
@@ -123,7 +124,7 @@ _참고로 `JSONL` 형식은 한 줄에 하나의 JSON 객체를 저장하는 �
 
 그러고 나서 job을 생성하면 학습이 시작된다. 학습이 진행되는 동안에는 아래 화면과 같이 학습의 step별로 loss가 점점 줄어드는 걸 볼 수 있다.
 
-![fine-tuning](https://github.com/user-attachments/assets/ca798d26-3e3b-4522-973a-e416e087ff31)
+![fine-tuning](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983315/blog/assets/ca798d26-3e3b-4522-973a-e416e087ff31_yu9gky.png)
 
 하나의 job은 총 100번의 step으로 이루어져 있으며 시간은 약 5분이 소요되었다. 학습이 완료된 모델은 `ft:gpt-4o-2024-08-06:personal:canvas-quiz:APlr42xm` 와 같이 고유한 모델명이 새롭게 부여되며, 백엔드에서 이 모델을 사용하도록 설정하면 된다.
 
@@ -133,20 +134,20 @@ _참고로 `JSONL` 형식은 한 줄에 하나의 JSON 객체를 저장하는 �
 
 이제 새롭게 만들어진 모델로 처음에 실패했던 그림을 다시 넣어보자.
 
-![fine-tuning-house](https://github.com/user-attachments/assets/f1b43b10-aaf8-40bc-9c37-b82e8f611982)
+![fine-tuning-house](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983316/blog/assets/f1b43b10-aaf8-40bc-9c37-b82e8f611982_w8eg21.png)
 
 드디어 집을 제대로 인식하기 시작했다!!
 
-![fine-tuning-watermelon](https://github.com/user-attachments/assets/0293559d-deb4-4bb8-b7ba-2c2ddea661c8)
+![fine-tuning-watermelon](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983313/blog/assets/0293559d-deb4-4bb8-b7ba-2c2ddea661c8_h1z9hg.png)
 수박도 정상적으로 인식한다. 그럼 자동차는 어떨까?
 
-![fine-tuning-car](https://github.com/user-attachments/assets/eb8cd6f7-5f84-4c43-b915-a34d8db5d80a)
+![fine-tuning-car](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983316/blog/assets/eb8cd6f7-5f84-4c43-b915-a34d8db5d80a_z3gkwy.png)
 
 > GPT Think : house
 
 응??? 이게 어딜봐서 집이란 거지???
 
-![fine-tuning-human](https://github.com/user-attachments/assets/83f762d2-3067-4435-a9f2-8d8ed09ff277)
+![fine-tuning-human](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983312/blog/assets/83f762d2-3067-4435-a9f2-8d8ed09ff277_wdswwu.png)
 
 사람을 그렸음에도 집이라고 인식해버렸다. 대체 왜 이런 일이 생기는 걸까?
 

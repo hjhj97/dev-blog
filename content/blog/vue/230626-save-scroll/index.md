@@ -55,7 +55,7 @@ const router = createRouter({
 <br />
 
 <div align='center'>
-<img src="https://raw.githubusercontent.com/hjhj97/blog.gatsby/main/content/blog/vue/images/save-scroll/save-scroll-1.gif" height="600" />
+<img src="https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737988215/blog/assets/save-scroll-2_sgqote.gif" height="600" />
 </div>
 
 콘솔로 `savedPosition`을 찍어보면 그 정체는 `{top: number,left : number}`형태라는 걸 알 수 있다.
@@ -107,7 +107,7 @@ const router = createRouter({
 콘솔로 `prevInfo`를 찍어보면 다음과 아래와 같이 나온다.
 
 <div align='center'>
-<img src="https://raw.githubusercontent.com/hjhj97/blog.gatsby/main/content/blog/vue/images/save-scroll/save-scroll-2.gif" height="600" />
+<img src="https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737988215/blog/assets/save-scroll-1_ucdmmx.gif" height="600" />
 </div>
 
 즉 `prevInfo`에 저장된 value값을 받아서 `scrollBehavior`함수의 top값으로 리턴해주게 되면 이전에 저장되었던 스크롤 위치로 복귀할 수 있게 되는 원리이다.

@@ -62,7 +62,7 @@ export default defineNuxtConfig({
 첫 번재로 Clinet Side Rendering(Single Page Application)을 살펴보자.  
 CSR은 클라이언트(브라우저)가 렌더링을 담당하기 때문에 서버는 번들파일만 전달할 뿐, HTML파일을 렌더링하는 데에는 관여하지 않는다. 개발자도구의 Network 탭에서 보내준 doc파일을 확인하더라도 텅 비어있는 HTML 파일만 전달받았는 사실을 알 수 있다. 따라서 Server Rendered Time은 존재하지 않는다(첨부한 이미지에서 Server Render Time은 클라이언트에서 호출된 것이다)
 
-![nuxt-csr](https://github.com/user-attachments/assets/10cafdef-206e-4309-81fd-6bc9a069c32c)
+![nuxt-csr](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983309/blog/assets/10cafdef-206e-4309-81fd-6bc9a069c32c_naojq5.png)
 한편 Hydration Time은 클라이언트 사이드에서 API를 직접 호출하여 DOM을 그렸으므로 API 응답시간과 일치한다고 볼 수 있다.
 
 `nuxt.config.ts` 에서는 설정하고자 하는 경로상에 `{ ssr : false }` 로 설정하면 된다.
@@ -78,7 +78,7 @@ CSR은 클라이언트(브라우저)가 렌더링을 담당하기 때문에 서�
 
 Server Side Rendering은 말 그대로 서버에서 직접 HTML을 렌더링하여 클라이언트에게 전달한 뒤에 클릭과 같은 상호작용을 위해서 hydration 과정이 진행된다.
 
-![nuxt-ssr](https://github.com/user-attachments/assets/d976c00e-ad39-496e-805c-0823a11654dc)
+![nuxt-ssr](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983316/blog/assets/d976c00e-ad39-496e-805c-0823a11654dc_qui1xw.png)
 
 페이지에 접속하면 최초로 전달받은 HTML파일(이미지 우측에 개발자도구에서 보이는 시간)상으로는 Rendered Time과 Hydration Time이 일치하는 것처럼 보인다.  
 하지만 사람들에게 실제로 보이는 화면(이미지 좌측)에서는 미세하게 Hydration Time이 Rendered Time보다 느리다는 걸 확인해볼 수 있는데, 이는 HTML파일을 받으면 브라우저에서 hydration이 진행되기 때문에 `new Date()`가 한번 더 실행되어 DOM에 다시 반영되기까지의 딜레이라고 생각해볼 수 있다.
@@ -95,7 +95,7 @@ Server Side Rendering은 말 그대로 서버에서 직접 HTML을 렌더링하�
 ## SSG
 
 Static Site Generation 은 빌드 당시에만 HTML이 렌더링되며 그 이후에는 재접속하더라도 리렌더링되지 않는다. 따라서 Rendered Time은 빌드된 시점으로 고정되어 있다.
-![nuxt-ssg](https://github.com/user-attachments/assets/c02fabeb-052a-43b3-a284-b6f3e279da34)
+![nuxt-ssg](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983314/blog/assets/c02fabeb-052a-43b3-a284-b6f3e279da34_x5ac4n.png)
 
 `nuxt.config.ts` 에서는 설정하고자 하는 경로상에 `{ prerender : true }` 로 설정하면 된다.
 
@@ -114,13 +114,13 @@ Stale While Reavalidate은 SSG와 SSR의 특성을 섞어놓은 방식이다. �
 
 ### No TTL
 
-![swr-no-ttl](https://github.com/user-attachments/assets/ae4aab8c-830c-4876-994b-3e07d9de58db)
+![swr-no-ttl](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983313/blog/assets/ae4aab8c-830c-4876-994b-3e07d9de58db_a3hytp.gif)
 
 TTL을 설정해놓지 않으면 컨텐츠가 바뀔 때마다 페이지가 새롭게 빌드된다. 이 예제에서는 페이지가 1초마다 바뀌므로 그때마다 새롭게 페이지가 빌드된다.
 
 ### 5 seconds TTL
 
-![swr-ttl](https://github.com/user-attachments/assets/d66e54b6-97c9-4c80-be79-324600ea5a80)
+![swr-ttl](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983315/blog/assets/d66e54b6-97c9-4c80-be79-324600ea5a80_vgczbj.gif)
 
 5초 주기로 설정해놓게 되면 5초동안 접속하는 요청에 대해서는 동일한 정적 페이지를 서빙하게 된다. 실질적으로 변경되는 부분은 HTTP의 `Cache-Control`에서 `max-age=5`에 해당한다. 5초가 지난 이후의 요청에 대해서는 우선 캐싱되어있는 stale 상태의 페이지를 서빙하고, 백그라운드에서는 새로운 버전의 페이지를 준비한다. 빌드가 완료되고 난 이후에는 새로운 버전의 페이지를 받을 수 있게 된다.
 

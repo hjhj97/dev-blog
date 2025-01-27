@@ -12,7 +12,7 @@ category: Vue
 그러다가 2019년 11월에 `vuex`의 experiment to redesign(리디자인 실험)으로서 `pinia`가 처음 출시되었고, 현재는 `vuex`를 대신하여 vue의 공식 상태관리 라이브러리로 자리잡았다. 이름은 달라졌다고는 해도 `vuex` 개발팀이 `pinia`를 개발했기 때문에 기존 `vuex`의 기능과 문법은 거의 바뀌지 않았고 새로 학습해야할 내용도 부담 없는 수준이다.(공식문서에서는 `pinia`를 `vuex 5`의 다른 이름이라고 소개한다)
 
 [npmtrends](https://npmtrends.com/pinia-vs-vuex)를 보더라도 `vuex`와의 격차가 점점 줄어들고 있음을 확인할 수 있다.
-![](./npm-trends-pinia.png)
+![](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983320/blog/assets/npm-trends-pinia_ccipfc.png)
 
 ## vuex와 비교해 달라진 점
 

@@ -7,7 +7,7 @@ category: Essay
 
 ## 1. 큼지막한 지하철 출구 번호
 
-![수인분당선 출구 번호](https://github.com/user-attachments/assets/60f7b9df-cf71-4a5d-8af4-5ce1372f1615)
+![수인분당선 출구 번호](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983323/blog/assets/60f7b9df-cf71-4a5d-8af4-5ce1372f1615_jeo4pb.jpg)
 
 언제부터인지 수인분당선 출구에 대문짝만하게 출구 번호가 써져 있었다. 첨부한 사진은 미금역의 모습인데, 미금역 뿐만 아니라 수인분당선의 모든 역 출구에 큼지막하게 마킹되어 있다.  
 원래 지하철 출구 번호는 출구 앞 표지판에 자그마한 글씨로 써져 있기 때문에 반대편에서는 번호를 읽기 어렵다는 불편함이 있었다. 요즘은 대부분 네이버지도든 카카오맵을 통해 어디에 몇번 출구가 있는지 쉽게 알 수 있지만, 이와 친숙하지 않는 사람들 혹은 그냥 휴대폰 꺼내서 확인하기 귀찮은 사람들에게는 직관적인 표시이다.  
@@ -15,7 +15,7 @@ category: Essay
 
 ## 2. 남은 시간을 알려주는 보행 신호등
 
-![보행 신호등](https://github.com/user-attachments/assets/1e639a2d-ef6f-45dd-85f4-7ad7eced10a5)
+![보행 신호등](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983310/blog/assets/1e639a2d-ef6f-45dd-85f4-7ad7eced10a5_mwnqdi.png)
 (자료 사진으로 대체함)
 
 얼마전 집 앞 횡단보도가 싹 다 교체되더니 새로운 신호등으로 바뀌어 있었다. 새 신호등에는 빨간불 → 파란불로 바뀔 때까지 남은 시간이 표시된다.  

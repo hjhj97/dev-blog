@@ -58,7 +58,7 @@ _2023-03-09에 작성된 [원문](https://ps-hjhj97.tistory.com/224)을 수정�
 
 이 방식의 경우 아래 사진과 같이 `<div id="modal">`태그는 기존 화면이 위치하고 있는 DOM노드 하위에 종속될 수 밖에 없다.
 
-![](./vue-modal-1.png)
+![](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983322/blog/assets/vue-modal-1.png_gnfctl.png)
 
 여기서 한 가지 아쉬운 점이 생긴다. modal 창은 기존의 화면과 구분되는 속성인데 DOM 노드상에서도 이를 구분할 수 없을까? 즉 `<div id="modal">`이 `<div id="app">`과 같은 레벨로 끌어올릴 수 없을까? 하는 생각을 품게된다.
 
@@ -109,7 +109,7 @@ _2023-03-09에 작성된 [원문](https://ps-hjhj97.tistory.com/224)을 수정�
 
 그러면 `<div id="modal">`이 `<div id="id">`와 DOM상에서 같은 레벨에 생성된 것을 확인할 수 있다.
 
-![](./vue-modal-2.png)
+![](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983321/blog/assets/vue-modal-2.png_roscpy.png)
 
 ## 모달 열고 닫기
 

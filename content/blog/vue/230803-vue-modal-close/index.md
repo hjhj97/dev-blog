@@ -103,7 +103,7 @@ const closeModal = (isBackward = false) => {
 
 버튼을 눌러서 닫았다면 `isBackward`값이 `false`로 들어오고 `history.back()`를 호출하여 상태를 한단계 `pop`해주면 된다. 작동하는 모습은 아래와 같다.
 
-<img src="https://raw.githubusercontent.com/hjhj97/blog.gatsby/main/content/blog/vue/images/vue-modal-backward.gif"  />
+![](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737988551/blog/assets/vue-modal-backward_ibefok.gif)
 
 완성된 `Modal.vue`코드는 아래와 같다.
 

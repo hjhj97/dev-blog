@@ -16,7 +16,7 @@ _(나중에 알게된 사실인데, [Jbee](https://jbee.io)님이 배포하시�
 ## 어떻게 꾸밀까
 
 나는 `gatsby-starter-blog`를 fork해서 갖고왔다. 처음 `npm run develop` 커맨드로 실행하게 되면 뿌듯함과 함께 어떻게 꾸며야할까에 대한 막막함이 몰려온다.
-![첫 상태](./blog-history-1.png)
+![첫 상태](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983313/blog/assets/blog-history-1_jn3vyd.png)
 
 <div align=center>
 <em>
@@ -41,7 +41,7 @@ UI의 통일성을 위해서는 꼭 필요하다. 내가 평소에 좋아하는 
 
 여기까지 적용해본 결과, 아래와 같이 나온다.
 
-![두 번째 상태](./blog-history-2.png)
+![두 번째 상태](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983314/blog/assets/blog-history-2_ymf24b.png)
 
 참고 볼 만한 수준은 되었지만, 아직 이정도로는 부족하다.
 

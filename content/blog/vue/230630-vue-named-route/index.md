@@ -53,7 +53,7 @@ const routes = [
 <router-link :to="{name : 'Abou'}">어바웃</router-link> // 오타, 에러 발생함
 ```
 
-![](./named-route-error.png)
+![](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983320/blog/assets/named-route-error_gzcpws.png)
 
 방법 1은 오타가 발생하더라도 해당 라우터를 클릭해서 404 페이지가 뜨는 걸 확인하기 전까지는 찾기가 어렵다. 왜냐하면 사용자가 오타를 낸 건지, 아니면 정말로 `/abou`페이지로 이동하길 원하는지 라우터에게는 알 수 있는 정보가 없기 때문이다.
 
