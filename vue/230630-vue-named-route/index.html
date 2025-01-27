@@ -38,39 +38,7 @@ const routes = [
 &lt;router-link :to=&quot;{name : &#39;Home&#39;}&quot;&gt;홈&lt;/router-link&gt;
 &lt;router-link :to=&quot;{name : &#39;Abou&#39;}&quot;&gt;어바웃&lt;/router-link&gt; // 오타, 에러 발생함</code>
         </deckgo-highlight-code>
-<p><span
-      class="gatsby-resp-image-wrapper"
-      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; "
-    >
-      <a
-    class="gatsby-resp-image-link"
-    href="/static/ce3ee02400fcbc8fb937fed74135d507/64639/named-route-error.png"
-    style="display: block"
-    target="_blank"
-    rel="noopener"
-  >
-    <span
-    class="gatsby-resp-image-background-image"
-    style="padding-bottom: 23.417721518987342%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABYlAAAWJQFJUiTwAAAA2ElEQVR42o3JW1OCQABAYf7/f6qnrMwxEbkYphOWGMjuchVE2NNEUy/WTA/fnIdjhMEIlVhkyqMQLlVsUec+TfE89FSu4by71IW0dUCVbzgWG8p8TVO9YBztB/Rqgd6u6OSePj8MdCmgklBKKJJfteqdOtkNGhHSyD0GkyncjGhnJjvHI1g4vNoupyjmfBCg0j/1UtEJ+aMXCkPf3sHVNYzHpKZJYM7xpo/4psWb7YJUkKb/lGFoawaTe3DmlL5H9OQReA7bpUO0WtKLGJ0KyL7JC/pT+vU+AO/YeJJTSVuIAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
-  ></span>
-  <img
-        class="gatsby-resp-image-image"
-        alt="named route error"
-        title=""
-        src="/static/ce3ee02400fcbc8fb937fed74135d507/f058b/named-route-error.png"
-        srcset="/static/ce3ee02400fcbc8fb937fed74135d507/c26ae/named-route-error.png 158w,
-/static/ce3ee02400fcbc8fb937fed74135d507/6bdcf/named-route-error.png 315w,
-/static/ce3ee02400fcbc8fb937fed74135d507/f058b/named-route-error.png 630w,
-/static/ce3ee02400fcbc8fb937fed74135d507/40601/named-route-error.png 945w,
-/static/ce3ee02400fcbc8fb937fed74135d507/78612/named-route-error.png 1260w,
-/static/ce3ee02400fcbc8fb937fed74135d507/64639/named-route-error.png 1568w"
-        sizes="(max-width: 630px) 100vw, 630px"
-        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
-        loading="lazy"
-        decoding="async"
-      />
-  </a>
-    </span></p>
+<p><img src="https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983320/blog/assets/named-route-error_gzcpws.png" alt=""></p>
 <p>방법 1은 오타가 발생하더라도 해당 라우터를 클릭해서 404 페이지가 뜨는 걸 확인하기 전까지는 찾기가 어렵다. 왜냐하면 사용자가 오타를 낸 건지, 아니면 정말로 <code class="language-text">/abou</code>페이지로 이동하길 원하는지 라우터에게는 알 수 있는 정보가 없기 때문이다.</p>
 <p>반면에 방법 2에서는 라우터를 클릭하기 전에도 콘솔창에서 에러를 검출할 수 있다. <code class="language-text">routes</code>에 들어있는 원소를 하나씩 뒤져보면서 name이 <code class="language-text">Abou</code>와 일치하는 라우트를 찾아본다. 일치하는 라우트가 없으면 에러로 판별해낼 수 있는 단서가 제공된다는 뜻이다.</p>
 <p>이런 식으로 vue 에서는 <code class="language-text">named-route</code>기반으로 페이지 이동이 가능하기 때문에 예상치 못한 오타 발생시 에러로 검출할 수 있는 반면에 react에서 <code class="language-text">&lt;Link to={'/about'}</code> 또는 <code class="language-text">useNavigate</code>훅의 <code class="language-text">navigate('/about')</code>와 같이 <code class="language-text">pathname</code> 기반으로만 이동할 수 있다.</p>

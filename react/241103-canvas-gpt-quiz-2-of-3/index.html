@@ -72,7 +72,7 @@ app.post(&quot;/api/chat&quot;, async (req, res) =&gt; {
 <p>이미지를 분석하여 텍스트로 요약해달라는 요청을 내려야 한다. 기본 예시 코드에서도 나와있다시피 <code class="language-text">'What's in this image?'</code>라는 프롬프트를 사용하고 있다. 나는 이를 그대로 사용하기로 했다. 그러면서 뒤엔 30자 이내로 요약해달라는 요청을 추가하기로 했다. 별도의 제약을 걸지 않으면 생각보다 GPT가 투머치토크 성향이 있어서인지 너무 길게 답변을 해주는 경향이 있어서 그런 제약을 추가하기로 했다.</p>
 <h4>2. 어떤 모델을 사용할 것인가</h4>
 <p>OpenAI API에서 제공하는 모델이 여러 종류이기 때문에 어떤 모델을 선택하느냐도 중요한 문제이다. 이 프로젝트에서는 이미지파일을 input으로 넣어야 하는데, 모델마다 이미지를 input 으로 받을 수 없는 모델도 존재하기 때문에 이런 모델들은 당연히 제외된다. 이미지를 받을 수 있는 모델들은 <a href="https://platform.openai.com/docs/models">공식 문서</a>상에서 <code class="language-text">multimodal model</code> 이라는 키워드를 찾아볼 수 있다. 대표적으로 <code class="language-text">gpt-4o</code>과 <code class="language-text">gpt-4o-mini</code>가 있다. 둘의 차이는 모델 사이즈와 가격에 있는데, 나는 모델 사이즈가 작고 가격이 저렴한 <code class="language-text">gpt-4o-mini</code>를 선택하기로 했다.</p>
-<p><img src="https://github.com/user-attachments/assets/5e5a8cf5-63b5-41d5-96d7-888a07376b64" alt="gpt-model-pricing"></p>
+<p><img src="https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983310/blog/assets/5e5a8cf5-63b5-41d5-96d7-888a07376b64_ajxann.png" alt="gpt-model-pricing"></p>
 <h2>프론트엔드에서 API 요청 보내기</h2>
 <p>이제 백엔드의 API 작업은 마쳤으니 다시 프론트엔드로 돌아가서 방금 만든 엔드포인트로 요청을 보내보자.
 <code class="language-text">useCanvas</code> 훅에서 <code class="language-text">sendImage</code> 함수에서 Base64로 인코딩된 이미지 데이터를 백엔드로 보냈다. 참고로 웹페이지에서 ChatGPT를 사용하면 언어를 설정할 수 있다는 점과는 달리, OpenAI API 는 오직 영어로 된 답변만 지원하고 있다.</p>
@@ -117,13 +117,13 @@ export const sendMessage = async (imageData: string) =&gt; {
 <h2>드디어 테스트!</h2>
 <p>드디어 프론트엔드와 백엔드의 모든 작업이 끝났다. 이제 직접 그림을 그려서 GPT가 내 그림을 제대로 분석해는지 확인해보자. 내가 그림은 썩 잘 그리는 편은 아니지만, 그래도 나름 남들이 알아볼 수 있을 정도로는 그릴 수 있다고 확신하기 때문에 GPT도 별 무리없이 맞출 수 있을 것이다.</p>
 <p>집을 그려서 GPT한테 무엇인지 물어보도록 하자.</p>
-<p><img src="https://github.com/user-attachments/assets/2028f8ae-4415-4f45-9fbb-9a3db962fcc0" alt="gpt-answer-1"></p>
+<p><img src="https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983312/blog/assets/2028f8ae-4415-4f45-9fbb-9a3db962fcc0_t9jmtz.png" alt="gpt-answer-1"></p>
 <blockquote>
 <p>GPT Think: Office desk with laptop.</p>
 </blockquote>
 <p>응??? 이게 어딜봐서 책상 위에 있는 랩탑인거지?????</p>
 <p>이건 그림을 대충 그렸으니 못 맞출 수도 있다. 조금 더 신중하게 다시 그려보도록 하자.</p>
-<p><img src="https://github.com/user-attachments/assets/37e9d201-d75e-4b8f-8349-0aabddb76987" alt="gpt-answer-2"></p>
+<p><img src="https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983311/blog/assets/37e9d201-d75e-4b8f-8349-0aabddb76987_zqk5zz.png" alt="gpt-answer-2"></p>
 <blockquote>
 <p>GPT Think: A minimalist cat drawing.</p>
 </blockquote>

@@ -13,11 +13,11 @@
 <h3>1. 글자의 조합이 완성되기 전까지 JS에 반영되지 않음</h3>
 <p>Vue에서 제공하는 양방향 바인딩 디렉티브 <code class="language-text">v-model</code>을 사용할 때 문제가 발생한다.<br>
 위에서 살펴본 사례처럼 4번째 입력(<code class="language-text">ㅈ</code>)까지도 조합을 확신할 수 없다. 이처럼 <code class="language-text">v-model</code>에서는 조합을 확신할 수 없는 상태에서는 글자를 반영하지 않으며, 5번째 입력이 들어와 첫 글자가 확정되는 순간에야 비로소 글자를 반영하게 된다.</p>
-<p><img src="https://github.com/user-attachments/assets/2babad70-e2ce-4464-9f46-5b6855f2bd19" alt="vmodel"></p>
+<p><img src="https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983309/blog/assets/2babad70-e2ce-4464-9f46-5b6855f2bd19_upty1b.gif" alt="vmodel"></p>
 <p>위 영상에서 보다시피 <code class="language-text">앉</code> 을 입력할 때까지도 글자의 조합을 확신할 수 없는 상태이기 때문에 데이터가 화면에 반영되지 않는다. 5번째 글자인 <code class="language-text">ㅓ</code> 입력되는 순간에 비로소 화면에 반영된다.</p>
 <h3>2. <code class="language-text">maxlength</code> 속성에서 마지막 글자가 넘침</h3>
 <p>2번째 현상은 현재 입력 중인 글자(=조합이 확정되지 않는 글자)는 <code class="language-text">length</code> 로 카운트하지 않는다는 것이다. 때문에 <code class="language-text">input</code> 태그에서 <code class="language-text">maxlength</code> 값을 설정해놓으면 마지막 한 글자가 넘쳐 보이는 현상이 발생한다. 해당 <code class="language-text">input</code>의 <code class="language-text">focus</code> 가 해제되면 정상적으로 돌아오지만 사용자 입장에서는 버그라고 느낄 여지가 있다.</p>
-<p><img src="https://github.com/user-attachments/assets/d9ad8b41-fb62-4469-a1bd-0f278b6d13f4" alt="vmodel2"></p>
+<p><img src="https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983315/blog/assets/d9ad8b41-fb62-4469-a1bd-0f278b6d13f4_wtewak.gif" alt="vmodel2"></p>
 <p>위 영상에서 <code class="language-text">input</code> 태그에 <code class="language-text">maxlength=2</code> 속성을 설정해놓았다. 따라서 정확히 2글자만 입력되기를 기대하지만 실제로는 3글자가 입력되는 것처럼 보이고 있다.</p>
 <p>이 현상의 원인이 IME 의 영향도 있지만, 구글링을 해보니 유니코드로 인한 문제일 수도 있자는 <a href="https://mygumi.tistory.com/398">블로그 포스팅</a>을 찾을 수 있었다. 알파벳과 같은 영어 문자는 유니코드상에서 1바이트로 처리되지만, 한글과 같은 복합 문자는 2바이트로 처리되기 때문에 이러한 현상이 발생하는 것으로 보인다.</p>
 <h2>해결방법</h2>
@@ -68,7 +68,7 @@ const handleSubmit = () =&gt; {
 </details>
 <br />
 <p>이렇게 하면 첫 번째 문제는 해결되었지만 두 번째 문제였던 <code class="language-text">maxlength</code> 속성에서 마지막 글자가 넘침 현상은 여전히 발생한다. 이를 해결하기 위해선 <code class="language-text">watch</code>를 사용하여 <code class="language-text">model</code> 문자열의 길이를 체크하고, 제한 길이를 초과할 경우 <code class="language-text">substring</code> 함수를 사용하여 자르면 된다.</p>
-<p><img src="https://github.com/user-attachments/assets/ce934d25-cc0b-4f07-bde5-506e338f1bb3" alt="custom2"></p>
+<p><img src="https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983315/blog/assets/ce934d25-cc0b-4f07-bde5-506e338f1bb3_qd1lnc.gif" alt="custom2"></p>
 <details>
 <summary>
   소스 코드

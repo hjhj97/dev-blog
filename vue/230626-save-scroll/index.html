@@ -37,7 +37,7 @@
 <br />
 <br />
 <div align="center">
-<img src="https://raw.githubusercontent.com/hjhj97/blog.gatsby/main/content/blog/vue/images/save-scroll/save-scroll-1.gif" height="600">
+<img src="https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737988215/blog/assets/save-scroll-2_sgqote.gif" height="600">
 </div>
 <p>콘솔로 <code class="language-text">savedPosition</code>을 찍어보면 그 정체는 <code class="language-text">{top: number,left : number}</code>형태라는 걸 알 수 있다.</p>
 <p>다만 <code class="language-text">savedPosition</code> 값은 사용자가 <strong>뒤로가기/앞으로가기</strong> 를 누를 때만 값이 활성화되고 vue-router를 활용하여 페이지 이동할 때는 값이 null값으로 반환되어서 위치를 저장할 수 없다. 만약 뒤로가기/앞으로가기 누를 때 뿐만 아니라 모든 경우에 대해서 스크롤 위치를 저장하기 위해서는 아래 2번 방법을 사용해야한다.</p>
@@ -83,7 +83,7 @@
 <br />
 <p>콘솔로 <code class="language-text">prevInfo</code>를 찍어보면 다음과 아래와 같이 나온다.</p>
 <div align="center">
-<img src="https://raw.githubusercontent.com/hjhj97/blog.gatsby/main/content/blog/vue/images/save-scroll/save-scroll-2.gif" height="600">
+<img src="https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737988215/blog/assets/save-scroll-1_ucdmmx.gif" height="600">
 </div>
 <p>즉 <code class="language-text">prevInfo</code>에 저장된 value값을 받아서 <code class="language-text">scrollBehavior</code>함수의 top값으로 리턴해주게 되면 이전에 저장되었던 스크롤 위치로 복귀할 수 있게 되는 원리이다.</p>
 <h2>Reference</h2>

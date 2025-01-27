@@ -3,31 +3,7 @@
 <p>기존 vue의 전역 상태관리 라이브러리는 거의 <code class="language-text">vuex</code>가 독점하다시피 한 시장이었다. 옆 동네 react만 하더라도 <code class="language-text">redux</code>,<code class="language-text">recoil</code>,<code class="language-text">MobX</code>,<code class="language-text">zustand</code>와 같이 여러 라이브러리 중에서 선택할 수 있었지만, vue에서는 선택권 없이 사실상 99% <code class="language-text">vuex</code>를 써야했다. 오히려 이 점이 학습에 대한 부담(여러 라이브러리 두루 알고 있어야 함)을 줄여주기도 했지만, vuex의 아쉬운 점을 대체할 수단이 없다는 단점을 껴안고 있었다.</p>
 <p>그러다가 2019년 11월에 <code class="language-text">vuex</code>의 experiment to redesign(리디자인 실험)으로서 <code class="language-text">pinia</code>가 처음 출시되었고, 현재는 <code class="language-text">vuex</code>를 대신하여 vue의 공식 상태관리 라이브러리로 자리잡았다. 이름은 달라졌다고는 해도 <code class="language-text">vuex</code> 개발팀이 <code class="language-text">pinia</code>를 개발했기 때문에 기존 <code class="language-text">vuex</code>의 기능과 문법은 거의 바뀌지 않았고 새로 학습해야할 내용도 부담 없는 수준이다.(공식문서에서는 <code class="language-text">pinia</code>를 <code class="language-text">vuex 5</code>의 다른 이름이라고 소개한다)</p>
 <p><a href="https://npmtrends.com/pinia-vs-vuex">npmtrends</a>를 보더라도 <code class="language-text">vuex</code>와의 격차가 점점 줄어들고 있음을 확인할 수 있다.
-<span
-      class="gatsby-resp-image-wrapper"
-      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; "
-    >
-      <span
-    class="gatsby-resp-image-background-image"
-    style="padding-bottom: 34.177215189873415%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAABYlAAAWJQFJUiTwAAAA5UlEQVR42lVRC67EIAj0/jfdZPO2La2KAvMC9LNrMgEHcEAK9w4zgwFpVaCqYaEDlSfenwV6/EE8SSfsgud/15qirOsKa44N1ncY79DwKTkmgAk2GqwtyfMevDWC1eWp7YTSvMPZYTJCwZVU5VF2eIxe2RW+eJ/EY17vvndYaz3bxT1CjJxEQmZMEefi7mef4zWFiFzqJynU1DBFwaJhXWRI4mDB1gVbEyxVsLYZPnVBOWrF3v2iNzKY/s5pP1VAp9+nQkLwF84VEYkOLjhZW8cY8x7bbeucmz+3aSZgZqjavWH/w3+SAyeNoekG7wAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
-  ></span>
-  <img
-        class="gatsby-resp-image-image"
-        alt="npm trends pinia"
-        title=""
-        src="/static/c5bf99a91716a6dc0ec17d96e55aae29/f058b/npm-trends-pinia.png"
-        srcset="/static/c5bf99a91716a6dc0ec17d96e55aae29/c26ae/npm-trends-pinia.png 158w,
-/static/c5bf99a91716a6dc0ec17d96e55aae29/6bdcf/npm-trends-pinia.png 315w,
-/static/c5bf99a91716a6dc0ec17d96e55aae29/f058b/npm-trends-pinia.png 630w,
-/static/c5bf99a91716a6dc0ec17d96e55aae29/40601/npm-trends-pinia.png 945w,
-/static/c5bf99a91716a6dc0ec17d96e55aae29/78612/npm-trends-pinia.png 1260w,
-/static/c5bf99a91716a6dc0ec17d96e55aae29/1cb21/npm-trends-pinia.png 2586w"
-        sizes="(max-width: 630px) 100vw, 630px"
-        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
-        loading="lazy"
-        decoding="async"
-      />
-    </span></p>
+<img src="https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983320/blog/assets/npm-trends-pinia_ccipfc.png" alt=""></p>
 <h2>vuex와 비교해 달라진 점</h2>
 <h4>1. 다중 store</h4>
 <p><code class="language-text">vuex</code>에서 여러 종류의 store를 사용할 경우 일반적으로 modules 디렉토리 밑에 몰아넣고 <code class="language-text">index.js</code>에서 하나로 합쳐주는 방식을 사용하였다.</p>

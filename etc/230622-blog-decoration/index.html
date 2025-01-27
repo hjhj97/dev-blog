@@ -5,39 +5,7 @@
 <p><em>(나중에 알게된 사실인데, <a href="https://jbee.io">Jbee</a>님이 배포하시는 <a href="https://github.com/JaeYeopHan/gatsby-starter-bee">gatsby-starter-bee</a>가 있었다. 아마 내가 구경한 블로그의 상당수는 이를 fork한 것으로 보인다. 이 블로그도 fork해서 만드는 걸 고려해보긴 했지만, 일단은 제로베이스부터 만들고 싶었다. 대신에 각종 기능을 어떻게 구현했는지에 대한 코드는 많이 참고하고 있다. Jbee님 감사합니다.)</em></p>
 <h2>어떻게 꾸밀까</h2>
 <p>나는 <code class="language-text">gatsby-starter-blog</code>를 fork해서 갖고왔다. 처음 <code class="language-text">npm run develop</code> 커맨드로 실행하게 되면 뿌듯함과 함께 어떻게 꾸며야할까에 대한 막막함이 몰려온다.
-<span
-      class="gatsby-resp-image-wrapper"
-      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; "
-    >
-      <a
-    class="gatsby-resp-image-link"
-    href="/static/fe18827134b205b6948d96e3ca7f53b5/0c1ff/blog-history-1.png"
-    style="display: block"
-    target="_blank"
-    rel="noopener"
-  >
-    <span
-    class="gatsby-resp-image-background-image"
-    style="padding-bottom: 77.84810126582278%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABYlAAAWJQFJUiTwAAABjklEQVR42q2TzXLaMBSF8/6vwppFugF2rGEDoZ4mzjSAsfUvG//xdaTgmZCWMqQ9M3dkW9Lne6R7HwBOp1MY0FqzWq3YbDakacr3JCFJEtbrNcvlMs4P64c9n/XwEbjf7/j2+Mh4PGY2mzGfz5lMJkynU0ajEYvFIq7r+55rugDuDoqfu4K2bdHGYaynbhqatqVtO7wvsdZhjI1xE/iavpBsnnDWkhcC4yuauqGOUccfdV0X4WG8ChzUn6Bqe9yxwx1buv7EvXrP8Pyyk47Fc8bqTfG01RH6JeCgY1WipcA7i7MGpRRCSAohEVLFY5Dy/ZtS+o+XcwHU1pNuD7zuc9JtThYASiGVjqDwrLVBSIlz/rblzFSst4pUeH7kDlM1fJy/23LpPXmWoaRAKxUt53lxti0oChHthyzLsroNtL7iLStiFEKhjUHpcygdI9gPtXmtuC8s57aKN5zsLWXd3m33twzDQWfZIRbw5579W/9eBYbqPx7rc7t19F8t7EEhs5Cl857ClJR192/A/6FfblHhRO9cVYoAAAAASUVORK5CYII='); background-size: cover; display: block;"
-  ></span>
-  <img
-        class="gatsby-resp-image-image"
-        alt="첫 상태"
-        title=""
-        src="/static/fe18827134b205b6948d96e3ca7f53b5/f058b/blog-history-1.png"
-        srcset="/static/fe18827134b205b6948d96e3ca7f53b5/c26ae/blog-history-1.png 158w,
-/static/fe18827134b205b6948d96e3ca7f53b5/6bdcf/blog-history-1.png 315w,
-/static/fe18827134b205b6948d96e3ca7f53b5/f058b/blog-history-1.png 630w,
-/static/fe18827134b205b6948d96e3ca7f53b5/40601/blog-history-1.png 945w,
-/static/fe18827134b205b6948d96e3ca7f53b5/78612/blog-history-1.png 1260w,
-/static/fe18827134b205b6948d96e3ca7f53b5/0c1ff/blog-history-1.png 2192w"
-        sizes="(max-width: 630px) 100vw, 630px"
-        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
-        loading="lazy"
-        decoding="async"
-      />
-  </a>
-    </span></p>
+<img src="https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983313/blog/assets/blog-history-1_jn3vyd.png" alt="첫 상태"></p>
 <div align=center>
 <em>
 처음으로 블로그를 실행하면 마주하게 되는 화면.사실상 허허벌판 상태이다.
@@ -52,39 +20,7 @@
 <h4>3. 헤더 스타일 변경하기</h4>
 <p>다른 사람들의 블로그의 헤더가 모두 top-fixed에 full-width인 걸 보아하니, 나도 왠지 그래야만 할 것 같은 기분이 들었다. background-color는 primary-color로 적용하니 꽤 볼만해졌다. 그렇지만 점점 갈수록 다른 블로그들이랑 너무 비슷해져가는데...? 이럴거면 그냥 처음부터 <code class="language-text">gatsby-start-bee</code>를 받아서 쓸 걸 그랬나...</p>
 <p>여기까지 적용해본 결과, 아래와 같이 나온다.</p>
-<p><span
-      class="gatsby-resp-image-wrapper"
-      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; "
-    >
-      <a
-    class="gatsby-resp-image-link"
-    href="/static/104decd28c6c747339e89b9fc13397e9/26781/blog-history-2.png"
-    style="display: block"
-    target="_blank"
-    rel="noopener"
-  >
-    <span
-    class="gatsby-resp-image-background-image"
-    style="padding-bottom: 60.75949367088608%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABYlAAAWJQFJUiTwAAABH0lEQVR42q1STUsDMRDtnxcRjyqK4LHQav+JePDkUZC6WtvtZpJMPjd5sllbKCzYVgceA0Py5s2bGZ3ePOHs9hkn1484v3vB1X2Ni8myx7TH5XS1N0b45xjllJFzRkoJKeVSfK0Ibx8NqvcK83mFtm23H/Im52HsKOyIuxiPJ5g9zCBI4XPxBSEIgiSaRoDZwBgL5/2wwqGiswzDDOdbhBjhQ0AIEd77ojblvG3+K2H3jnQ3/pEeDhWV0jDGbG3YxRGEQkYs6ogVdSPnvyskqctCpGJo5rIIrX8yM6x1+3vYBRsPkgakDNhYWGvLZq1zMNYihHCYwrpxWK4D1tTChVSub+Nhf6899lfIGiQJSklIKSGICqRURaVzHjHGQcJvx8ag/VPYq0AAAAAASUVORK5CYII='); background-size: cover; display: block;"
-  ></span>
-  <img
-        class="gatsby-resp-image-image"
-        alt="두 번째 상태"
-        title=""
-        src="/static/104decd28c6c747339e89b9fc13397e9/f058b/blog-history-2.png"
-        srcset="/static/104decd28c6c747339e89b9fc13397e9/c26ae/blog-history-2.png 158w,
-/static/104decd28c6c747339e89b9fc13397e9/6bdcf/blog-history-2.png 315w,
-/static/104decd28c6c747339e89b9fc13397e9/f058b/blog-history-2.png 630w,
-/static/104decd28c6c747339e89b9fc13397e9/40601/blog-history-2.png 945w,
-/static/104decd28c6c747339e89b9fc13397e9/78612/blog-history-2.png 1260w,
-/static/104decd28c6c747339e89b9fc13397e9/26781/blog-history-2.png 2664w"
-        sizes="(max-width: 630px) 100vw, 630px"
-        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
-        loading="lazy"
-        decoding="async"
-      />
-  </a>
-    </span></p>
+<p><img src="https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983314/blog/assets/blog-history-2_ymf24b.png" alt="두 번째 상태"></p>
 <p>참고 볼 만한 수준은 되었지만, 아직 이정도로는 부족하다.</p>
 <h4>4. 댓글 작성 기능</h4>
 <p><code class="language-text">utterance</code>를 활용하면 된다. 블로그 댓글을 위한 별도의 public 레포지토리를 만들고나서 연동을 하면 해당 레포지토리의 issue에 글이 올라가게 되고, 이를 댓글처럼 활용할 수 있는 방식이다.</p>
