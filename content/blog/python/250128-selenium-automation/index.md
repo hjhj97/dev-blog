@@ -9,7 +9,7 @@ category: Python
 
 Cloudinary 관련 컨텐츠로 글을 무지막지하게 뽑아내고 있다. 처음에는 소소하게 시작했는데, 하다보니깐 재미가 붙어서 계속 살을 덧붙이고 싶어진다.
 
-지금까지 내가 블로그에 올린 asset 파일들은 [이 포스팅](https://juheon.dev/react/250123-cloudinary-next-image-uploader-1/)에서도 설명했다시피 두 가지 방식으로 저장했었는데, 이제는 이 파일들을 모두 Clouninary로 마이그레이션 하고자 한다. 웹 자동화가 필요하니 `Selenium`을 사용해보기로 했다. 나도 `Selenium`은 이번에 처음 접해보기 때문에 Cursor의 힘을 빌려서 자동화 코드를 작성해보려 한다. 마이그레이션은 총 4단계로 이뤄진다.
+지금까지 내가 블로그에 올린 asset 파일들은 [이 포스팅](https://juheon.dev/react/250123-cloudinary-next-image-uploader-1/)에서도 설명했다시피 두 가지 방식으로 저장했었는데, 이제는 이 파일들을 모두 Cloudinary로 마이그레이션 하고자 한다. 이를 위해 웹 스크래핑 라이브러리 `Selenium`을 사용해보기로 했다. 나도 `Selenium`은 이번에 처음 접해보기 때문에 Cursor의 힘을 빌려서 자동화 코드를 작성해보려 한다. 마이그레이션은 총 4단계로 이뤄진다.
 
 1. 블로그에 올린 이미지 파일의 경로 추출
 2. 추출한 경로를의 이미지를 모두 다운로드
@@ -259,6 +259,6 @@ dd
 
 ## 마이그레이션 결과
 
-빌드 결과물을 확인해본 결과, asset 파일의 용량이 기존 28.4 MB에서 70% 이상 줄어든 6.3MB가 된 것을 확인할 수 있다.
+빌드 결과물을 확인해본 결과, asset 파일의 용량이 기존 28.4 MB에서 70% 이상 줄어든 6.3MB가 된 것을 확인할 수 있다. 앞으로 블로그에 올린 이미지들은 모두 Cloudinary에 저장될 것이다.
 
 ![migration-result](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737989498/blog/assets/migration-result.png)
