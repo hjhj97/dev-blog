@@ -226,7 +226,7 @@ Cloudinary 콘솔에 들어가면 이처럼 내가 업로드한 이미지들을 
 
 ![result](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737696160/blog/assets/result.png)
 
-이 프로젝트의 소스코드는 [Github](https://github.com/jisu-dev/cloudinary-next-image-uploader)에서 확인할 수 있다.
+이 프로젝트의 소스코드는 [Github](https://github.com/hjhj97/next-cloudinary-image-uploader)에서 확인할 수 있다.
 
 ## 예외 처리
 
