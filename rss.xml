@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[하주헌 개발 블로그]]></description><link>https://juheon.dev</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 01 Jul 2025 05:57:05 GMT</lastBuildDate><item><title><![CDATA[2025년 상반기 회고]]></title><description><![CDATA[오랜만에 오랜만에 글을 쓴다. 그동안 '많은 일'들이 있었고, 개인적으로 생각을 정리하느라 블로그에 소홀해졌다. '많은 일'이 무엇인지에 대해선 차차 설명할 것이고, 결론부터 말하자면 대학원에 진학하기로 결정했다.…]]></description><link>https://juheon.dev/essay/250701-review-2025-half/</link><guid isPermaLink="false">https://juheon.dev/essay/250701-review-2025-half/</guid><pubDate>Tue, 01 Jul 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;오랜만에&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[하주헌 개발 블로그]]></description><link>https://juheon.dev</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 04 Jul 2025 17:53:53 GMT</lastBuildDate><item><title><![CDATA[2025년 상반기 회고]]></title><description><![CDATA[오랜만에 오랜만에 글을 쓴다. 그동안 '많은 일'들이 있었고, 개인적으로 생각을 정리하느라 블로그에 소홀해졌다. '많은 일'이 무엇인지에 대해선 차차 설명할 것이고, 결론부터 말하자면 대학원에 진학하기로 결정했다.…]]></description><link>https://juheon.dev/essay/250701-review-2025-half/</link><guid isPermaLink="false">https://juheon.dev/essay/250701-review-2025-half/</guid><pubDate>Tue, 01 Jul 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;오랜만에&lt;/h2&gt;
 &lt;p&gt;오랜만에 글을 쓴다.&lt;/p&gt;
 &lt;p&gt;그동안 &apos;많은 일&apos;들이 있었고, 개인적으로 생각을 정리하느라 블로그에 소홀해졌다. &apos;많은 일&apos;이 무엇인지에 대해선 차차 설명할 것이고, 결론부터 말하자면 &lt;strong&gt;대학원에 진학하기로 결정했다&lt;/strong&gt;. 9월부터 석사 과정을 시작할 예정이며, 분야는 LLM으로 큰 방향성을 정했다.&lt;/p&gt;
 &lt;p&gt;뜬금없는 전개일 수 있다. 그렇다고 해서 홧김에 내린 즉흥적인 결정이 아니며, 긴 고심 끝에 내린 결정이다. 여러 요인을 고려해 보았을 때 도출해낸 최선의 안이라고 생각한다(최소한 지금까지는).&lt;br&gt;
@@ -662,7 +662,7 @@ function UploadResult() {
 &lt;p&gt;내가 원하던대로 파일을 여러개 업로드하고 미리보기를 볼 수 있으며, 파일명을 수정할 수 있고, 업로드 후 이미지 경로를 받아올 수 있으며, 이를 마크다운 문법으로 변환할 수 있게 되었다.&lt;/p&gt;
 &lt;p&gt;Cloudinary 콘솔에 들어가면 이처럼 내가 업로드한 이미지들을 한번에 확인해볼 수 있다.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737696160/blog/assets/result.png&quot; alt=&quot;result&quot;&gt;&lt;/p&gt;
-&lt;p&gt;이 프로젝트의 소스코드는 &lt;a href=&quot;https://github.com/jisu-dev/cloudinary-next-image-uploader&quot;&gt;Github&lt;/a&gt;에서 확인할 수 있다.&lt;/p&gt;
+&lt;p&gt;이 프로젝트의 소스코드는 &lt;a href=&quot;https://github.com/hjhj97/next-cloudinary-image-uploader&quot;&gt;Github&lt;/a&gt;에서 확인할 수 있다.&lt;/p&gt;
 &lt;h2&gt;예외 처리&lt;/h2&gt;
 &lt;p&gt;시간이 된다면 다음과 같은 예외 처리도 구현해보고자 한다.&lt;/p&gt;
 &lt;ol&gt;
