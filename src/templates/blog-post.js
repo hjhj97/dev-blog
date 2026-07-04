@@ -5,12 +5,28 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Comment from "../components/comment"
+import { getLanguageSections } from "../utils/postLanguage"
 
 const BlogPostTemplate = ({
   data: { previous, next, site, markdownRemark: post },
   location,
 }) => {
   const siteTitle = site.siteMetadata?.title || `Title`
+  const [language, setLanguage] = React.useState("kor")
+  const languageSections = React.useMemo(
+    () => getLanguageSections(post.html),
+    [post.html]
+  )
+  const hasLanguageTabs = Boolean(
+    languageSections?.kor && languageSections?.eng
+  )
+  const title =
+    language === "eng" && post.frontmatter.titleEn
+      ? post.frontmatter.titleEn
+      : post.frontmatter.title
+  const articleHtml = hasLanguageTabs
+    ? languageSections[language] || languageSections.kor
+    : post.html
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -20,7 +36,7 @@ const BlogPostTemplate = ({
         itemType="http://schema.org/Article"
       >
         <header>
-          <h1 itemProp="headline">{post.frontmatter.title}</h1>
+          <h1 itemProp="headline">{title}</h1>
           <div className="blog-post-bottom">
             <p>{post.frontmatter.date}</p>
             <Link to={`/?category=${post.frontmatter.category}`}>
@@ -29,8 +45,38 @@ const BlogPostTemplate = ({
           </div>
         </header>
         <hr />
+        {hasLanguageTabs && (
+          <div
+            className="post-language-tabs"
+            role="tablist"
+            aria-label="Post language"
+          >
+            <button
+              type="button"
+              className={`post-language-tab ${
+                language === "kor" ? "selected" : ""
+              }`}
+              role="tab"
+              aria-selected={language === "kor"}
+              onClick={() => setLanguage("kor")}
+            >
+              KOR
+            </button>
+            <button
+              type="button"
+              className={`post-language-tab ${
+                language === "eng" ? "selected" : ""
+              }`}
+              role="tab"
+              aria-selected={language === "eng"}
+              onClick={() => setLanguage("eng")}
+            >
+              ENG
+            </button>
+          </div>
+        )}
         <section
-          dangerouslySetInnerHTML={{ __html: post.html }}
+          dangerouslySetInnerHTML={{ __html: articleHtml }}
           itemProp="articleBody"
         />
         <hr />
@@ -90,9 +136,11 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
+        titleEn
         date(formatString: "YYYY-MM-DD")
         keywords
         description
+        descriptionEn
         category
       }
     }

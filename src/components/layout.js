@@ -7,11 +7,11 @@ import { Helmet } from "react-helmet"
 const Layout = ({ location, title, children }) => {
   deckDeckGoHighlightElement()
 
-  //const rootPath = `${__PATH_PREFIX__}/`
-  //const isRootPath = location.pathname === rootPath
+  const rootPath = `${__PATH_PREFIX__}/`
+  const isRootPath = location?.pathname === rootPath
 
   return (
-    <div className="global-wrapper">
+    <div className="global-wrapper" data-is-root-path={isRootPath}>
       <Helmet>
         <meta
           name="google-site-verification"

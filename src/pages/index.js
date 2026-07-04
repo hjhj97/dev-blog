@@ -7,7 +7,8 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Category from "../components/category"
 import { useCategory } from "../hooks/useCategory"
-import { Helmet } from "react-helmet"
+import { getLanguageLabel, getPostLanguages } from "../utils/postLanguage"
+
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const posts = data.allMarkdownRemark.nodes
@@ -23,7 +24,7 @@ const BlogIndex = ({ data, location }) => {
     })
     return map
   }
-  const categoryByMap = useMemo(makeCategoryMap, [])
+  const categoryByMap = useMemo(makeCategoryMap, [posts])
   const categories = Array.from(categoryByMap, ([name, cnt]) => ({ name, cnt }))
 
   if (posts.length === 0) {
@@ -57,6 +58,7 @@ const BlogIndex = ({ data, location }) => {
           )
           .map(post => {
             const title = post.frontmatter.title || post.fields.slug
+            const languages = getPostLanguages(post.html)
 
             return (
               <li key={post.fields.slug}>
@@ -81,9 +83,26 @@ const BlogIndex = ({ data, location }) => {
                     </section>
                     <div className="post-list-item__bottom">
                       <small>{post.frontmatter.date}</small>
-                      <small className="post-category">
-                        {post.frontmatter.category}
-                      </small>
+                      <div className="post-list-item__meta">
+                        <span
+                          className="post-language-badges"
+                          aria-label={`Languages: ${languages
+                            .map(getLanguageLabel)
+                            .join(", ")}`}
+                        >
+                          {languages.map(language => (
+                            <small
+                              key={language}
+                              className="post-language-badge"
+                            >
+                              {getLanguageLabel(language)}
+                            </small>
+                          ))}
+                        </span>
+                        <small className="post-category">
+                          {post.frontmatter.category}
+                        </small>
+                      </div>
                     </div>
                   </Link>
                 </article>
@@ -117,6 +136,7 @@ export const pageQuery = graphql`
     ) {
       nodes {
         excerpt
+        html
         fields {
           slug
         }
