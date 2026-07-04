@@ -4,7 +4,7 @@ function Category({ categories, currentCategory, selectCategory }) {
   const getToalPostCnt = () => {
     return categories.reduce((acc, cur) => acc + cur.cnt, 0)
   }
-  const totalPost = useMemo(getToalPostCnt, [])
+  const totalPost = useMemo(getToalPostCnt, [categories])
 
   return (
     <ul className="category-wrapper">

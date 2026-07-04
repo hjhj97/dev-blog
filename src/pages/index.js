@@ -1,4 +1,4 @@
-import React, { useMemo } from "react"
+import React, { useMemo, useState } from "react"
 //import * as _ from "lodash"
 import { Link, graphql } from "gatsby"
 
@@ -7,24 +7,52 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Category from "../components/category"
 import { useCategory } from "../hooks/useCategory"
-import { getLanguageLabel, getPostLanguages } from "../utils/postLanguage"
+import {
+  getLanguageLabel,
+  getLanguageSections,
+  getPostLanguages,
+} from "../utils/postLanguage"
+
+const LANGUAGES = ["kor", "eng"]
+const PREVIEW_LENGTH = 150
+
+const getPreviewText = (post, language) => {
+  if (language === "eng") {
+    const sections = getLanguageSections(post.html)
+    if (sections?.eng) {
+      const text = sections.eng
+        .replace(/<[^>]+>/g, " ")
+        .replace(/\s+/g, " ")
+        .trim()
+      return text.length > PREVIEW_LENGTH
+        ? `${text.slice(0, PREVIEW_LENGTH)}…`
+        : text
+    }
+  }
+  return post.excerpt
+}
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const posts = data.allMarkdownRemark.nodes
   const [currentCategory, selectCategory] = useCategory()
-  //const categories = _.uniq(posts.map(post => post.frontmatter?.category))
+  const [language, setLanguage] = useState("kor")
+
+  const visiblePosts = useMemo(
+    () => posts.filter(post => getPostLanguages(post.html).includes(language)),
+    [posts, language]
+  )
 
   const makeCategoryMap = () => {
     const map = new Map()
-    posts.forEach(post => {
+    visiblePosts.forEach(post => {
       const postCategory = post.frontmatter?.category
       const postCnt = map.get(postCategory) || 0
       map.set(postCategory, postCnt + 1)
     })
     return map
   }
-  const categoryByMap = useMemo(makeCategoryMap, [posts])
+  const categoryByMap = useMemo(makeCategoryMap, [visiblePosts])
   const categories = Array.from(categoryByMap, ([name, cnt]) => ({ name, cnt }))
 
   if (posts.length === 0) {
@@ -43,21 +71,46 @@ const BlogIndex = ({ data, location }) => {
   return (
     <Layout location={location} title={siteTitle}>
       <Bio />
-      <Category
-        categories={categories}
-        currentCategory={currentCategory}
-        selectCategory={selectCategory}
-      />
+      <div className="list-controls">
+        <Category
+          categories={categories}
+          currentCategory={currentCategory}
+          selectCategory={selectCategory}
+        />
+        <div
+          className="post-language-tabs"
+          role="tablist"
+          aria-label="Post list language"
+        >
+          {LANGUAGES.map(lang => (
+            <button
+              key={lang}
+              type="button"
+              role="tab"
+              aria-selected={language === lang}
+              className={`post-language-tab ${
+                language === lang ? "selected" : ""
+              }`}
+              onClick={() => setLanguage(lang)}
+            >
+              {getLanguageLabel(lang)}
+            </button>
+          ))}
+        </div>
+      </div>
 
       <ol className="post-list">
-        {posts
+        {visiblePosts
           .filter(
             post =>
               currentCategory === "All" ||
               post.frontmatter.category === currentCategory
           )
           .map(post => {
-            const title = post.frontmatter.title || post.fields.slug
+            const title =
+              (language === "eng" && post.frontmatter.titleEn) ||
+              post.frontmatter.title ||
+              post.fields.slug
             const languages = getPostLanguages(post.html)
 
             return (
@@ -74,12 +127,9 @@ const BlogIndex = ({ data, location }) => {
                       </h2>
                     </header>
                     <section>
-                      <p
-                        dangerouslySetInnerHTML={{
-                          __html: post.frontmatter.description || title,
-                        }}
-                        itemProp="description"
-                      />
+                      <p itemProp="description">
+                        {getPreviewText(post, language)}
+                      </p>
                     </section>
                     <div className="post-list-item__bottom">
                       <small>{post.frontmatter.date}</small>
@@ -135,7 +185,7 @@ export const pageQuery = graphql`
       filter: { frontmatter: { category: { ne: null } } }
     ) {
       nodes {
-        excerpt
+        excerpt(pruneLength: 150, truncate: true)
         html
         fields {
           slug
@@ -143,6 +193,7 @@ export const pageQuery = graphql`
         frontmatter {
           date(formatString: "YYYY-MM-DD")
           title
+          titleEn
           description
           keywords
           category
