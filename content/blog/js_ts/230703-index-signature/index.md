@@ -1,7 +1,7 @@
 ---
 title: TS 개념 정리
 date: "2023-07-05T22:12:03.284Z"
-description:
+description: 인덱스 시그니처, 유니온 타입, 인터섹션 타입 등 TypeScript 기본 개념을 예제로 정리한 글.
 category: JS/TS
 ---
 

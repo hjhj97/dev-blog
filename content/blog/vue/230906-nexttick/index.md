@@ -1,7 +1,7 @@
 ---
 title: nextTick()은 언제쓸까?
 date: "2023-09-06T22:12:03.284Z"
-description:
+description: Vue의 nextTick이 필요한 상황과 DOM 업데이트 타이밍을 textarea 높이 조정 예제로 설명합니다.
 category: Vue
 ---
 

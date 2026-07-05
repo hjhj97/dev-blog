@@ -1,6 +1,6 @@
 ---
 title: Vue 에서 스크롤 위치 저장
-description:
+description: vue-router의 savedPosition과 sessionStorage를 활용해 Vue SPA에서 스크롤 위치를 저장하는 방법.
 date: "2023-06-26T22:12:00.000Z"
 category: Vue
 ---

@@ -54,6 +54,64 @@ const BlogIndex = ({ data, location }) => {
   }
   const categoryByMap = useMemo(makeCategoryMap, [visiblePosts])
   const categories = Array.from(categoryByMap, ([name, cnt]) => ({ name, cnt }))
+  const filteredPosts = useMemo(
+    () =>
+      visiblePosts.filter(
+        post =>
+          currentCategory === "All" ||
+          post.frontmatter.category === currentCategory
+      ),
+    [currentCategory, visiblePosts]
+  )
+  const leftColumnPosts = filteredPosts.filter((_, index) => index % 2 === 0)
+  const rightColumnPosts = filteredPosts.filter((_, index) => index % 2 === 1)
+  const renderPost = post => {
+    const title =
+      (language === "eng" && post.frontmatter.titleEn) ||
+      post.frontmatter.title ||
+      post.fields.slug
+    const languages = getPostLanguages(post.html)
+
+    return (
+      <article
+        key={post.fields.slug}
+        className="post-list-item"
+        itemScope
+        itemType="http://schema.org/Article"
+      >
+        <Link to={post.fields.slug} itemProp="url">
+          <header>
+            <h2>
+              <span itemProp="headline">{title}</span>
+            </h2>
+          </header>
+          <section>
+            <p itemProp="description">{getPreviewText(post, language)}</p>
+          </section>
+          <div className="post-list-item__bottom">
+            <small>{post.frontmatter.date}</small>
+            <div className="post-list-item__meta">
+              <span
+                className="post-language-badges"
+                aria-label={`Languages: ${languages
+                  .map(getLanguageLabel)
+                  .join(", ")}`}
+              >
+                {languages.map(language => (
+                  <small key={language} className="post-language-badge">
+                    {getLanguageLabel(language)}
+                  </small>
+                ))}
+              </span>
+              <small className="post-category">
+                {post.frontmatter.category}
+              </small>
+            </div>
+          </div>
+        </Link>
+      </article>
+    )
+  }
 
   if (posts.length === 0) {
     return (
@@ -69,14 +127,10 @@ const BlogIndex = ({ data, location }) => {
   }
 
   return (
-    <Layout location={location} title={siteTitle}>
-      <Bio />
-      <div className="list-controls">
-        <Category
-          categories={categories}
-          currentCategory={currentCategory}
-          selectCategory={selectCategory}
-        />
+    <Layout
+      location={location}
+      title={siteTitle}
+      headerContent={
         <div
           className="post-language-tabs"
           role="tablist"
@@ -97,69 +151,32 @@ const BlogIndex = ({ data, location }) => {
             </button>
           ))}
         </div>
+      }
+    >
+      <div className="hero-band">
+        <Bio />
       </div>
-
-      <ol className="post-list">
-        {visiblePosts
-          .filter(
-            post =>
-              currentCategory === "All" ||
-              post.frontmatter.category === currentCategory
-          )
-          .map(post => {
-            const title =
-              (language === "eng" && post.frontmatter.titleEn) ||
-              post.frontmatter.title ||
-              post.fields.slug
-            const languages = getPostLanguages(post.html)
-
-            return (
-              <li key={post.fields.slug}>
-                <article
-                  className="post-list-item"
-                  itemScope
-                  itemType="http://schema.org/Article"
-                >
-                  <Link to={post.fields.slug} itemProp="url">
-                    <header>
-                      <h2>
-                        <span itemProp="headline">{title}</span>
-                      </h2>
-                    </header>
-                    <section>
-                      <p itemProp="description">
-                        {getPreviewText(post, language)}
-                      </p>
-                    </section>
-                    <div className="post-list-item__bottom">
-                      <small>{post.frontmatter.date}</small>
-                      <div className="post-list-item__meta">
-                        <span
-                          className="post-language-badges"
-                          aria-label={`Languages: ${languages
-                            .map(getLanguageLabel)
-                            .join(", ")}`}
-                        >
-                          {languages.map(language => (
-                            <small
-                              key={language}
-                              className="post-language-badge"
-                            >
-                              {getLanguageLabel(language)}
-                            </small>
-                          ))}
-                        </span>
-                        <small className="post-category">
-                          {post.frontmatter.category}
-                        </small>
-                      </div>
-                    </div>
-                  </Link>
-                </article>
-              </li>
-            )
-          })}
-      </ol>
+      <div className="post-list post-list--desktop">
+        <div className="post-list-column">
+          {leftColumnPosts.map(renderPost)}
+        </div>
+        <div className="post-list-column">
+          <Category
+            categories={categories}
+            currentCategory={currentCategory}
+            selectCategory={selectCategory}
+          />
+          {rightColumnPosts.map(renderPost)}
+        </div>
+      </div>
+      <div className="post-list post-list--mobile">
+        <Category
+          categories={categories}
+          currentCategory={currentCategory}
+          selectCategory={selectCategory}
+        />
+        {filteredPosts.map(renderPost)}
+      </div>
     </Layout>
   )
 }
@@ -171,7 +188,7 @@ export default BlogIndex
  *
  * See: https://www.gatsbyjs.com/docs/reference/built-in-components/gatsby-head/
  */
-export const Head = () => <Seo title="All posts" />
+export const Head = () => <Seo title="All posts" pathname="/" />
 
 export const pageQuery = graphql`
   {

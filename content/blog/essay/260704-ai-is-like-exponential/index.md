@@ -1,7 +1,7 @@
 ---
 title: AI 활용 능력은 지수와 같다
 titleEn: AI Fluency Is Like an Exponent
-description: 
+description: AI 활용 능력이 배경 지식과 결합할 때 생산성 격차가 어떻게 커지는지 정리한 짧은 에세이.
 descriptionEn: A short reflection on how AI fluency amplifies background knowledge and widens productivity gaps.
 date: "2026-07-04"
 category: Essay

@@ -49,6 +49,12 @@ const Bio = () => {
       <div>
         <h3 className="bio-name">{`${author.name} ${author.nickname}`}</h3>
         <p>{author?.summary || null}</p>
+        <p className="bio-description">
+          M.S. student in Ajou Univ. Dept. of AI
+          <br />
+          Interested in human-centered AI, including LLM persona, bias, and
+          emotion.
+        </p>
         <div className="bio-social">
           <a href={`https://github.com/${social.github}`} target="_blank">
             <GithubLogo />

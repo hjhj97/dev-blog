@@ -1,7 +1,7 @@
 ---
 title: v-model 원리와 커스텀 컴포넌트 만들기 (2 of 2)
 date: "2023-07-02T22:12:03.284Z"
-description:
+description: Vue v-model 기반 커스텀 input 컴포넌트에 전화번호와 이메일 입력 로직을 구현하는 과정.
 category: Vue
 ---
 

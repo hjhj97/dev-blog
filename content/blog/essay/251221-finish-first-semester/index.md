@@ -1,6 +1,6 @@
 ---
 title: 3년만의 종강
-description:
+description: 대학원 첫 학기를 마치며 연구 주제 탐색, AI 활용 공부, 방학 계획을 돌아본 회고.
 date: "2025-12-21"
 category: Essay
 ---

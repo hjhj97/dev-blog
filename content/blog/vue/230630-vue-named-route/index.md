@@ -1,7 +1,7 @@
 ---
 title: react에는 named-route 없나요?(Feat. vue에는 있는데..)
 date: "2023-06-30T22:12:03.284Z"
-description:
+description: Vue의 named route 방식과 React의 pathname 기반 라우팅을 비교하며 라우트 오타와 현재 페이지 판별 문제를 정리합니다.
 category: Vue
 ---
 

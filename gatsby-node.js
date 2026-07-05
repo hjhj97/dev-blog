@@ -116,11 +116,15 @@ exports.createSchemaCustomization = ({ actions }) => {
     type Frontmatter {
       title: String
       titleEn: String
+      seoTitle: String
       description: String
       descriptionEn: String
+      seoDescription: String
+      ogImage: String
       keywords: String
       category: String
       date: Date @dateformat
+      updated: Date @dateformat
     }
 
     type Fields {

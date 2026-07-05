@@ -108,11 +108,23 @@ const BlogPostTemplate = ({
 }
 
 export const Head = ({ data: { markdownRemark: post } }) => {
+  const title = post.frontmatter.seoTitle || post.frontmatter.title
+  const description =
+    post.frontmatter.seoDescription ||
+    post.frontmatter.description ||
+    post.excerpt
+
   return (
     <Seo
-      title={post.frontmatter.title}
-      description={post.frontmatter.description || post.excerpt}
+      title={title}
+      description={description}
       keywords={post.frontmatter.keywords}
+      pathname={post.fields.slug}
+      type="article"
+      datePublished={post.frontmatter.date}
+      dateModified={post.frontmatter.updated || post.frontmatter.date}
+      category={post.frontmatter.category}
+      image={post.frontmatter.ogImage}
     />
   )
 }
@@ -134,13 +146,20 @@ export const pageQuery = graphql`
       id
       excerpt(pruneLength: 160)
       html
+      fields {
+        slug
+      }
       frontmatter {
         title
         titleEn
+        seoTitle
         date(formatString: "YYYY-MM-DD")
+        updated(formatString: "YYYY-MM-DD")
         keywords
         description
         descriptionEn
+        seoDescription
+        ogImage
         category
       }
     }

@@ -1,7 +1,7 @@
 ---
 title: router-view 에서 DOM을 찾지 못하는 문제
 date: "2023-06-28T22:12:03.284Z"
-description:
+description: Vue에서 router-view 내부 DOM을 querySelector로 찾지 못하는 원인과 해결 과정을 정리한 글.
 category: Vue
 ---
 

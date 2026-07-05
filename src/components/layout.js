@@ -4,7 +4,7 @@ import Header from "./header"
 
 import { Helmet } from "react-helmet"
 
-const Layout = ({ location, title, children }) => {
+const Layout = ({ location, title, headerContent, children }) => {
   deckDeckGoHighlightElement()
 
   const rootPath = `${__PATH_PREFIX__}/`
@@ -18,7 +18,7 @@ const Layout = ({ location, title, children }) => {
           content="ipkpV-iikKXN2GXEGSSXzjz8hakoFDcOsS6QCUUvS18"
         />
       </Helmet>
-      <Header />
+      <Header>{headerContent}</Header>
       <main>{children}</main>
       <footer className="global-footer">
         © <a href="https://github.com/hjhj97">Neon</a>, Built with

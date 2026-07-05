@@ -1,6 +1,6 @@
 ---
 title: CSS,JS를 이용한 룰렛 구현
-description:
+description: CSS 변수와 JavaScript를 이용해 서버 응답에 따라 회전 각도가 달라지는 웹 룰렛을 구현한 과정.
 date: "2023-06-24T22:12:00.000Z"
 category: Vue
 ---

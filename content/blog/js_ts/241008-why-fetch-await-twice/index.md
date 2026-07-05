@@ -1,7 +1,7 @@
 ---
 title: 왜 fetch 함수는 await를 2번 해야 하는걸까?
 date: "2024-10-07T22:12:03.284Z"
-description:
+description: fetch 함수에서 응답 객체와 body 데이터를 각각 await해야 하는 이유를 HTTP 응답 구조 관점에서 설명합니다.
 category: JS/TS
 ---
 
