@@ -61,6 +61,10 @@
   --color-heading-black: #141a24;
   --color-accent: #dfe3e9;
   --color-surface: #f6f7f9;
+  /* 위에서 아래로 밝아지는 3단 계조: 프로필 > 논문 > 글 목록(흰색) */
+  --color-band-profile: #eef1f5;
+  --color-band-research: #f7f9fc;
+  --color-band-research-border: #e4e9f0;
 
   /* custom */
   --header-height: 65px;
@@ -267,7 +271,7 @@ a:focus {
 .hero-band {
   width: 100vw;
   margin-left: calc(50% - 50vw);
-  background-color: var(--color-surface);
+  background-color: var(--color-band-profile);
   border-bottom: 1px solid var(--color-accent);
   padding: var(--spacing-12) var(--spacing-6) var(--spacing-10);
 }
@@ -321,12 +325,210 @@ main {
   margin-top: calc(var(--header-height) + 4rem);
 }
 
+/* Research 섹션: 프로필 밴드에 이어지는 밴드로, 포스트 목록과 분리 */
+.research {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  background-color: var(--color-band-research);
+  border-bottom: 1px solid var(--color-band-research-border);
+  padding: var(--spacing-10) var(--spacing-6) var(--spacing-12);
+}
+
+.research-inner {
+  max-width: var(--maxWidth-wrapper-wide);
+  margin: 0 auto;
+  padding: 0 var(--spacing-6);
+}
+
+.research-heading {
+  font-size: var(--fontSize-0);
+  font-family: var(--fontFamily-sans-kr);
+  font-weight: var(--fontWeight-bold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-light);
+  margin: var(--spacing-0) var(--spacing-0) var(--spacing-6);
+}
+
+.research-interests {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2);
+  list-style: none;
+  margin: var(--spacing-0);
+  padding: var(--spacing-0);
+}
+
+.research-interest {
+  margin: var(--spacing-0);
+  padding: var(--spacing-1) var(--spacing-3);
+  font-size: var(--fontSize-0);
+  color: var(--color-text-light);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--spacing-1);
+}
+
+/* 프로필 밴드 안에서는 회색 배경 위에 놓이므로 흰 칩으로 대비 */
+.bio-interests {
+  margin-bottom: var(--spacing-3);
+}
+
+.bio-interests .research-interest {
+  background-color: #fff;
+}
+
+.publication {
+  padding: var(--spacing-6) var(--spacing-6) var(--spacing-6) var(--spacing-5);
+  background-color: #fff;
+  border: 1px solid var(--color-band-research-border);
+  border-left: 3px solid var(--color-primary);
+  border-radius: var(--spacing-2);
+  box-shadow: 0 1px 3px rgba(27, 35, 48, 0.05);
+}
+
+.publication + .publication {
+  margin-top: var(--spacing-8);
+}
+
+.publication-title {
+  font-size: var(--fontSize-2);
+  line-height: var(--lineHeight-tight);
+  margin: var(--spacing-0) var(--spacing-0) var(--spacing-2);
+}
+
+.publication-title a {
+  color: var(--color-heading);
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.publication-title a:hover {
+  color: var(--color-primary);
+}
+
+.publication-venue {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: var(--fontSize-0);
+  margin: var(--spacing-0) var(--spacing-0) var(--spacing-3);
+}
+
+.publication-venue-name {
+  font-weight: var(--fontWeight-bold);
+  color: var(--color-primary);
+}
+
+.publication-role {
+  padding: 0 var(--spacing-2);
+  color: var(--color-text-light);
+  border-left: 1px solid var(--color-accent);
+}
+
+.publication-details {
+  margin-bottom: var(--spacing-4);
+}
+
+.publication-summary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  padding: var(--spacing-1) var(--spacing-0);
+  font-size: var(--fontSize-0);
+  color: var(--color-primary);
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+/* 기본 삼각형 마커 제거 */
+.publication-summary::-webkit-details-marker {
+  display: none;
+}
+
+.publication-summary::marker {
+  content: "";
+}
+
+.publication-summary:hover .publication-summary-label {
+  text-decoration: underline;
+}
+
+.publication-summary:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--spacing-1);
+}
+
+.publication-chevron {
+  flex-shrink: 0;
+  transition: transform 0.2s ease-in-out;
+}
+
+.publication-details[open] .publication-chevron {
+  transform: rotate(180deg);
+}
+
+.publication-abstract {
+  font-size: var(--fontSize-0);
+  color: var(--color-text-light);
+  line-height: var(--lineHeight-relaxed);
+  max-width: 46rem;
+  margin: var(--spacing-2) var(--spacing-0) var(--spacing-0);
+}
+
+.publication-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2);
+}
+
+.publication-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-1) var(--spacing-3);
+  font-size: var(--fontSize-0);
+  color: var(--color-primary);
+  text-decoration: none;
+  border: 1px solid var(--color-accent);
+  border-radius: var(--spacing-1);
+  transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.publication-link:hover {
+  border-color: var(--color-primary);
+  background-color: var(--color-surface);
+}
+
+.publication-link svg {
+  width: 0.95rem;
+  height: 0.95rem;
+  fill: currentColor;
+}
+
+@media (max-width: 48rem) {
+  .research {
+    padding: var(--spacing-8) var(--spacing-4) var(--spacing-10);
+  }
+
+  .research-inner {
+    padding: 0 var(--spacing-2);
+  }
+
+  .publication {
+    padding: var(--spacing-5) var(--spacing-4) var(--spacing-5) var(--spacing-4);
+  }
+}
+
 .post-list {
   min-height: 30rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   column-gap: var(--spacing-6);
-  margin-top: var(--spacing-8);
+  margin-top: var(--spacing-12);
   padding: var(--spacing-0) var(--spacing-0) 9rem;
 }
 
@@ -478,10 +680,21 @@ main {
   margin-bottom: var(--spacing-2);
 }
 
+.bio .bio-summary {
+  margin-bottom: var(--spacing-3);
+  color: var(--color-heading);
+  font-family: var(--fontFamily-serif);
+  font-size: var(--fontSize-1);
+  font-weight: 600;
+}
+
 .bio .bio-description {
   max-width: 34rem;
   color: var(--color-text-light);
-  line-height: var(--lineHeight-relaxed);
+  font-family: var(--fontFamily-sans-kr);
+  font-size: var(--fontSize-0);
+  font-weight: 500;
+  line-height: 1.7;
 }
 
 .bio .bio-social {
@@ -498,6 +711,18 @@ main {
   margin-bottom: var(--spacing-0);
   min-width: 50px;
   border-radius: 100%;
+}
+
+/* 좁은 화면에서는 아바타를 위로 올려 관심 분야 칩이 전체 폭을 쓰도록 */
+@media (max-width: 36rem) {
+  .bio {
+    flex-direction: column;
+  }
+
+  .bio-avatar {
+    margin-right: var(--spacing-0);
+    margin-bottom: var(--spacing-4);
+  }
 }
 
 .category-wrapper {

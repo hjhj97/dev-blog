@@ -6,6 +6,7 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Category from "../components/category"
+import Research from "../components/research"
 import { useCategory } from "../hooks/useCategory"
 import {
   getLanguageLabel,
@@ -156,6 +157,7 @@ const BlogIndex = ({ data, location }) => {
       <div className="hero-band">
         <Bio />
       </div>
+      <Research />
       <div className="post-list post-list--desktop">
         <div className="post-list-column">
           {leftColumnPosts.map(renderPost)}

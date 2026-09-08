@@ -10,7 +10,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 import GithubLogo from "../images/logo/GithubLogo"
 import LinkedinLogo from "../images/logo/LinkedinLogo"
-import TistoryLogo from "../images/logo/TistoryLogo"
+import { RESEARCH_INTERESTS } from "../constants/research"
 
 const Bio = () => {
   const data = useStaticQuery(graphql`
@@ -46,27 +46,35 @@ const Bio = () => {
         alt="Profile picture"
         style={{ minWidth: "120px" }}
       />
-      <div>
+      <div className="bio-content">
         <h3 className="bio-name">{`${author.name} ${author.nickname}`}</h3>
-        <p>{author?.summary || null}</p>
+        <p className="bio-summary">{author?.summary || null}</p>
         <p className="bio-description">
-          M.S. student in Ajou Univ. Dept. of AI
-          <br />
-          Interested in human-centered AI, including LLM persona, bias, and
-          emotion.
+          M.S. student (Ajou Univ., Artificial Intelligence)
         </p>
+        <ul className="research-interests bio-interests">
+          {RESEARCH_INTERESTS.map(interest => (
+            <li key={interest} className="research-interest">
+              {interest}
+            </li>
+          ))}
+        </ul>
         <div className="bio-social">
-          <a href={`https://github.com/${social.github}`} target="_blank">
+          <a
+            href={`https://github.com/${social.github}`}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="GitHub profile"
+          >
             <GithubLogo />
           </a>
           <a
-            href={`https://www.linkedin.com/in/%EC%A3%BC%ED%97%8C-%ED%95%98-38805a218/`}
+            href="https://www.linkedin.com/in/hajuheon/"
             target="_blank"
+            rel="noreferrer"
+            aria-label="LinkedIn profile"
           >
             <LinkedinLogo />
-          </a>
-          <a href={`https://ps-hjhj97.tistory.com/`} target="_blank">
-            <TistoryLogo />
           </a>
         </div>
       </div>
