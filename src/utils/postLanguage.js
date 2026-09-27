@@ -45,3 +45,20 @@ export const getPostLanguages = html => {
 
 export const getLanguageLabel = language =>
   LANGUAGE_LABELS[language] || language.toUpperCase()
+
+const englishDateFormatter = new Intl.DateTimeFormat("en-US", {
+  month: "short",
+  day: "numeric",
+  year: "numeric",
+  timeZone: "UTC",
+})
+
+export const formatPostDate = (date, language) => {
+  if (!date) return date
+  if (language !== "eng") return date.replace(/-/g, ".")
+
+  const parsed = new Date(date)
+  return Number.isNaN(parsed.getTime())
+    ? date
+    : englishDateFormatter.format(parsed)
+}

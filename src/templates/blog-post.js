@@ -5,7 +5,7 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Comment from "../components/comment"
-import { getLanguageSections } from "../utils/postLanguage"
+import { formatPostDate, getLanguageSections } from "../utils/postLanguage"
 
 const BlogPostTemplate = ({
   data: { previous, next, site, markdownRemark: post },
@@ -38,7 +38,9 @@ const BlogPostTemplate = ({
         <header>
           <h1 itemProp="headline">{title}</h1>
           <div className="blog-post-bottom">
-            <p>{post.frontmatter.date}</p>
+            <time className="post-date" dateTime={post.frontmatter.date}>
+              {formatPostDate(post.frontmatter.date, language)}
+            </time>
             <Link to={`/?category=${post.frontmatter.category}`}>
               <p className="post-category">{post.frontmatter.category}</p>
             </Link>

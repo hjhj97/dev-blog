@@ -1,0 +1,52 @@
+---
+title: 어떻게 기억될 것인가
+titleEn: How Will I Be Remembered?
+description: 이력서에 적히지 않는 그 무언가
+descriptionEn: Something a resume cannot capture
+date: "2026-09-19"
+category: Essay
+---
+
+<!-- language:kor -->
+
+![image](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1789823919/blog/assets/mail.png)
+
+얼마 전에 메일이 하나 왔다. 2년 전에 프론트엔드 개발자로 지원했다가 떨어진 회사로부터 포지션 제안이 온 것이었다. 나조차 잊고 있었는데, 원래 대학원을 오기 전에는 프론트엔드 개발자로 일했던 시절이 있었다. 여러가지 사건을 겪으면서 프론트엔드 업무는 놓아주고 커리어 전환을 하기로 결정하여 대학원으로 온 지도 벌써 1년이 지났다. 
+
+아무튼 지금은 프론트엔드 개발자가 아니기 때문에 그 회사의 제안을 받아들일 수 없는 상황이다. 제안을 주셔서 감사하다는 말과 함께 거절의 의사를 작성하여 답장을 보냈다. 기분이 뭔가 오묘했다. 그 시절에 그토록 간절하게 구직할 때는 이런 제안이 없었다가 2년이 지나고 커리어를 전환한 지금에서야 제안이 오니 말이다. 인생은 역시 타이밍이다.
+
+2년 전에 지원했던 수많은 회사 중에서도 유독 이 회사만큼은 특별한 기억으로 남아있다. 일반적으로 회사가 불합격 통보 메일을 보낼 때는 미리 작성된 템플릿에다가 지원자 이름만 바꿔치기해서 자동발송을 돌리곤 한다.    
+그런데 이 회사는 달랐다. 시니어 개발자분이 개인 메일로 내게 직접 보내주셨다. 게다가 템플릿이 아닌 직접 작성하신 내용이었다. 연차가 맞지 않아서 불합격이기는 하지만 나의 이력서와 블로그를 인상 깊게 보았고 추후에 재지원을 해주면 좋겠다는 말과 함께 커피챗을 제안해 주셨다. 나는 소중한 기회라고 생각하여 흔쾌히 응했다.
+
+당시 나는 수많은 탈락의 경험을 맛보고 있었다. 습관적으로 지원하고 템플릿된 탈락 메일을 받는 일이 반복되면서 감정이 점점 말라가고 있었다. 그런 와중에 (불합격했음에도) 커피챗을 제안해주신 이 회사가 나에게도 신기한 경험이었다. 회사의 시니어 개발자가 따로 시간을 내서 커피챗을 한다는게 결코 쉬운 결정은 아니었을텐데 이 분은 나에게 커피챗 시간을 투자할 만한 가치가 있다고 생각하셨나보다. 그 가치가 무엇인지 커피챗에서 물어보기로 했다.
+
+ 커피챗 하기로 한 날, 회사 사무실에 도착해서 알려주신 번호로 전화를 걸었다. 메일을 보내주신 한 분만 나오시는 줄 알았는데 다른 시니어 개발자도 오셔서 총 세 분과 얘기를 했다. 지금 생각해보면 대단한 얘기를 한 것은 아니었다. 기억을 더듬어보면 요즘 구직이 쉽지 않다는 약간의 푸념같은 걸 늘어놓았는데, 시니어분들은 지금 잘하고 있으니 너무 기죽지 말라고, 버티다 보면 좋은 날이 올 거라며 기운을 북돋아 주셨다.
+ 
+   그때의 기억은 현재까지도 선명하게 남아있다. 대략 한 시간 정도 얘기를 나누고 집에 돌아가는데 기분이 어딘가 묘해지는 게 있었다. 날 이렇게 좋게 봐주는 사람도 있었구나, 앞으로 조금만 더 열심히 해보자는 마음가짐으로 리프레쉬되는 느낌이었다. 그동안은 회사로부터 일방적으로 평가받는 부담스러운 면접 자리에만 익숙했다. 하지만 그 커피챗에서는 그런 부담에서 벗어나 진솔한 얘기를 털어놓을 수 있었고, 시니어분들도 내 얘기를 진지하게 들어주셨다. 이 회사를 잘 알지는 못하지만, 겨우 1시간 남짓한 대화 덕분에 지금까지도 좋은 인상으로 기억하고 있다.
+
+
+다른 한편으로 제안 메일을 보내주신 시니어에게 2년 전의 나는 어떻게 기억된 사람이었을까 생각해보았다. 나를 표현할 수 있었던 공간은 지원서에 첨부했던 3장짜리 이력서 PDF 속 몇 글자와 블로그에 올린 포스팅이 전부였다. 그리고 그때의 긍정적인 기억을 아직까지도 간직하고 계신 덕분에 제안을 주셨던 것 같다. 그 안에서 나의 진심과 잠재력을 찾아주신, 그리고 본인의 시간까지 할애하여 자리를 마련해주신 분들에게 고마울 따름이다. 비록 나의 커리어는 바뀌었지만 그분들이 내게서 본 가능성에 부응하고 싶다는 생각이 든다.
+
+ 앞으로 다른 사람(회사)을 어떻게 기억할지, 혹은 내가 어떻게 기억될 것인 지에 대해서 고민하게 된다. 어떤 능력을 강조해야 오래 기억되는 사람이 될 수 있을까? 나도 이 문제의 정답은 잘 모르겠다.   
+ 다만 생성형AI가 득세하는 요즘 세상에서 능력을 번지르르하게 포장하는 일은 너무 쉬워졌다. 글이나 소스코드, 논문, 프로젝트는 얼마든지 그럴듯하게 꾸밀 수 있다. 하지만 한 사람의 진짜 가치는 이력서에 다 담기지 않을 것이다. 이를테면 일과 사람을 대하는 태도, 문제를 바라볼 때 생각하는 고민의 깊이 같은 것이다. 텍스트만으로는 다 드러나지 않는 무언가를 발견하고, 그 사람의 가능성을 믿는 일이 AI가 대체하지 못할 영역이 아닐까 싶다.
+<!-- language:eng -->
+
+![image](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1789823919/blog/assets/mail.png)
+
+An email arrived a little while ago. It was about a job opportunity at a company that had rejected me for a frontend developer role two years earlier. I had almost forgotten that chapter of my life, but before graduate school, I used to work as a frontend developer. After a series of events, I decided to leave frontend development behind and change careers. It has already been a year since I started graduate school.
+
+In any case, I am no longer a frontend developer, so I was not in a position to accept their offer. I sent a reply thanking them for reaching out and politely declining. It felt strange. Back when I was desperately looking for a job, no such offers came my way. Now, two years later, after I had changed careers, one finally arrived. Life really is all about timing.
+
+Of all the companies I applied to two years ago, this one left a particularly memorable impression. When companies send rejection emails, they generally use a prewritten template, swap in the applicant's name, and send it automatically.
+But this company was different. A senior developer emailed me directly from their own email address. The message was personally written, too. They explained that although my level of experience did not match what they were looking for, they had been impressed by my resume and blog and hoped I would apply again in the future. They also invited me for a coffee chat. I saw it as a valuable opportunity and gladly accepted.
+
+At the time, I had been facing rejection after rejection. As the cycle of routinely submitting applications and receiving templated rejection emails continued, I was growing emotionally drained. In the middle of all that, being invited for a coffee chat by a company that had rejected me felt unusual. Setting aside time for a coffee chat could not have been an easy decision for a senior developer. They must have thought I was worth spending that time on. I decided to ask what they had seen in me when we met.
+
+On the day of the coffee chat, I arrived at their office and called the number they had given me. I had expected to meet only the person who sent the email, but other senior developers joined us, and I ended up speaking with three people in total. Looking back, we did not talk about anything particularly remarkable. As far as I can remember, I mostly vented a little about how difficult the job search had been. They encouraged me, saying I was doing well and should not lose heart, and that better days would come if I kept going.
+
+That memory is still vivid today. After talking for about an hour, I headed home with a feeling I could not quite put into words. There were people who thought this highly of me. That realization left me feeling refreshed and ready to try a little harder. Until then, I had been used to stressful interviews where the company did all the evaluating. But during that coffee chat, I could set that pressure aside and speak honestly, and the senior developers took what I said seriously. I do not know the company all that well, but that conversation, lasting just over an hour, has left me with a positive impression to this day.
+
+I also found myself wondering how the senior developer who sent the offer remembered me from two years ago. All I had to represent myself were the words in a three-page resume PDF attached to my application and the posts on my blog. I imagine they reached out because they still held on to that positive impression. I am simply grateful to the people who saw sincerity and potential in those words, and who set aside their own time to meet with me. Although my career has changed, I want to live up to the potential they saw in me.
+
+It makes me think about how I will remember other people and companies, and how I will be remembered in turn. What abilities should I emphasize to become someone people remember for a long time? I do not really know the answer myself.
+But in a world where generative AI is becoming so prevalent, it has become all too easy to make our abilities look impressive. Writing, source code, papers, and projects can all be polished to look convincing. Yet I doubt a person's true worth can be fully captured in a resume. It lies in things like how they approach their work, how they treat people, and how deeply they think about a problem. Perhaps noticing what words alone cannot fully reveal, and believing in someone's potential, is something AI cannot replace.

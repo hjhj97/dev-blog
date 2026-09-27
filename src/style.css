@@ -588,6 +588,25 @@ main {
   justify-content: space-between;
   align-items: center;
   gap: var(--spacing-2);
+  flex-wrap: wrap;
+}
+
+.post-date {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  flex-shrink: 0;
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: 4px;
+  background-color: #f2f2f2;
+  color: #404040;
+  font-family: var(--fontFamily-serif);
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.5;
+  letter-spacing: 0;
+  white-space: nowrap;
 }
 
 .post-list-item .post-list-item__meta {
@@ -762,6 +781,12 @@ main {
 .blog-post .blog-post-bottom {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--spacing-3);
+}
+
+.blog-post .post-date {
+  font-size: var(--fontSize-1);
 }
 
 .blog-post .blog-post-bottom .post-category {

@@ -100,7 +100,10 @@ module.exports = {
               })
             },
             query: `{
-              allMarkdownRemark(sort: {frontmatter: {date: DESC}}) {
+              allMarkdownRemark(
+                sort: {frontmatter: {date: DESC}}
+                filter: {frontmatter: {status: {ne: "progress"}}}
+              ) {
                 nodes {
                   excerpt
                   html

@@ -9,6 +9,7 @@ import Category from "../components/category"
 import Research from "../components/research"
 import { useCategory } from "../hooks/useCategory"
 import {
+  formatPostDate,
   getLanguageLabel,
   getLanguageSections,
   getPostLanguages,
@@ -90,7 +91,9 @@ const BlogIndex = ({ data, location }) => {
             <p itemProp="description">{getPreviewText(post, language)}</p>
           </section>
           <div className="post-list-item__bottom">
-            <small>{post.frontmatter.date}</small>
+            <time className="post-date" dateTime={post.frontmatter.date}>
+              {formatPostDate(post.frontmatter.date, language)}
+            </time>
             <div className="post-list-item__meta">
               <span
                 className="post-language-badges"
@@ -201,7 +204,9 @@ export const pageQuery = graphql`
     }
     allMarkdownRemark(
       sort: { frontmatter: { date: DESC } }
-      filter: { frontmatter: { category: { ne: null } } }
+      filter: {
+        frontmatter: { category: { ne: null }, status: { ne: "progress" } }
+      }
     ) {
       nodes {
         excerpt(pruneLength: 150, truncate: true)
