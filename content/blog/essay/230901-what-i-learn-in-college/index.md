@@ -1,9 +1,13 @@
 ---
 title: 내가 대학교에서 배운 것
+titleEn: What I Learned in College
 date: "2023-09-01T22:12:00.000Z"
 description: 대학교를 졸업하며 되돌아보는 나의 대학생활
+descriptionEn: Looking back on my college years as I graduate
 category: Essay
 ---
+
+<!-- language:kor -->
 
 ## 대학생활 회고(라 쓰고 '추억팔이'로 읽는다)
 
@@ -92,3 +96,93 @@ category: Essay
 사회인은 사회인으로서 요구되는 역량이 대학생과 달라지기 때문에 나는 또 다시 공부해야한다. 특히나 내가 가장 걱정인건 금융/재테크 관련 분야이다. 사실 나 이 분야에 관해서는 정말 문외한이다. 내 주변 친구들은 요즘 금리가 어떻고, 주식이 어떻고에 대해서 토론하던데 나는 무슨 소리인지 하나도 모르겠다. 개발자로서는 개발 공부도 해야하지만, 더 큰 범주에서 나는 사회인이기에 이쪽 분야의 공부도 결코 소홀히 할 수 없는 처지이다.
 
 결국에 내 지식이 다시 초기화되었다. 대학교에 처음 입학했을 때 느꼈던 기분과 유사하다. 이제 좀 대학 생활에 익숙해졌다 싶으니깐 졸업해버리고 새로운 타이틀을 달게 되었다. 인생은 항상 불완전함의 연속이다. 언제쯤되면 나도 사회인으로서 익숙해질 수 있을지 가늠조차 되지 않는다.
+
+<!-- language:eng -->
+
+## Looking Back on College (Also Known as Indulging in Nostalgia)
+
+Last week, I finally graduated from university. My college years, which began in February 2017, came to an end after a journey lasting six and a half years. I did not want those years to simply fade into distant memories, so I decided to dig up the courses I took and other meaningful experiences and preserve them here. Whether they were part of my major or not, I want to focus on the classes that had a meaningful impact on my college life and explain how they influenced me.
+
+## A Somewhat Unusual Computer Science Student...
+
+My course choices were a little different from those of other computer science students. This was especially true of my general education electives, which I chose according to a personal rule: take as many classes as possible in fields unrelated to my major.
+
+Everyone wants something different out of university. Some people may only need a degree, while others aim for high grades to get into a good company or graduate school. For me, though, there was a goal that mattered even more: **to experience as much of the world I did not know as possible**.
+
+Most of us had spent our school years living under the pressure of grades. People often say that university frees you from exams and lets you do whatever you want, but once I got there, I did not feel that much had changed. Watching myself compete for grades and course registrations all over again was a sobering realization. It made me question what I was doing.
+
+![Graduation ceremony](https://res.cloudinary.com/dxnnrbhbk/image/upload/v1737983318/blog/assets/graduate_pqegiu.jpg)
+
+So, at least during college, I wanted to play for fun. I wanted to stop obsessing over grades and take the subjects I genuinely wanted to learn about. As a computer science major, I would get more than enough computer-related coursework anyway, so I wanted my electives to take me in the opposite direction: the humanities and social sciences. Part of it was simple curiosity about those subjects, but I was even more curious about **how scholars who had spent decades studying them saw the world**.
+
+When you study a field for a long time, it tends to shape the way you see the world. Researchers notice things that other people would overlook. It is like putting a colored filter on a camera and seeing everything through that tint. I did not want to look at the world through just one filter. I wanted to have several to choose from.
+
+To me, paying tuition and attending university meant gaining an opportunity to learn, even just a little, how to see the world through a researcher's eyes. A university brings together researchers from all these different fields in one place. That is a rare and valuable opportunity in life, and I wanted to make the most of it.
+
+## Classes That Stayed with Me
+
+#### `Writing`
+
+This was a required course for first-year students. For many students in science and engineering, writing feels like oil and water: the two just do not mix. I, too, had always assumed that writing was not for me. But that idea began to change as I took this class.
+
+For one thing, the professor was funny and approachable. Before entering university, my image of a professor was someone strict and conservative. This professor joked around with students and helped break down that stereotype. They also kept encouraging us not to overcomplicate writing: start with something you are genuinely interested in. The idea was to ease the vague fear of writing that many of us carried.
+
+Our midterm assignment was to choose any topic and write a piece of no more than 1,000 characters. When I started, I had no idea whether I was doing it right. I had something I clearly wanted to say in my head, but whenever I tried to put it into words, it vanished like smoke. Turning thoughts into something concrete on the page inevitably involves some loss. I think writing is the process of getting those thoughts into words while losing as little as possible along the way.
+
+I kept deleting and rewriting what I had written, revising until it read naturally. Even as I submitted it, I could not shake my anxiety about how other people would read it. To my surprise, though, the professor praised my work. What stood out most to them was how openly and honestly I had told my own story.  
+That experience gave me the confidence to think, `"Maybe I have more of a knack for writing than I thought...?"` Looking back, I think it was the starting point that eventually led me to run this developer blog.
+
+#### `The World of Film`
+
+This class stands out because it was the first elective I chose after entering university. As its name suggests, the course involved watching different films, analyzing them, and exploring the intentions behind them. I enjoyed watching movies at the time and wanted to share my impressions with other people, so I signed up. It was a fairly popular course, and getting a place was competitive.
+
+For the midterm, we watched a short film and wrote an analysis. For the final, each group had to choose a film and analyze it themselves. My group chose *Arrival*, a film about aliens coming to Earth. I watched it about twenty times while working on our analysis. Looking back, I wonder why I spent so much time on a single elective, but I suppose that was possible because I was an enthusiastic first-year student.
+
+#### `Computer Architecture`, `Operating Systems`
+
+These two courses were famous not just for their lectures but for their difficult assignments. I still remember the first assignment in Computer Architecture: implementing a MIPS processor in C. We were given about three weeks. In another class, that would have felt generous, but here I remember spending roughly a week just understanding the assignment and another week implementing it.
+
+The assignments were difficult, but the professor was an excellent teacher. This was a class where I gave the lectures my full attention without getting distracted. I remember learning about processors, memory organization, how computers perform operations, and virtual memory. At the time, I wondered when I would ever use any of it. Looking back now, it has helped me build a foundation in computer science, and I am glad I put in the effort.
+
+#### `Web System Design`
+
+This was the course that ultimately led me to choose frontend development as my career. It was a project-based class in which we built a website, and the library we happened to use was `vue.js`. I could never have imagined that, four years later, it would be my main technology stack.
+
+At the time, I had almost no experience with web development. This was where I first learned what the DOM and `vue.js` were. I may have started a little late, but it was a completely different world from the C and C++ I had been studying. After spending so much time writing low-level code for things like operating systems, working on something users would interact with directly felt entirely new. It was a refreshing surprise to discover such an exciting field among all the things I knew nothing about.
+
+#### `Number Theory`
+
+People might ask why a computer science student would take a number theory course. My answer is simply, "I was curious." More specifically, I was studying topics related to number theory, such as Fermat's little theorem and the Chinese remainder theorem, in our algorithm study club at the time. When I saw that the mathematics department offered a course on the subject, curiosity got the better of me and I decided to give it a try.
+
+It was my first time taking a major-specific course in another department, and the atmosphere in a mathematics class was quite different from what I was used to in computer science. The most striking difference was that the seats filled up from the front. I was also surprised that everyone in the room paid attention to the lecture. That might sound perfectly normal, but in computer science classes, the seats usually filled up from the back, and only some students actually listened.
+
+Was this the power of the mathematics department...? It felt as though these people lived in a different world from me. Throughout the course, I was full of respect for both the mathematics students and the professor.
+
+#### `Film and Social Psychology`
+
+Among my electives, I was especially drawn to psychology courses. They touched on things I had always been curious about: what drives human behavior and what goes on inside people's minds. I took several psychology classes, but this one has stayed with me.
+
+The course taught social psychology theories, but what made it distinctive was its use of film scenes to help students understand them. I enjoyed how clearly it explained ideas that could have been difficult, and above all, I was impressed by the professor's enthusiasm.
+
+The professor's pride in their field was so evident that you could feel it as a student. Perhaps this was the course that best fulfilled my wish to learn different ways of seeing the world. Apparently, I was not the only one who felt that way: the course received very high evaluations, and getting a place in it was difficult.
+
+## Things I Wish I Had Done Differently
+
+- **Read more books.**  
+  One of my personal goals in college was to read one book a month. My round-trip commute took more than two hours, and I started reading because I hated letting that time go to waste. During my first and second years, I had enough free time to read. From my third year onward, though, assignments and job preparation took over, and I regret letting reading fall by the wayside.
+
+  Around graduation, I checked my library borrowing history and found that I had borrowed about fifty books. That included technical books and course textbooks, so the number I had borrowed for general reading was closer to forty.  
+  Most of those forty were novels. As an engineering student, I thought reading something from the opposite end of the spectrum would help bring balance to my life. Reading fiction really did feel like it activated a different part of my brain from studying, though I have no scientific evidence for that. My favorite was Haruki Murakami's *Kafka on the Shore*. Most of the other books I borrowed were about psychology and evolution, two subjects that interested me.
+
+- **Met a wider variety of people.**  
+  Looking back, I wonder whether I stayed too firmly inside my comfort zone. I am not the sort of person who goes out of their way to meet new people, so I kept spending time with people I already knew. That is not necessarily a bad thing, but I think being a little more outgoing during college, at least, would not have hurt. Still, as anyone knows, changing your personality is not easy.
+- **Explored software development sooner.**  
+  Probably ninety percent of the coding I did in college was algorithms and problem solving, or PS. In a way, my coding skills had become overfitted to PS, and I did not get my first taste of software development until late in my third year. It was not too late, but I wish I had started a little earlier. That would have given me more time to explore frontend, backend, mobile, machine learning, and other areas before choosing a career path.
+
+## Starting Out in the Working World
+
+I may have just graduated, but I am still a complete beginner in the working world. It feels a little surreal. Am I really ready for this? It feels as though I was standing at the edge of a cliff and time came up behind me and gave me a shove.
+
+The skills you need as a working adult are different from those you need as a university student, so I have to start learning again. What worries me most is finance and managing money. Honestly, I know next to nothing about it. My friends discuss interest rates and stocks these days, and I have no idea what they are talking about. As a developer, I need to keep studying development, but I am also an adult with responsibilities beyond my profession, so I cannot afford to neglect this side of life either.
+
+In the end, it feels as though my knowledge has been reset. It is similar to how I felt when I first entered university. Just when I thought I was finally getting used to college life, I graduated and found myself with a new title. Life seems to be a constant series of never quite having things figured out. I cannot even begin to guess when I will feel at home in the working world.
