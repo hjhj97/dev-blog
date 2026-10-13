@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react"
+import React, { useMemo } from "react"
 //import * as _ from "lodash"
 import { Link, graphql } from "gatsby"
 
@@ -8,6 +8,7 @@ import Seo from "../components/seo"
 import Category from "../components/category"
 import Research from "../components/research"
 import { useCategory } from "../hooks/useCategory"
+import { useLanguage } from "../hooks/useLanguage"
 import {
   formatPostDate,
   getLanguageLabel,
@@ -38,7 +39,7 @@ const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const posts = data.allMarkdownRemark.nodes
   const [currentCategory, selectCategory] = useCategory()
-  const [language, setLanguage] = useState("kor")
+  const [language, setLanguage] = useLanguage()
 
   const visiblePosts = useMemo(
     () => posts.filter(post => getPostLanguages(post.html).includes(language)),

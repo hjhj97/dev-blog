@@ -14,3 +14,5 @@ import "./src/code.css"
 import "./src/style.css"
 // Highlighting for code blocks
 import "prismjs/themes/prism.css"
+
+export { wrapRootElement } from "./src/hooks/useLanguage"

@@ -5,6 +5,7 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Comment from "../components/comment"
+import { useLanguage } from "../hooks/useLanguage"
 import { formatPostDate, getLanguageSections } from "../utils/postLanguage"
 
 const BlogPostTemplate = ({
@@ -12,7 +13,7 @@ const BlogPostTemplate = ({
   location,
 }) => {
   const siteTitle = site.siteMetadata?.title || `Title`
-  const [language, setLanguage] = React.useState("kor")
+  const [language, setLanguage] = useLanguage()
   const languageSections = React.useMemo(
     () => getLanguageSections(post.html),
     [post.html]
