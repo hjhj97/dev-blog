@@ -19,6 +19,21 @@ const PUBLICATIONS = [
   },
 ]
 
+const UNDER_REVIEW = [
+  {
+    title:
+      "Nudge and Merge: Simple Post-Hoc Sparsification of Dense Adapters for Parameter-Efficient Fine-Tuning on Sparse LLMs",
+    venue: "AAAI 2027",
+    role: "Second Author",
+  },
+  {
+    title:
+      "Do LLMs Empathize with You, or with Your Words? Revealing How Stated Distress Makes a Friend's Loss Seem Yours",
+    venue: "ACL Rolling Review (ARR)",
+    role: "First Author",
+  },
+]
+
 const Research = () => {
   const structuredData = PUBLICATIONS.map(publication => ({
     "@context": "https://schema.org",
@@ -54,6 +69,9 @@ const Research = () => {
             itemScope
             itemType="https://schema.org/ScholarlyArticle"
           >
+            <span className="publication-status publication-status--accepted">
+              Accepted
+            </span>
             <h4 className="publication-title">
               <a
                 href={publication.projectPage}
@@ -121,6 +139,32 @@ const Research = () => {
             </div>
           </article>
         ))}
+
+        <section
+          className="publications-under-review"
+          aria-labelledby="under-review-heading"
+        >
+          <h3 id="under-review-heading" className="under-review-heading">
+            Under Review
+            <span className="under-review-count">{UNDER_REVIEW.length}</span>
+          </h3>
+          <div className="under-review-list">
+            {UNDER_REVIEW.map(publication => (
+              <article className="under-review-item" key={publication.title}>
+                <h4 className="publication-title">{publication.title}</h4>
+                <p className="publication-venue">
+                  <span className="publication-venue-name">
+                    {publication.venue}
+                  </span>
+                  <span className="publication-role">{publication.role}</span>
+                  <span className="publication-status publication-status--review">
+                    Under review
+                  </span>
+                </p>
+              </article>
+            ))}
+          </div>
+        </section>
 
         <script
           type="application/ld+json"

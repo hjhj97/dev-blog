@@ -391,6 +391,80 @@ main {
   margin-top: var(--spacing-8);
 }
 
+.publication-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px var(--spacing-2);
+  border-radius: 4px;
+  font-family: var(--fontFamily-sans-kr);
+  font-size: 0.72rem;
+  font-weight: 500;
+  line-height: 1.5;
+  white-space: nowrap;
+  letter-spacing: 0;
+}
+
+.publication-status--accepted {
+  margin-bottom: var(--spacing-3);
+  background: #e9f3ed;
+  color: #285c3e;
+}
+
+.publications-under-review {
+  margin-top: var(--spacing-8);
+  padding-top: var(--spacing-6);
+  border-top: 1px solid var(--color-band-research-border);
+}
+
+.under-review-heading {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  margin: 0 0 var(--spacing-4);
+  font-family: var(--fontFamily-sans-kr);
+  font-size: var(--fontSize-0);
+  line-height: var(--lineHeight-normal);
+  letter-spacing: 0;
+  color: var(--color-text-light);
+}
+
+.under-review-count {
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+.under-review-list {
+  display: grid;
+  gap: var(--spacing-5);
+}
+
+.under-review-item {
+  min-width: 0;
+  padding: var(--spacing-1) 0 var(--spacing-1) var(--spacing-4);
+  border-left: 2px solid #b6bbc3;
+}
+
+.under-review-item .publication-title {
+  font-size: var(--fontSize-1);
+  line-height: var(--lineHeight-normal);
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+}
+
+.under-review-item .publication-venue {
+  margin-bottom: 0;
+}
+
+.under-review-item .publication-venue-name {
+  color: var(--color-text-light);
+  font-weight: 500;
+}
+
+.publication-status--review {
+  background: #e9ebef;
+  color: #505761;
+}
+
 .publication-title {
   font-size: var(--fontSize-2);
   line-height: var(--lineHeight-tight);
