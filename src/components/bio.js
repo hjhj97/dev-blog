@@ -49,8 +49,8 @@ const Bio = () => {
           layout="constrained"
           formats={["auto", "webp", "avif"]}
           src="../images/profile-2508.jpg"
-          width={96}
-          height={96}
+          width={160}
+          height={160}
           quality={100}
           alt="Profile picture"
         />

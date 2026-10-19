@@ -1,6 +1,7 @@
-import React, { useMemo } from "react"
+import React, { useMemo, useState } from "react"
 //import * as _ from "lodash"
 import { Link, graphql } from "gatsby"
+import { PanelRightClose, PanelRightOpen } from "lucide-react"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
@@ -23,6 +24,15 @@ const BlogIndex = ({ data, location }) => {
   const posts = data.allMarkdownRemark.nodes
   const [currentCategory, selectCategory] = useCategory()
   const [language, setLanguage] = useLanguage()
+  const [arePublicationsCollapsed, setPublicationsCollapsed] = useState(false)
+  const publicationsToggleLabel =
+    language === "eng"
+      ? arePublicationsCollapsed
+        ? "Show Publications"
+        : "Hide Publications"
+      : arePublicationsCollapsed
+      ? "Publications 펼치기"
+      : "Publications 접기"
 
   const visiblePosts = useMemo(
     () => posts.filter(post => getPostLanguages(post.html).includes(language)),
@@ -145,35 +155,69 @@ const BlogIndex = ({ data, location }) => {
           <div className="hero-band">
             <Bio />
           </div>
-          <Research />
         </div>
       </div>
-      <section aria-labelledby="articles-heading">
-        <h2 id="articles-heading" className="articles-heading">
-          Articles
-        </h2>
-        <div className="post-list post-list--desktop">
-          <div className="post-list-column">
-            {leftColumnPosts.map(renderPost)}
+      <div
+        className={`home-content${
+          arePublicationsCollapsed
+            ? " home-content--publications-collapsed"
+            : ""
+        }`}
+      >
+        <button
+          type="button"
+          className="publications-toggle"
+          aria-expanded={!arePublicationsCollapsed}
+          aria-controls="publications-panel"
+          aria-label={publicationsToggleLabel}
+          onClick={() => setPublicationsCollapsed(collapsed => !collapsed)}
+        >
+          {arePublicationsCollapsed ? (
+            <PanelRightOpen size={18} aria-hidden="true" />
+          ) : (
+            <PanelRightClose size={18} aria-hidden="true" />
+          )}
+          <span className="publications-toggle__label">Publications</span>
+          <span className="publications-toggle__tooltip" aria-hidden="true">
+            {publicationsToggleLabel}
+          </span>
+        </button>
+        <div
+          id="publications-panel"
+          className="home-publications"
+          aria-hidden={arePublicationsCollapsed}
+          inert={arePublicationsCollapsed ? "" : undefined}
+        >
+          <div className="home-publications-inner">
+            <Research />
           </div>
-          <div className="post-list-column">
+        </div>
+        <section className="home-articles" aria-labelledby="articles-heading">
+          <header className="articles-header">
+            <h2 id="articles-heading" className="articles-heading">
+              Articles
+            </h2>
             <Category
               categories={categories}
               currentCategory={currentCategory}
               selectCategory={selectCategory}
             />
-            {rightColumnPosts.map(renderPost)}
+          </header>
+          <div className="post-list">
+            <div className="post-list--desktop">
+              <div className="post-list-column">
+                {leftColumnPosts.map(renderPost)}
+              </div>
+              <div className="post-list-column">
+                {rightColumnPosts.map(renderPost)}
+              </div>
+            </div>
+            <div className="post-list--mobile">
+              {filteredPosts.map(renderPost)}
+            </div>
           </div>
-        </div>
-        <div className="post-list post-list--mobile">
-          <Category
-            categories={categories}
-            currentCategory={currentCategory}
-            selectCategory={selectCategory}
-          />
-          {filteredPosts.map(renderPost)}
-        </div>
-      </section>
+        </section>
+      </div>
     </Layout>
   )
 }
