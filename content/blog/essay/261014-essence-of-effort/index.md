@@ -1,7 +1,7 @@
 ---
 title: 노력의 본질
 titleEn: The Essence of Effort
-description: 노력과 결과물의 상관관계는 아직도 유효한가?
+description: 노력과 결과물의 상관관계에 대해
 descriptionEn: Does the relationship between effort and results still hold?
 date: 2026-10-14
 category: Essay
