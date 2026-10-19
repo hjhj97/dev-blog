@@ -6,14 +6,17 @@ const PUBLICATIONS = [
     title:
       "Empathy Is Steerable but Multi-Axial: Mechanism Geometry and Persona Effects in LLMs",
     venue: "EMNLP 2026 Main Conference",
-    role: "First Author",
+    authors: [
+      { name: "JuHeon Ha", isOwner: true },
+      { name: "Byounghan Lee" },
+      { name: "Yunseo Choi" },
+      { name: "Kyung-Ah Sohn" },
+    ],
     year: "2026",
     keywords: [
       "LLM Empathy",
       "Activation Steering",
       "Mechanistic Interpretability",
-      "Representation Geometry",
-      "Persona Bias",
     ],
     projectPage:
       "https://hjhj97.github.io/Empathy-Is-Steerable-but-Multi-Axial/",
@@ -34,8 +37,6 @@ const UNDER_REVIEW = [
     keywords: [
       "Sparse LLMs",
       "Parameter-Efficient Fine-Tuning",
-      "LoRA",
-      "Post-Training Pruning",
       "Adapter Merging",
     ],
   },
@@ -44,13 +45,7 @@ const UNDER_REVIEW = [
       "Do LLMs Empathize with You, or with Your Words? Revealing How Stated Distress Makes a Friend's Loss Seem Yours",
     venue: "ACL Rolling Review (ARR)",
     role: "First Author",
-    keywords: [
-      "LLM Empathy",
-      "Person-Event Attribution",
-      "Emotional Cues",
-      "Contextual Grounding",
-      "Empathy Evaluation",
-    ],
+    keywords: ["LLM Empathy", "Person-Event Attribution", "Emotional Cues"],
   },
 ]
 
@@ -60,12 +55,14 @@ const Research = () => {
     "@type": "ScholarlyArticle",
     headline: publication.title,
     name: publication.title,
-    author: {
+    author: publication.authors.map(({ name, isOwner }) => ({
       "@type": "Person",
-      name: "JuHeon Ha",
-      alternateName: "하주헌",
-      url: "https://juheon.dev",
-    },
+      name,
+      ...(isOwner && {
+        alternateName: "하주헌",
+        url: "https://juheon.dev",
+      }),
+    })),
     datePublished: publication.year,
     publisher: {
       "@type": "Organization",
@@ -94,7 +91,6 @@ const Research = () => {
                 <span className="publication-venue-name">
                   {publication.venue}
                 </span>
-                <span className="publication-role">{publication.role}</span>
               </p>
               <span className="publication-status publication-status--accepted">
                 Accepted
@@ -110,6 +106,25 @@ const Research = () => {
                 <span itemProp="headline">{publication.title}</span>
               </a>
             </h4>
+            <p className="publication-authors">
+              {publication.authors.map(({ name, isOwner }, index) => (
+                <React.Fragment key={name}>
+                  {index > 0 && ", "}
+                  <span
+                    className="publication-author"
+                    itemProp="author"
+                    itemScope
+                    itemType="https://schema.org/Person"
+                  >
+                    {isOwner ? (
+                      <strong itemProp="name">{name}</strong>
+                    ) : (
+                      <span itemProp="name">{name}</span>
+                    )}
+                  </span>
+                </React.Fragment>
+              ))}
+            </p>
             <ul className="publication-keywords" aria-label="Research keywords">
               {publication.keywords.map(keyword => (
                 <li className="publication-keyword" key={keyword}>

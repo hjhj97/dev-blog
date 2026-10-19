@@ -521,11 +521,6 @@ main {
   margin-bottom: 0;
 }
 
-.under-review-item .publication-venue-name {
-  color: var(--color-text-light);
-  font-weight: 500;
-}
-
 .publication-status--review {
   background: #e9ebef;
   color: #505761;
@@ -547,6 +542,22 @@ main {
   color: var(--color-primary);
 }
 
+.publication-authors {
+  margin: 0 0 var(--spacing-3);
+  color: var(--color-text-light);
+  font-size: 0.8125rem;
+  line-height: 1.7;
+}
+
+.publication-author {
+  display: inline-block;
+}
+
+.publication-author strong {
+  color: var(--color-heading);
+  font-weight: var(--fontWeight-bold);
+}
+
 .publication-venue {
   display: flex;
   flex-wrap: wrap;
@@ -557,7 +568,9 @@ main {
 }
 
 .publication-venue-name {
+  font-size: 0.9375rem;
   font-weight: var(--fontWeight-bold);
+  line-height: 1.5;
   color: var(--color-primary);
 }
 
@@ -581,11 +594,6 @@ main {
   font-size: 0.75rem;
 }
 
-.publication-topline .publication-venue-name {
-  color: var(--color-text-light);
-  font-weight: 500;
-}
-
 .publication-keywords {
   display: flex;
   flex-wrap: wrap;
@@ -603,7 +611,7 @@ main {
   background: #edf2f8;
   color: #375373;
   font-family: var(--fontFamily-sans-kr);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 500;
   line-height: 1.6;
   letter-spacing: 0;
