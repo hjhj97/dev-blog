@@ -9,31 +9,14 @@ import Category from "../components/category"
 import Research from "../components/research"
 import { useCategory } from "../hooks/useCategory"
 import { useLanguage } from "../hooks/useLanguage"
+import { getPostPreview } from "../utils/postPreview"
 import {
   formatPostDate,
   getLanguageLabel,
-  getLanguageSections,
   getPostLanguages,
 } from "../utils/postLanguage"
 
 const LANGUAGES = ["kor", "eng"]
-const PREVIEW_LENGTH = 150
-
-const getPreviewText = (post, language) => {
-  if (language === "eng") {
-    const sections = getLanguageSections(post.html)
-    if (sections?.eng) {
-      const text = sections.eng
-        .replace(/<[^>]+>/g, " ")
-        .replace(/\s+/g, " ")
-        .trim()
-      return text.length > PREVIEW_LENGTH
-        ? `${text.slice(0, PREVIEW_LENGTH)}…`
-        : text
-    }
-  }
-  return post.excerpt
-}
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
@@ -68,13 +51,25 @@ const BlogIndex = ({ data, location }) => {
   )
   const leftColumnPosts = filteredPosts.filter((_, index) => index % 2 === 0)
   const rightColumnPosts = filteredPosts.filter((_, index) => index % 2 === 1)
+  const previews = useMemo(
+    () =>
+      new Map(
+        visiblePosts.map(post => [
+          post.fields.slug,
+          getPostPreview(post.html, language),
+        ])
+      ),
+    [visiblePosts, language]
+  )
   const renderPost = post => {
     const title =
       (language === "eng" && post.frontmatter.titleEn) ||
       post.frontmatter.title ||
       post.fields.slug
-    const languages = getPostLanguages(post.html)
-
+    const description =
+      (language === "eng" && post.frontmatter.descriptionEn?.trim()) ||
+      post.frontmatter.description?.trim()
+    const preview = previews.get(post.fields.slug)
     return (
       <article
         key={post.fields.slug}
@@ -87,31 +82,18 @@ const BlogIndex = ({ data, location }) => {
             <h2>
               <span itemProp="headline">{title}</span>
             </h2>
+            {description && (
+              <p className="post-list-item__description" itemProp="description">
+                {description}
+              </p>
+            )}
           </header>
-          <section>
-            <p itemProp="description">{getPreviewText(post, language)}</p>
-          </section>
+          {preview && <p className="post-list-item__preview">{preview}</p>}
           <div className="post-list-item__bottom">
             <time className="post-date" dateTime={post.frontmatter.date}>
               {formatPostDate(post.frontmatter.date, language)}
             </time>
-            <div className="post-list-item__meta">
-              <span
-                className="post-language-badges"
-                aria-label={`Languages: ${languages
-                  .map(getLanguageLabel)
-                  .join(", ")}`}
-              >
-                {languages.map(language => (
-                  <small key={language} className="post-language-badge">
-                    {getLanguageLabel(language)}
-                  </small>
-                ))}
-              </span>
-              <small className="post-category">
-                {post.frontmatter.category}
-              </small>
-            </div>
+            <small className="post-category">{post.frontmatter.category}</small>
           </div>
         </Link>
       </article>
@@ -219,7 +201,6 @@ export const pageQuery = graphql`
       }
     ) {
       nodes {
-        excerpt(pruneLength: 150, truncate: true)
         html
         fields {
           slug
@@ -229,6 +210,7 @@ export const pageQuery = graphql`
           title
           titleEn
           description
+          descriptionEn
           keywords
           category
         }
