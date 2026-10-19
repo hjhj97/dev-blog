@@ -158,31 +158,40 @@ const BlogIndex = ({ data, location }) => {
         </div>
       }
     >
-      <div className="hero-band">
-        <Bio />
-      </div>
-      <Research />
-      <div className="post-list post-list--desktop">
-        <div className="post-list-column">
-          {leftColumnPosts.map(renderPost)}
+      <div className="home-intro">
+        <div className="home-intro-inner">
+          <div className="hero-band">
+            <Bio />
+          </div>
+          <Research />
         </div>
-        <div className="post-list-column">
+      </div>
+      <section aria-labelledby="articles-heading">
+        <h2 id="articles-heading" className="articles-heading">
+          Articles
+        </h2>
+        <div className="post-list post-list--desktop">
+          <div className="post-list-column">
+            {leftColumnPosts.map(renderPost)}
+          </div>
+          <div className="post-list-column">
+            <Category
+              categories={categories}
+              currentCategory={currentCategory}
+              selectCategory={selectCategory}
+            />
+            {rightColumnPosts.map(renderPost)}
+          </div>
+        </div>
+        <div className="post-list post-list--mobile">
           <Category
             categories={categories}
             currentCategory={currentCategory}
             selectCategory={selectCategory}
           />
-          {rightColumnPosts.map(renderPost)}
+          {filteredPosts.map(renderPost)}
         </div>
-      </div>
-      <div className="post-list post-list--mobile">
-        <Category
-          categories={categories}
-          currentCategory={currentCategory}
-          selectCategory={selectCategory}
-        />
-        {filteredPosts.map(renderPost)}
-      </div>
+      </section>
     </Layout>
   )
 }
