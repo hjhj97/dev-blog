@@ -12,7 +12,7 @@ module.exports = {
     title: `하주헌 블로그`,
     author: {
       name: `하주헌`,
-      nickname: "JuHeon",
+      nickname: "JuHeon Ha",
       summary: `Stories only I can tell`,
     },
     description: `하주헌 개발 블로그`,

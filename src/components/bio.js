@@ -20,7 +20,6 @@ const Bio = () => {
           author {
             name
             nickname
-            summary
           }
           social {
             github
@@ -35,23 +34,28 @@ const Bio = () => {
   const social = data.site.siteMetadata?.social
   return (
     <div className="bio">
-      <StaticImage
-        className="bio-avatar"
-        layout="fixed"
-        formats={["auto", "webp", "avif"]}
-        src="../images/profile-2508.jpg"
-        width={120}
-        height={120}
-        quality={100}
-        alt="Profile picture"
-        style={{ minWidth: "120px" }}
-      />
+      <div className="bio-top">
+        <div className="bio-identity">
+          <h3 className="bio-name">
+            <span lang="ko">{author.name}</span>{" "}
+            <span lang="en">{author.nickname}</span>
+          </h3>
+          <p className="bio-description">
+            M.S. student (Ajou Univ., Artificial Intelligence)
+          </p>
+        </div>
+        <StaticImage
+          className="bio-avatar"
+          layout="constrained"
+          formats={["auto", "webp", "avif"]}
+          src="../images/profile-2508.jpg"
+          width={96}
+          height={96}
+          quality={100}
+          alt="Profile picture"
+        />
+      </div>
       <div className="bio-content">
-        <h3 className="bio-name">{`${author.name} ${author.nickname}`}</h3>
-        <p className="bio-summary">{author?.summary || null}</p>
-        <p className="bio-description">
-          M.S. student (Ajou Univ., Artificial Intelligence)
-        </p>
         <ul className="research-interests bio-interests">
           {RESEARCH_INTERESTS.map(interest => (
             <li key={interest} className="research-interest">
