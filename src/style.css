@@ -379,12 +379,10 @@ main {
 }
 
 .publication {
-  padding: var(--spacing-6) var(--spacing-6) var(--spacing-6) var(--spacing-5);
+  padding: var(--spacing-6);
   background-color: #fff;
-  border: 1px solid var(--color-band-research-border);
-  border-left: 3px solid var(--color-primary);
+  border: 1px solid var(--color-accent);
   border-radius: var(--spacing-2);
-  box-shadow: 0 1px 3px rgba(27, 35, 48, 0.05);
 }
 
 .publication + .publication {
@@ -405,7 +403,6 @@ main {
 }
 
 .publication-status--accepted {
-  margin-bottom: var(--spacing-3);
   background: #e9f3ed;
   color: #285c3e;
 }
@@ -416,26 +413,60 @@ main {
   border-top: 1px solid var(--color-band-research-border);
 }
 
-.under-review-heading {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-2);
-  margin: 0 0 var(--spacing-4);
+.under-review-toggle {
+  display: list-item;
+  padding: var(--spacing-3) var(--spacing-4);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--spacing-1);
+  background: #fff;
   font-family: var(--fontFamily-sans-kr);
-  font-size: var(--fontSize-0);
+  font-size: var(--fontSize-1);
+  font-weight: var(--fontWeight-bold);
   line-height: var(--lineHeight-normal);
   letter-spacing: 0;
-  color: var(--color-text-light);
+  color: var(--color-heading);
+  cursor: pointer;
+  transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.under-review-toggle::marker {
+  color: var(--color-primary);
+}
+
+.under-review-toggle:hover {
+  border-color: var(--color-primary);
+  background: var(--color-surface);
+}
+
+.under-review-toggle:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.under-review-heading {
+  display: inline;
+  margin: 0;
+  font: inherit;
+  letter-spacing: 0;
 }
 
 .under-review-count {
+  display: inline-block;
+  margin-left: var(--spacing-3);
+  padding: 2px var(--spacing-2);
+  border-radius: var(--spacing-1);
+  background: #e9ebef;
+  color: #505761;
   font-size: 0.75rem;
-  font-weight: 400;
+  font-weight: 500;
+  vertical-align: middle;
+  white-space: nowrap;
 }
 
 .under-review-list {
   display: grid;
   gap: var(--spacing-5);
+  margin-top: var(--spacing-5);
 }
 
 .under-review-item {
@@ -501,6 +532,53 @@ main {
   border-left: 1px solid var(--color-accent);
 }
 
+.publication-topline {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-3);
+}
+
+.publication-topline .publication-venue {
+  gap: var(--spacing-1) var(--spacing-2);
+  margin: 0;
+  font-size: 0.75rem;
+}
+
+.publication-topline .publication-venue-name {
+  color: var(--color-text-light);
+  font-weight: 500;
+}
+
+.publication-keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+  margin: var(--spacing-3) 0 var(--spacing-4);
+  padding: 0;
+}
+
+.publication-keyword {
+  max-width: 100%;
+  margin: 0;
+  padding: 3px var(--spacing-2);
+  border-radius: var(--spacing-1);
+  background: #edf2f8;
+  color: #375373;
+  font-family: var(--fontFamily-sans-kr);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+}
+
+.under-review-item .publication-keywords {
+  margin-bottom: 0;
+}
+
 .publication-details {
   margin-bottom: var(--spacing-4);
 }
@@ -556,25 +634,35 @@ main {
 .publication-links {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--spacing-2);
+  gap: var(--spacing-2) var(--spacing-4);
+  padding-top: var(--spacing-3);
+  border-top: 1px solid var(--color-accent);
 }
 
 .publication-link {
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-2);
-  padding: var(--spacing-1) var(--spacing-3);
+  min-height: 28px;
+  padding: var(--spacing-1) 0;
   font-size: var(--fontSize-0);
   color: var(--color-primary);
-  text-decoration: none;
-  border: 1px solid var(--color-accent);
-  border-radius: var(--spacing-1);
-  transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  text-decoration: underline;
+  text-decoration-color: #c0ccdc;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+  transition: color 0.2s ease-in-out, text-decoration-color 0.2s ease-in-out;
 }
 
 .publication-link:hover {
-  border-color: var(--color-primary);
-  background-color: var(--color-surface);
+  color: var(--color-heading);
+  text-decoration-color: currentColor;
+}
+
+.publication-link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
 .publication-link svg {

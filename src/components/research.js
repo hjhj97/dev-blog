@@ -8,10 +8,16 @@ const PUBLICATIONS = [
     venue: "EMNLP 2026 Main Conference",
     role: "First Author",
     year: "2026",
+    keywords: [
+      "LLM Empathy",
+      "Activation Steering",
+      "Mechanistic Interpretability",
+      "Representation Geometry",
+      "Persona Bias",
+    ],
     projectPage:
       "https://hjhj97.github.io/Empathy-Is-Steerable-but-Multi-Axial/",
-    paper:
-      "https://hjhj97.github.io/Empathy-Is-Steerable-but-Multi-Axial/Empathy_Is_Steerable_But_Multi_Axial__Mechanism_Geometry_and_Persona_Effects_in_LLM_camera.pdf",
+    paper: "https://arxiv.org/abs/2609.15654",
     repository:
       "https://github.com/hjhj97/Empathy-Is-Steerable-but-Multi-Axial",
     abstract:
@@ -25,12 +31,26 @@ const UNDER_REVIEW = [
       "Nudge and Merge: Simple Post-Hoc Sparsification of Dense Adapters for Parameter-Efficient Fine-Tuning on Sparse LLMs",
     venue: "AAAI 2027",
     role: "Second Author",
+    keywords: [
+      "Sparse LLMs",
+      "Parameter-Efficient Fine-Tuning",
+      "LoRA",
+      "Post-Training Pruning",
+      "Adapter Merging",
+    ],
   },
   {
     title:
       "Do LLMs Empathize with You, or with Your Words? Revealing How Stated Distress Makes a Friend's Loss Seem Yours",
     venue: "ACL Rolling Review (ARR)",
     role: "First Author",
+    keywords: [
+      "LLM Empathy",
+      "Person-Event Attribution",
+      "Emotional Cues",
+      "Contextual Grounding",
+      "Empathy Evaluation",
+    ],
   },
 ]
 
@@ -69,9 +89,17 @@ const Research = () => {
             itemScope
             itemType="https://schema.org/ScholarlyArticle"
           >
-            <span className="publication-status publication-status--accepted">
-              Accepted
-            </span>
+            <div className="publication-topline">
+              <p className="publication-venue">
+                <span className="publication-venue-name">
+                  {publication.venue}
+                </span>
+                <span className="publication-role">{publication.role}</span>
+              </p>
+              <span className="publication-status publication-status--accepted">
+                Accepted
+              </span>
+            </div>
             <h4 className="publication-title">
               <a
                 href={publication.projectPage}
@@ -82,12 +110,13 @@ const Research = () => {
                 <span itemProp="headline">{publication.title}</span>
               </a>
             </h4>
-            <p className="publication-venue">
-              <span className="publication-venue-name">
-                {publication.venue}
-              </span>
-              <span className="publication-role">{publication.role}</span>
-            </p>
+            <ul className="publication-keywords" aria-label="Research keywords">
+              {publication.keywords.map(keyword => (
+                <li className="publication-keyword" key={keyword}>
+                  {keyword}
+                </li>
+              ))}
+            </ul>
             <details className="publication-details">
               <summary className="publication-summary">
                 <span className="publication-summary-label">Abstract</span>
@@ -125,7 +154,7 @@ const Research = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                Paper (PDF)
+                Paper (arXiv)
               </a>
               <a
                 className="publication-link publication-link--repo"
@@ -140,14 +169,13 @@ const Research = () => {
           </article>
         ))}
 
-        <section
-          className="publications-under-review"
-          aria-labelledby="under-review-heading"
-        >
-          <h3 id="under-review-heading" className="under-review-heading">
-            Under Review
-            <span className="under-review-count">{UNDER_REVIEW.length}</span>
-          </h3>
+        <details className="publications-under-review">
+          <summary className="under-review-toggle">
+            <h3 className="under-review-heading">Under Review</h3>
+            <span className="under-review-count">
+              {UNDER_REVIEW.length} papers
+            </span>
+          </summary>
           <div className="under-review-list">
             {UNDER_REVIEW.map(publication => (
               <article className="under-review-item" key={publication.title}>
@@ -161,10 +189,20 @@ const Research = () => {
                     Under review
                   </span>
                 </p>
+                <ul
+                  className="publication-keywords"
+                  aria-label="Research keywords"
+                >
+                  {publication.keywords.map(keyword => (
+                    <li className="publication-keyword" key={keyword}>
+                      {keyword}
+                    </li>
+                  ))}
+                </ul>
               </article>
             ))}
           </div>
-        </section>
+        </details>
 
         <script
           type="application/ld+json"
