@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react"
+import { getPreferredLanguage } from "../utils/preferredLanguage"
 
 const STORAGE_KEY = "blog-language"
 const LanguageContext = createContext(null)
@@ -8,17 +9,23 @@ function LanguageProvider({ children }) {
   const [language, setLanguage] = useState("kor")
 
   useEffect(() => {
-    // Restore after hydration so the initial render matches Gatsby's HTML.
+    // Resolve after hydration so the initial render matches Gatsby's HTML.
+    let initialLanguage = getPreferredLanguage(window.navigator)
     try {
       const saved = window.localStorage.getItem(STORAGE_KEY)
-      if (isLanguage(saved)) setLanguage(saved)
+      if (isLanguage(saved)) initialLanguage = saved
     } catch {
-      // Keep the in-memory preference when browser storage is unavailable.
+      // Browser language still works when storage is unavailable.
     }
+    setLanguage(initialLanguage)
 
     const onStorage = event => {
       if (event.key === STORAGE_KEY || event.key === null) {
-        setLanguage(isLanguage(event.newValue) ? event.newValue : "kor")
+        setLanguage(
+          isLanguage(event.newValue)
+            ? event.newValue
+            : getPreferredLanguage(window.navigator)
+        )
       }
     }
     window.addEventListener("storage", onStorage)
