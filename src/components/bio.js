@@ -36,12 +36,32 @@ const Bio = () => {
     <div className="bio">
       <div className="bio-top">
         <div className="bio-identity">
-          <h3 className="bio-name">
-            <span lang="ko">{author.name}</span>{" "}
-            <span lang="en">{author.nickname}</span>
-          </h3>
-          <p className="bio-description">
-            M.S. student (Ajou Univ., Artificial Intelligence)
+          <div className="bio-heading">
+            <h3 className="bio-name">
+              <span lang="ko">{author.name}</span>{" "}
+              <span lang="en">{author.nickname}</span>
+            </h3>
+            <div className="bio-social">
+              <a
+                href={`https://github.com/${social.github}`}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="GitHub profile"
+              >
+                <GithubLogo />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/hajuheon/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="LinkedIn profile"
+              >
+                <LinkedinLogo />
+              </a>
+            </div>
+          </div>
+          <p className="bio-description" lang="en">
+            I am an M.S. student in Artificial Intelligence at Ajou University.
           </p>
         </div>
         <StaticImage
@@ -56,6 +76,20 @@ const Bio = () => {
         />
       </div>
       <div className="bio-content">
+        <div className="bio-summary" lang="en">
+          <p>
+            My research focuses on <strong>LLM interpretability</strong>,{" "}
+            <strong>human-centered AI</strong>, and{" "}
+            <strong>AI safety and alignment</strong>, with particular interests
+            in persona, emotion, and social bias in LLMs. I explore how AI can
+            model human psychology and behavior, and the underlying model
+            mechanisms that give rise to human-like behavior.
+          </p>
+          <p>
+            Before beginning my graduate studies, I worked as a frontend
+            developer.
+          </p>
+        </div>
         <ul className="research-interests bio-interests">
           {RESEARCH_INTERESTS.map(interest => (
             <li key={interest} className="research-interest">
@@ -63,24 +97,6 @@ const Bio = () => {
             </li>
           ))}
         </ul>
-        <div className="bio-social">
-          <a
-            href={`https://github.com/${social.github}`}
-            target="_blank"
-            rel="noreferrer"
-            aria-label="GitHub profile"
-          >
-            <GithubLogo />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/hajuheon/"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="LinkedIn profile"
-          >
-            <LinkedinLogo />
-          </a>
-        </div>
       </div>
     </div>
   )
