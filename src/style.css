@@ -1070,7 +1070,7 @@ main {
 }
 
 .post-list-column + .post-list-column {
-  padding-top: var(--spacing-16);
+  padding-top: 9rem;
 }
 
 .post-list--mobile {
@@ -1147,19 +1147,15 @@ main {
 .post-list-item .post-list-item__bottom .post-category {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   flex-shrink: 0;
-  width: 5.5rem;
-  height: 2rem;
-  border: 1px solid #e2e2e2;
-  background-color: #f5f5f5;
-  color: #525252;
-  padding: 4px 10px;
-  border-radius: var(--spacing-1);
+  color: #626262;
   font-family: var(--fontFamily-sans-kr);
   font-size: 0.8125rem;
-  font-weight: 500;
+  font-weight: var(--fontWeight-bold);
   line-height: 1.5;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
   white-space: nowrap;
 }
 
