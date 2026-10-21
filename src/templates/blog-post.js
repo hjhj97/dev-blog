@@ -32,25 +32,11 @@ const BlogPostTemplate = ({
     : post.html
 
   return (
-    <Layout location={location} title={siteTitle}>
-      <article
-        className="blog-post"
-        itemScope
-        itemType="http://schema.org/Article"
-      >
-        <header>
-          <h1 itemProp="headline">{title}</h1>
-          <div className="blog-post-bottom">
-            <time className="post-date" dateTime={post.frontmatter.date}>
-              {formatPostDate(post.frontmatter.date, language)}
-            </time>
-            <Link to={`/?category=${post.frontmatter.category}`}>
-              <p className="post-category">{post.frontmatter.category}</p>
-            </Link>
-          </div>
-        </header>
-        <hr />
-        {hasLanguageTabs && (
+    <Layout
+      location={location}
+      title={siteTitle}
+      headerContent={
+        hasLanguageTabs && (
           <div
             className="post-language-tabs"
             role="tablist"
@@ -79,7 +65,26 @@ const BlogPostTemplate = ({
               ENG
             </button>
           </div>
-        )}
+        )
+      }
+    >
+      <article
+        className="blog-post"
+        itemScope
+        itemType="http://schema.org/Article"
+      >
+        <header>
+          <h1 itemProp="headline">{title}</h1>
+          <div className="blog-post-bottom">
+            <time className="post-date" dateTime={post.frontmatter.date}>
+              {formatPostDate(post.frontmatter.date, language)}
+            </time>
+            <Link to={`/?category=${post.frontmatter.category}`}>
+              <p className="post-category">{post.frontmatter.category}</p>
+            </Link>
+          </div>
+        </header>
+        <hr />
         <ArticleBody html={articleHtml} language={language} />
         <hr />
         <footer className="post-footer">
