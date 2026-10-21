@@ -2,7 +2,7 @@
 title: Empathy Is Steerable but Multi-Axial:Mechanism Geometry and Persona Effects in LLMs
 titleEn: Empathy Is Steerable but Multi-Axial:Mechanism Geometry and Persona Effects in LLMs
 description: LLM의 공감을 조절할 수 있는가?
-descriptionEn: Can we steer the empathy of LLM?
+descriptionEn: Can we steer the LLM to be more empathetic?
 date: 2026-10-21
 category: Paper
 
@@ -307,3 +307,287 @@ Steering이 일반적인 텍스트 예측에도 영향을 주는지는 PPL(perpl
 
 
 
+<!-- language:eng -->
+
+# Paper Review: Empathy Is Steerable but Multi-Axial
+
+Our paper, **Empathy Is Steerable but Multi-Axial: Mechanism Geometry and Persona Effects in LLMs**, on which I am the first author, was accepted to the EMNLP 2026 Main Conference.
+
+In this post, I explain what motivated the research, how the experiments developed, and what the results tell us.
+
+<div class="project-bookmark">
+  <a href="https://arxiv.org/abs/2609.15654">
+    <span class="project-bookmark-label">Paper · arXiv</span>
+    <strong class="project-bookmark-title">Empathy Is Steerable but Multi-Axial</strong>
+    <span class="project-bookmark-description">Mechanism Geometry and Persona Effects in LLMs</span>
+    <span class="project-bookmark-domain">arxiv.org · 2609.15654</span>
+  </a>
+</div>
+
+<div class="project-bookmark">
+  <a href="https://hjhj97.github.io/Empathy-Is-Steerable-but-Multi-Axial/">
+    <span class="project-bookmark-label">Project Page</span>
+    <strong class="project-bookmark-title">Empathy Is Steerable but Multi-Axial</strong>
+    <span class="project-bookmark-description">Mechanism Geometry and Persona Effects in LLMs</span>
+    <span class="project-bookmark-domain">hjhj97.github.io</span>
+  </a>
+</div>
+
+![Conference poster for Empathy Is Steerable but Multi-Axial](./paper_review_images/poster_portrait.png)
+
+---
+
+## TL;DR
+
+There are several ways to respond empathetically. A response might acknowledge someone's feelings, express an understanding of their situation, or ask them to share more. This study investigated **whether activation steering can increase or decrease a particular kind of empathetic expression**.
+
+We scored responses using a model trained on EPITOME, an existing framework for evaluating empathy, and compared those scores with evaluations from a separate LLM judge.
+
+There are three main findings.
+
+1. **Empathetic expressions are steerable:** In all three models, changing internal activations alone could increase or decrease scores for the targeted expression.
+2. **But the changes are not limited to the target:** For example, steering toward asking questions (EX) increased the corresponding score, but also decreased scores for acknowledging emotions (ER) and expressing an understanding of the situation (IP).
+3. **Persona prompting is different from directly steering empathetic expressions:** Assigning a persona such as `empathetic person` or `cynical person` changes the response. However, most of the internal changes induced by personas could not be explained by the three directions used to steer empathetic expressions.
+
+## 1. Starting Point: Can We Steer Empathy in LLMs?
+
+This research began with a simple question. LLMs are quite good at generating seemingly empathetic responses when someone shares a concern. That led to a hypothesis: might there be activations involved in generating these responses?
+
+Could we increase or decrease empathetic expressions by adjusting those activations? And would the same activations change when we assigned a persona such as `empathetic person` or `cynical person`?
+
+**In short, we wanted to find out whether empathetic expressions in LLMs are controllable, whether three categories of empathy can be controlled independently, and whether persona-induced changes can be explained by the same directions.**
+
+> Before running experiments, however, we had to settle a more basic question: what counts as empathy? How should we define it?
+
+Emotion classification, such as predicting that someone is sad, is different from generating an appropriate response to that person. Saying "`I'm sorry to hear that`" does not necessarily make the recipient feel understood. The same words can be received differently depending on the situation and the person hearing them.
+
+I also felt that choosing an empathetic response was different from generating one. We therefore chose free-form generation rather than multiple-choice questions (MCQs), and evaluated empathetic expressions in the generated responses.
+
+### Plenty of Responses, but Few Useful Comparisons
+
+Initially, we planned to generate multiple responses to the same seeker post, meaning a post from someone seeking support, and compare the activations of high- and low-empathy responses. But after collecting 1,000 responses, we found that 93.6% received a score of 3 or 4 on the five-point LLM-as-a-judge scale we were using.
+
+Because most responses were judged to be reasonably acceptable, it was difficult to find responses with sufficiently different scores for a useful comparison. Generating more data did not necessarily give us the contrast we needed. We could also prompt the model to produce empathetic or neutral responses, but then it was hard to tell whether activation differences reflected empathy, the instructions, writing style, or response length.
+
+For the final experiments, we used EPITOME, whose human annotations distinguish the categories and strength of empathetic expressions. Instead of the initial five-point evaluation, we constructed comparison groups using EPITOME's 0/1/2 labels.
+
+For example, "That must have been really hard to go through." acknowledges the other person's feelings (ER), but does not ask or invite them to say more (EX). A response can contain one kind of empathetic expression without containing another. Rather than divide entire responses into empathetic and non-empathetic groups, we therefore compared responses with and without each of ER, IP, and EX. EPITOME provides separate labels for all three categories, allowing us to select responses on that basis.
+
+## 2. What Empathy Means in This Paper: ER, EX, IP
+
+EPITOME is a framework proposed by [Sharma et al. (2020)](https://aclanthology.org/2020.emnlp-main.425/) to analyze how empathy is expressed in online mental health support conversations. In peer-support dialogues, where someone responds to a seeker post, it distinguishes three categories of **how a response conveys empathy**.
+
+| Category | Observable characteristics of the response | Example |
+|---|---|---|
+| Emotional Reactions, `ER` | Acknowledging the other person's feelings or responding emotionally | "That must have been really hard to go through." |
+| Interpretations, `IP` | Expressing an understanding or interpretation of the other person's situation | "It sounds like you feel disappointed because you had high hopes." |
+| Explorations, `EX` | Using questions or requests to encourage the other person to share more | "What has been the hardest part for you?" |
+
+Each response receives separate ER, IP, and EX scores, making it possible to compare differences in expression that a single overall empathy score would miss. In the original study, human annotators read the seeker post together with the response and assigned a label of 0 when a category was absent, 1 when it was weakly expressed, and 2 when it was strongly expressed. The authors also developed a RoBERTa-based classifier trained on these annotations to predict scores for new responses.
+
+In our study, we used the human labels in the Reddit data to select responses for vector extraction, and used the existing classifier to evaluate newly generated responses. EPITOME's data and evaluation model thus served different roles at different stages.
+
+The question we wanted to test was:
+
+> If we construct an activation direction for each of ER, IP, and EX, can we change the target score while keeping the other two scores unchanged?
+
+![Example responses produced by ER, EX, and IP steering for the same seeker post](./paper_review_images/steering_examples.png)
+
+*Figure 1. Applying ER, EX, and IP steering to the same seeker post adds expressions related to emotions, questions, and interpretations of the situation, respectively.*
+
+## 3. Method: Extracting Steering Vectors from Activation Differences
+
+We used [Contrastive Activation Addition (CAA)](https://aclanthology.org/2024.acl-long.828/) in these experiments. CAA constructs a vector from the difference in mean activations between examples with and without a desired property, then adds it to internal activations during generation to steer the model's responses. The model's weights remain unchanged, while the sign and magnitude of a coefficient determine the direction and strength of the intervention. Here, we constructed separate vectors based on the presence or absence of ER, IP, and EX expressions.
+
+![Five stages of CAA-based vector extraction and inference-time steering](./paper_review_images/main.png)
+
+We ran experiments with Llama-3.1-8B-Instruct, Qwen2.5-7B-Instruct, and Mistral-7B-Instruct. We excluded EPITOME seeker posts shorter than 100 characters or containing self-harm keywords, as these posts could make the models more likely to refuse to respond.
+
+For each category, we selected 100 responses containing the expression (labels 1 or 2) and 100 responses without it (label 0).
+
+During vector extraction, the model does not generate a new response. Instead, we feed it the seeker post and an existing response using teacher forcing, and record the activations computed as it reads them. Specifically, we extract the hidden state of the last response token at each layer.
+
+We average the response activations within each group, then subtract the mean for the group without the expression from the mean for the group with it. For category $m$ at layer $\ell$, this difference is the steering vector, or empathy vector.
+
+$$
+v_\ell^m
+= \operatorname{mean}_{x \in P_m} h_\ell(x)
+- \operatorname{mean}_{x \in N_m} h_\ell(x).
+$$
+
+This **candidate direction** may also capture other empathy categories, writing style, or content, so we examine those possibilities in later control experiments. When generating a new response, we add the vector to the activation of the current last token at the selected layer.
+
+Once the vector is ready, we let the model generate its own response to a new seeker post. Unlike the extraction stage, which records internal values while the model reads an existing response, the generation stage adds the vector to the current last-token activation at the selected layer.
+
+$$
+h_{\ell,t} \leftarrow h_{\ell,t} + \alpha v_\ell^m.
+$$
+
+$\alpha$ is the steering strength. We compared $-1, 0, +1, +2$: zero is the baseline without intervention, while positive and negative values add or subtract the vector. We evaluated responses to 200 seeker posts per condition across multiple layers. We changed only the activation intervention, without retraining or adding instructions to be empathetic, and kept the data for vector extraction separate from the evaluation data.
+
+## 4. Result 1: All Three Models Are Steerable at Layer 15
+
+![Changes in ER, IP, and EX scores across layers and steering strengths in three models](./paper_review_images/layer_sweep.png)
+
+*Figure 3. Steering effects are relatively consistent in the middle layers. The layer with the largest effect, and the behavior of later layers, vary by model, category, and strength.*
+
+Table 1 shows the target scores at layer 15 and their changes relative to the baseline. Each row reports steering with the vector for the corresponding category.
+
+[![Layer-15 ER, EX, and IP target scores and steering effects evaluated by the EPITOME classifier and GPT-5-mini judge](./paper_review_images/table1.png)](./paper_review_images/table1.png)
+
+*Table 1. Evaluations by the EPITOME classifier on the left and the GPT-5-mini judge on the right.*
+
+To find where steering worked best, we swept through layers at intervals of four, starting with layers 3, 7, 11, 15, and so on. **Among the layers we tested, layer 15 was the most suitable common point for steering ER, EX, and IP in both directions across all three models.** At earlier layers, changes were sometimes small or inconsistent with the intended direction.
+
+Some conditions produced larger effects at later layers, but the responses varied by model and category. At the final layer, an intervention intended to increase a score sometimes decreased it instead. At layer 15, all three categories in all three models moved in the intended direction, so we selected it as the common intervention point for subsequent analyses.
+
+Why might the middle layers show this consistency? One interpretation is that **representations relevant to the behavioral properties of responses have formed by this point, while enough downstream layers remain to incorporate the intervention**. These representations may not yet be sufficiently developed in earlier layers. At the final layer, an intervention can directly affect next-token logits, potentially making score changes less stable. [Earlier work on CAA](https://aclanthology.org/2024.acl-long.828/) also found representations distinguishing behaviors around the middle layers, with substantial steering effects in that region.
+
+For ER, EX, and IP in all three models, positive steering increased scores and negative steering decreased them. For example, Llama's EX score rose from a baseline of 0.15 to 0.72 at $\alpha=+1$, and fell to 0.04 at $\alpha=-1$.
+
+Even when the direction is the same, the effect size varies by model and category, as illustrated by $+0.05$ for Mistral EX and $+0.57$ for Llama EX. Moreover, models differ in depth and internal representations, so the same layer number does not necessarily imply the same function. What this experiment established was **steerability shared across all three models**.
+
+## 5. Result 2: The Changes Are Not Limited to the Target
+
+Having confirmed that the target score increased, we can now look at the other two scores. Table 2 reveals a common pattern across the three models under positive EX steering.
+
+[![Target and non-target empathy score changes under ER, EX, and IP steering in three models](./paper_review_images/table2.png)](./paper_review_images/table2.png)
+
+*Table 2. Positive and negative steering with ER, EX, and IP vectors at layer 15. Each value is the score change relative to $\alpha=0$ in the experiment using the same vector.*
+
+Intervening with the EX vector increased scores for questions and requests for further explanation. Yet scores for emotional reactions (ER) and expressions of understanding (IP) decreased in all three models. In Llama, EX increased by $0.570$, while ER fell by $0.225$ and IP by $0.060$.
+
+An intervention intended to increase questions had also changed other empathetic expressions. Steering ER or IP likewise affected non-target scores. Which scores changed together, and in which direction, depended on the model and the vector used.
+
+### What Does Cosine Similarity Show?
+
+The cosine similarities between the original vectors at layer 15 are:
+
+| Vector pair | Llama | Qwen | Mistral |
+|---|---:|---:|---:|
+| ER–EX | +0.08 | +0.13 | +0.09 |
+| ER–IP | -0.29 | -0.32 | -0.25 |
+| EX–IP | -0.45 | -0.46 | -0.53 |
+
+ER–EX cosine similarity is close to zero, while ER–IP and EX–IP similarities are negative. The three models do not share the same vectors, but **the geometric relationships among the three vectors within each model were similar**.
+
+Interestingly, EX steering lowers ER even though the ER and EX vectors are nearly orthogonal. Orthogonal vectors do not necessarily produce independent changes in the output. The model's computations after the intervention, how it constructs its responses, and the classifier's evaluation can all affect the scores.
+
+Conversely, non-orthogonal vectors do not make selective control fundamentally impossible. Non-orthogonality and linear dependence are different properties. What these results establish is that using the extracted CAA vectors one at a time also changes other scores.
+
+### Could We Just Use Instructions Instead?
+
+We also compared a condition with no additional instruction (P0) against instructions requesting general empathy (P1), emotional acknowledgment (P2), and situational understanding and follow-up questions (P3). For Llama, P2 increased ER by $+0.45$ relative to P0, but also changed IP by $-0.09$ and EX by $-0.07$. Directly written instructions therefore did not isolate the desired category either.
+
+## 6. The Role of Shared Components
+
+### Residualization: What Happens When We Remove Shared Components?
+
+Cosine similarity tells us how the vectors relate geometrically, but not whether their overlapping components are needed for steering. To test this, we removed from each vector the component lying in the span of the other two vectors, then applied steering again.
+
+Before intervening, we rescaled the residual vector to match the original vector's norm. This allows us to distinguish the effect of removing a shared component from the effect of simply making the vector smaller.
+
+The results for Llama at layer 15 with $\alpha=+1$ are:
+
+| Category | Original target change | Change after residualization | Effect retained relative to the original |
+|---|---:|---:|---:|
+| ER | +0.080 | +0.105 | 131.3% |
+| EX | +0.570 | +0.480 | 84.2% |
+| IP | +0.320 | +0.160 | 50.0% |
+
+The ER effect was preserved, while about 84% of the EX effect and 50% of the IP effect remained. Since the EX/IP effects decreased even after restoring the norm, the reduction cannot be explained simply by a smaller vector magnitude. The removed shared components also contribute to steering. The components remaining in each direction can still change scores, but removing shared components does not necessarily produce better control.
+
+### Could the Overlap Come from How the Data Were Constructed?
+
+We checked one more possibility: could the changes in other empathy scores be caused by differences between the two groups of responses used to construct the vectors?
+
+The IP vector is built from the activation difference between responses with and without expressions of situational understanding (IP). But if the group with IP also contains more emotional acknowledgment (ER) or questions (EX), the vector could capture ER and EX differences as well. That could explain why a vector intended to control IP also changes other scores.
+
+We therefore selected responses from the same candidate data pool and compared two conditions. Using the IP vector as an example:
+
+- **Unmatched:** Construct groups with and without IP expressions, without separately matching the distributions of ER and EX labels.
+- **Exact-matched:** Keep the distinction between responses with and without IP, but match the number of responses for every combination of ER and EX labels across the two groups. For instance, include the same number of responses with ER=2 and EX=0 in both groups, and do the same for all other combinations.
+
+In other words, this experiment tests whether we can still change the target score, and whether other scores still change alongside it, after matching the label distributions of the other two categories. We applied the same procedure to the ER and EX vectors. The number of responses per target label, the 200 evaluation seeker posts, and the decoding settings were held constant across the two conditions. The following results are for positive steering at Llama layer 15.
+
+| Category | Unmatched target change | Exact-matched target change | 95% CI |
+|---|---:|---:|---|
+| ER | +0.030 | +0.065 | [-0.030, +0.100] |
+| EX | +0.680 | +0.610 | [-0.230, +0.090] |
+| IP | +0.290 | +0.270 | [-0.170, +0.130] |
+
+All three target scores still increased after matching the non-target labels. The steering effects were therefore not caused solely by imbalances in the other labels.
+
+Some coupling weakened, however. The decrease in ER under EX steering shrank from $-0.12$ to $-0.05$. The difference between conditions was $+0.07$, with a 95% CI of $[0.005, 0.135]$. ER–IP and EX–IP cosine similarities also moved closer to zero.
+
+To summarize:
+
+> Target scores remain controllable after matching the distributions of other labels. However, the extent to which other scores change alongside them, and the relationships between the vectors, depend on which responses are used to construct the vectors.
+
+## 7. Result 3: Do Personas Move the Same Empathy Directions?
+
+Next, we assigned personas to the models. We examined whether personas changed empathy scores and whether the corresponding activations moved along the ER/IP/EX directions identified earlier.
+
+The baseline was `person`. We compared it with the two personas `empathetic` and `cynical`, plus eight social personas covering gender, race, occupation, and political orientation. Including the baseline, there were 11 conditions in total.
+
+The Llama results in Table 4 show that the three scores changed differently depending on the persona.
+
+[![Changes in Llama's ER, IP, and EX scores for ten personas relative to the person baseline](./paper_review_images/table4.png)](./paper_review_images/table4.png)
+
+*Table 4. Score changes when ten personas are assigned to Llama-3.1-8B-Instruct. The baseline is `person`.*
+
+Even the `empathetic person` persona increased only ER ($+0.175$), while IP ($-0.250$) and EX ($-0.110$) decreased. Regardless of overall response quality, the persona did not increase all three empathetic expressions together. For `black person` and `engineer`, ER decreased while IP increased.
+
+### When Scores Change, Do Activations Also Move in the ER Direction?
+
+For each persona, we averaged the layer-15 activations of generated responses across response tokens, then calculated their cosine similarity with the ER vector. Figure 4 compares changes in ER scores with changes in cosine similarity, both relative to `person`.
+
+![Relationship between persona-induced ER score changes and changes in cosine similarity with the recovered ER direction](./paper_review_images/figure4.png)
+
+*Figure 4. Small points represent persona conditions, while large triangles represent direct ER steering. The horizontal axis shows the change in ER score, and the vertical axis shows the change in cosine similarity with the ER vector.*
+
+ER scores changed substantially across personas, but cosine similarity with the ER direction changed only slightly. **Persona effects cannot be adequately explained by the single ER direction we extracted.**
+
+### What the 3% Figure Tells Us
+
+What if we include IP and EX as well as ER? We expanded the analysis to the subspace spanned by all three vectors.
+
+For each persona, we averaged the differences between its layer-15 response representations and those of the `person` baseline for the same seeker posts. We then calculated **the fraction of the mean shift's squared norm captured by the ER/IP/EX span**. The table below averages this fraction across the ten non-baseline personas.
+
+| Model | Fraction within the ER/IP/EX span | Fraction outside the span | Variance explained by the residual's top 5 PCs |
+|---|---:|---:|---:|
+| Llama | 2.64% | 97.36% | 27.49% |
+| Qwen | 3.08% | 96.92% | 29.60% |
+| Mistral | 3.00% | 97.00% | 29.86% |
+
+![Fraction of persona-mean shifts captured by the ER/IP/EX subspace and a PCA visualization of the residuals](./paper_review_images/persona_subspace.png)
+
+*Figure 6. Fraction of each persona's mean shift within the ER/IP/EX span (left), and PCA of the residual outside that span (right).*
+
+Because assigning a persona changes empathy scores, I expected the activations to move along the ER/IP/EX directions we had identified. Instead, about 97% of the squared norm of the mean activation change for each persona was not captured by those three vectors. We had found directions that could control empathy scores, but the internal changes induced by personas extended beyond them.
+
+## 8. Checking the Reliability of the Experiments
+
+We checked **whether the direction of steering effects was preserved across seeds and on different data**.
+
+- **Repeated runs:** At Llama layer 15, the signs of the effects were preserved when we varied extraction/sample seeds and decoding seeds. All 18 tests of target effects in Appendix G had confidence intervals excluding zero and remained significant after Holm correction. This does not establish the significance of off-target effects across all models.
+- **Cross-judging:** GPT-5-mini and the EPITOME classifier agreed on the direction of ER changes and mostly agreed on EX, but disagreements remained for IP. Both use the same EPITOME rubric and do not replace human evaluation.
+- **Out-of-domain (OOD) validation:** On the negative-emotion subset of EmpatheticDialogues, the direction of ER steering was preserved for both positive and negative interventions across all three models. This evaluation covered ER only and used the EPITOME classifier.
+
+After controlling for response length and question count, the positive EX steering effect pooled across the three models decreased from $+0.248$ to $-0.004$. **Changes in EX scores, which assess questions and requests for further explanation, were closely tied to changes in response length and question count.**
+
+We also used perplexity (PPL) to examine whether steering affected general text prediction. PPL measures how well a model predicts the next token in a given text; lower is better. When we evaluated Llama on 4,096 tokens from WikiText-103, PPL increased slightly at $\alpha=+1$, and increased more substantially when EX steering was strengthened to $\alpha=+2$. Stronger EX interventions therefore also reduced performance on next-token prediction for general text.
+
+## 9. Closing Thoughts
+
+To summarize the conclusion in one sentence:
+
+> **Empathetic expressions can be steered. However, the changes are not isolated to the desired expression, and the three extracted directions cannot explain persona effects in their entirety.**
+
+Our experiments used the existing CAA method. What we established is that **target steerability, selective control, and coverage of persona shifts are distinct questions**. Target scores changed in all three models, but removing shared components weakened some effects, and most persona-induced changes remained outside the three directions. Target scores were still controllable after matching the label distributions of the other empathy categories, while some changes in non-target scores became smaller. The responses used to construct a vector also affected what that vector controlled.
+
+When I started this research, I thought the task would be to find activations involved in empathy and change them. In practice, even finding suitable responses to compare was difficult. As we moved to human-labeled EPITOME data, examined non-target as well as target scores, and followed the changes induced by personas, the questions themselves became more specific.
+
+Finally, combining AI with human emotion, as we did in this study, is a compelling idea, but there is a great deal to consider. Emotion is difficult to evaluate: we have to represent natural human feelings through discrete measures, and, more fundamentally, it is hard to establish a ground truth for emotion.
+
+What counts as a "correct" emotional response depends on the values each person holds. That makes it important to use previously validated data such as EPITOME or, when proposing a new concept, to include human annotation as an essential part of the process. Throughout this research, I kept returning to the question of how to make empathy something we can meaningfully measure.
