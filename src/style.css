@@ -239,6 +239,56 @@ table thead tr th {
   border-bottom: 1px solid var(--color-accent);
 }
 
+.blog-post table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  margin: var(--spacing-6) 0 var(--spacing-8);
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.875rem;
+  line-height: 1.75;
+}
+
+.blog-post table th,
+.blog-post table td {
+  min-width: 10rem;
+  padding: 0.875rem 1rem;
+  vertical-align: top;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  border-bottom: 1px solid var(--color-accent);
+}
+
+.blog-post table th {
+  background: var(--color-surface);
+  color: var(--color-heading);
+  font-weight: var(--fontWeight-bold);
+  text-align: left;
+}
+
+.blog-post table tbody tr:nth-child(even) {
+  background: #fafbfc;
+}
+
+.blog-post table td:first-child {
+  font-weight: 500;
+}
+
+.blog-post table [align="right"] {
+  min-width: 6rem;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.blog-post table [align="center"] {
+  text-align: center;
+}
+
+.blog-post table td[align="right"] {
+  white-space: nowrap;
+}
+
 /* Link */
 
 a {
