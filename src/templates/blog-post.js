@@ -5,6 +5,7 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Comment from "../components/comment"
+import ArticleBody from "../components/article-body"
 import { useLanguage } from "../hooks/useLanguage"
 import { formatPostDate, getLanguageSections } from "../utils/postLanguage"
 import "katex/dist/katex.min.css"
@@ -79,10 +80,7 @@ const BlogPostTemplate = ({
             </button>
           </div>
         )}
-        <section
-          dangerouslySetInnerHTML={{ __html: articleHtml }}
-          itemProp="articleBody"
-        />
+        <ArticleBody html={articleHtml} language={language} />
         <hr />
         <footer className="post-footer">
           <Bio />
