@@ -1399,6 +1399,19 @@ main {
   color: var(--color-primary);
 }
 
+.blog-post .katex-display {
+  max-width: 100%;
+  font-size: 1.25rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: var(--spacing-4) 0;
+}
+
+.blog-post .katex-display > .katex {
+  display: inline-block;
+  min-width: 100%;
+}
+
 .blog-post header h1 {
   margin: var(--spacing-0) var(--spacing-0) var(--spacing-4) var(--spacing-0);
 }

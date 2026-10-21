@@ -7,6 +7,7 @@ import Seo from "../components/seo"
 import Comment from "../components/comment"
 import { useLanguage } from "../hooks/useLanguage"
 import { formatPostDate, getLanguageSections } from "../utils/postLanguage"
+import "katex/dist/katex.min.css"
 
 const BlogPostTemplate = ({
   data: { previous, next, site, markdownRemark: post },
