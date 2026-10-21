@@ -1,7 +1,10 @@
 import * as React from "react"
 import { getEnlargedImageSource } from "../utils/imageSource"
+import { getArticleOutline } from "../utils/articleOutline"
+import ArticleToc from "./article-toc"
 
 const ArticleBody = ({ html, language }) => {
+  const outline = React.useMemo(() => getArticleOutline(html), [html])
   const bodyRef = React.useRef(null)
   const dialogRef = React.useRef(null)
   const triggerRef = React.useRef(null)
@@ -96,10 +99,15 @@ const ArticleBody = ({ html, language }) => {
 
   return (
     <>
+      <ArticleToc
+        headings={outline.headings}
+        bodyRef={bodyRef}
+        language={language}
+      />
       <section
         ref={bodyRef}
         className="article-body"
-        dangerouslySetInnerHTML={{ __html: html }}
+        dangerouslySetInnerHTML={{ __html: outline.html }}
         itemProp="articleBody"
       />
       <dialog
