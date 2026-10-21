@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[하주헌 블로그 RSS Feed]]></title><description><![CDATA[하주헌 개발 블로그]]></description><link>https://juheon.dev</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 21 Oct 2026 08:36:47 GMT</lastBuildDate><item><title><![CDATA[Empathy Is Steerable but Multi-Axial:Mechanism Geometry and Persona Effects in LLMs]]></title><description><![CDATA[LLM의 공감을 조절할 수 있는가?]]></description><link>https://juheon.dev/essay/261021-empathy-is-steerable/</link><guid isPermaLink="false">https://juheon.dev/essay/261021-empathy-is-steerable/</guid><pubDate>Wed, 21 Oct 2026 00:00:00 GMT</pubDate><content:encoded>&lt;!-- language:kor --&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[하주헌 블로그 RSS Feed]]></title><description><![CDATA[하주헌 개발 블로그]]></description><link>https://juheon.dev</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 21 Oct 2026 09:00:46 GMT</lastBuildDate><item><title><![CDATA[Empathy Is Steerable but Multi-Axial:Mechanism Geometry and Persona Effects in LLMs]]></title><description><![CDATA[LLM의 공감을 조절할 수 있는가?]]></description><link>https://juheon.dev/essay/261021-empathy-is-steerable/</link><guid isPermaLink="false">https://juheon.dev/essay/261021-empathy-is-steerable/</guid><pubDate>Wed, 21 Oct 2026 00:00:00 GMT</pubDate><content:encoded>&lt;!-- language:kor --&gt;
 &lt;h1&gt;Paper review : Empathy Is Steerable but Multi-Axial&lt;/h1&gt;
 &lt;p&gt;내가 1저자로 참여한 논문 - &lt;strong&gt;Empathy Is Steerable but Multi-Axial:Mechanism Geometry and Persona Effects in LLMs&lt;/strong&gt; - 이 EMNLP 2026 Main 에 채택되었다.&lt;/p&gt;
 &lt;p&gt;이 연구를 시작하게된 배경, 실험이 어떤 과정을 거쳐 진행되었는지, 실험 결과가 말하고 있는 내용이 무엇인지 소개하고자 한다.&lt;/p&gt;
@@ -509,7 +509,517 @@ Table 2의 양의 EX steering에서 세 모델에 공통된 패턴이 나타난�
 &lt;p&gt;실험 방법은 기존 CAA를 사용했다. 여기서 확인한 것은 &lt;strong&gt;target steerability, selective control, persona shift의 coverage가 서로 다른 문제&lt;/strong&gt;라는 점이다. 세 모델 모두 target score는 움직였지만, 공유 성분을 제거하면 일부 효과가 약해졌고 persona 변화의 대부분은 세 방향 밖에 남았다. 다른 공감 범주의 라벨 분포를 맞춰도 목표 점수는 여전히 조절됐다. 반면 다른 점수가 함께 변하는 현상은 일부 줄었다. 어떤 응답으로 벡터를 만드느냐가 조절 결과에도 영향을 준 것이다.&lt;/p&gt;
 &lt;p&gt;연구를 시작할 때는 공감에 관여하는 activation을 찾아 바꾸면 될 것 같았다. 실제로는 비교할 응답을 확보하는 일부터 쉽지 않았다. Human-labeled EPITOME를 택하고, target뿐 아니라 non-target score를 보고, persona의 변화까지 따라가면서 질문도 구체적으로 바뀌었다.&lt;/p&gt;
 &lt;p&gt;마지막으로 이번 연구와 같은 AI와 human emotion을 결합한다는 아이디어는 정말 매력적이지만 정말 신경써야 할 것이 많다. 일단 감정이라는 개념을 evaluation 하기가 까다로운데, 인간의 자연스러운 감정을 discrete한 지표로 표현해야 한다는 점, 그리고 무엇보다 감정은 ground truth를 상정하기 어렵다.&lt;/p&gt;
-&lt;p&gt;감정에서의 정답은 사람마다 생각하는 가치관이 각자 다르기 때문에 EPITOME 같은 이미 사전 검증된 데이터를 갖고 오거나, 아니면 새로운 개념을 제안할 것이라면 human annotation 과정이 필수로 들어가야 한다. 나도 이번 연구를 하면서도 공감을 어떻게 해야 measurable 한 영역으로 끌고 올 수 있는지를 끊임없이 고민했던 것 같다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[노력의 본질]]></title><description><![CDATA[노력과 결과물의 상관관계에 대해]]></description><link>https://juheon.dev/essay/261014-essence-of-effort/</link><guid isPermaLink="false">https://juheon.dev/essay/261014-essence-of-effort/</guid><pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate><content:encoded>&lt;!-- language:kor --&gt;
+&lt;p&gt;감정에서의 정답은 사람마다 생각하는 가치관이 각자 다르기 때문에 EPITOME 같은 이미 사전 검증된 데이터를 갖고 오거나, 아니면 새로운 개념을 제안할 것이라면 human annotation 과정이 필수로 들어가야 한다. 나도 이번 연구를 하면서도 공감을 어떻게 해야 measurable 한 영역으로 끌고 올 수 있는지를 끊임없이 고민했던 것 같다.&lt;/p&gt;
+&lt;!-- language:eng --&gt;
+&lt;h1&gt;Paper Review: Empathy Is Steerable but Multi-Axial&lt;/h1&gt;
+&lt;p&gt;Our paper, &lt;strong&gt;Empathy Is Steerable but Multi-Axial: Mechanism Geometry and Persona Effects in LLMs&lt;/strong&gt;, on which I am the first author, was accepted to the EMNLP 2026 Main Conference.&lt;/p&gt;
+&lt;p&gt;In this post, I explain what motivated the research, how the experiments developed, and what the results tell us.&lt;/p&gt;
+&lt;div class=&quot;project-bookmark&quot;&gt;
+  &lt;a href=&quot;https://arxiv.org/abs/2609.15654&quot;&gt;
+    &lt;span class=&quot;project-bookmark-label&quot;&gt;Paper · arXiv&lt;/span&gt;
+    &lt;strong class=&quot;project-bookmark-title&quot;&gt;Empathy Is Steerable but Multi-Axial&lt;/strong&gt;
+    &lt;span class=&quot;project-bookmark-description&quot;&gt;Mechanism Geometry and Persona Effects in LLMs&lt;/span&gt;
+    &lt;span class=&quot;project-bookmark-domain&quot;&gt;arxiv.org · 2609.15654&lt;/span&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+&lt;div class=&quot;project-bookmark&quot;&gt;
+  &lt;a href=&quot;https://hjhj97.github.io/Empathy-Is-Steerable-but-Multi-Axial/&quot;&gt;
+    &lt;span class=&quot;project-bookmark-label&quot;&gt;Project Page&lt;/span&gt;
+    &lt;strong class=&quot;project-bookmark-title&quot;&gt;Empathy Is Steerable but Multi-Axial&lt;/strong&gt;
+    &lt;span class=&quot;project-bookmark-description&quot;&gt;Mechanism Geometry and Persona Effects in LLMs&lt;/span&gt;
+    &lt;span class=&quot;project-bookmark-domain&quot;&gt;hjhj97.github.io&lt;/span&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 141.13924050632912%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,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&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Conference poster for Empathy Is Steerable but Multi-Axial&quot;
+        title=&quot;&quot;
+        src=&quot;/static/f37d29a6cbe3089cc2e9c93c2f48c9f5/f058b/poster_portrait.png&quot;
+        srcset=&quot;/static/f37d29a6cbe3089cc2e9c93c2f48c9f5/c26ae/poster_portrait.png 158w,
+/static/f37d29a6cbe3089cc2e9c93c2f48c9f5/6bdcf/poster_portrait.png 315w,
+/static/f37d29a6cbe3089cc2e9c93c2f48c9f5/f058b/poster_portrait.png 630w,
+/static/f37d29a6cbe3089cc2e9c93c2f48c9f5/40601/poster_portrait.png 945w,
+/static/f37d29a6cbe3089cc2e9c93c2f48c9f5/78612/poster_portrait.png 1260w,
+/static/f37d29a6cbe3089cc2e9c93c2f48c9f5/b8181/poster_portrait.png 4967w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;TL;DR&lt;/h2&gt;
+&lt;p&gt;There are several ways to respond empathetically. A response might acknowledge someone&apos;s feelings, express an understanding of their situation, or ask them to share more. This study investigated &lt;strong&gt;whether activation steering can increase or decrease a particular kind of empathetic expression&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;We scored responses using a model trained on EPITOME, an existing framework for evaluating empathy, and compared those scores with evaluations from a separate LLM judge.&lt;/p&gt;
+&lt;p&gt;There are three main findings.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Empathetic expressions are steerable:&lt;/strong&gt; In all three models, changing internal activations alone could increase or decrease scores for the targeted expression.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;But the changes are not limited to the target:&lt;/strong&gt; For example, steering toward asking questions (EX) increased the corresponding score, but also decreased scores for acknowledging emotions (ER) and expressing an understanding of the situation (IP).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Persona prompting is different from directly steering empathetic expressions:&lt;/strong&gt; Assigning a persona such as &lt;code class=&quot;language-text&quot;&gt;empathetic person&lt;/code&gt; or &lt;code class=&quot;language-text&quot;&gt;cynical person&lt;/code&gt; changes the response. However, most of the internal changes induced by personas could not be explained by the three directions used to steer empathetic expressions.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;1. Starting Point: Can We Steer Empathy in LLMs?&lt;/h2&gt;
+&lt;p&gt;This research began with a simple question. LLMs are quite good at generating seemingly empathetic responses when someone shares a concern. That led to a hypothesis: might there be activations involved in generating these responses?&lt;/p&gt;
+&lt;p&gt;Could we increase or decrease empathetic expressions by adjusting those activations? And would the same activations change when we assigned a persona such as &lt;code class=&quot;language-text&quot;&gt;empathetic person&lt;/code&gt; or &lt;code class=&quot;language-text&quot;&gt;cynical person&lt;/code&gt;?&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;In short, we wanted to find out whether empathetic expressions in LLMs are controllable, whether three categories of empathy can be controlled independently, and whether persona-induced changes can be explained by the same directions.&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Before running experiments, however, we had to settle a more basic question: what counts as empathy? How should we define it?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Emotion classification, such as predicting that someone is sad, is different from generating an appropriate response to that person. Saying &quot;&lt;code class=&quot;language-text&quot;&gt;I&apos;m sorry to hear that&lt;/code&gt;&quot; does not necessarily make the recipient feel understood. The same words can be received differently depending on the situation and the person hearing them.&lt;/p&gt;
+&lt;p&gt;I also felt that choosing an empathetic response was different from generating one. We therefore chose free-form generation rather than multiple-choice questions (MCQs), and evaluated empathetic expressions in the generated responses.&lt;/p&gt;
+&lt;h3&gt;Plenty of Responses, but Few Useful Comparisons&lt;/h3&gt;
+&lt;p&gt;Initially, we planned to generate multiple responses to the same seeker post, meaning a post from someone seeking support, and compare the activations of high- and low-empathy responses. But after collecting 1,000 responses, we found that 93.6% received a score of 3 or 4 on the five-point LLM-as-a-judge scale we were using.&lt;/p&gt;
+&lt;p&gt;Because most responses were judged to be reasonably acceptable, it was difficult to find responses with sufficiently different scores for a useful comparison. Generating more data did not necessarily give us the contrast we needed. We could also prompt the model to produce empathetic or neutral responses, but then it was hard to tell whether activation differences reflected empathy, the instructions, writing style, or response length.&lt;/p&gt;
+&lt;p&gt;For the final experiments, we used EPITOME, whose human annotations distinguish the categories and strength of empathetic expressions. Instead of the initial five-point evaluation, we constructed comparison groups using EPITOME&apos;s 0/1/2 labels.&lt;/p&gt;
+&lt;p&gt;For example, &quot;That must have been really hard to go through.&quot; acknowledges the other person&apos;s feelings (ER), but does not ask or invite them to say more (EX). A response can contain one kind of empathetic expression without containing another. Rather than divide entire responses into empathetic and non-empathetic groups, we therefore compared responses with and without each of ER, IP, and EX. EPITOME provides separate labels for all three categories, allowing us to select responses on that basis.&lt;/p&gt;
+&lt;h2&gt;2. What Empathy Means in This Paper: ER, EX, IP&lt;/h2&gt;
+&lt;p&gt;EPITOME is a framework proposed by &lt;a href=&quot;https://aclanthology.org/2020.emnlp-main.425/&quot;&gt;Sharma et al. (2020)&lt;/a&gt; to analyze how empathy is expressed in online mental health support conversations. In peer-support dialogues, where someone responds to a seeker post, it distinguishes three categories of &lt;strong&gt;how a response conveys empathy&lt;/strong&gt;.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Category&lt;/th&gt;
+&lt;th&gt;Observable characteristics of the response&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Emotional Reactions, &lt;code class=&quot;language-text&quot;&gt;ER&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Acknowledging the other person&apos;s feelings or responding emotionally&lt;/td&gt;
+&lt;td&gt;&quot;That must have been really hard to go through.&quot;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Interpretations, &lt;code class=&quot;language-text&quot;&gt;IP&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Expressing an understanding or interpretation of the other person&apos;s situation&lt;/td&gt;
+&lt;td&gt;&quot;It sounds like you feel disappointed because you had high hopes.&quot;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Explorations, &lt;code class=&quot;language-text&quot;&gt;EX&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Using questions or requests to encourage the other person to share more&lt;/td&gt;
+&lt;td&gt;&quot;What has been the hardest part for you?&quot;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Each response receives separate ER, IP, and EX scores, making it possible to compare differences in expression that a single overall empathy score would miss. In the original study, human annotators read the seeker post together with the response and assigned a label of 0 when a category was absent, 1 when it was weakly expressed, and 2 when it was strongly expressed. The authors also developed a RoBERTa-based classifier trained on these annotations to predict scores for new responses.&lt;/p&gt;
+&lt;p&gt;In our study, we used the human labels in the Reddit data to select responses for vector extraction, and used the existing classifier to evaluate newly generated responses. EPITOME&apos;s data and evaluation model thus served different roles at different stages.&lt;/p&gt;
+&lt;p&gt;The question we wanted to test was:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If we construct an activation direction for each of ER, IP, and EX, can we change the target score while keeping the other two scores unchanged?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 150%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAeCAIAAACjcKk8AAAACXBIWXMAACWGAAAlhgHsVkycAAAFzklEQVR42o2T2XPaWBbG/YfOyzxMZqp6JonT6XRn8xaIF3DbTrzbPZ7xkhiMQYhFAiOJRUgsQhhkHMxilrYDRgIkhBG7poTTVT0PXdVffaXSlepX597v3DNWLpdLpVK5XL69vS2VSsViMf/HKhQK2Wz26upKkiRZlscikcjBwYHBYLBYLCcnJxRFZbPZVCqVHimTyaR/UyqVyuVyMAzrdLpGo6HAsVgMBEEIgpxOp9VqxXGcJEm/308QBI7jHo+HIIiHJUEQwWCQpmmSJJvNpgInEgkQBGEYdrlcMAzbbTarIgsE2WEIMpmMAABYLRYYhhwwbLVaCIJIJBLiQ+V0Oh0IBCiKomk6Fmfo81goTIWoSISOno+W9HmMoqOxOBNjLsIRmorQ0TjTbN4rcKfbawvVjnTf6XbbIt/mKx2B6whcm+faPCvVWalekepsq15p1Sttnn342G/Wh11pTJblQbM27HVkWZYoK/95SjQu8IZZ4XSucTovGufvgYWRNYpNC4oBbWTpMYsdj2CxNpCUAHivHn7zlzPVI0z9CFE9QtV/p5efsIeT1aMp7miSPZrgjiZrn6YbepV75q8ZcGcEN7g+X5ElkXcfY+q/uef/GVoaJxafENrH1Mozz/x3xOKT0PK4T/MvbO672Nrzmv49e/BWxE++VX7Y9j2uv175R3rt6dfd59frTwub47fb31+vPc1vjhc2nxW3nmVWH99sf8/u/STsPW95DhV42KjKI7h/m+wzaP+Lr5fw9C+9vYRHSrjbl+4Og3Uv3N2Ep3fp7SYUt2NIt3Ax1hDFXDrVEATxvtXs9Jo9WewOmz35vi8PhsPzTD2QrN3esfmvdxyv9Pb3GhMEAcd9zJf05Y0QzdzFsorPM3eJfKXT7sQPbeF1/U2+cJVMVsplhRgMvnk4HCsUizRNh8PhSoWVOp17qdWSpPuW4t6gX/2yxMUnuOpdoVAURVE5ozx8sFIZBMHtne2d3Z1kMqn8Gw7lP62xVqvlJ/FMJi3Lck5MRms+RggyNX+Mw+NCIM4TDO9neDLOkwxPMkIgLgSYOhmt4fnmlZK2ETgNUlFZll1ZQHU6Pg9N6MGXB8YXM8CPi/Y3qz6VLr+lL2zrC9u63NZJYdtU2tPfbAa4MwXmpLI3EyOuk9iv1p8R1bJrbt2n2fEvrjrVK7BqF5k9RGb1gSU9rj1E5449C0hyx5bcoKpuBa53WKknDuQemQdPgB+NptdG48t9TL1HL/8SWjy9WMUiS0hIi/kXkJDWFdBg2HuInA1VEQXmu9VuX7kkF1XCm90PJA+IzBGSP0bKRm/VjLEmFwu4OMBVNStPDkBqoIM1xOuB3+CBAqcajId14DWM5BDyzulnXf7KGcm5gjX09w7VUJJ1phuxEdzhKulyM9/0Fe0a/fiK9a0FeGkw/qQ1vFgzv9rDVFB2y5basKc3Hwylt4D8BlkdBVZt30VA37k9FMpbgroXGDBhAych13ubZQoCJ50OFQy9c9inHdA72DIF2d85Tt8Yifkg73nYNtcetGRZJm+hI8fbj9DUgmtmHp5cRN9pz6aX3GqNc3oOmlwPav/NfNxPru9/Wf/v5cq3Viln7knyUL4UKMdXA3oDIDdG9NaE/GpEb0xneQN6Y3QVDO6vgLcC4qwV56xuFrgQQv8X2JVwjpdsAdZFlR3BsiPIngUqZ+EaEqljVB2l6mi4ioarCFVDSc6RFuMPfa5wmcNWAcBy5vemHzTQxCfzqw3zK7XtrRp8vU0tGoq7uvzO8fWWrrCjy+/oc7u6/EaQcymw2K3n0r8Us/9Bi+CyZ/aDZ/6DV7OFa/X26SPzxKFl6pNDZbDP7JsndJYpvX3ms3X6OLwYro8CG8rD/miagkWbyfjCZnoNOKYdtgkYUzsJjZteRqIraPhnhPmIRpaR6Ac0vmpNrQVr2Ni36RpN4kWVcF8f4Dmdr6D3Xn+GS6fOisnFmUcGR9dLeUc40HF3wvCB/wGm7p7Q6JbO7AAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Example responses produced by ER, EX, and IP steering for the same seeker post&quot;
+        title=&quot;&quot;
+        src=&quot;/static/899b8ba056bf87a707ba02f3a3192d7f/f058b/steering_examples.png&quot;
+        srcset=&quot;/static/899b8ba056bf87a707ba02f3a3192d7f/c26ae/steering_examples.png 158w,
+/static/899b8ba056bf87a707ba02f3a3192d7f/6bdcf/steering_examples.png 315w,
+/static/899b8ba056bf87a707ba02f3a3192d7f/f058b/steering_examples.png 630w,
+/static/899b8ba056bf87a707ba02f3a3192d7f/40601/steering_examples.png 945w,
+/static/899b8ba056bf87a707ba02f3a3192d7f/d9199/steering_examples.png 960w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Figure 1. Applying ER, EX, and IP steering to the same seeker post adds expressions related to emotions, questions, and interpretations of the situation, respectively.&lt;/em&gt;&lt;/p&gt;
+&lt;h2&gt;3. Method: Extracting Steering Vectors from Activation Differences&lt;/h2&gt;
+&lt;p&gt;We used &lt;a href=&quot;https://aclanthology.org/2024.acl-long.828/&quot;&gt;Contrastive Activation Addition (CAA)&lt;/a&gt; in these experiments. CAA constructs a vector from the difference in mean activations between examples with and without a desired property, then adds it to internal activations during generation to steer the model&apos;s responses. The model&apos;s weights remain unchanged, while the sign and magnitude of a coefficient determine the direction and strength of the intervention. Here, we constructed separate vectors based on the presence or absence of ER, IP, and EX expressions.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 40.50632911392405%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABYlAAAWJQFJUiTwAAAB/UlEQVR42iWRTW8SYRCA+X3+DE/+AhOjUU9e9OLBmB5MmtS2Sa02VWq1NaUfSFtabAvsAoUFFnaX/Xx3991loWh8DDjJZPIcZp7JTA7+YriCxys7nCgd5mGLmKdr3zmsthd8qmo8X99D1c0FnzV6PFnZoWM6C94oXvP6ywmz2YxclmXU6woHRyXq1SZpnNJoNNne2eW4+JMwFJxfXLKV/0pNUZhkGf3hkEqtzsAwCMOQH4VDPm5/xjCM/wNlLDFFj6pVpuu3sEYjmm0NracjRIhlWHTat4uGJEnod3W6Wp+BbmCYFsVSif1Cgb6uk5NSksoxazdvub95j+XGK1qGx6cLi2PFJJGSZq+F63vEUYRMUtq1X7SuL+k2FTw/YK8myV9JXBGTm1srlxUK2hZvTh/xrbuKquvsluqUVQ0R+5w3DxiaOrbjM5lMCUOXgd4hjgR+FFBWX1BuPMMTNrk4jrFGFsODD9wuPSQqrKJoA/JnTc5VnSQOGSkVAschjGMmkwnT2QyZJMzufjMKfI6u3nF0vYQTOOSy8Zhsekd/b52rlw8Q+8vcaCbvTzoUVQPXD6iqDXqDIcbIxvZ80jQlTSR/7qaYrmCjaLJ56mJ7Ibm5cW5LI0EW2GRRQCwTLMdFRBEikgwtm5HrLTKSyWJLOa/TCeMsW9zX9hzmD/4HEmY8z5tO8YsAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Five stages of CAA-based vector extraction and inference-time steering&quot;
+        title=&quot;&quot;
+        src=&quot;/static/fc4b160652f19e8a5a53c2be194c0811/f058b/main.png&quot;
+        srcset=&quot;/static/fc4b160652f19e8a5a53c2be194c0811/c26ae/main.png 158w,
+/static/fc4b160652f19e8a5a53c2be194c0811/6bdcf/main.png 315w,
+/static/fc4b160652f19e8a5a53c2be194c0811/f058b/main.png 630w,
+/static/fc4b160652f19e8a5a53c2be194c0811/40601/main.png 945w,
+/static/fc4b160652f19e8a5a53c2be194c0811/78612/main.png 1260w,
+/static/fc4b160652f19e8a5a53c2be194c0811/07fc0/main.png 2480w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;We ran experiments with Llama-3.1-8B-Instruct, Qwen2.5-7B-Instruct, and Mistral-7B-Instruct. We excluded EPITOME seeker posts shorter than 100 characters or containing self-harm keywords, as these posts could make the models more likely to refuse to respond.&lt;/p&gt;
+&lt;p&gt;For each category, we selected 100 responses containing the expression (labels 1 or 2) and 100 responses without it (label 0).&lt;/p&gt;
+&lt;p&gt;During vector extraction, the model does not generate a new response. Instead, we feed it the seeker post and an existing response using teacher forcing, and record the activations computed as it reads them. Specifically, we extract the hidden state of the last response token at each layer.&lt;/p&gt;
+&lt;p&gt;We average the response activations within each group, then subtract the mean for the group without the expression from the mean for the group with it. For category &lt;span class=&quot;math math-inline&quot;&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;m&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.4306em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot;&gt;m&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; at layer &lt;span class=&quot;math math-inline&quot;&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi mathvariant=&quot;normal&quot;&gt;ℓ&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;\ell&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.6944em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;ℓ&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;, this difference is the steering vector, or empathy vector.&lt;/p&gt;
+&lt;div class=&quot;math math-display&quot;&gt;&lt;span class=&quot;katex-display&quot;&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot; display=&quot;block&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msubsup&gt;&lt;mi&gt;v&lt;/mi&gt;&lt;mi mathvariant=&quot;normal&quot;&gt;ℓ&lt;/mi&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;/msubsup&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;msub&gt;&lt;mrow&gt;&lt;mi mathvariant=&quot;normal&quot;&gt;mean&lt;/mi&gt;&lt;mo&gt;⁡&lt;/mo&gt;&lt;/mrow&gt;&lt;mrow&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mo&gt;∈&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;P&lt;/mi&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;/msub&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;msub&gt;&lt;mi&gt;h&lt;/mi&gt;&lt;mi mathvariant=&quot;normal&quot;&gt;ℓ&lt;/mi&gt;&lt;/msub&gt;&lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;&lt;mo&gt;−&lt;/mo&gt;&lt;msub&gt;&lt;mrow&gt;&lt;mi mathvariant=&quot;normal&quot;&gt;mean&lt;/mi&gt;&lt;mo&gt;⁡&lt;/mo&gt;&lt;/mrow&gt;&lt;mrow&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mo&gt;∈&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;N&lt;/mi&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;/msub&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;msub&gt;&lt;mi&gt;h&lt;/mi&gt;&lt;mi mathvariant=&quot;normal&quot;&gt;ℓ&lt;/mi&gt;&lt;/msub&gt;&lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;&lt;mi mathvariant=&quot;normal&quot;&gt;.&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;v_\ell^m
+= \operatorname{mean}_{x \in P_m} h_\ell(x)
+- \operatorname{mean}_{x \in N_m} h_\ell(x).&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.9614em;vertical-align:-0.247em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;&lt;span class=&quot;mord mathnormal&quot; style=&quot;margin-right:0.0359em;&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;msupsub&quot;&gt;&lt;span class=&quot;vlist-t vlist-t2&quot;&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.7144em;&quot;&gt;&lt;span style=&quot;top:-2.453em;margin-left:-0.0359em;margin-right:0.05em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:2.7em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;sizing reset-size6 size3 mtight&quot;&gt;&lt;span class=&quot;mord mtight&quot;&gt;ℓ&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;top:-3.113em;margin-right:0.05em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:2.7em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;sizing reset-size6 size3 mtight&quot;&gt;&lt;span class=&quot;mord mathnormal mtight&quot;&gt;m&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-s&quot;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.247em;&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2778em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mrel&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2778em;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:1.0001em;vertical-align:-0.2501em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mop&quot;&gt;&lt;span class=&quot;mop&quot;&gt;&lt;span class=&quot;mord mathrm&quot;&gt;mean&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;msupsub&quot;&gt;&lt;span class=&quot;vlist-t vlist-t2&quot;&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.3283em;&quot;&gt;&lt;span style=&quot;top:-2.55em;margin-right:0.05em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:2.7em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;sizing reset-size6 size3 mtight&quot;&gt;&lt;span class=&quot;mord mtight&quot;&gt;&lt;span class=&quot;mord mathnormal mtight&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;mrel mtight&quot;&gt;∈&lt;/span&gt;&lt;span class=&quot;mord mtight&quot;&gt;&lt;span class=&quot;mord mathnormal mtight&quot; style=&quot;margin-right:0.1389em;&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;msupsub&quot;&gt;&lt;span class=&quot;vlist-t vlist-t2&quot;&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.1645em;&quot;&gt;&lt;span style=&quot;top:-2.357em;margin-left:-0.1389em;margin-right:0.0714em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:2.5em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;sizing reset-size3 size1 mtight&quot;&gt;&lt;span class=&quot;mord mathnormal mtight&quot;&gt;m&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-s&quot;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.143em;&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-s&quot;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.2501em;&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.1667em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;&lt;span class=&quot;mord mathnormal&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;msupsub&quot;&gt;&lt;span class=&quot;vlist-t vlist-t2&quot;&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.3361em;&quot;&gt;&lt;span style=&quot;top:-2.55em;margin-left:0em;margin-right:0.05em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:2.7em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;sizing reset-size6 size3 mtight&quot;&gt;&lt;span class=&quot;mord mtight&quot;&gt;ℓ&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-s&quot;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.15em;&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;mopen&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;mclose&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2222em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mbin&quot;&gt;−&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2222em;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:1.0001em;vertical-align:-0.2501em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mop&quot;&gt;&lt;span class=&quot;mop&quot;&gt;&lt;span class=&quot;mord mathrm&quot;&gt;mean&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;msupsub&quot;&gt;&lt;span class=&quot;vlist-t vlist-t2&quot;&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.3283em;&quot;&gt;&lt;span style=&quot;top:-2.55em;margin-right:0.05em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:2.7em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;sizing reset-size6 size3 mtight&quot;&gt;&lt;span class=&quot;mord mtight&quot;&gt;&lt;span class=&quot;mord mathnormal mtight&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;mrel mtight&quot;&gt;∈&lt;/span&gt;&lt;span class=&quot;mord mtight&quot;&gt;&lt;span class=&quot;mord mathnormal mtight&quot; style=&quot;margin-right:0.109em;&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;msupsub&quot;&gt;&lt;span class=&quot;vlist-t vlist-t2&quot;&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.1645em;&quot;&gt;&lt;span style=&quot;top:-2.357em;margin-left:-0.109em;margin-right:0.0714em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:2.5em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;sizing reset-size3 size1 mtight&quot;&gt;&lt;span class=&quot;mord mathnormal mtight&quot;&gt;m&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-s&quot;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.143em;&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-s&quot;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.2501em;&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.1667em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;&lt;span class=&quot;mord mathnormal&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;msupsub&quot;&gt;&lt;span class=&quot;vlist-t vlist-t2&quot;&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.3361em;&quot;&gt;&lt;span style=&quot;top:-2.55em;margin-left:0em;margin-right:0.05em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:2.7em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;sizing reset-size6 size3 mtight&quot;&gt;&lt;span class=&quot;mord mtight&quot;&gt;ℓ&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-s&quot;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.15em;&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;mopen&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;mclose&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;p&gt;This &lt;strong&gt;candidate direction&lt;/strong&gt; may also capture other empathy categories, writing style, or content, so we examine those possibilities in later control experiments. When generating a new response, we add the vector to the activation of the current last token at the selected layer.&lt;/p&gt;
+&lt;p&gt;Once the vector is ready, we let the model generate its own response to a new seeker post. Unlike the extraction stage, which records internal values while the model reads an existing response, the generation stage adds the vector to the current last-token activation at the selected layer.&lt;/p&gt;
+&lt;div class=&quot;math math-display&quot;&gt;&lt;span class=&quot;katex-display&quot;&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot; display=&quot;block&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;h&lt;/mi&gt;&lt;mrow&gt;&lt;mi mathvariant=&quot;normal&quot;&gt;ℓ&lt;/mi&gt;&lt;mo separator=&quot;true&quot;&gt;,&lt;/mo&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;mo&gt;←&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;h&lt;/mi&gt;&lt;mrow&gt;&lt;mi mathvariant=&quot;normal&quot;&gt;ℓ&lt;/mi&gt;&lt;mo separator=&quot;true&quot;&gt;,&lt;/mo&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mi&gt;α&lt;/mi&gt;&lt;msubsup&gt;&lt;mi&gt;v&lt;/mi&gt;&lt;mi mathvariant=&quot;normal&quot;&gt;ℓ&lt;/mi&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;/msubsup&gt;&lt;mi mathvariant=&quot;normal&quot;&gt;.&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;h_{\ell,t} \leftarrow h_{\ell,t} + \alpha v_\ell^m.&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.9805em;vertical-align:-0.2861em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;&lt;span class=&quot;mord mathnormal&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;msupsub&quot;&gt;&lt;span class=&quot;vlist-t vlist-t2&quot;&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.3361em;&quot;&gt;&lt;span style=&quot;top:-2.55em;margin-left:0em;margin-right:0.05em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:2.7em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;sizing reset-size6 size3 mtight&quot;&gt;&lt;span class=&quot;mord mtight&quot;&gt;&lt;span class=&quot;mord mtight&quot;&gt;ℓ&lt;/span&gt;&lt;span class=&quot;mpunct mtight&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mord mathnormal mtight&quot;&gt;t&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-s&quot;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.2861em;&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2778em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mrel&quot;&gt;←&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2778em;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.9805em;vertical-align:-0.2861em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;&lt;span class=&quot;mord mathnormal&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;msupsub&quot;&gt;&lt;span class=&quot;vlist-t vlist-t2&quot;&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.3361em;&quot;&gt;&lt;span style=&quot;top:-2.55em;margin-left:0em;margin-right:0.05em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:2.7em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;sizing reset-size6 size3 mtight&quot;&gt;&lt;span class=&quot;mord mtight&quot;&gt;&lt;span class=&quot;mord mtight&quot;&gt;ℓ&lt;/span&gt;&lt;span class=&quot;mpunct mtight&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mord mathnormal mtight&quot;&gt;t&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-s&quot;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.2861em;&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2222em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mbin&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2222em;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.9614em;vertical-align:-0.247em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot; style=&quot;margin-right:0.0037em;&quot;&gt;α&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;&lt;span class=&quot;mord mathnormal&quot; style=&quot;margin-right:0.0359em;&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;msupsub&quot;&gt;&lt;span class=&quot;vlist-t vlist-t2&quot;&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.7144em;&quot;&gt;&lt;span style=&quot;top:-2.453em;margin-left:-0.0359em;margin-right:0.05em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:2.7em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;sizing reset-size6 size3 mtight&quot;&gt;&lt;span class=&quot;mord mtight&quot;&gt;ℓ&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;top:-3.113em;margin-right:0.05em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:2.7em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;sizing reset-size6 size3 mtight&quot;&gt;&lt;span class=&quot;mord mathnormal mtight&quot;&gt;m&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-s&quot;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.247em;&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;p&gt;&lt;span class=&quot;math math-inline&quot;&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;α&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;\alpha&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.4306em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot; style=&quot;margin-right:0.0037em;&quot;&gt;α&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; is the steering strength. We compared &lt;span class=&quot;math math-inline&quot;&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mo&gt;−&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mo separator=&quot;true&quot;&gt;,&lt;/mo&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;mo separator=&quot;true&quot;&gt;,&lt;/mo&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mo separator=&quot;true&quot;&gt;,&lt;/mo&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;-1, 0, +1, +2&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.8389em;vertical-align:-0.1944em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;−&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;mpunct&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.1667em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;mpunct&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.1667em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;mpunct&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.1667em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;: zero is the baseline without intervention, while positive and negative values add or subtract the vector. We evaluated responses to 200 seeker posts per condition across multiple layers. We changed only the activation intervention, without retraining or adding instructions to be empathetic, and kept the data for vector extraction separate from the evaluation data.&lt;/p&gt;
+&lt;h2&gt;4. Result 1: All Three Models Are Steerable at Layer 15&lt;/h2&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 77.84810126582278%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAIAAACZeshMAAAACXBIWXMAABibAAAYmwFJdYOUAAACPUlEQVR42jVSWa7cMAzL/Y/50M6SeNdmWZZdZOaVfyYoQaR5rL32f4hISul8v5/PZw4hxRhifp/vM5wxRFX9ytYHe+/j++zaEelLuft0X8vlg5tZ/pEvd6/QbNp3yxFKepf0LOmZw1ljQey9zzn33iB4QSS951NOj+v1KumRwzuH0Opa64BatYKxmHCLIccAAAHKxRAYqc83NmYmxI6kDZxYoZ3hVLNjjHEf1ruL7LXMByJgKVyyMu29B1OMsbX2teqfm0kEhQ8imnPadHM3M1K6XelYNgeAlmqIrUOpxcYws1tsxl0qtXu4946EDZuwVKzEt+2uysy1JiSULr13ESGmAoWZRYRFjt773lun0kAxtmWIaPabJ5uo6/JVSll7T59sJJO7Kaoe2nXvxdbNF5vwlFrbNwid2meXyTIk57z37tZ1zrk8SaOhR8jhlcNVCqA0YEABxII1YklQADuQFGwhhrOEV4pfTW53UkfLGWPilCVFCIFiRMQUYwkhnReE2K5QU2mttRQpJUmJYoQrKOEhInP7XA6DxucbRMTdbU008rXm3StHxLX3mAMUf8m1DmKigahNTUhBpwLgYNaWe8fune+l2mpzdzGhQb/lXutAwT6dhuOYfc6iUmtVQuLbem61sWRBAJjL1dXc1HWuudc+Hu9XuSLnQinnK5VwtVafJV2IDAgxY8xYSkjx5/03nyme4fH8+/PnBxgPIlRhrDXHINAYQHWQiI0BAHdDiJRZege4ixuu0GqD2pDwH1KumfHTjl6qAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Changes in ER, IP, and EX scores across layers and steering strengths in three models&quot;
+        title=&quot;&quot;
+        src=&quot;/static/5a5ba1a7c1e63f3e3de1285cfa1833b2/f058b/layer_sweep.png&quot;
+        srcset=&quot;/static/5a5ba1a7c1e63f3e3de1285cfa1833b2/c26ae/layer_sweep.png 158w,
+/static/5a5ba1a7c1e63f3e3de1285cfa1833b2/6bdcf/layer_sweep.png 315w,
+/static/5a5ba1a7c1e63f3e3de1285cfa1833b2/f058b/layer_sweep.png 630w,
+/static/5a5ba1a7c1e63f3e3de1285cfa1833b2/40601/layer_sweep.png 945w,
+/static/5a5ba1a7c1e63f3e3de1285cfa1833b2/78612/layer_sweep.png 1260w,
+/static/5a5ba1a7c1e63f3e3de1285cfa1833b2/497e9/layer_sweep.png 2064w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Figure 3. Steering effects are relatively consistent in the middle layers. The layer with the largest effect, and the behavior of later layers, vary by model, category, and strength.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Table 1 shows the target scores at layer 15 and their changes relative to the baseline. Each row reports steering with the vector for the corresponding category.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;./paper_review_images/table1.png&quot;&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 41.139240506329116%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABYlAAAWJQFJUiTwAAABzElEQVR42j2S2WobQRBF55OTv8hrfiB5iQnEgRASjNfEdmRLmpE0e2+zSLN4j2S84A3MCd0PabgURXXdurervZeXFyyen58dnp6euL6+5vLykiAIGA2HLvq+z9nZGavVitVyiTGGwPddbTwec3Fxwf39PZ69YIsnJyd0XecaLGFRFEitSbKUcDZzeVkUtG1LVVUUVUkuBWEYInKBUZrl3yWeJbHsDw8Prqmua66urljM5/S5pNeGomko24a8LNB1Td919FKxSHOqtsV0LWldUXYtnp12d3eHPXmek2WZU6GlRG3tMdvcYZjGDJKIrcBnmMSkSYI+PHK1P1HI7mzC9/Exh0mEZ61am/Yd5/O5U9j1vbPVK4NIM35OA9b9Y97vbPAjGDn1rVQUUcJIZBykMZvhhJESeH3fc3t7+1+hxWKxwGhDW5RoIZkqwXY05d3GN74M9im0odSGJIqJC8NESfaimYve6emp287r6yvS2lSKpmkQQlBFCXEw4Xc44/PggLfrn/jwa5u6qtBSkcWJG5xmGZmQmLLAOz8/5+bmhsfHR0diFVZV7RY0F5I4jNgLp6wN9nnzdY2PB7u0TUNuf4AQSKs0z0mUQlcV/wDi8zXVzgMWTQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Layer-15 ER, EX, and IP target scores and steering effects evaluated by the EPITOME classifier and GPT-5-mini judge&quot;
+        title=&quot;&quot;
+        src=&quot;/static/76ac4a39cbe7cf581a862044a4498443/f058b/table1.png&quot;
+        srcset=&quot;/static/76ac4a39cbe7cf581a862044a4498443/c26ae/table1.png 158w,
+/static/76ac4a39cbe7cf581a862044a4498443/6bdcf/table1.png 315w,
+/static/76ac4a39cbe7cf581a862044a4498443/f058b/table1.png 630w,
+/static/76ac4a39cbe7cf581a862044a4498443/40601/table1.png 945w,
+/static/76ac4a39cbe7cf581a862044a4498443/78612/table1.png 1260w,
+/static/76ac4a39cbe7cf581a862044a4498443/57f7d/table1.png 2088w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+    &lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Table 1. Evaluations by the EPITOME classifier on the left and the GPT-5-mini judge on the right.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;To find where steering worked best, we swept through layers at intervals of four, starting with layers 3, 7, 11, 15, and so on. &lt;strong&gt;Among the layers we tested, layer 15 was the most suitable common point for steering ER, EX, and IP in both directions across all three models.&lt;/strong&gt; At earlier layers, changes were sometimes small or inconsistent with the intended direction.&lt;/p&gt;
+&lt;p&gt;Some conditions produced larger effects at later layers, but the responses varied by model and category. At the final layer, an intervention intended to increase a score sometimes decreased it instead. At layer 15, all three categories in all three models moved in the intended direction, so we selected it as the common intervention point for subsequent analyses.&lt;/p&gt;
+&lt;p&gt;Why might the middle layers show this consistency? One interpretation is that &lt;strong&gt;representations relevant to the behavioral properties of responses have formed by this point, while enough downstream layers remain to incorporate the intervention&lt;/strong&gt;. These representations may not yet be sufficiently developed in earlier layers. At the final layer, an intervention can directly affect next-token logits, potentially making score changes less stable. &lt;a href=&quot;https://aclanthology.org/2024.acl-long.828/&quot;&gt;Earlier work on CAA&lt;/a&gt; also found representations distinguishing behaviors around the middle layers, with substantial steering effects in that region.&lt;/p&gt;
+&lt;p&gt;For ER, EX, and IP in all three models, positive steering increased scores and negative steering decreased them. For example, Llama&apos;s EX score rose from a baseline of 0.15 to 0.72 at &lt;span class=&quot;math math-inline&quot;&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;α&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;\alpha=+1&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.4306em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot; style=&quot;margin-right:0.0037em;&quot;&gt;α&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2778em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mrel&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2778em;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.7278em;vertical-align:-0.0833em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;, and fell to 0.04 at &lt;span class=&quot;math math-inline&quot;&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;α&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mo&gt;−&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;\alpha=-1&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.4306em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot; style=&quot;margin-right:0.0037em;&quot;&gt;α&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2778em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mrel&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2778em;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.7278em;vertical-align:-0.0833em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;−&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Even when the direction is the same, the effect size varies by model and category, as illustrated by &lt;span class=&quot;math math-inline&quot;&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mn&gt;0.05&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;+0.05&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.7278em;vertical-align:-0.0833em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;0.05&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; for Mistral EX and &lt;span class=&quot;math math-inline&quot;&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mn&gt;0.57&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;+0.57&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.7278em;vertical-align:-0.0833em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;0.57&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; for Llama EX. Moreover, models differ in depth and internal representations, so the same layer number does not necessarily imply the same function. What this experiment established was &lt;strong&gt;steerability shared across all three models&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2&gt;5. Result 2: The Changes Are Not Limited to the Target&lt;/h2&gt;
+&lt;p&gt;Having confirmed that the target score increased, we can now look at the other two scores. Table 2 reveals a common pattern across the three models under positive EX steering.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;./paper_review_images/table2.png&quot;&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 28.48101265822785%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABYlAAAWJQFJUiTwAAAA3klEQVR42j2R2QqFMBBD+/9fpyC477u4g77O5QS8D6HTJM1MW7euq23bJpznadd1GZzneVrZw4MwDK1tW3uex/Z9l5Zlmfm+b/d9C65pGkvT1PI8FzFNk4CRwGEYbFkW6/ve6rq2rusUNo6javQkSRQ+z7O5933/nZmC8KIoZCIkiiI1gyMQHxr7OI4VypmyLMW54zgkYKRmMgQMdCeQmrCqqqQRQI3GOfbo+DQh74WRQLpjYMUcBIGaYIYHDADHzXgyPOhwjrt/E/Ix3zRck+uwcgigAaYDaLwlNToZPyX0tdpxDMZjAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Target and non-target empathy score changes under ER, EX, and IP steering in three models&quot;
+        title=&quot;&quot;
+        src=&quot;/static/1eb7c25863991f8c50cfe6f69f778e4b/f058b/table2.png&quot;
+        srcset=&quot;/static/1eb7c25863991f8c50cfe6f69f778e4b/c26ae/table2.png 158w,
+/static/1eb7c25863991f8c50cfe6f69f778e4b/6bdcf/table2.png 315w,
+/static/1eb7c25863991f8c50cfe6f69f778e4b/f058b/table2.png 630w,
+/static/1eb7c25863991f8c50cfe6f69f778e4b/40601/table2.png 945w,
+/static/1eb7c25863991f8c50cfe6f69f778e4b/78612/table2.png 1260w,
+/static/1eb7c25863991f8c50cfe6f69f778e4b/6578c/table2.png 2242w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+    &lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Table 2. Positive and negative steering with ER, EX, and IP vectors at layer 15. Each value is the score change relative to &lt;span class=&quot;math math-inline&quot;&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;α&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;\alpha=0&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.4306em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot; style=&quot;margin-right:0.0037em;&quot;&gt;α&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2778em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mrel&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2778em;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.6444em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;0&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; in the experiment using the same vector.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Intervening with the EX vector increased scores for questions and requests for further explanation. Yet scores for emotional reactions (ER) and expressions of understanding (IP) decreased in all three models. In Llama, EX increased by &lt;span class=&quot;math math-inline&quot;&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mn&gt;0.570&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;0.570&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.6444em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;0.570&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;, while ER fell by &lt;span class=&quot;math math-inline&quot;&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mn&gt;0.225&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;0.225&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.6444em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;0.225&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; and IP by &lt;span class=&quot;math math-inline&quot;&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mn&gt;0.060&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;0.060&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.6444em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;0.060&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;An intervention intended to increase questions had also changed other empathetic expressions. Steering ER or IP likewise affected non-target scores. Which scores changed together, and in which direction, depended on the model and the vector used.&lt;/p&gt;
+&lt;h3&gt;What Does Cosine Similarity Show?&lt;/h3&gt;
+&lt;p&gt;The cosine similarities between the original vectors at layer 15 are:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Vector pair&lt;/th&gt;
+&lt;th align=&quot;right&quot;&gt;Llama&lt;/th&gt;
+&lt;th align=&quot;right&quot;&gt;Qwen&lt;/th&gt;
+&lt;th align=&quot;right&quot;&gt;Mistral&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;ER–EX&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;+0.08&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;+0.13&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;+0.09&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;ER–IP&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;-0.29&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;-0.32&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;-0.25&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;EX–IP&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;-0.45&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;-0.46&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;-0.53&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;ER–EX cosine similarity is close to zero, while ER–IP and EX–IP similarities are negative. The three models do not share the same vectors, but &lt;strong&gt;the geometric relationships among the three vectors within each model were similar&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Interestingly, EX steering lowers ER even though the ER and EX vectors are nearly orthogonal. Orthogonal vectors do not necessarily produce independent changes in the output. The model&apos;s computations after the intervention, how it constructs its responses, and the classifier&apos;s evaluation can all affect the scores.&lt;/p&gt;
+&lt;p&gt;Conversely, non-orthogonal vectors do not make selective control fundamentally impossible. Non-orthogonality and linear dependence are different properties. What these results establish is that using the extracted CAA vectors one at a time also changes other scores.&lt;/p&gt;
+&lt;h3&gt;Could We Just Use Instructions Instead?&lt;/h3&gt;
+&lt;p&gt;We also compared a condition with no additional instruction (P0) against instructions requesting general empathy (P1), emotional acknowledgment (P2), and situational understanding and follow-up questions (P3). For Llama, P2 increased ER by &lt;span class=&quot;math math-inline&quot;&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mn&gt;0.45&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;+0.45&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.7278em;vertical-align:-0.0833em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;0.45&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; relative to P0, but also changed IP by &lt;span class=&quot;math math-inline&quot;&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mo&gt;−&lt;/mo&gt;&lt;mn&gt;0.09&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;-0.09&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.7278em;vertical-align:-0.0833em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;−&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;0.09&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; and EX by &lt;span class=&quot;math math-inline&quot;&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mo&gt;−&lt;/mo&gt;&lt;mn&gt;0.07&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;-0.07&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.7278em;vertical-align:-0.0833em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;−&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;0.07&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;. Directly written instructions therefore did not isolate the desired category either.&lt;/p&gt;
+&lt;h2&gt;6. The Role of Shared Components&lt;/h2&gt;
+&lt;h3&gt;Residualization: What Happens When We Remove Shared Components?&lt;/h3&gt;
+&lt;p&gt;Cosine similarity tells us how the vectors relate geometrically, but not whether their overlapping components are needed for steering. To test this, we removed from each vector the component lying in the span of the other two vectors, then applied steering again.&lt;/p&gt;
+&lt;p&gt;Before intervening, we rescaled the residual vector to match the original vector&apos;s norm. This allows us to distinguish the effect of removing a shared component from the effect of simply making the vector smaller.&lt;/p&gt;
+&lt;p&gt;The results for Llama at layer 15 with &lt;span class=&quot;math math-inline&quot;&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;α&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;\alpha=+1&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.4306em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot; style=&quot;margin-right:0.0037em;&quot;&gt;α&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2778em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mrel&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2778em;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.7278em;vertical-align:-0.0833em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; are:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Category&lt;/th&gt;
+&lt;th align=&quot;right&quot;&gt;Original target change&lt;/th&gt;
+&lt;th align=&quot;right&quot;&gt;Change after residualization&lt;/th&gt;
+&lt;th align=&quot;right&quot;&gt;Effect retained relative to the original&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;ER&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;+0.080&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;+0.105&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;131.3%&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;EX&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;+0.570&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;+0.480&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;84.2%&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;IP&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;+0.320&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;+0.160&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;50.0%&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The ER effect was preserved, while about 84% of the EX effect and 50% of the IP effect remained. Since the EX/IP effects decreased even after restoring the norm, the reduction cannot be explained simply by a smaller vector magnitude. The removed shared components also contribute to steering. The components remaining in each direction can still change scores, but removing shared components does not necessarily produce better control.&lt;/p&gt;
+&lt;h3&gt;Could the Overlap Come from How the Data Were Constructed?&lt;/h3&gt;
+&lt;p&gt;We checked one more possibility: could the changes in other empathy scores be caused by differences between the two groups of responses used to construct the vectors?&lt;/p&gt;
+&lt;p&gt;The IP vector is built from the activation difference between responses with and without expressions of situational understanding (IP). But if the group with IP also contains more emotional acknowledgment (ER) or questions (EX), the vector could capture ER and EX differences as well. That could explain why a vector intended to control IP also changes other scores.&lt;/p&gt;
+&lt;p&gt;We therefore selected responses from the same candidate data pool and compared two conditions. Using the IP vector as an example:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Unmatched:&lt;/strong&gt; Construct groups with and without IP expressions, without separately matching the distributions of ER and EX labels.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Exact-matched:&lt;/strong&gt; Keep the distinction between responses with and without IP, but match the number of responses for every combination of ER and EX labels across the two groups. For instance, include the same number of responses with ER=2 and EX=0 in both groups, and do the same for all other combinations.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In other words, this experiment tests whether we can still change the target score, and whether other scores still change alongside it, after matching the label distributions of the other two categories. We applied the same procedure to the ER and EX vectors. The number of responses per target label, the 200 evaluation seeker posts, and the decoding settings were held constant across the two conditions. The following results are for positive steering at Llama layer 15.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Category&lt;/th&gt;
+&lt;th align=&quot;right&quot;&gt;Unmatched target change&lt;/th&gt;
+&lt;th align=&quot;right&quot;&gt;Exact-matched target change&lt;/th&gt;
+&lt;th&gt;95% CI&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;ER&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;+0.030&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;+0.065&lt;/td&gt;
+&lt;td&gt;[-0.030, +0.100]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;EX&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;+0.680&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;+0.610&lt;/td&gt;
+&lt;td&gt;[-0.230, +0.090]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;IP&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;+0.290&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;+0.270&lt;/td&gt;
+&lt;td&gt;[-0.170, +0.130]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;All three target scores still increased after matching the non-target labels. The steering effects were therefore not caused solely by imbalances in the other labels.&lt;/p&gt;
+&lt;p&gt;Some coupling weakened, however. The decrease in ER under EX steering shrank from &lt;span class=&quot;math math-inline&quot;&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mo&gt;−&lt;/mo&gt;&lt;mn&gt;0.12&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;-0.12&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.7278em;vertical-align:-0.0833em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;−&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;0.12&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; to &lt;span class=&quot;math math-inline&quot;&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mo&gt;−&lt;/mo&gt;&lt;mn&gt;0.05&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;-0.05&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.7278em;vertical-align:-0.0833em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;−&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;0.05&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;. The difference between conditions was &lt;span class=&quot;math math-inline&quot;&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mn&gt;0.07&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;+0.07&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.7278em;vertical-align:-0.0833em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;0.07&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;, with a 95% CI of &lt;span class=&quot;math math-inline&quot;&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mo stretchy=&quot;false&quot;&gt;[&lt;/mo&gt;&lt;mn&gt;0.005&lt;/mn&gt;&lt;mo separator=&quot;true&quot;&gt;,&lt;/mo&gt;&lt;mn&gt;0.135&lt;/mn&gt;&lt;mo stretchy=&quot;false&quot;&gt;]&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;[0.005, 0.135]&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:1em;vertical-align:-0.25em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mopen&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;0.005&lt;/span&gt;&lt;span class=&quot;mpunct&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.1667em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;0.135&lt;/span&gt;&lt;span class=&quot;mclose&quot;&gt;]&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;. ER–IP and EX–IP cosine similarities also moved closer to zero.&lt;/p&gt;
+&lt;p&gt;To summarize:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Target scores remain controllable after matching the distributions of other labels. However, the extent to which other scores change alongside them, and the relationships between the vectors, depend on which responses are used to construct the vectors.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;7. Result 3: Do Personas Move the Same Empathy Directions?&lt;/h2&gt;
+&lt;p&gt;Next, we assigned personas to the models. We examined whether personas changed empathy scores and whether the corresponding activations moved along the ER/IP/EX directions identified earlier.&lt;/p&gt;
+&lt;p&gt;The baseline was &lt;code class=&quot;language-text&quot;&gt;person&lt;/code&gt;. We compared it with the two personas &lt;code class=&quot;language-text&quot;&gt;empathetic&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;cynical&lt;/code&gt;, plus eight social personas covering gender, race, occupation, and political orientation. Including the baseline, there were 11 conditions in total.&lt;/p&gt;
+&lt;p&gt;The Llama results in Table 4 show that the three scores changed differently depending on the persona.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;./paper_review_images/table4.png&quot;&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 67.08860759493672%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABYlAAAWJQFJUiTwAAABzElEQVR42l2T547CQAyE8/7vw39AQvTeexMdJHoHn75BRne30iberD0ej53gfD5bo9GwVqtl3W7Xlsvln71arbQXi4VVq1X5bjYbGwwGVi6Xddfr9axYLNp+v7fgdrtZoVCwZrNp7Xbb7ve7PR6P775er4bP8Xi0dDot0Ofzaf1+3/L5vO6Jxb5cLhYAQNZarSZnLmHKudPpGBUcDgcBsGEGEyrCl3t8vwzf77eAyFCpVKxUKslhNBopoy/O4XDYIpGIzpAAxO1YLKYqBAgIYGQEDBaUyXq9XnqjIYCpVMqIQR5ikAXATCajSgL0QEOy1et1vRGZRaAvxAcAH5IkEgkLhUK6Gw6HlkwmPwzJQLkI7vqwf4Nhz2Yzy+VyAoVENpsViANyPp1On6a4o5f5fzmgdxkSyITNHVJRpRhCHzB0GI/HEh+m0+lUzs50vV5bPB5XIN/wZw6Jp+PYEFLJNAJHsk4mE4ExvL8XQ+4aUjLsaIxPwLdksnGgS8wfYFCfz+cqEyAyY9MwmEECQFixqAjZNNg4AwY715KgaDQq1q4ZCWiCzx66EeM23xnygAdBvmHJH4Izb0aIrgNIIs673U5/DSVvt1t9A5Q5/AE1vbqvKBfAGgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Changes in Llama&amp;#39;s ER, IP, and EX scores for ten personas relative to the person baseline&quot;
+        title=&quot;&quot;
+        src=&quot;/static/1ea1a7cb54150ba3e432fd387dea46c3/f058b/table4.png&quot;
+        srcset=&quot;/static/1ea1a7cb54150ba3e432fd387dea46c3/c26ae/table4.png 158w,
+/static/1ea1a7cb54150ba3e432fd387dea46c3/6bdcf/table4.png 315w,
+/static/1ea1a7cb54150ba3e432fd387dea46c3/f058b/table4.png 630w,
+/static/1ea1a7cb54150ba3e432fd387dea46c3/40601/table4.png 945w,
+/static/1ea1a7cb54150ba3e432fd387dea46c3/f3a19/table4.png 1086w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+    &lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Table 4. Score changes when ten personas are assigned to Llama-3.1-8B-Instruct. The baseline is &lt;code class=&quot;language-text&quot;&gt;person&lt;/code&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Even the &lt;code class=&quot;language-text&quot;&gt;empathetic person&lt;/code&gt; persona increased only ER (&lt;span class=&quot;math math-inline&quot;&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mn&gt;0.175&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;+0.175&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.7278em;vertical-align:-0.0833em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;0.175&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;), while IP (&lt;span class=&quot;math math-inline&quot;&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mo&gt;−&lt;/mo&gt;&lt;mn&gt;0.250&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;-0.250&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.7278em;vertical-align:-0.0833em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;−&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;0.250&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;) and EX (&lt;span class=&quot;math math-inline&quot;&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mo&gt;−&lt;/mo&gt;&lt;mn&gt;0.110&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;-0.110&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.7278em;vertical-align:-0.0833em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;−&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;0.110&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;) decreased. Regardless of overall response quality, the persona did not increase all three empathetic expressions together. For &lt;code class=&quot;language-text&quot;&gt;black person&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;engineer&lt;/code&gt;, ER decreased while IP increased.&lt;/p&gt;
+&lt;h3&gt;When Scores Change, Do Activations Also Move in the ER Direction?&lt;/h3&gt;
+&lt;p&gt;For each persona, we averaged the layer-15 activations of generated responses across response tokens, then calculated their cosine similarity with the ER vector. Figure 4 compares changes in ER scores with changes in cosine similarity, both relative to &lt;code class=&quot;language-text&quot;&gt;person&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 55.06329113924051%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABYlAAAWJQFJUiTwAAABoUlEQVR42m1TC8vUMBC8///3RFQQqZx6bV7NO81zZHNfKycX2HbLbiazk+kNAFprqLViDKD1jvERvXec9TM/16DmN+uWc4YxBtZalApIteOIHjk6cCHRRofaFZSUL2B0SK4NOviXA25KKVAQcIwJ27bh8XhAa41SytX8P6NSG5ROMCG8MqSN+74jhIAQIqSUYJxPxjmXyWRG7x/vgQczEHtAH31+q92CMT4J3QiMNocY4UNEiGkG5c4HWArn4IyGthFyW/FzWfCbGSilwYQEUxa55DnFZCiEwL5rWB9hnYd1YYaxDsYGaG2g/vwAEwKfvn3Gl6/fIbSBWH9Bsgecj6i1/RuZNEzpQMkHnPPQxk52tTWUWudYyWkcOcHmY17aETx6H5ck16XQyMSQxuw5IgQP78PUg1YfA9pZbFxgubOp5dNK9b1tyDLEMqX0UgipTR2JuaQprEEp9WJC7N8C0oMsQ6B0q9RP7AiImHIu4P3Ta3QoaUWgVOvT/GP2XyOfyAT6/FsG7vc71nWdUlBO3iQ7UU56c86xLMusEyjtPQH/AkSAVlyVUTbjAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Relationship between persona-induced ER score changes and changes in cosine similarity with the recovered ER direction&quot;
+        title=&quot;&quot;
+        src=&quot;/static/82239a2c86fcd078484194319b7dd075/f058b/figure4.png&quot;
+        srcset=&quot;/static/82239a2c86fcd078484194319b7dd075/c26ae/figure4.png 158w,
+/static/82239a2c86fcd078484194319b7dd075/6bdcf/figure4.png 315w,
+/static/82239a2c86fcd078484194319b7dd075/f058b/figure4.png 630w,
+/static/82239a2c86fcd078484194319b7dd075/40601/figure4.png 945w,
+/static/82239a2c86fcd078484194319b7dd075/78612/figure4.png 1260w,
+/static/82239a2c86fcd078484194319b7dd075/844cc/figure4.png 1306w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Figure 4. Small points represent persona conditions, while large triangles represent direct ER steering. The horizontal axis shows the change in ER score, and the vertical axis shows the change in cosine similarity with the ER vector.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;ER scores changed substantially across personas, but cosine similarity with the ER direction changed only slightly. &lt;strong&gt;Persona effects cannot be adequately explained by the single ER direction we extracted.&lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;What the 3% Figure Tells Us&lt;/h3&gt;
+&lt;p&gt;What if we include IP and EX as well as ER? We expanded the analysis to the subspace spanned by all three vectors.&lt;/p&gt;
+&lt;p&gt;For each persona, we averaged the differences between its layer-15 response representations and those of the &lt;code class=&quot;language-text&quot;&gt;person&lt;/code&gt; baseline for the same seeker posts. We then calculated &lt;strong&gt;the fraction of the mean shift&apos;s squared norm captured by the ER/IP/EX span&lt;/strong&gt;. The table below averages this fraction across the ten non-baseline personas.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Model&lt;/th&gt;
+&lt;th align=&quot;right&quot;&gt;Fraction within the ER/IP/EX span&lt;/th&gt;
+&lt;th align=&quot;right&quot;&gt;Fraction outside the span&lt;/th&gt;
+&lt;th align=&quot;right&quot;&gt;Variance explained by the residual&apos;s top 5 PCs&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Llama&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;2.64%&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;97.36%&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;27.49%&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Qwen&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;3.08%&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;96.92%&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;29.60%&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Mistral&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;3.00%&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;97.00%&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;29.86%&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 45.56962025316456%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAC4jAAAuIwF4pT92AAABwklEQVR42mWSy2oUQRSG+wl0I7jXheDGvS/gzhfQlWKyNroQXAqiIC4SwYFRhEBA48IoKi50AoqBBNyYgIiC4jDd9M2u6ntPV9UnfXGS0YIDxak6X/2n/mOlaUoURRhj2F+mDTPbdbmiKMnzkiRJwCiMmmJ03dX29dZkMiEIApTSaD3LH8B2oZQiTmJ+RyG2bfcXNEVlmBYZqKoD+r6PEALd0HpM+6qu5+iu6yLjGKVNC9f9mZ/kjL0Q6hJVFZ1CKQXfJyXb38B1PMYPzhCunePVl/ecfT3g/udNMhm3wL7/WZtKa6bTAqMqjNFYfhCQxhHXHgqOX5RsvP2JfesI7p1TrGw9wVpZZGG0ShZJhJQcXEpDrczc/1ue75OnkuuPBCcWJM/f/cK5ewx3+TTDnWccGi6x9GEd6Yf/ARuO1n+BvSm27bQKLw8ER88nrL/5gXPzMO7tkyxvPca6t8il0SpoEFLMCveh/yiUMiaOBU83Q64OHD7tuYw3rmC/vMHo6w4XXgxZ2/3YXs7ShDxLyPKcsmxGKJ+LJmc17jauKTWlyGSrICtr8qpxWlMmGaquZ2oaE5qpaEbH87w2urFT1HXNH7DnmDPN2mUBAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Fraction of persona-mean shifts captured by the ER/IP/EX subspace and a PCA visualization of the residuals&quot;
+        title=&quot;&quot;
+        src=&quot;/static/87a1966190f71f0ef21701fa03446655/f058b/persona_subspace.png&quot;
+        srcset=&quot;/static/87a1966190f71f0ef21701fa03446655/c26ae/persona_subspace.png 158w,
+/static/87a1966190f71f0ef21701fa03446655/6bdcf/persona_subspace.png 315w,
+/static/87a1966190f71f0ef21701fa03446655/f058b/persona_subspace.png 630w,
+/static/87a1966190f71f0ef21701fa03446655/40601/persona_subspace.png 945w,
+/static/87a1966190f71f0ef21701fa03446655/78612/persona_subspace.png 1260w,
+/static/87a1966190f71f0ef21701fa03446655/b5c8e/persona_subspace.png 2194w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Figure 6. Fraction of each persona&apos;s mean shift within the ER/IP/EX span (left), and PCA of the residual outside that span (right).&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Because assigning a persona changes empathy scores, I expected the activations to move along the ER/IP/EX directions we had identified. Instead, about 97% of the squared norm of the mean activation change for each persona was not captured by those three vectors. We had found directions that could control empathy scores, but the internal changes induced by personas extended beyond them.&lt;/p&gt;
+&lt;h2&gt;8. Checking the Reliability of the Experiments&lt;/h2&gt;
+&lt;p&gt;We checked &lt;strong&gt;whether the direction of steering effects was preserved across seeds and on different data&lt;/strong&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Repeated runs:&lt;/strong&gt; At Llama layer 15, the signs of the effects were preserved when we varied extraction/sample seeds and decoding seeds. All 18 tests of target effects in Appendix G had confidence intervals excluding zero and remained significant after Holm correction. This does not establish the significance of off-target effects across all models.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cross-judging:&lt;/strong&gt; GPT-5-mini and the EPITOME classifier agreed on the direction of ER changes and mostly agreed on EX, but disagreements remained for IP. Both use the same EPITOME rubric and do not replace human evaluation.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Out-of-domain (OOD) validation:&lt;/strong&gt; On the negative-emotion subset of EmpatheticDialogues, the direction of ER steering was preserved for both positive and negative interventions across all three models. This evaluation covered ER only and used the EPITOME classifier.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;After controlling for response length and question count, the positive EX steering effect pooled across the three models decreased from &lt;span class=&quot;math math-inline&quot;&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mn&gt;0.248&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;+0.248&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.7278em;vertical-align:-0.0833em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;0.248&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; to &lt;span class=&quot;math math-inline&quot;&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mo&gt;−&lt;/mo&gt;&lt;mn&gt;0.004&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;-0.004&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.7278em;vertical-align:-0.0833em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;−&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;0.004&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;. &lt;strong&gt;Changes in EX scores, which assess questions and requests for further explanation, were closely tied to changes in response length and question count.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;We also used perplexity (PPL) to examine whether steering affected general text prediction. PPL measures how well a model predicts the next token in a given text; lower is better. When we evaluated Llama on 4,096 tokens from WikiText-103, PPL increased slightly at &lt;span class=&quot;math math-inline&quot;&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;α&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;\alpha=+1&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.4306em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot; style=&quot;margin-right:0.0037em;&quot;&gt;α&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2778em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mrel&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2778em;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.7278em;vertical-align:-0.0833em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;, and increased more substantially when EX steering was strengthened to &lt;span class=&quot;math math-inline&quot;&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;α&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;\alpha=+2&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.4306em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot; style=&quot;margin-right:0.0037em;&quot;&gt;α&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2778em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mrel&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2778em;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.7278em;vertical-align:-0.0833em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;. Stronger EX interventions therefore also reduced performance on next-token prediction for general text.&lt;/p&gt;
+&lt;h2&gt;9. Closing Thoughts&lt;/h2&gt;
+&lt;p&gt;To summarize the conclusion in one sentence:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Empathetic expressions can be steered. However, the changes are not isolated to the desired expression, and the three extracted directions cannot explain persona effects in their entirety.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Our experiments used the existing CAA method. What we established is that &lt;strong&gt;target steerability, selective control, and coverage of persona shifts are distinct questions&lt;/strong&gt;. Target scores changed in all three models, but removing shared components weakened some effects, and most persona-induced changes remained outside the three directions. Target scores were still controllable after matching the label distributions of the other empathy categories, while some changes in non-target scores became smaller. The responses used to construct a vector also affected what that vector controlled.&lt;/p&gt;
+&lt;p&gt;When I started this research, I thought the task would be to find activations involved in empathy and change them. In practice, even finding suitable responses to compare was difficult. As we moved to human-labeled EPITOME data, examined non-target as well as target scores, and followed the changes induced by personas, the questions themselves became more specific.&lt;/p&gt;
+&lt;p&gt;Finally, combining AI with human emotion, as we did in this study, is a compelling idea, but there is a great deal to consider. Emotion is difficult to evaluate: we have to represent natural human feelings through discrete measures, and, more fundamentally, it is hard to establish a ground truth for emotion.&lt;/p&gt;
+&lt;p&gt;What counts as a &quot;correct&quot; emotional response depends on the values each person holds. That makes it important to use previously validated data such as EPITOME or, when proposing a new concept, to include human annotation as an essential part of the process. Throughout this research, I kept returning to the question of how to make empathy something we can meaningfully measure.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[노력의 본질]]></title><description><![CDATA[노력과 결과물의 상관관계에 대해]]></description><link>https://juheon.dev/essay/261014-essence-of-effort/</link><guid isPermaLink="false">https://juheon.dev/essay/261014-essence-of-effort/</guid><pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate><content:encoded>&lt;!-- language:kor --&gt;
 &lt;p&gt;백준 온라인 저지(일명 BOJ)가 얼마 전에 서비스를 종료했다는 소식을 전해 들었다. 내가 대학교를 다니는 4년 동안 가장 열심히 시간을 투자했던 활동이 바로 BOJ에서 알고리즘 문제를 푸는 일이었는데 안타깝게도 사라져버렸다. 운영자가 콕 집어서 서비스 종료 사유를 밝히지는 않았지만, 최근  몇 년 새 AI봇이 자동으로 웹사이트를 돌면서 제출 어뷰징을 하는 사례가 많아졌고 이에 따른 서버 트래픽 비용이 과도하게 늘어났다는 얘기를 들었다. 그리고 개인적인 추측으로 BOJ 서비스를 10년 넘게 운영하면서 쌓아온 수많은 유저들의 랭킹, 제출기록, 문제와 같은 유무형의 자산이 AI로 인해 그 가치가 훼손됨으로 인해서 스트레스를 적지 않게 받으셨을 것이라고 조심스럽게 생각한다.&lt;/p&gt;
 &lt;p&gt;요즘 시대에 노력이란 무엇일까. 노력의 본질에 대해 다시금 생각해보게 된다. 내가 대학교에 입학했던 2017년, 불과 9년밖에 지나지 않은 과거를 떠올려보더라도 다들 노력의 본질에 대해서 의심하지 않았다. 많은 시간을 투자해서 열심히 공부한 사람은 높은 점수를 받고 코드도 더 잘 짜던 시대가 있었다. 즉 개인의 역량은 노력을 필요로 했으며, 그 노력은 결코 배신하는 일이 없었다.&lt;/p&gt;
 &lt;p&gt;그런데 2026년이 된 지금(정확히 떠올리자면 2024년부터)은 노력이라는 말이 생경하게 느껴진다. 노력과 전문성 여부와 상관없이 누구나 프롬프트 몇 줄만 입력하면 엄청난 결과물을 단 몇 분 만에 받아볼 수 있게 되었다. 알고리즘을 몰라도 ICPC 문제를 풀게 되었고, 웹개발자가 아니어도 웹사이트를 구축하는 일은 너무나 쉬워졌다. 내가 노력을 투입해서 얻어낸 값비싼 지식들이 이제는 0원에 수렴하는 값싼 지식이 되어버린 셈이다. 이렇게 된 세상에서 누가 지식을 습득하기 위해서 노력을 쏟으려고 할까?&lt;/p&gt;
