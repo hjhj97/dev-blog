@@ -32,9 +32,9 @@
     BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
     sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
     "Noto Color Emoji";
-  --fontFamily-serif: "Noto Serif KR", "Georgia", Cambria, "Times New Roman",
+  --fontFamily-serif: "Noto Serif KR", "Noto Serif Fallback", "Georgia", Cambria, "Times New Roman",
     Times, serif;
-  --fontFamily-sans-kr: "Noto Sans KR", var(--fontFamily-sans);
+  --fontFamily-sans-kr: "Noto Sans KR", "Noto Sans Fallback", var(--fontFamily-sans);
   --font-body: var(--fontFamily-sans-kr);
   --font-heading: var(--fontFamily-serif);
   --fontWeight-normal: 400;

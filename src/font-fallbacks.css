@@ -1,0 +1,56 @@
+/* Latin fallback metrics measured against Noto at 100px using A-Z, a-z, 0-9.
+   Local fonts avoid another download; Korean glyphs retain the system fallback. */
+@font-face {
+  font-family: "Noto Sans Fallback";
+  src: local("Arial"), local("ArialMT");
+  font-style: normal;
+  font-weight: 400;
+  size-adjust: 99.358%;
+  ascent-override: 116.749%;
+  descent-override: 29.187%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: "Noto Sans Fallback";
+  src: local("Arial"), local("ArialMT");
+  font-style: normal;
+  font-weight: 500;
+  size-adjust: 101.868%;
+  ascent-override: 113.873%;
+  descent-override: 28.468%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: "Noto Sans Fallback";
+  src: local("Arial Bold"), local("Arial-BoldMT");
+  font-style: normal;
+  font-weight: 700;
+  size-adjust: 100.814%;
+  ascent-override: 115.063%;
+  descent-override: 28.766%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: "Noto Serif Fallback";
+  src: local("Georgia Bold"), local("Georgia-Bold");
+  font-style: normal;
+  font-weight: 600;
+  size-adjust: 94.484%;
+  ascent-override: 121.714%;
+  descent-override: 30.693%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: "Noto Serif Fallback";
+  src: local("Georgia Bold"), local("Georgia-Bold");
+  font-style: normal;
+  font-weight: 700;
+  size-adjust: 96.186%;
+  ascent-override: 119.56%;
+  descent-override: 30.15%;
+  line-gap-override: 0%;
+}

@@ -7,6 +7,7 @@ import "@fontsource/noto-sans-kr/500.css"
 import "@fontsource/noto-sans-kr/700.css"
 import "@fontsource/noto-serif-kr/600.css"
 import "@fontsource/noto-serif-kr/700.css"
+import "./src/font-fallbacks.css"
 // normalize CSS across browsers
 import "./src/normalize.css"
 import "./src/code.css"
