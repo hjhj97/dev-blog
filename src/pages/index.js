@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react"
 //import * as _ from "lodash"
 import { Link, graphql } from "gatsby"
-import { PanelRightClose, PanelRightOpen } from "lucide-react"
+import { ArrowUpRight, PanelRightClose, PanelRightOpen } from "lucide-react"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
@@ -70,6 +70,14 @@ const BlogIndex = ({ data, location }) => {
         ])
       ),
     [visiblePosts, language]
+  )
+  const aboutCard = (
+    <Link to="/about/" className="about-card">
+      <div className="about-card__heading">
+        <h3>About my story</h3>
+        <ArrowUpRight size={20} aria-hidden="true" />
+      </div>
+    </Link>
   )
   const renderPost = post => {
     const title =
@@ -209,10 +217,12 @@ const BlogIndex = ({ data, location }) => {
                 {leftColumnPosts.map(renderPost)}
               </div>
               <div className="post-list-column">
+                {aboutCard}
                 {rightColumnPosts.map(renderPost)}
               </div>
             </div>
             <div className="post-list--mobile">
+              {aboutCard}
               {filteredPosts.map(renderPost)}
             </div>
           </div>
