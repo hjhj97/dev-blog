@@ -92,9 +92,6 @@ const Research = () => {
                   {publication.venue}
                 </span>
               </p>
-              <span className="publication-status publication-status--accepted">
-                Accepted
-              </span>
             </div>
             <h4 className="publication-title">
               <a
