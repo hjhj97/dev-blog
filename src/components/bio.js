@@ -82,11 +82,11 @@ const Bio = () => {
             <strong>human-centered AI</strong>, and{" "}
             <strong>AI safety and alignment</strong>, with particular interests
             in persona, emotion, and social bias in LLMs. I explore how AI can
-            model human psychology and behavior, and the underlying model
-            mechanisms that give rise to human-like behavior.
+            model human emotion and behavior, and the underlying model
+            mechanisms that shape human-like behavior.
           </p>
           <p>
-            Before beginning my graduate studies, I worked as a frontend
+            Before beginning my graduate studies, I worked as a web
             developer.
           </p>
         </div>
