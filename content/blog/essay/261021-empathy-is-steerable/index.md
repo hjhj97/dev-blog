@@ -2,7 +2,7 @@
 title: Empathy Is Steerable but Multi-Axial:Mechanism Geometry and Persona Effects in LLMs
 titleEn: Empathy Is Steerable but Multi-Axial:Mechanism Geometry and Persona Effects in LLMs
 description: LLM의 공감을 조절할 수 있는가?
-descriptionEn: Can we steer the LLM to be more empathetic?
+descriptionEn: Can we steer the LLMs to be more empathetic?
 date: 2026-10-21
 category: Paper
 
