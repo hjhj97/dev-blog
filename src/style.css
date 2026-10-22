@@ -1434,6 +1434,37 @@ main {
   outline-offset: 3px;
 }
 
+.bio-cv {
+  position: relative;
+  color: var(--color-heading);
+}
+
+.bio-cv:hover {
+  color: var(--color-primary);
+}
+
+.bio-cv__tooltip {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  z-index: 2;
+  transform: translateX(-50%);
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: var(--color-heading);
+  color: #fff;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  white-space: nowrap;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.bio-cv:hover .bio-cv__tooltip,
+.bio-cv:focus-visible .bio-cv__tooltip {
+  visibility: visible;
+}
+
 .bio-avatar {
   width: var(--bio-avatar-size);
   aspect-ratio: 1;

@@ -6,8 +6,9 @@
  */
 
 import * as React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql, withPrefix } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
+import { FileText } from "lucide-react"
 import GithubLogo from "../images/logo/GithubLogo"
 import LinkedinLogo from "../images/logo/LinkedinLogo"
 import { RESEARCH_INTERESTS } from "../constants/research"
@@ -57,6 +58,18 @@ const Bio = () => {
                 aria-label="LinkedIn profile"
               >
                 <LinkedinLogo />
+              </a>
+              <a
+                className="bio-cv"
+                href={withPrefix("/JuHeon_Ha_CV_2026-10-19.pdf")}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="CV (PDF, opens in a new tab)"
+              >
+                <FileText size={24} aria-hidden="true" />
+                <span className="bio-cv__tooltip" aria-hidden="true">
+                  CV (PDF)
+                </span>
               </a>
             </div>
           </div>
