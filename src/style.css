@@ -1414,6 +1414,10 @@ main {
   margin-top: var(--spacing-3);
 }
 
+.bio-summary strong {
+  color: var(--color-primary);
+}
+
 .bio .bio-social {
   display: flex;
   align-items: center;

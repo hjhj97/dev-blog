@@ -91,16 +91,18 @@ const Bio = () => {
       <div className="bio-content">
         <div className="bio-summary" lang="en">
           <p>
-            My research focuses on <strong>LLM interpretability</strong>,{" "}
-            <strong>human-centered AI</strong>, and{" "}
-            <strong>AI safety and alignment</strong>, with particular interests
-            in persona, emotion, and social bias in LLMs. I explore how AI can
-            model human emotion and behavior, and the underlying model
-            mechanisms that shape human-like behavior.
+            My research focuses on <strong>AI safety alignment</strong>,{" "}
+            <strong>LLM interpretability</strong>, and{" "}
+            <strong>Human-centered AI</strong>, particularly persona, emotion,
+            and social bias in LLMs. I study how LLMs represent emotions and
+            social context, adopt perspectives, express empathy, and respond to
+            persona prompts. Building on my interpretability research, I aim to
+            understand how post-training shapes the internal mechanisms
+            underlying safe and unsafe behavior in LLMs.
           </p>
           <p>
-            Before beginning my graduate studies, I worked as a web
-            developer.
+            Before beginning my graduate studies, I worked as a web frontend
+            engineer.
           </p>
         </div>
         <ul className="research-interests bio-interests">
