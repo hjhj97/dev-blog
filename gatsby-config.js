@@ -67,6 +67,7 @@ module.exports = {
             resolve: `gatsby-remark-highlight-code`,
           },
           `gatsby-remark-prismjs`,
+          `gatsby-remark-copy-linked-files`,
         ],
       },
     },

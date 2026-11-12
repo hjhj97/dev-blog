@@ -22,6 +22,7 @@
     "gatsby-plugin-robots-txt": "^1.8.0",
     "gatsby-plugin-sharp": "^5.11.0",
     "gatsby-plugin-sitemap": "^6.13.1",
+    "gatsby-remark-copy-linked-files": "6.16.0",
     "gatsby-remark-highlight-code": "^3.3.0",
     "gatsby-remark-images": "^7.11.0",
     "gatsby-remark-katex": "7.16.0",
